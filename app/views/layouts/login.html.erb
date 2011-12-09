@@ -15,6 +15,11 @@
           <%= yield %>
         </div>
       </div>
+      <div style="margin-top:10px; float:right">
+        <%= link_to I18n.t(:forgot_password, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_password_path %> |
+        <%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), main_app.new_refinery_user_registration_path %> |
+        <%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %>
+      </div>
     </div>
   </body>
 </html>

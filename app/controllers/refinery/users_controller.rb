@@ -1,9 +1,6 @@
 module Refinery
   class UsersController < ::Devise::RegistrationsController
 
-    # Protect these actions behind an admin login
-    before_filter :redirect?, :only => [:new, :create]
-
     layout 'login'
 
     def new
@@ -22,20 +19,6 @@ module Refinery
       else
         render :action => 'new'
       end
-    end
-
-  protected
-
-    def redirect?
-      if refinery_user?
-        redirect_to main_app.refinery_admin_users_path
-      elsif refinery_users_exist?
-        redirect_to main_app.new_refinery_user_session_path
-      end
-    end
-
-    def refinery_users_exist?
-      ::Refinery::Role[:refinery].users.any?
     end
 
   end
