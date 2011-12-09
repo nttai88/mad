@@ -47,6 +47,8 @@ module Mad2
 
     config.to_prepare do
       ::Refinery::PagesController.send :before_filter, :redirect?
+      ::Refinery::InquiriesController.send :before_filter, :redirect?
+      ::Refinery::NewsItemsController.send :before_filter, :redirect?
     end
   end
 end
