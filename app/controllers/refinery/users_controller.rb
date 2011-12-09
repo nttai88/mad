@@ -5,6 +5,7 @@ module Refinery
 
     def new
       @user = User.new
+#      @user.profile = Profile.new
     end
 
     # This method should only be used to create the first Refinery user.

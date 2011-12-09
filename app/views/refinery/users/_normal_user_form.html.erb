@@ -1,0 +1,34 @@
+<% f.fields_for :profile do |fp| -%>
+  <div class='field'>
+    <%= fp.label :name %>
+    <%= fp.text_field :name, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :address1 %>
+    <%= fp.text_field :address1, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :address2 %>
+    <%= fp.text_field :address2, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :country %>
+    <%= fp.text_field :country, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :city %>
+    <%= fp.text_field :city, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :zip, "Zip/Postal code" %>
+    <%= fp.text_field :zip, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :url %>
+    <%= fp.text_field :url, :class => 'larger widest' %>
+  </div>
+  <div class='field'>
+    <%= fp.label :receive_newsleter %>
+    <%= fp.check_box :receive_newsleter %>
+  </div>
+<% end %>
