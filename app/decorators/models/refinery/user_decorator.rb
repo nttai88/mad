@@ -4,9 +4,9 @@ Refinery::User.class_eval do
 
     def create_first
       if valid?
+        # first we need to save user
+        save
         if Refinery::Role[:refinery].users.count == 0
-          # first we need to save user
-          save
           # add refinery role
           add_role(:refinery)
           # add superuser role
