@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208173017) do
+ActiveRecord::Schema.define(:version => 20111209100655) do
+
+  create_table "profiles", :force => true do |t|
+    t.string   "user_id"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "country"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "url"
+    t.boolean  "receive_newsleter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"

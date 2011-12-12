@@ -1,6 +1,6 @@
-<% f.fields_for :profile do |fp| -%>
+<%= f.fields_for :profile, @user.profile do |fp| -%>
   <div class='field'>
-    <%= fp.label :name %>
+    <%= fp.label "name" %>
     <%= fp.text_field :name, :class => 'larger widest' %>
   </div>
   <div class='field'>
@@ -28,7 +28,59 @@
     <%= fp.text_field :url, :class => 'larger widest' %>
   </div>
   <div class='field'>
-    <%= fp.label :receive_newsleter %>
     <%= fp.check_box :receive_newsleter %>
+    <%= fp.label :receive_newsleter, :style => "display:inline" %>
   </div>
 <% end %>
+<div class='field'>
+  <%= f.label :role %>
+  <% Refinery::Role.where(:title => Refinery::Role.user_roles).each_with_index do |role, i|%>
+    <% roles = @user.roles.map{|x| x.id} %>
+    <% if(roles.include?(role.id))%>
+      <%= f.radio_button :role_ids, role.id, :checked => "checked", :title => role.title.downcase %> <%= role.title %>
+    <% else %>
+      <%= f.radio_button :role_ids, role.id, :title => role.title.downcase %> <%= role.title %>
+    <% end %>
+  <% end %>
+</div>
+<% role = @user.roles.first %>
+<div class='field entrepreneur agreement' style="<%= "display:none" unless role.title == "Entrepreneur" %>">
+  <%= f.label :term_agreement, "Entrepreneur Agreement", :style => "display:inline" %>
+  <span style="float:right">
+    <%= link_to "Download PDF version", "#" %>
+  </span>
+  <textarea style="width:99%">
+    <%= Agreement.entrepreneur %>
+  </textarea>
+</div>
+<div class='field advisor agreement' style="<%= "display:none" unless role.title == "Advisor" %>">
+  <%= f.label :term_agreement, "Advisor Agreement", :style => "display:inline" %>
+  <span style="float:right">
+    <%= link_to "Download PDF version", "#" %>
+  </span>
+  <textarea style="width:99%">
+    <%= Agreement.advisor %>
+  </textarea>
+</div>
+<div class='field partner agreement' style="<%= "display:none" if ["Advisor", "Entrepreneur"].include?role.title %>">
+  <%= f.label :term_agreement, "Partner Agreement", :style => "display:inline" %>
+  <span style="float:right">
+    <%= link_to "Download PDF version", "#" %>
+  </span>
+  <textarea style="width:99%">
+    <%= Agreement.partner %>
+  </textarea>
+</div>
+<script>
+  $(document).ready(function(){
+    $("input[type=radio]").change(function(){
+      var agreement = $(this).attr("title");
+      $(".agreement").hide();
+      if($("." + agreement).length> 0){
+        $("." + agreement).show();
+      }else{
+        $(".partner").show();
+      }
+    });
+  });
+</script>

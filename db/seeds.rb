@@ -10,6 +10,6 @@ Dir[Rails.root.join('db', 'seeds', '*.rb').to_s].each do |file|
   puts "Loading db/seeds/#{file.split(File::SEPARATOR).last}"
   load(file)
 end
-Role::USER_ROLES.each do |role|
-  Role.find_or_create_by_title(role)
+(Refinery::Role.user_roles + Refinery::Role.admin_roles).each do |role|
+  Refinery::Role.find_or_create_by_title(role)
 end

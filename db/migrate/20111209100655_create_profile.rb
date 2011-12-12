@@ -1,7 +1,7 @@
 class CreateProfile < ActiveRecord::Migration
   def up
     create_table :profiles, :force => true do |t|
-      t.string :refinery_user_id
+      t.string :user_id
       t.string :name
       t.string :address1
       t.string :address2

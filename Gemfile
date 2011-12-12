@@ -44,6 +44,7 @@ group :development do
   gem 'rails-dev-tweaks', '~> 0.5.0'
   # see https://github.com/wavii/rails-dev-tweaks/issues/3
   gem 'routing-filter', :git => 'git://github.com/nevir/routing-filter.git'
+  gem 'thin'
 end
 
 # USER DEFINED
