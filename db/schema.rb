@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209100655) do
+ActiveRecord::Schema.define(:version => 20111212093515) do
 
   create_table "profiles", :force => true do |t|
     t.string   "user_id"
@@ -197,8 +197,12 @@ ActiveRecord::Schema.define(:version => 20111209100655) do
     t.string   "remember_token"
     t.string   "reset_password_token"
     t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "refinery_users", ["confirmation_token"], :name => "index_refinery_users_on_confirmation_token", :unique => true
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
 
   create_table "seo_meta", :force => true do |t|

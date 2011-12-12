@@ -1,4 +1,9 @@
 Mad2::Application.routes.draw do
+  scope(:module => 'refinery') do
+    devise_for :refinery_user, :class_name => "Refinery::User", :path => "refinery/users", :module => 'refinery', :controllers => {
+      :confirmations => 'refinery/confirmations'
+    }
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
