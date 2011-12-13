@@ -63,3 +63,4 @@ gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git',
 #gem 'refinerycms-inquiries', '~> 2.0.0'
 
 # END USER DEFINED
+gem "country-select"
