@@ -3,6 +3,8 @@ Refinery::User.class_eval do
   accepts_nested_attributes_for :profile, :allow_destroy => true
 
   devise :confirmable
+  include Mailboxer::Models::Messageable
+  acts_as_messageable
   
   def create_first
     if valid?
@@ -17,5 +19,17 @@ Refinery::User.class_eval do
     end
     # return true/false based on validations
     valid?
+  end
+
+  def name
+    self.to_s
+  end
+
+  def mailboxer_email(message)
+    email
+  end
+
+  def to_s
+    email
   end
 end

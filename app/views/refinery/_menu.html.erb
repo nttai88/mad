@@ -15,6 +15,7 @@
                  :menu_levels => local_assigns[:menu_levels],
                  :apply_css => true #if you don't care about class='first' class='last' or class='selected' set apply_css to false for speed.
                } -%>
+    <li> <%= link_to "Messages", main_app.messaging_path %> </li>
     <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_path %> </li>
   </ul>
 </nav>

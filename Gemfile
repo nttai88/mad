@@ -64,3 +64,6 @@ gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git',
 
 # END USER DEFINED
 gem "country-select"
+gem 'mailboxer', :git => 'git://github.com/dickeytk/mailboxer.git'
+gem 'messaging', :git => 'https://github.com/frodefi/rails-messaging.git'
+gem 'sunspot_solr'

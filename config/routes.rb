@@ -1,4 +1,6 @@
 Mad2::Application.routes.draw do
+  mount Messaging::Engine => "/messaging"
+
   scope(:module => 'refinery') do
     devise_for :refinery_user, :class_name => "Refinery::User", :path => "refinery/users", :module => 'refinery', :controllers => {
       :confirmations => 'refinery/confirmations'
