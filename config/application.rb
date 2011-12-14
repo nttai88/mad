@@ -44,9 +44,9 @@ module Mad2
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.to_prepare do
-      ::Refinery::PagesController.send :before_filter, :required_login
-      ::Refinery::InquiriesController.send :before_filter, :required_login
-      ::Refinery::NewsItemsController.send :before_filter, :required_login
+      ::Refinery::PagesController.send :before_filter, :login_required
+      ::Refinery::InquiriesController.send :before_filter, :login_required
+      ::Refinery::NewsItemsController.send :before_filter, :login_required
       ::Refinery::Admin::DashboardController.send :before_filter, :admin_permission?
     end
   end
