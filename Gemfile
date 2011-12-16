@@ -43,7 +43,6 @@ group :development do
   gem 'rails-dev-tweaks', '~> 0.5.0'
   # see https://github.com/wavii/rails-dev-tweaks/issues/3
   gem 'routing-filter', :git => 'git://github.com/nevir/routing-filter.git'
-  gem 'thin'
 end
 
 # USER DEFINED
@@ -66,7 +65,7 @@ gem "country-select"
 gem 'mailboxer', :git => 'git://github.com/dickeytk/mailboxer.git'
 gem 'messaging', :git => 'https://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr'
-
+gem 'thin'
 group :production do
   gem "pg"
   gem 'therubyracer-heroku', '0.8.1.pre3'
