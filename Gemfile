@@ -67,3 +67,8 @@ gem "country-select"
 gem 'mailboxer', :git => 'git://github.com/dickeytk/mailboxer.git'
 gem 'messaging', :git => 'https://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr'
+
+group :production do
+  gem "pg"
+  gem 'therubyracer-heroku', '0.8.1.pre3'
+end
