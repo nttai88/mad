@@ -49,5 +49,7 @@ module Mad2
       ::Refinery::NewsItemsController.send :before_filter, :login_required
       ::Refinery::Admin::DashboardController.send :before_filter, :admin_permission?
     end
+
+    config.assets.initialize_on_precompile = false
   end
 end
