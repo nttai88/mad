@@ -66,6 +66,6 @@ Mad2::Application.configure do
     :password  => "btsocialbtsocial",
     :authentication  => :login
   }
-  ActionMailer::Base.default :from => 'notify@mad2.com'
+  ActionMailer::Base.default :from => 'notify@madlab.com'
 
 end

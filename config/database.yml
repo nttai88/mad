@@ -18,7 +18,8 @@ test: &test
   database: mad2_test
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: 123qwe
+  database: mad2_developement
