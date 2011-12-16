@@ -31,8 +31,8 @@ coverage
 # Public Uploads
 public/system/*
 public/themes/*
-#public/assets
-
+public/assets
+solr/data/
 # Public Cache
 public/javascripts/cache
 public/stylesheets/cache
