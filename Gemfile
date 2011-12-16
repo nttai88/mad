@@ -5,8 +5,6 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,6 +38,7 @@ gem "refinerycms", :git => "git://github.com/resolve/refinerycms.git"
 #  end
 
 group :development do
+  gem 'sqlite3'
   gem 'mysql2'
   gem 'rails-dev-tweaks', '~> 0.5.0'
   # see https://github.com/wavii/rails-dev-tweaks/issues/3
