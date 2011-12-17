@@ -2,7 +2,7 @@ Refinery::UsersController.class_eval do
   skip_filter :redirect?
   def new
     @user = Refinery::User.new
-    @user.roles = Refinery::Projects::Project.count
+    @user.roles = [Refinery::Role.find_by_title("Entrepreneur")]
   end
 
   def create

@@ -7,4 +7,8 @@ Refinery::Role.class_eval do
   def self.user_roles
     ["Entrepreneur", "Advisor", "Distributor", "Contractor", "Producer", "Investor"]
   end
+
+  def self.partner_roles
+    ["Distributor", "Contractor", "Producer", "Investor"]
+  end
 end

@@ -37,4 +37,12 @@ Refinery::User.class_eval do
   def to_s
     email
   end
+
+  def is_partner?
+    Refinery::Role.partner_roles.each do |role|
+      if self.has_role?(role)
+        return true
+      end
+    end
+  end
 end
