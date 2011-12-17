@@ -7,7 +7,7 @@
     hide_children = ::Refinery::Setting.find_or_set(:menu_hide_children, false) if hide_children.nil?
 -%>
 <nav id='<%= dom_id %>' class='<%= css %>'>
-  <ul>
+  <ul style="width: 100px; float:left;">
     <%= render :partial => '/refinery/menu_branch', :collection => roots,
                :locals => {
                  :hide_children => hide_children,
@@ -15,7 +15,10 @@
                  :menu_levels => local_assigns[:menu_levels],
                  :apply_css => true #if you don't care about class='first' class='last' or class='selected' set apply_css to false for speed.
                } -%>
+  </ul>
+  <ul style="width: 100px; float:left;">
     <% if refinery_user_signed_in? %>
+      <li> <%= link_to "My Page", main_app.refinery_mypage_index_path %> </li>
       <li> <%= link_to "Messages", main_app.messaging_path %> </li>
       <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_path %> </li>
     <% else %>

@@ -6,6 +6,10 @@ Mad2::Application.routes.draw do
       :confirmations => 'refinery/confirmations'
     }
   end
+
+  scope(:as => 'refinery', :module => 'refinery') do
+    resources :mypage, :only => [:index]
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

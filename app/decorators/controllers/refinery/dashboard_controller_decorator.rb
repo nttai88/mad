@@ -4,7 +4,7 @@ Refinery::Admin::DashboardController.class_eval do
   protected
   def admin_permission?
     if !current_refinery_user || (current_refinery_user && !current_refinery_user.has_role?(:refinery))
-      redirect_to main_app.root_path
+      redirect_to main_app.refinery_mypage_index_path
     end
   end
 end
