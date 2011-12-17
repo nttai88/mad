@@ -19,7 +19,7 @@
   <ul style="width: 200px; float:left;">
     <% if refinery_user_signed_in? %>
       <li> <%= link_to "My Page", main_app.refinery_mypage_index_path %> </li>
-      <%if refinery_user.is_partner? %>
+      <%if current_refinery_user.is_partner? %>
         <li> <%= link_to "Settings", "#" %> </li>
       <% end %>
       <li> <%= link_to "Messages", main_app.messaging_path %> </li>
