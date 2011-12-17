@@ -1,0 +1,177 @@
+<% content_for :body_content_title do %>
+  <%= @project.owner_name %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <h1>Owner Name</h1>
+    <p>
+      <%=raw @project.owner_name %>
+    </p>
+  </section>
+  <section>
+    <h1>Name</h1>
+    <p>
+      <%=raw @project.name %>
+    </p>
+  </section>
+  <section>
+    <h1>Title</h1>
+    <p>
+      <%=raw @project.title %>
+    </p>
+  </section>
+  <section>
+    <h1>Usage</h1>
+    <p>
+      <%=raw @project.usage %>
+    </p>
+  </section>
+  <section>
+    <h1>Solves</h1>
+    <p>
+      <%=raw @project.solves %>
+    </p>
+  </section>
+  <section>
+    <h1>Idea</h1>
+    <p>
+      <%=raw @project.idea %>
+    </p>
+  </section>
+  <section>
+    <h1>Description</h1>
+    <p>
+      <%=raw @project.description %>
+    </p>
+  </section>
+  <section>
+    <h1>Market</h1>
+    <p>
+      <%=raw @project.market %>
+    </p>
+  </section>
+  <section>
+    <h1>Competitors</h1>
+    <p>
+      <%=raw @project.competitors %>
+    </p>
+  </section>
+  <section>
+    <h1>Strategy</h1>
+    <p>
+      <%=raw @project.strategy %>
+    </p>
+  </section>
+  <section>
+    <h1>Progression</h1>
+    <p>
+      <%=raw @project.progression %>
+    </p>
+  </section>
+  <section>
+    <h1>Finances</h1>
+    <p>
+      <%=raw @project.finances %>
+    </p>
+  </section>
+  <section>
+    <h1>Summary</h1>
+    <p>
+      <%=raw @project.summary %>
+    </p>
+  </section>
+  <section>
+    <h1>Marked Geographic</h1>
+    <p>
+      <%=raw @project.marked_geographic %>
+    </p>
+  </section>
+  <section>
+    <h1>Marked Size</h1>
+    <p>
+      <%=raw @project.marked_size %>
+    </p>
+  </section>
+  <section>
+    <h1>Developed</h1>
+    <p>
+      <%=raw @project.developed %>
+    </p>
+  </section>
+  <section>
+    <h1>Need Company</h1>
+    <p>
+      <%=raw @project.need_company %>
+    </p>
+  </section>
+  <section>
+    <h1>Founder</h1>
+    <p>
+      <%=raw @project.founder %>
+    </p>
+  </section>
+  <section>
+    <h1>Develop In Own Company</h1>
+    <p>
+      <%=raw @project.develop_in_own_company %>
+    </p>
+  </section>
+  <section>
+    <h1>License To Company</h1>
+    <p>
+      <%=raw @project.license_to_company %>
+    </p>
+  </section>
+  <section>
+    <h1>Partners</h1>
+    <p>
+      <%=raw @project.partners %>
+    </p>
+  </section>
+  <section>
+    <h1>Suppliers</h1>
+    <p>
+      <%=raw @project.suppliers %>
+    </p>
+  </section>
+  <section>
+    <h1>Distributors</h1>
+    <p>
+      <%=raw @project.distributors %>
+    </p>
+  </section>
+  <section>
+    <h1>Patenting</h1>
+    <p>
+      <%=raw @project.patenting %>
+    </p>
+  </section>
+  <section>
+    <h1>Competitors2</h1>
+    <p>
+      <%=raw @project.competitors2 %>
+    </p>
+  </section>
+  <section>
+    <h1>Origin</h1>
+    <p>
+      <%=raw @project.origin %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="projects">
+      <% @projects.each do |project| %>
+        <li>
+          <%= link_to project.owner_name, main_app.refinery_project_path(project) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/refinery/content_page" %>

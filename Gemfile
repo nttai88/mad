@@ -74,3 +74,4 @@ group :production do
   gem "pg"
   gem 'therubyracer-heroku', '0.8.1.pre3'
 end
+gem 'refinerycms-projects', '1.0', :path => 'vendor/engines'

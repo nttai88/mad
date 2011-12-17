@@ -84,6 +84,7 @@
     <%= Agreement.partner %>
   </textarea>
 </div>
+<%= load_states(Carmen::STATES) %>
 <script>
   $(document).ready(function(){
     $("input[type=radio]").change(function(){

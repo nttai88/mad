@@ -1,0 +1,114 @@
+<%= form_for [main_app, :refinery_admin, @project] do |f| -%>
+  <%= render :partial => "/refinery/admin/error_messages", :locals => {
+          :object => @project,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :owner_name -%>
+    <%= f.text_field :owner_name, :class => 'larger widest'  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :title -%>
+    <%= f.text_field :title  -%>
+  </div>
+  
+  <div class='field'>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <% [:usage, :solves, :idea, :description, :market, :competitors, :strategy, :progression, :finances, :summary, :marked_geographic, :marked_size, :partners, :suppliers, :distributors, :patenting, :competitors2, :origin].each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
+            <%= link_to part.to_s.titleize, "##{part}" %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div id='page_part_editors'>
+        <% [:usage, :solves, :idea, :description, :market, :competitors, :strategy, :progression, :finances, :summary, :marked_geographic, :marked_size, :partners, :suppliers, :distributors, :patenting, :competitors2, :origin].each do |part| %>
+          <div class='page_part' id='<%= part %>'>
+            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <% end %>
+      </div>
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  <div class='field'>
+    <%= f.label :developed -%>
+    <%= f.text_field :developed  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :need_company -%>
+    <%= f.check_box :need_company, :checked => @project[:need_company]  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :founder -%>
+    <%= f.check_box :founder, :checked => @project[:founder]  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :develop_in_own_company -%>
+    <%= f.check_box :develop_in_own_company, :checked => @project[:develop_in_own_company]  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :license_to_company -%>
+    <%= f.check_box :license_to_company, :checked => @project[:license_to_company]  -%>
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  <%= render :partial => "/refinery/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'refinery.admin.projects.project'),
+                :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @project.owner_name)
+              } %>
+<% end -%>
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+    });
+  </script>
+<% end %>

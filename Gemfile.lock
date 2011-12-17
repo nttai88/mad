@@ -106,6 +106,12 @@ GIT
   specs:
     carmen (0.2.8)
 
+PATH
+  remote: vendor/engines
+  specs:
+    refinerycms-projects (1.0)
+      refinerycms-core (~> 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -293,6 +299,7 @@ DEPENDENCIES
   refinerycms-i18n (~> 2.0.0)!
   refinerycms-inquiries!
   refinerycms-news!
+  refinerycms-projects (= 1.0)!
   routing-filter!
   sass-rails (~> 3.1.5)
   simple_form

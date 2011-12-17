@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111217023404) do
+ActiveRecord::Schema.define(:version => 20111217083132) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -189,6 +189,38 @@ ActiveRecord::Schema.define(:version => 20111217023404) do
   add_index "refinery_pages", ["lft"], :name => "index_refinery_pages_on_lft"
   add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
+
+  create_table "refinery_projects", :force => true do |t|
+    t.string   "owner_name"
+    t.string   "name"
+    t.string   "title"
+    t.text     "usage"
+    t.text     "solves"
+    t.text     "idea"
+    t.text     "description"
+    t.text     "market"
+    t.text     "competitors"
+    t.text     "strategy"
+    t.text     "progression"
+    t.text     "finances"
+    t.text     "summary"
+    t.text     "marked_geographic"
+    t.text     "marked_size"
+    t.string   "developed"
+    t.boolean  "need_company"
+    t.boolean  "founder"
+    t.boolean  "develop_in_own_company"
+    t.boolean  "license_to_company"
+    t.text     "partners"
+    t.text     "suppliers"
+    t.text     "distributors"
+    t.text     "patenting"
+    t.text     "competitors2"
+    t.text     "origin"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "refinery_resources", :force => true do |t|
     t.string   "file_mime_type"
