@@ -7,7 +7,6 @@ Refinery::UsersController.class_eval do
 
   def create
     @user = Refinery::User.new(params[:user])
-    @user.profile = Profile.new(params[:user][:profile]) if params[:user][:profile]
     @user.roles = [Refinery::Role.find(params[:user][:role_ids])] if params[:user][:role_ids]
     if @user.create_first
       flash[:message] = "<h2>#{t('welcome', :scope => 'refinery.users.create', :who => @user.username).gsub(/\.$/, '')}.</h2>".html_safe
@@ -21,4 +20,5 @@ Refinery::UsersController.class_eval do
       render :action => 'new'
     end
   end
+
 end

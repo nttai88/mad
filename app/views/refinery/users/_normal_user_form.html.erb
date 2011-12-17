@@ -1,37 +1,50 @@
-<%= f.fields_for :profile, @user.profile do |fp| -%>
+<%= f.fields_for :profile_attributes, @user.profile do |fp| -%>
   <div class='field'>
-    <%= fp.label "name" %>
-    <%= fp.text_field :name, :class => 'larger widest' %>
+    <%= fp.label :first_name %>
+    <%= fp.text_field :first_name, :class => 'larger widest' %>
   </div>
   <div class='field'>
-    <%= fp.label :address1 %>
-    <%= fp.text_field :address1, :class => 'larger widest' %>
+    <%= fp.label :last_name %>
+    <%= fp.text_field :last_name, :class => 'larger widest' %>
   </div>
-  <div class='field'>
-    <%= fp.label :address2 %>
-    <%= fp.text_field :address2, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= fp.label :country %>
-    <%= fp.country_select :country %>
-  </div>
-  <div class='field'>
-    <%= fp.label :city %>
-    <%= fp.text_field :city, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= fp.label :zip, "Zip/Postal code" %>
-    <%= fp.text_field :zip, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= fp.label :url %>
-    <%= fp.text_field :url, :class => 'larger widest' %>
-  </div>
+  <%= fp.fields_for :contact_attributes do |fc| %>
+    <div class='field'>
+      <%= fc.label :address1 %>
+      <%= fc.text_field :address1, :class => 'larger widest' %>
+    </div>
+    <div class='field'>
+      <%= fc.label :address2 %>
+      <%= fc.text_field :address2, :class => 'larger widest' %>
+    </div>
+    <%= fc.fields_for :region_attributes do |fr| %>
+      <div class='field'>
+        <%= fr.label :country %>
+        <%= fr.country_select :country, "US" %>
+      </div>
+      <div class='field'>
+        <%= fr.label :state %>
+        <%= fr.state_select :state %>
+      </div>
+    <% end %>
+    <div class='field'>
+      <%= fc.label :city %>
+      <%= fc.text_field :city, :class => 'larger widest' %>
+    </div>
+    <div class='field'>
+      <%= fc.label :zip, "Zip/Postal code" %>
+      <%= fc.text_field :zip, :class => 'larger widest' %>
+    </div>
+    <div class='field'>
+      <%= fc.label :url %>
+      <%= fc.text_field :url, :class => 'larger widest' %>
+    </div>
+  <% end %>
   <div class='field'>
     <%= fp.check_box :receive_newsleter %>
     <%= fp.label :receive_newsleter, :style => "display:inline" %>
   </div>
 <% end %>
+
 <div class='field'>
   <%= f.label :role %>
   <% Refinery::Role.where(:title => Refinery::Role.user_roles).each_with_index do |role, i|%>

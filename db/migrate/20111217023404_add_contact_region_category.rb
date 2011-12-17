@@ -17,6 +17,7 @@ class AddContactRegionCategory < ActiveRecord::Migration
       t.string :address2
       t.string :city
       t.string :zip
+      t.string :url
       t.timestamps
     end
 

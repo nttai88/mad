@@ -5,7 +5,12 @@ Refinery::User.class_eval do
   devise :confirmable
   include Mailboxer::Models::Messageable
   acts_as_messageable
-  
+  attr_accessible :profile_attributes, :role_ids
+
+  def profile_attributes=(attrs)
+    self.profile = Profile.new(attrs)
+  end
+
   def create_first
     if valid?
       # first we need to save user
