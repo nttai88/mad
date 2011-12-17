@@ -11,7 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111214051859) do
+ActiveRecord::Schema.define(:version => 20111217023404) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.integer  "parent_id"
+    t.integer  "categorizable_id"
+    t.string   "categorizable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.string   "email"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -39,17 +60,11 @@ ActiveRecord::Schema.define(:version => 20111214051859) do
 
   create_table "profiles", :force => true do |t|
     t.string   "user_id"
-    t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "country"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "phone"
-    t.string   "url"
+    t.string   "first_name"
     t.boolean  "receive_newsleter"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_name"
   end
 
   create_table "receipts", :force => true do |t|
@@ -242,6 +257,15 @@ ActiveRecord::Schema.define(:version => 20111214051859) do
 
   add_index "refinery_users", ["confirmation_token"], :name => "index_refinery_users_on_confirmation_token", :unique => true
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
+
+  create_table "regions", :force => true do |t|
+    t.integer  "regionable_id"
+    t.string   "regionable_type"
+    t.string   "country"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"
