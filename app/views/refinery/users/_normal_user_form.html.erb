@@ -19,11 +19,11 @@
     <%= fc.fields_for :region_attributes do |fr| %>
       <div class='field'>
         <%= fr.label :country %>
-        <%= fr.country_select :country, "US" %>
+        <%= fr.country_select :country, "US", {},{:class => "country"} %>
       </div>
       <div class='field'>
         <%= fr.label :state %>
-        <%= fr.state_select :state %>
+        <%= fr.state_select :state, "US", {},{:class => "state"} %>
       </div>
     <% end %>
     <div class='field'>
@@ -84,7 +84,7 @@
     <%= Agreement.partner %>
   </textarea>
 </div>
-<%= load_states(Carmen::STATES) %>
+<%= states_by_country %>
 <script>
   $(document).ready(function(){
     $("input[type=radio]").change(function(){
@@ -96,5 +96,20 @@
         $(".partner").show();
       }
     });
+
+    $(".country").bind("change", function(){
+      var country = $(this).val();
+      populateState(country);
+    });
+
   });
+  function populateState(country){
+    var options = states[country];
+    if(options == ""){
+      $(".state").parents(".field").hide();
+    }else{
+      $(".state").parents(".field").show();
+    }
+    $(".state").html(options);
+  }
 </script>
