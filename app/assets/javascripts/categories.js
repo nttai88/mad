@@ -6,7 +6,7 @@ $(document).ready(function(){
 var Category = {
   bindNew: function(){
     $('.new-category').bind('click', function(){
-      var template = $(".template").html();
+      var template = $(".category-template").html();
       $(".new-categories").append(template);
       $(".submit").show();
       Category.bindDelete();

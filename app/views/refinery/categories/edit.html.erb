@@ -2,18 +2,9 @@
   <% javascript_include_tag('jquery', 'categories') %>
 <% end %>
 <h1>My Categories</h1>
-<div class="template" style="display:none">
-  <%= render :partial => "new", :locals => {:category => Category.new} %>
-</div>
 <%= form_for :category, :url => main_app.refinery_categories_path(current_refinery_user) do |f| %>
-  <div class="new-categories">
-    <% @categories.each do |cat| %>
-      <%= render :partial => "new", :locals => {:category => cat} %>
-    <% end %>
-  </div>
+  <%= render :partial => "categories" %>
   <input type="hidden" value="<%= params[:id] %>" name="id"/>
   <%= f.submit "Save", :class => "submit" %>
   <!--:style => "#{"display:none" if @categories.size ==0}" -->
 <% end %>
-
-<%= link_to "Add New Category", main_app.new_refinery_category_path, :class => "new-category" %>

@@ -4,24 +4,9 @@
 <h1>My Regions</h1>
 
 <%= form_for :profile, :url => main_app.refinery_regions_path(current_refinery_user) do |f| %>
-  <% region = Region.new %>
-  <%= f.fields_for region do  |fr|%>
-  <div class="template" style="display:none">
-    <%= render :partial => "new", :locals => {:region => region, :f => fr} %>
-  </div>
-  <% end %>
-  <div class="regions">
-    <% @regions.each do |reg| %>
-      <%= f.fields_for reg do  |fr|%>
-        <%= render :partial => "new", :locals => {:region => reg, :f => fr} %>
-      <% end %>
-    <% end %>
-  </div>
+  
+  <%= render :partial => "refinery/regions/regions", :locals => {:region => region, :f => f} %>
   <input type="hidden" value="<%= params[:id] %>" name="id"/>
   <%= f.submit "Save", :class => "submit" %>
   <!--:style => "#{"display:none" if @categories.size ==0}" -->
 <% end %>
-
-<%= link_to "Add New Region", main_app.new_refinery_region_path, :class => "new-region" %>
-
-  <%= states_by_country %>

@@ -14,7 +14,7 @@ var Region = {
   },
   bindNew: function(){
     $('.new-region').bind('click', function(){
-      var template = $(".template").html();
+      var template = $(".region-template").html();
       $(".regions").append(template);
       $(".submit").show();
       Region.bindDelete();
