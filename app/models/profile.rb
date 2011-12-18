@@ -6,7 +6,7 @@ class Profile < ActiveRecord::Base
   has_many :region_selections, :as => :parent
 
   has_many :categories, :through => :category_selections, :dependent => :delete_all
-  has_many :regions, :through => :region_selections
+  has_many :regions, :through => :region_selections, :dependent => :delete_all
 
   accepts_nested_attributes_for :contact, :allow_destroy => true
   accepts_nested_attributes_for :categories, :allow_destroy => true

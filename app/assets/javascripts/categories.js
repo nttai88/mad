@@ -17,7 +17,7 @@ var Category = {
     $(".delete-new-category").unbind().click(function(){
       $(this).parents(".category").first().remove();
       if($(".new-categories .category").length == 0){
-        $(".submit").hide();
+        //$(".submit").hide();
       }
       return false
     });

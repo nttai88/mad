@@ -1,10 +1,9 @@
-<h1>My Regions</h1>
-<%= simple_form_for @profile, :url => main_app.refinery_regions_path do |f| %>
-  <% if @regions.size > 0 %>
-    
-  <% else %>
-    You have no categories.
+<div class="region">
+  <%= f.country_select "country", "US", {}, {:name => "regions[][country]", :class => "country"} %>
+  <% begin %>
+    <%= f.state_select "state", (region.country || "US") , {:prompt => true}, {:name => "regions[][state]", :class => "state"} %>
+  <% rescue %>
+    <select name="regions[][state]" id="region_state" class="state"></select>
   <% end %>
-
-<% end %>
-<%= link_to "Add New Region", "" %>
+  <%= link_to "Delete", "#", :class => "delete-region"%>
+</div>
