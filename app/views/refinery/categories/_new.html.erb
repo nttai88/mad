@@ -1,0 +1,4 @@
+<div class="category">
+  <%= collection_select("topic_ids", "", Category.all, :id, :title, {:prompt => true, :selected => category.id}) %>
+  <%= link_to "Delete", "#", :class => "delete-new-category"%>
+</div>

@@ -1,10 +1,18 @@
-<h1>My Categories</h1>
-<%= simple_form_for @profile, :url => main_app.refinery_categories_path do |f| %>
-  <% if @categories.size > 0 %>
-    <%= f.association :categories, :collection => Category.where("parent_id is null").order('name'), :prompt => "Choose a Company" %>
-  <% else %>
-    You have no categories.
-  <% end %>
-
+<% content_for :javascripts do %>
+  <% javascript_include_tag('jquery', 'categories') %>
 <% end %>
-<%= link_to "Add New Category", "" %>
+<h1>My Categories</h1>
+<div class="template" style="display:none">
+  <%= render :partial => "new", :locals => {:category => Category.new} %>
+</div>
+<%= simple_form_for :category, :url => main_app.refinery_categories_path(current_refinery_user) do |f| %>
+  <div class="new-categories">
+    <% @categories.each do |cat| %>
+      <%= render :partial => "new", :locals => {:category => cat} %>
+    <% end %>
+  </div>
+  <input type="hidden" value="<%= params[:id] %>" name="id"/>
+  <%= f.submit "Save", :style => "#{"display:none" if @categories.size ==0}", :class => "submit" %>
+<% end %>
+
+<%= link_to "Add New Category", main_app.new_refinery_category_path, :class => "new-category" %>
