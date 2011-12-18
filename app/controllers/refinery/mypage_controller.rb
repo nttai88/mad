@@ -1,7 +1,7 @@
 class Refinery::MypageController < ApplicationController
   layout "application"
   def index
-    @new_emails = 0
-    @projects = Conversation.unread(current_refinery_user).count
+    @new_emails = Conversation.unread(current_refinery_user).count
+    @projects = 0
   end
 end

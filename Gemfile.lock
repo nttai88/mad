@@ -110,7 +110,6 @@ PATH
   remote: vendor/engines
   specs:
     refinerycms-projects (1.0)
-      refinerycms-core (~> 2.0.0)
 
 GEM
   remote: http://rubygems.org/
