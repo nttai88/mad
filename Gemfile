@@ -61,7 +61,7 @@ gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git',
 #gem 'refinerycms-inquiries', '~> 2.0.0'
 
 # END USER DEFINED
-gem "carmen", :git => "https://github.com/jim/carmen.git"
+gem "carmen", :git => "https://github.com/jim/carmen.git" 
 
 gem "simple_form"
 
