@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111218003145) do
+ActiveRecord::Schema.define(:version => 20111218110754) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20111218003145) do
     t.string   "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "expired_date"
   end
 
   create_table "contacts", :force => true do |t|
@@ -303,6 +304,7 @@ ActiveRecord::Schema.define(:version => 20111218003145) do
     t.string   "region_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "expired_date"
   end
 
   create_table "regions", :force => true do |t|

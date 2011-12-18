@@ -17,4 +17,18 @@ class Profile < ActiveRecord::Base
   def contact_attributes=(attrs)
     self.contact = Contact.new(attrs)
   end
+
+  def selection_of(obj)
+    if obj.kind_of?(Category)
+      selection = self.category_selections.where(:category_id => obj.id).first
+    elsif obj.kind_of?(Region)
+      selection = self.region_selections.where(:region_id => obj.id).first
+    end
+    selection
+  end
+
+  def expired_date_of(obj)
+    selection = selection_of(obj)
+    selection.nil? ? nil: selection.expired_date
+  end
 end

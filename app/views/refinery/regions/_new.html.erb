@@ -1,9 +1,14 @@
-<div class="region">
+<div class="region" style="margin-bottom: 25px;">
   <%= f.country_select "country", "US", {}, {:name => "regions[][country]", :class => "country"} %>
+  <br/>
   <% begin %>
     <%= f.state_select "state", (region.country || "US") , {:prompt => true}, {:name => "regions[][state]", :class => "state"} %>
   <% rescue %>
     <select name="regions[][state]" id="region_state" class="state"></select>
+  <% end %>
+  <% if current_refinery_user.has_role?(:refinery) %>
+    <br/>
+    Valid to: <%= text_field :region, :expired_date, :name => "regions[][expired_date]", :class => "expired_date", :value => @user.profile.expired_date_of(region).to_s %>
   <% end %>
   <%= link_to "Delete", "#", :class => "delete-region"%>
 </div>
