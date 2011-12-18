@@ -1,1 +1,10 @@
 <h1>My Regions</h1>
+<%= simple_form_for @profile, :url => main_app.refinery_regions_path do |f| %>
+  <% if @regions.size > 0 %>
+    
+  <% else %>
+    You have no categories.
+  <% end %>
+
+<% end %>
+<%= link_to "Add New Region", "" %>

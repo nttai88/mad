@@ -1,3 +1,10 @@
 <h1>My Categories</h1>
+<%= simple_form_for @profile, :url => main_app.refinery_categories_path do |f| %>
+  <% if @categories.size > 0 %>
+    <%= f.association :categories, :collection => Category.where("parent_id is null").order('name'), :prompt => "Choose a Company" %>
+  <% else %>
+    You have no categories.
+  <% end %>
 
-
+<% end %>
+<%= link_to "Add New Category", "" %>

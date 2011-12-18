@@ -1,8 +1,13 @@
 class Profile < ActiveRecord::Base
   belongs_to :user, :class_name => "Refinery::User"
   has_one :contact, :as => :contactable
-  has_many :categories, :as => :categorizable
-  has_many :regions, :as => :regionable
+
+  has_many :category_selections, :as => :parent
+  has_many :region_selections, :as => :parent
+
+  has_many :categories, :through => :category_selections
+  has_many :regions, :through => :region_selections
+
   accepts_nested_attributes_for :contact, :allow_destroy => true
 
   validates :first_name, :presence => true

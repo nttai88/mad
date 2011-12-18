@@ -44,5 +44,6 @@ Refinery::User.class_eval do
         return true
       end
     end
+    return false
   end
 end

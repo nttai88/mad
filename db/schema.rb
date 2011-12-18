@@ -11,13 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111217083132) do
+ActiveRecord::Schema.define(:version => 20111218003145) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.integer  "parent_id"
-    t.integer  "categorizable_id"
-    t.string   "categorizable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_selections", :force => true do |t|
+    t.string   "parent_id"
+    t.string   "parent_type"
+    t.string   "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -291,9 +297,15 @@ ActiveRecord::Schema.define(:version => 20111217083132) do
   add_index "refinery_users", ["confirmation_token"], :name => "index_refinery_users_on_confirmation_token", :unique => true
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
 
+  create_table "region_selections", :force => true do |t|
+    t.string   "parent_id"
+    t.string   "parent_type"
+    t.string   "region_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "regions", :force => true do |t|
-    t.integer  "regionable_id"
-    t.string   "regionable_type"
     t.string   "country"
     t.string   "state"
     t.datetime "created_at"

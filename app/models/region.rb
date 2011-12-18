@@ -1,3 +1,3 @@
 class Region < ActiveRecord::Base
-  belongs_to :regionable, :polymorphic => true
+  has_many :profile, :through => :region_selection
 end
