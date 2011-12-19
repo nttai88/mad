@@ -5,7 +5,7 @@
 
 <%= form_for :profile, :url => main_app.refinery_regions_path(current_refinery_user) do |f| %>
   
-  <%= render :partial => "refinery/regions/regions", :locals => {:region => region, :f => f} %>
+  <%= render :partial => "refinery/regions/regions", :locals => { :f => f} %>
   <input type="hidden" value="<%= params[:id] %>" name="id"/>
   <%= f.submit "Save", :class => "submit" %>
   <!--:style => "#{"display:none" if @categories.size ==0}" -->

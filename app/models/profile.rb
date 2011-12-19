@@ -20,7 +20,6 @@ class Profile < ActiveRecord::Base
 
   def selection_expiration_date
     selection = random_selection
-    puts selection.inspect, "==============="
     selection.nil? ? nil: selection.expired_date
   end
 
