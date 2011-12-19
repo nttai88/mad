@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111218142819) do
+ActiveRecord::Schema.define(:version => 20111218110754) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(:version => 20111218142819) do
   end
 
   create_table "category_selections", :force => true do |t|
-    t.string   "parent_id"
+    t.integer  "parent_id"
     t.string   "parent_type"
-    t.string   "category_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "expired_date"
@@ -197,38 +197,6 @@ ActiveRecord::Schema.define(:version => 20111218142819) do
   add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
-  create_table "refinery_projects", :force => true do |t|
-    t.string   "owner_name"
-    t.string   "name"
-    t.string   "title"
-    t.text     "usage"
-    t.text     "solves"
-    t.text     "idea"
-    t.text     "description"
-    t.text     "market"
-    t.text     "competitors"
-    t.text     "strategy"
-    t.text     "progression"
-    t.text     "finances"
-    t.text     "summary"
-    t.text     "marked_geographic"
-    t.text     "marked_size"
-    t.string   "developed"
-    t.boolean  "need_company"
-    t.boolean  "founder"
-    t.boolean  "develop_in_own_company"
-    t.boolean  "license_to_company"
-    t.text     "partners"
-    t.text     "suppliers"
-    t.text     "distributors"
-    t.text     "patenting"
-    t.text     "competitors2"
-    t.text     "origin"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "refinery_resources", :force => true do |t|
     t.string   "file_mime_type"
     t.string   "file_name"
@@ -299,9 +267,9 @@ ActiveRecord::Schema.define(:version => 20111218142819) do
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
 
   create_table "region_selections", :force => true do |t|
-    t.string   "parent_id"
+    t.integer  "parent_id"
     t.string   "parent_type"
-    t.string   "region_id"
+    t.integer  "region_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "expired_date"

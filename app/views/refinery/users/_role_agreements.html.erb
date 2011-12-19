@@ -1,0 +1,39 @@
+<div class='field'>
+  <%= f.label :role %>
+  <% Refinery::Role.where(:title => Refinery::Role.user_roles).each_with_index do |role, i|%>
+    <% roles = @user.roles.map{|x| x.id} %>
+    <% if(roles.include?(role.id))%>
+      <%= f.radio_button :role_ids, role.id, :checked => "checked" %> <%= role.title.gsub("Request", "") %>
+    <% else %>
+      <%= f.radio_button :role_ids, role.id %> <%= role.title.gsub("Request", "") %>
+    <% end %>
+  <% end %>
+</div>
+<% role = @user.roles.first %>
+<div class='field entrepreneur agreement' style="<%= "display:none" unless role.title == "Entrepreneur" %>">
+  <%= f.label :term_agreement, "Entrepreneur Agreement", :style => "display:inline" %>
+  <span style="float:right">
+    <%= link_to "Download PDF version", "/pdfs/entrepreneur-agreement.pdf" %>
+  </span>
+  <textarea style="width:99%">
+    <%= Agreement.entrepreneur %>
+  </textarea>
+</div>
+<div class='field advisor agreement' style="<%= "display:none" unless role.title == "Advisor" %>">
+  <%= f.label :term_agreement, "Advisor Agreement", :style => "display:inline" %>
+  <span style="float:right">
+    <%= link_to "Download PDF version", "/pdfs/advisor-agreement.pdf" %>
+  </span>
+  <textarea style="width:99%">
+    <%= Agreement.advisor %>
+  </textarea>
+</div>
+<div class='field partner agreement' style="<%= "display:none" if ["Advisor", "Entrepreneur"].include?role.title %>">
+  <%= f.label :term_agreement, "Partner Agreement", :style => "display:inline" %>
+  <span style="float:right">
+    <%= link_to "Download PDF version", "/pdfs/partner-agreement.pdf" %>
+  </span>
+  <textarea style="width:99%">
+    <%= Agreement.partner %>
+  </textarea>
+</div>

@@ -58,13 +58,13 @@
   <% if @user.is_partner? %>
     <div class="field">
       <% if current_refinery_user.has_role?(:refinery) %>
-        <label>Categories and Countries valid to: </label><%= text_field :profile, "expired_date", :name => "expired_date", :class => "expired_date", :value => @user.profile.selection_expiration_date %>
+        <label>Categories and Location valid to: </label><%= text_field :profile, "expired_date", :name => "expired_date", :class => "expired_date", :value => @user.profile.selection_expiration_date %>
       <% end %>
       <label>Categoies</label>
       <%= render :partial => "refinery/categories/categories", :locals => {:category => Category.new} %>
     </div>
     <div class="field">
-      <label>Countries</label>
+      <label>Locations</label>
       <%= f.fields_for @profile do |fr| %>
         <%= render :partial => "refinery/regions/regions", :locals => {:f => fr} %>
       <% end %>
@@ -107,6 +107,9 @@
       $('#user_plugins_enable_all').click(function(e, a) {
         $('div.field.plugin_access ul#plugins li input:checkbox').attr('checked', true);
         e.preventDefault();
+      });
+      $(".approve.button").click(function(){
+        $(".approve-field").val(1);
       });
     });
   </script>
