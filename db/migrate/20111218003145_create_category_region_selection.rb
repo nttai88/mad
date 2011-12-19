@@ -5,15 +5,15 @@ class CreateCategoryRegionSelection < ActiveRecord::Migration
     remove_column :regions, :regionable_id
     remove_column :regions, :regionable_type
     create_table :category_selections do |t|
-      t.string :parent_id
+      t.integer :parent_id
       t.string :parent_type
-      t.string :category_id
+      t.integer :category_id
       t.timestamps
     end
     create_table :region_selections do |t|
-      t.string :parent_id
+      t.integer :parent_id
       t.string :parent_type
-      t.string :region_id
+      t.integer :region_id
       t.timestamps
     end
   end
