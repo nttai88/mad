@@ -10,7 +10,7 @@ module Refinery
           condition = {"refinery_roles.title" => params[:role]}
         end
         page = params[:page] || 1
-        @users = Refinery::User.joins(:roles).where(condition).order("username").paginate(:page => page, :per_page => 20)
+        @users = Refinery::User.includes(:roles).where(condition).order("username").paginate(:page => page, :per_page => 20)
       end
 
       def edit
