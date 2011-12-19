@@ -29,6 +29,7 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, :autocomplete => 'off' %>
   </div>
+<% if @user.has_role?(:refinery) %>
   <div class='field plugin_access'>
     <span class='label_with_help'>
       <%= f.label :plugin_access, t('.plugin_access'), :class => "title_label" %>
@@ -54,6 +55,7 @@
       <% end %>
     </ul>
   </div>
+<% end %>
 
   <% if @user.is_partner? %>
     <div class="field">

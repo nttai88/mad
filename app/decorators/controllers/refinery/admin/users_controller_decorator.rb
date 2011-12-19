@@ -17,8 +17,10 @@ module Refinery
         @user = User.find params[:id]
         @selected_plugin_names = @user.plugins.collect{|p| p.name}
         @profile = @user.profile
-        @categories = @profile.categories
-        @regions = @profile.regions
+        if @profile
+          @categories = @profile.categories
+          @regions = @profile.regions
+        end
       end
 
       protected
