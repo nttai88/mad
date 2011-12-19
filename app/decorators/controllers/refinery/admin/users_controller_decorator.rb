@@ -17,7 +17,6 @@ module Refinery
         params[:categories].each do |cat|
           unless cat["id"].blank?
             category = Category.find(cat["id"])
-            category.expired_date = cat["expired_date"]
             categories << category
           end
         end
@@ -25,25 +24,13 @@ module Refinery
         regions = []
         params[:regions].each do |reg|
           region = Region.find_by_country_and_state(reg["country"], (reg["state"] || ""))
-          if region
-            regions << region
-            region.expired_date = reg["expired_date"]
-          end
+          regions << region if region
         end if params[:regions]
         profile.regions = regions
         profile.save
-
-        categories.each do |category|
-          selection = profile.selection_of(category)
-          selection.expired_date = category.expired_date
-          selection.save
-        end
-        regions.each do |region|
-          selection = profile.selection_of(region)
-          selection.expired_date = region.expired_date
-          selection.save
-        end
-        
+        value = params[:expired_date].blank? ? "null":"'#{params[:expired_date]}'"
+        CategorySelection.update_all("expired_date= #{value}", "parent_id = #{profile.id} and parent_type = 'Profile'")
+        RegionSelection.update_all("expired_date=#{value}", "parent_id = #{profile.id} and parent_type = 'Profile'")
       end
       
     end

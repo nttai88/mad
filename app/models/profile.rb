@@ -18,17 +18,16 @@ class Profile < ActiveRecord::Base
     self.contact = Contact.new(attrs)
   end
 
-  def selection_of(obj)
-    if obj.kind_of?(Category)
-      selection = self.category_selections.where(:category_id => obj.id).first
-    elsif obj.kind_of?(Region)
-      selection = self.region_selections.where(:region_id => obj.id).first
-    end
-    selection
-  end
-
-  def expired_date_of(obj)
-    selection = selection_of(obj)
+  def selection_expiration_date
+    selection = random_selection
+    puts selection.inspect, "==============="
     selection.nil? ? nil: selection.expired_date
   end
+
+  def random_selection
+    selection = self.category_selections.first
+    selection = self.region_selections.first unless selection
+    return selection
+  end
+
 end

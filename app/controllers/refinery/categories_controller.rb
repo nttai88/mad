@@ -11,7 +11,7 @@ class Refinery::CategoriesController < ApplicationController
     profile =user.profile
     categories = []
     params[:categories].each do |cat|
-      categories << Category.find(cat["id"])
+      categories << Category.find(cat["id"]) unless cat["id"].blank?
     end
     profile.categories = categories
     profile.save

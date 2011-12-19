@@ -1,7 +1,4 @@
 <div class="category" style="margin-bottom: 25px;">
   <%= collection_select("topic_ids", "", Category.all, :id, :title, {:prompt => true, :selected => category.id}, {:name => "categories[][id]"}) %>
-  <% if current_refinery_user.has_role?(:refinery) %>
-    Valid to: <%= text_field :category, :created_at, :name => "categories[][expired_date]", :class => "expired_date", :value => @user.profile.expired_date_of(category) %>
-  <% end %>
   <%= link_to "Delete", "#", :class => "delete-new-category"%>
 </div>

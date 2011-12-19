@@ -5,8 +5,5 @@
   <% rescue %>
     <select name="regions[][state]" id="region_state" class="state"></select>
   <% end %>
-  <% if current_refinery_user.has_role?(:refinery) %>
-    Valid to: <%= text_field :region, :expired_date, :name => "regions[][expired_date]", :class => "expired_date", :value => @user.profile.expired_date_of(region).to_s %>
-  <% end %>
   <%= link_to "Delete", "#", :class => "delete-region"%>
 </div>

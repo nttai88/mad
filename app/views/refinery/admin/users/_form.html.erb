@@ -57,6 +57,9 @@
 
   <% if @user.is_partner? %>
     <div class="field">
+      <% if current_refinery_user.has_role?(:refinery) %>
+        <label>Categories and Region valid to: </label><%= text_field :profile, "expired_date", :name => "expired_date", :class => "expired_date", :value => @user.profile.selection_expiration_date %>
+      <% end %>
       <label>Categoies</label>
       <%= render :partial => "refinery/categories/categories", :locals => {:category => Category.new} %>
     </div>
