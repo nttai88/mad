@@ -21,7 +21,7 @@
       <li> <%= link_to "My Page", main_app.refinery_mypage_index_path %> </li>
       <%if current_refinery_user.is_partner? %>
         <li> <%= link_to "My Categories", main_app.edit_refinery_category_path(current_refinery_user) %> </li>
-        <li> <%= link_to "My Regions", main_app.edit_refinery_region_path(current_refinery_user) %> </li>
+        <li> <%= link_to "My Countries", main_app.edit_refinery_region_path(current_refinery_user) %> </li>
       <% end %>
       <li> <%= link_to "Messages", main_app.messaging_path %> </li>
       <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_path %> </li>
