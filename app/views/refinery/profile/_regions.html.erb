@@ -1,15 +1,15 @@
 <% region = Region.new %>
 <%= f.fields_for region do  |fr|%>
   <div class="region-template" style="display:none">
-    <%= render :partial => "refinery/regions/new", :locals => {:region => region, :f => fr} %>
+    <%= render :partial => "refinery/profile/region", :locals => {:region => region, :f => fr} %>
   </div>
 <% end %>
 <div class="regions">
   <% @regions.each do |reg| %>
     <%= f.fields_for reg do  |fr|%>
-      <%= render :partial => "refinery/regions/new", :locals => {:region => reg, :f => fr} %>
+      <%= render :partial => "refinery/profile/region", :locals => {:region => reg, :f => fr} %>
     <% end %>
   <% end %>
 </div>
-<%= link_to "New Region", main_app.new_refinery_region_path, :class => "new-region" %>
+<%= link_to "New Region", "#", :class => "new-region" %>
 <%= states_by_country %>

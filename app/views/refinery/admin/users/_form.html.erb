@@ -63,12 +63,12 @@
         <label>Categories and Location valid to: </label><%= text_field :profile, "expired_date", :name => "expired_date", :class => "expired_date", :value => @user.profile.selection_expiration_date %>
       <% end %>
       <label>Categoies</label>
-      <%= render :partial => "refinery/categories/categories", :locals => {:category => Category.new} %>
+      <%= render :partial => "refinery/profile/categories", :locals => {:category => Category.new} %>
     </div>
     <div class="field">
       <label>Locations</label>
       <%= f.fields_for @profile do |fr| %>
-        <%= render :partial => "refinery/regions/regions", :locals => {:f => fr} %>
+        <%= render :partial => "refinery/profile/regions", :locals => {:f => fr} %>
       <% end %>
     </div>
   <% end %>

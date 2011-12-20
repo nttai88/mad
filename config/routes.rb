@@ -2,9 +2,11 @@ Mad2::Application.routes.draw do
   mount Messaging::Engine => "/messaging"
 
   scope(:as => 'refinery', :module => 'refinery') do
-    resources :mypage, :only => [:index]
-    resources :categories
-    resources :regions
+    resources :profile do
+      member do
+        post :update
+      end
+    end
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
