@@ -2,16 +2,6 @@ class Refinery::ProfileController < ApplicationController
   layout "application"
   before_filter :login_required
 
-  def index
-    show
-    render :action => :show
-  end
-  
-  def show
-    @new_emails = Conversation.unread(current_refinery_user).count
-    @projects = 0
-  end
-
   def edit
     user = Refinery::User.find_by_username(params[:id])
     @profile = user.profile

@@ -7,7 +7,7 @@
   .custom-menu li{float:left; list-style: none; margin-right: 15px;}
 </style>
 <ul class="custom-menu" >
-    <li> <%= link_to "My Page", main_app.refinery_profile_index_path %> </li>
+    <li> <%= link_to "My Page", "/my-page" %> </li>
     <% if refinery_user_signed_in? %>
       <%if current_refinery_user.is_partner? %>
         <li> <%= link_to "My Settings", main_app.edit_refinery_profile_path(current_refinery_user) %> </li>
@@ -22,6 +22,7 @@
 <%
   # Collect the root items.
   # ::Refinery::Menu is smart enough to remember all of the items in the original collection.
+  @menu_pages.delete_if{|x| x[:title] == "My Page"}
   if (roots = local_assigns[:roots] || (collection ||= @menu_pages).roots).present?
     dom_id ||= 'menu'
     css = [(css || 'menu'), 'clearfix'].flatten.join(' ')
