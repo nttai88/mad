@@ -61,16 +61,16 @@ gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git',
 #gem 'refinerycms-inquiries', '~> 2.0.0'
 
 # END USER DEFINED
-gem "carmen", :git => "https://github.com/jim/carmen.git" 
+gem "carmen", :git => "git://github.com/jim/carmen.git" 
 
 gem "simple_form"
 
 gem 'mailboxer', :git => 'git://github.com/dickeytk/mailboxer.git'
-gem 'messaging', :git => 'https://github.com/frodefi/rails-messaging.git'
+gem 'messaging', :git => 'git://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr'
 
 gem 'thin'
 group :production do
-  gem "pg"
+  # gem "pg"
   gem 'therubyracer-heroku', '0.8.1.pre3'
 end

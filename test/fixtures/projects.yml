@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  owner_name: MyString
+  name: MyString
+  usage: MyText
+  solves: MyText
+  idea: MyText
+  description: MyText
+  market: MyText
+  competitors: MyText
+  strategy: MyText
+  progression: MyText
+  finances: MyText
+  summary: MyText
+  marked_geographic: MyText
+  marked_size: MyText
+  developed: MyString
+  need_company: false
+  founder: false
+  develop_in_own_company: false
+  partners: MyText
+  suppliers: MyText
+  distributers: MyText
+  patenting: MyText
+  competitors2: MyText
+  origin: MyText
+
+two:
+  owner_name: MyString
+  name: MyString
+  usage: MyText
+  solves: MyText
+  idea: MyText
+  description: MyText
+  market: MyText
+  competitors: MyText
+  strategy: MyText
+  progression: MyText
+  finances: MyText
+  summary: MyText
+  marked_geographic: MyText
+  marked_size: MyText
+  developed: MyString
+  need_company: false
+  founder: false
+  develop_in_own_company: false
+  partners: MyText
+  suppliers: MyText
+  distributers: MyText
+  patenting: MyText
+  competitors2: MyText
+  origin: MyText

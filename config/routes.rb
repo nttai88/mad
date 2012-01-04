@@ -1,4 +1,6 @@
 Mad2::Application.routes.draw do
+  resources :projects
+
   mount Messaging::Engine => "/messaging"
 
   scope(:as => 'refinery', :module => 'refinery') do

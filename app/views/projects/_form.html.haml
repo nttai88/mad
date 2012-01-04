@@ -1,0 +1,105 @@
+= stylesheet_link_tag    "application", "jquery_ui"
+= javascript_include_tag "application", "jquery_ui"
+#middle_content
+  #left_container.left
+    #edit_profile
+      = form_for @project, :html => {:class => "simple_form"} do |f|
+        %h2.blue_header#edit_profile_links
+          .left
+            = link_to_function 'General', "$('.partial_profile').hide();$('#general').show();", :class => "title_link"
+            = link_to_function 'Business Page', "$('.partial_profile').hide();$('#business').show();", :class => "title_link"
+            = link_to_function 'Market Analysis', "$('.partial_profile').hide();$('#market').show();", :class => "title_link"
+            = link_to_function 'Finance', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
+            = link_to_function 'Company', "$('.partial_profile').hide();$('#company').show();", :class => "title_link"
+            = link_to_function 'Partner', "$('.partial_profile').hide();$('#partner').show();", :class => "title_link"
+            = link_to_function 'Supplier', "$('.partial_profile').hide();$('#supplier').show();", :class => "title_link"
+            = link_to_function 'Distributer', "$('.partial_profile').hide();$('#distributer').show();", :class => "title_link"
+            = link_to_function 'Competitors1', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
+            = link_to_function 'Competitors2', "$('.partial_profile').hide();$('#competitor_two').show();", :class => "title_link"
+            = link_to_function 'Geographic', "$('.partial_profile').hide();$('#geographic').show();", :class => "title_link"
+        #general.partial_profile
+          .field
+            = f.label :owner_name
+            = f.text_field :owner_name
+          .field
+            = f.label :name
+            = f.text_field :name
+          .field
+            = f.label :usage
+            = f.text_area :usage
+          .field
+            = f.label :solves
+            = f.text_area :solves
+          .field
+            = f.label :idea
+            = f.text_area :idea
+        #business.partial_profile.hidden
+          .field
+            = f.label :description
+            = f.text_area :description
+          .field
+            = f.label :strategy
+            = f.text_area :strategy
+          .field
+            = f.label :progression
+            = f.text_area :progression
+        #market.partial_profile.hidden
+          .field
+            = f.label :market
+            = f.text_area :market
+        #finance.partial_profile.hidden
+          .field
+            = f.label :finances
+            = f.text_area :finances
+          .field
+            = f.label :summary
+            = f.text_area :summary
+        #company.partial_profile.hidden
+          .field
+            = f.label :developed
+            = f.text_field :developed
+          .field
+            = f.label :need_company
+            = f.check_box :need_company
+          .field
+            = f.label :founder
+            = f.check_box :founder
+          .field
+            = f.label :develop_in_own_company
+            = f.check_box :develop_in_own_company
+        #partner.partial_profile.hidden
+          .field
+            = f.label :partners
+            = f.text_area :partners
+        #supplier.partial_profile.hidden
+          .field
+            = f.label :suppliers
+            = f.text_area :suppliers
+        #distributer.partial_profile.hidden
+          .field
+            = f.label :distributers
+            = f.text_area :distributers
+          .field
+            = f.label :patenting
+            = f.text_area :patenting
+        #competitor_one.partial_profile.hidden
+          .field
+            = f.label :competitors
+            = f.text_area :competitors
+        #competitor_two.partial_profile.hidden
+          .field
+            = f.label :competitors2
+            = f.text_area :competitors2
+          .field
+            = f.label :origin
+            = f.text_area :origin
+        #geographic.partial_profile.hidden
+          .field
+            = f.label :marked_geographic
+            = f.text_area :marked_geographic
+          .field
+            = f.label :marked_size
+            = f.text_area :marked_size
+
+        .actions
+          = f.submit 'Save'
