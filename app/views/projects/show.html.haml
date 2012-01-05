@@ -1,0 +1,76 @@
+%p#notice= notice
+%p
+  %b Owner name:
+  = @project.owner_name
+%p
+  %b Name:
+  = @project.name
+%p
+  %b Usage:
+  = @project.usage
+%p
+  %b Solves:
+  = @project.solves
+%p
+  %b Idea:
+  = @project.idea
+%p
+  %b Description:
+  = @project.description
+%p
+  %b Market:
+  = @project.market
+%p
+  %b Competitors:
+  = @project.competitors
+%p
+  %b Strategy:
+  = @project.strategy
+%p
+  %b Progression:
+  = @project.progression
+%p
+  %b Finances:
+  = @project.finances
+%p
+  %b Summary:
+  = @project.summary
+%p
+  %b Marked geographic:
+  = @project.marked_geographic
+%p
+  %b Marked size:
+  = @project.marked_size
+%p
+  %b Developed:
+  = @project.developed
+%p
+  %b Need company:
+  = @project.need_company
+%p
+  %b Founder:
+  = @project.founder
+%p
+  %b Develop in own company:
+  = @project.develop_in_own_company
+%p
+  %b Partners:
+  = @project.partners
+%p
+  %b Suppliers:
+  = @project.suppliers
+%p
+  %b Distributers:
+  = @project.distributers
+%p
+  %b Patenting:
+  = @project.patenting
+%p
+  %b Competitors2:
+  = @project.competitors2
+%p
+  %b Origin:
+  = @project.origin
+= link_to 'Edit', edit_project_path(@project)
+|
+\#{link_to 'Back', projects_path}

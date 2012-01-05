@@ -17,8 +17,6 @@ body, input {
   letter-spacing: 0;
   font-size: 13px;
   line-height: 18px;
-  padding: 0px;
-  margin: 0px;
 }
 
 p, ol, ul, td, textarea {
@@ -626,6 +624,9 @@ table.simple_table{
     font-size: 12px;
     list-style: square;
   }
+}
+#page{
+	margin-top:70px;
 }
 
 

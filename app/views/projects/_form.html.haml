@@ -7,16 +7,16 @@
         %h2.blue_header#edit_profile_links
           .left
             = link_to_function 'General', "$('.partial_profile').hide();$('#general').show();", :class => "title_link"
+            = link_to_function 'Teaser', "$('.partial_profile').hide();$('#teaser').show();", :class => "title_link"
             = link_to_function 'Business Page', "$('.partial_profile').hide();$('#business').show();", :class => "title_link"
             = link_to_function 'Market Analysis', "$('.partial_profile').hide();$('#market').show();", :class => "title_link"
+            = link_to_function 'Competitors', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
+            = link_to_function 'Strategy', "$('.partial_profile').hide();$('#strategy').show();", :class => "title_link"
+            = link_to_function 'Progression', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
             = link_to_function 'Finance', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
+            = link_to_function 'Summary', "$('.partial_profile').hide();$('#summary').show();", :class => "title_link"
             = link_to_function 'Company', "$('.partial_profile').hide();$('#company').show();", :class => "title_link"
-            = link_to_function 'Partner', "$('.partial_profile').hide();$('#partner').show();", :class => "title_link"
-            = link_to_function 'Supplier', "$('.partial_profile').hide();$('#supplier').show();", :class => "title_link"
-            = link_to_function 'Distributer', "$('.partial_profile').hide();$('#distributer').show();", :class => "title_link"
-            = link_to_function 'Competitors1', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
-            = link_to_function 'Competitors2', "$('.partial_profile').hide();$('#competitor_two').show();", :class => "title_link"
-            = link_to_function 'Geographic', "$('.partial_profile').hide();$('#geographic').show();", :class => "title_link"
+            = link_to_function 'Thoughts and wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
         #general.partial_profile
           .field
             = f.label :owner_name
@@ -24,6 +24,7 @@
           .field
             = f.label :name
             = f.text_field :name
+        #teaser.partial_profile.hidden
           .field
             = f.label :usage
             = f.text_area :usage
@@ -37,20 +38,30 @@
           .field
             = f.label :description
             = f.text_area :description
-          .field
-            = f.label :strategy
-            = f.text_area :strategy
-          .field
-            = f.label :progression
-            = f.text_area :progression
         #market.partial_profile.hidden
           .field
             = f.label :market
             = f.text_area :market
+        #competitor_one.partial_profile.hidden
+          .field
+            = f.label :competitors
+            = f.text_area :competitors
+          .field
+            = f.label :competitors2
+            = f.text_area :competitors2
+        #strategy.partial_profile.hidden
+          .field
+            = f.label :strategy
+            = f.text_area :strategy
+        #progression.partial_profile.hidden
+          .field
+            = f.label :progression
+            = f.text_area :progression
         #finance.partial_profile.hidden
           .field
             = f.label :finances
             = f.text_area :finances
+        #summary.partial_profile.hidden
           .field
             = f.label :summary
             = f.text_area :summary
@@ -67,33 +78,22 @@
           .field
             = f.label :develop_in_own_company
             = f.check_box :develop_in_own_company
-        #partner.partial_profile.hidden
+        #thoughts.partial_profile.hidden
           .field
             = f.label :partners
             = f.text_area :partners
-        #supplier.partial_profile.hidden
           .field
             = f.label :suppliers
             = f.text_area :suppliers
-        #distributer.partial_profile.hidden
           .field
             = f.label :distributers
             = f.text_area :distributers
           .field
             = f.label :patenting
             = f.text_area :patenting
-        #competitor_one.partial_profile.hidden
-          .field
-            = f.label :competitors
-            = f.text_area :competitors
-        #competitor_two.partial_profile.hidden
-          .field
-            = f.label :competitors2
-            = f.text_area :competitors2
           .field
             = f.label :origin
             = f.text_area :origin
-        #geographic.partial_profile.hidden
           .field
             = f.label :marked_geographic
             = f.text_area :marked_geographic
