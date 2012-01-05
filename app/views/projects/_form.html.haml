@@ -19,12 +19,28 @@
             = link_to_function 'Thoughts and wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
         #general.partial_profile
           .field
+            = f.label :name
+            = f.text_field :name
+          = f.fields_for :contact_attributes do |fc|
+            .field
+              = fc.label :address1
+              = fc.text_field :address1, :class => 'larger widest'
+            .field
+              = fc.label :address2
+              = fc.text_field :address2, :class => 'larger widest'
+            .field
+              = fc.label :city
+              = fc.text_field :city, :class => 'larger widest'
+            .field
+              = fc.label :zip, "Zip/Postal code"
+              = fc.text_field :zip, :class => 'larger widest'
+        #teaser.partial_profile.hidden
+          .field
             = f.label :owner_name
             = f.text_field :owner_name
           .field
-            = f.label :name
-            = f.text_field :name
-        #teaser.partial_profile.hidden
+            = f.label :category
+            = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
           .field
             = f.label :usage
             = f.text_area :usage
