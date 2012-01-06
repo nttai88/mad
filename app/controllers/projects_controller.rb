@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
-
+    @project.document ||= Document.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    @project.document ||= Document.new
   end
 
   # POST /projects
