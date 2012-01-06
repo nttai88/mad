@@ -67,7 +67,7 @@ gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git',
 gem "carmen", :git => "git://github.com/jim/carmen.git" 
 
 gem "simple_form"
-
+gem "zurb-foundation", :group => :assets
 gem 'mailboxer', :git => 'git://github.com/dickeytk/mailboxer.git'
 gem 'messaging', :git => 'git://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr'
