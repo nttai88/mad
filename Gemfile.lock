@@ -29,11 +29,6 @@ GIT
       sunspot_rails
 
 GIT
-  remote: git://github.com/jim/carmen.git
-  revision: 9057b5f5ca35f215a19a4a9a50195997e4cbb06c
-  specs:
-
-GIT
   remote: git://github.com/nevir/routing-filter.git
   revision: 1049885b01f5cfb09cee8ec7aad66abedaeb6847
   specs:
@@ -287,7 +282,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  carmen!
+  carmen (~> 0.2.12)
   coffee-rails (~> 3.1.1)
   i18n-js!
   jquery-rails
