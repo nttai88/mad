@@ -48,7 +48,7 @@ $ heroku create madlab --stack cedar
 ````
 You can change madlab with your app name.
 
-If you have already had an app on heroku (git@heroku.com:madlab.git), goto the app folder and run the following command
+If you have already had an app on heroku (git@heroku.com:madlab.git), go to the app folder and run the following command
 
 ````
 $ git remote add heroku git@heroku.com:madlab.git
