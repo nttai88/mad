@@ -34,6 +34,9 @@ group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
+# Add i18n support (optional, you can remove this if you really want to but it is advised to keep it).
+gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
+gem 'refinerycms-i18n',   '~> 2.0.0', :git => 'git://github.com/parndt/refinerycms-i18n.git'
 gem "refinerycms", :git => "git://github.com/resolve/refinerycms.git"
  
 #  group :development, :test do
@@ -49,9 +52,6 @@ group :development do
 end
 
 # USER DEFINED
-
-# Add i18n support (optional, you can remove this if you really want to but it is advised to keep it).
-gem 'refinerycms-i18n',   '~> 2.0.0', :git => 'git://github.com/parndt/refinerycms-i18n.git'
 
 # Specify additional Refinery CMS Engines here (all optional):
 #  gem 'refinerycms-blog', :git => 'git://github.com/resolve/refinerycms-blog.git', :branch => 'rails-3-1'
