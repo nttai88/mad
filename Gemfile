@@ -20,6 +20,9 @@ gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
+gem 'rmagick'
+gem 'carrierwave'
+gem 'fog'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -62,7 +65,6 @@ gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git',
 
 # END USER DEFINED
 gem "carmen", "~> 0.2.12" 
-
 
 gem "simple_form"
 gem "zurb-foundation", :group => :assets

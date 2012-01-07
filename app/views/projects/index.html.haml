@@ -1,0 +1,16 @@
+= stylesheet_link_tag    "application", "jquery_ui"
+= javascript_include_tag "application", "jquery_ui"
+%h1 Listing projects
+%table
+  %tr
+    %th Owner name
+    %th Name
+  - @projects.each do |project|
+    %tr
+      %td= project.owner_name
+      %td= project.name
+      %td= link_to 'Show', project
+      %td= link_to 'Edit', edit_project_path(project)
+      %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete, :remote => true
+%br/
+= link_to 'New Project', new_project_path
