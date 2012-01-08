@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(:version => 20120106041849) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.string   "file"
   end
 
   create_table "receipts", :force => true do |t|
