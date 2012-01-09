@@ -1,3 +1,5 @@
+<% profile = @user.profile %>
+<% profile = Profile.new unless profile %>
 <%= f.fields_for :profile_attributes, @user.profile do |fp| -%>
   <div class='field'>
     <%= fp.label :first_name %>
@@ -7,7 +9,9 @@
     <%= fp.label :last_name %>
     <%= fp.text_field :last_name, :class => 'larger widest' %>
   </div>
-  <%= fp.fields_for :contact_attributes do |fc| %>
+  <% contact = @user.profile.contact %>
+  <% contact = Contact.new unless contact %>
+  <%= fp.fields_for :contact_attributes, contact do |fc| %>
     <div class='field'>
       <%= fc.label :address1 %>
       <%= fc.text_field :address1, :class => 'larger widest' %>
@@ -16,15 +20,24 @@
       <%= fc.label :address2 %>
       <%= fc.text_field :address2, :class => 'larger widest' %>
     </div>
-    <%= fc.fields_for :region_attributes do |fr| %>
+    <% region = contact.region %>
+    <% region = Region.new unless region %>
+    <%= fc.fields_for :region_attributes, region do |fr| %>
+    <div class="region">
       <div class='field'>
         <%= fr.label :country %>
         <%= fr.country_select :country, "US", {},{:class => "country"} %>
       </div>
-      <div class='field'>
+      <% country_code = (region.country || "US") %>
+      <div class='field state' style="<%= "display:none" unless has_state?(country_code) %>">
         <%= fr.label :state %>
-        <%= fr.state_select :state, "US", {},{:class => "state"} %>
+        <% begin %>
+          <%= fr.state_select :state, country_code, {}, {:class => "state"} %>
+        <% rescue %>
+          <select class="state" name="user[profile_attributes][contact_attributes][region_attributes][state]" id="user_profile_attributes_contact_attributes_region_attributes_state"></select>
+        <% end %>
       </div>
+    </div>
     <% end %>
     <div class='field'>
       <%= fc.label :city %>
@@ -44,33 +57,32 @@
     <%= fp.label :receive_newsleter, :style => "display:inline" %>
   </div>
 <% end %>
-<%= render :partial => "role_agreements", :locals => {:f => f} %>
-<%= states_by_country %>
-<script>
-  $(document).ready(function(){
-    $("input[type=radio]").change(function(){
-      var agreement = $(this).attr("title");
-      $(".agreement").hide();
-      if($("." + agreement).length> 0){
-        $("." + agreement).show();
-      }else{
-        $(".partner").show();
-      }
-    });
+<% if ["new", "create"].index(action_name) %>
+  <%= render :partial => "role_agreements", :locals => {:f => f} %>
+  <%= states_by_country %>
+  <script>
+    $(document).ready(function(){
+      $("input[type=radio]").change(function(){
+        var agreement = $(this).attr("title");
+        $(".agreement").hide();
+        if($("." + agreement).length> 0){
+          $("." + agreement).show();
+        }else{
+          $(".partner").show();
+        }
+      });
 
-    $(".country").bind("change", function(){
-      var country = $(this).val();
-      populateState(country);
-    });
+      $(".country").bind("change", function(){
+        var country = $(this).val();
+        var options = states[country];
+        if(options == ""){
+          $(".state").parents(".field").hide();
+        }else{
+          $(".state").parents(".field").show();
+        }
+        $(".state").html(options);
+      });
 
-  });
-  function populateState(country){
-    var options = states[country];
-    if(options == ""){
-      $(".state").parents(".field").hide();
-    }else{
-      $(".state").parents(".field").show();
-    }
-    $(".state").html(options);
-  }
-</script>
+    });
+  </script>
+<% end %>

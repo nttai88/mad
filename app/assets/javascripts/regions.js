@@ -1,14 +1,20 @@
 $(document).ready(function(){
   Region.bindNew();
   Region.bindDelete();
+  Region.bindContrySelect();
 });
 
 var Region = {
   bindContrySelect: function(){
     $(".country").unbind().bind("change", function(){
       var country = $(this).val();
-      var state = $(this).parents(".region").first().find(".state");
+      var state = $(this).parents(".region").first().find("select.state");
       var options = states[country];
+      if(options == ""){
+        $(this).parents(".region").first().find(".state").hide();
+      }else{
+        $(this).parents(".region").first().find(".state").show();
+      }
       state.html(options);
     });
   },

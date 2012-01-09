@@ -1,0 +1,25 @@
+<h1>My Settings</h1>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag('jquery', 'categories', 'regions') %>
+  <%= states_by_country %>
+<% end %>
+
+<%= form_for :user, :url => main_app.update_refinery_user_path(current_refinery_user) do |f| %>
+  <%= render :partial => "/refinery/admin/error_messages",
+           :locals => {
+             :object => @user,
+             :include_object_name => true
+           } %>
+  <%= render :partial => "refinery/users/user_fields", :locals => {:f => f} %>
+  <%= render :partial => "normal_user_form", :locals => {:f =>f} %>
+  <%= f.fields_for :profile do |fr| %>
+    <%if @user.is_partner? %>
+      <h2>My Categories</h2>
+      <%= render :partial => "categories" %>
+      <h2>My Locations</h2>
+      <%= render :partial => "regions", :locals => { :f => f} %>
+    <% end %>
+  <% end %>
+  <input type="hidden" value="<%= params[:id] %>" name="id"/>
+  <div class="actions"><%= f.submit "Save", :class => "submit" %></div>
+<% end %>

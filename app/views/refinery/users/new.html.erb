@@ -7,22 +7,7 @@
                :include_object_name => true
              } %>
 
-  <div class='field'>
-    <%= f.label :username %>
-    <%= f.text_field :username, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= f.label :email %>
-    <%= f.text_field :email, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= f.label :password %>
-    <%= f.password_field :password, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, :class => 'larger widest' %>
-  </div>
+  <%= render :partial => "refinery/users/user_fields", :locals => {:f => f} %>
 
   <% if just_installed? %>
     <% ::Refinery::Plugins.registered.in_menu.names.sort.each do |plugin| -%>

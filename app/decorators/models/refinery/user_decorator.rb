@@ -6,9 +6,13 @@ Refinery::User.class_eval do
   include Mailboxer::Models::Messageable
   acts_as_messageable
   attr_accessible :profile_attributes, :role_ids
-
+  after_save :create_profile
   def profile_attributes=(attrs)
-    self.profile = Profile.new(attrs)
+    unless self.profile
+      self.profile = Profile.new(attrs)
+    else
+      self.profile.update_attributes(attrs)
+    end
   end
 
   def create_first
@@ -45,5 +49,10 @@ Refinery::User.class_eval do
       end
     end
     return false
+  end
+
+  protected
+  def create_profile
+    self.profile = Profile.new(:first_name => self.username, :last_name => self.username) unless self.profile
   end
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get '/users/password/new' => 'refinery/passwords#new', :as => :new_refinery_user_password
     get '/users/password' => 'refinery/passwords#create', :as => :refinery_user_password
     get '/users/confirmation' => 'refinery/confirmations#show', :as => :refinery_user_confirmation
+    get '/users/:id/edit' => 'refinery/users#edit', :as => :edit_refinery_user
+    post '/users/:id/update' => 'refinery/users#update', :as => :update_refinery_user
   end if ::Refinery::User.respond_to?(:devise)
 
 end

@@ -7,4 +7,13 @@ module ApplicationHelper
     end
     javascript_tag("var states = #{state_options.to_json}")
   end
+
+  def has_state?(country_code)
+    begin
+      Carmen::states(country_code)
+      return true
+    rescue
+      return false
+    end
+  end
 end
