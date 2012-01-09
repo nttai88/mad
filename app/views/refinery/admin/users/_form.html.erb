@@ -1,5 +1,5 @@
 <% content_for :javascripts do %>
-  <% javascript_include_tag('jquery', 'categories', 'regions') %>
+  <%= javascript_include_tag('jquery', 'categories', 'regions') %>
   <%= states_by_country %>
 <% end %>
 <%= form_for [main_app, :refinery_admin, @user] do |f| %>
