@@ -24,9 +24,6 @@ Refinery::UsersController.class_eval do
 
   def edit
     @user =  current_refinery_user
-    profile = @user.profile
-    @categories = profile.categories
-    @regions = profile.regions
     render :layout => "application"
   end
 
@@ -36,6 +33,17 @@ Refinery::UsersController.class_eval do
       params[:user].except!(:password, :password_confirmation)
     end
     @user.update_attributes(params[:user])
+    update_profile
+    if @user.save
+      redirect_to main_app.edit_refinery_user_path(@user)
+    else
+      render :action => :edit, :layout => "application"
+    end
+    
+  end
+
+  protected
+  def update_profile
     profile = @user.profile
     if params[:categories]
       categories = []
@@ -52,12 +60,5 @@ Refinery::UsersController.class_eval do
       end if params[:regions]
       profile.regions = regions
     end
-    if @user.save
-      redirect_to main_app.edit_refinery_user_path(@user)
-    else
-      render :action => :edit, :layout => "application"
-    end
-    
   end
-  
 end

@@ -2,7 +2,8 @@
   <%= render :partial => "refinery/users/category", :locals => {:category => Category.new} %>
 </div>
 <div class="new-categories">
-  <% @categories.each do |cat| %>
+  <% categories = @user.profile.categories %>
+  <% categories.each do |cat| %>
     <%= render :partial => "refinery/users/category", :locals => {:category => cat} %>
   <% end %>
 </div>

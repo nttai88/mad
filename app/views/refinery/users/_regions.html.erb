@@ -5,7 +5,8 @@
   </div>
 <% end %>
 <div class="regions">
-  <% @regions.each do |reg| %>
+  <% regions = @user.profile.regions %>
+  <% regions.each do |reg| %>
     <%= f.fields_for reg do  |fr|%>
       <%= render :partial => "refinery/users/region", :locals => {:region => reg, :f => fr} %>
     <% end %>
