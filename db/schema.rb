@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106041849) do
+ActiveRecord::Schema.define(:version => 20120109123751) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(:version => 20120106041849) do
     t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file1"
+    t.string   "file2"
+    t.string   "file3"
+    t.string   "file4"
+    t.string   "file5"
+    t.string   "file6"
+    t.string   "file7"
+    t.string   "file8"
+    t.string   "file9"
   end
 
   create_table "notifications", :force => true do |t|
