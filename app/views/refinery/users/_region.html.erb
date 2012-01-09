@@ -1,9 +1,10 @@
+<% country =  (region.country || "US")%>
 <div class="region" style="margin-bottom: 25px;">
   <%= f.country_select "country", "US", {}, {:name => "regions[][country]", :class => "country"} %>
   <% begin %>
-    <%= f.state_select "state", (region.country || "US") , {:prompt => true}, {:name => "regions[][state]", :class => "state"} %>
+    <%= f.state_select "state",  country, {:prompt => true}, {:name => "regions[][state]", :class => "state"} %>
   <% rescue %>
-    <select name="regions[][state]" id="region_state" class="state"></select>
+    <select name="regions[][state]" id="region_state" class="state" style="display:none;"></select>
   <% end %>
   <%= link_to "Delete", "#", :class => "delete-region"%>
 </div>

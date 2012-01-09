@@ -1,5 +1,6 @@
 <% content_for :javascripts do %>
-  <% javascript_include_tag('jquery', 'categories', 'regions') %>
+  <%= javascript_include_tag('jquery', 'categories', 'regions') %>
+  <%= states_by_country %>
 <% end %>
 <%= form_for [main_app, :refinery_admin, @user] do |f| %>
 
@@ -63,12 +64,13 @@
         <label>Categories and Location valid to: </label><%= text_field :profile, "expired_date", :name => "expired_date", :class => "expired_date", :value => @user.profile.selection_expiration_date %>
       <% end %>
       <label>Categoies</label>
-      <%= render :partial => "refinery/profile/categories", :locals => {:category => Category.new} %>
+      <%= render :partial => "refinery/users/categories", :locals => {:category => Category.new} %>
     </div>
     <div class="field">
       <label>Locations</label>
-      <%= f.fields_for @profile do |fr| %>
-        <%= render :partial => "refinery/profile/regions", :locals => {:f => fr} %>
+      <% @user.profile = Profile.new unless @user.profile %>
+      <%= f.fields_for :profile, @user.profile do |fr| %>
+        <%= render :partial => "refinery/users/regions", :locals => {:f => fr} %>
       <% end %>
     </div>
   <% end %>

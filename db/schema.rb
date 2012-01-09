@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120109123751) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "region_id"
   end
 
   create_table "conversations", :force => true do |t|

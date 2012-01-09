@@ -1,9 +1,0 @@
-<div class="category-template" style="display:none">
-  <%= render :partial => "refinery/profile/category", :locals => {:category => Category.new} %>
-</div>
-<div class="new-categories">
-  <% @categories.each do |cat| %>
-    <%= render :partial => "refinery/profile/category", :locals => {:category => cat} %>
-  <% end %>
-</div>
-<%= link_to "New Category", "#", :class => "new-category" %>

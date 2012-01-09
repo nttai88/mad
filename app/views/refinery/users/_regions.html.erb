@@ -1,0 +1,15 @@
+<% region = Region.new %>
+<%= f.fields_for region do  |fr|%>
+  <div class="region-template" style="display:none">
+    <%= render :partial => "refinery/users/region", :locals => {:region => region, :f => fr} %>
+  </div>
+<% end %>
+<div class="regions">
+  <% regions = @user.profile.regions %>
+  <% regions.each do |reg| %>
+    <%= f.fields_for reg do  |fr|%>
+      <%= render :partial => "refinery/users/region", :locals => {:region => reg, :f => fr} %>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "New Region", "#", :class => "new-region" %>
