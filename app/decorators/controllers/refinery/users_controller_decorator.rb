@@ -64,11 +64,15 @@ Refinery::UsersController.class_eval do
   end
 
   def create_internal_message
-    admin = Refinery::User.joins(:roles).where("refinery_roles.title" => "Superuser").first
-    if admin
-      conversation = Conversation.create(:subject => "Confirmation")
-      message = Message.create(:subject => "Welcome", :body => "Thank you for registering. A verification email is sent to your email account.", :sender => admin, :conversation => conversation)
-      Receipt.create(:receiver => @user, :notification_id => message.id, :mailbox_type => "inbox")
+    begin
+      admin = Refinery::User.joins(:roles).where("refinery_roles.title" => "Superuser").first
+      if admin
+        conversation = Conversation.create(:subject => "Confirmation")
+        message = Message.create(:subject => "Welcome", :body => "Thank you for registering. A verification email is sent to your email account.", :sender => admin, :conversation => conversation)
+        Receipt.create(:receiver => @user, :notification_id => message.id, :mailbox_type => "inbox")
+      end
+    rescue
+      
     end
   end
 end
