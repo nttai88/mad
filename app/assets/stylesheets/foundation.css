@@ -661,7 +661,7 @@
 	form.custom div.custom.dropdown ul.show { display: block; }
 	
 	form.custom div.custom.dropdown.open ul { display: block; }
-
+	#menu_list li{display:inline;padding:10px;background-color:#eeeeee;}
 	
 /* CSS for jQuery Orbit Plugin 1.2.3
  * www.ZURB.com/playground
