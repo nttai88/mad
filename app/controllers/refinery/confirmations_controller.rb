@@ -1,5 +1,5 @@
 class Refinery::ConfirmationsController < Devise::ConfirmationsController
-  layout 'login'
+  layout 'application'
 
 end
 
