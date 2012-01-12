@@ -11,6 +11,7 @@
         <%= render :partial => '/refinery/header' -%>
       </header>
       <section id="page">
+        <h1><%= yield :header %></h1>
         <%= yield %>
       </section>
       <footer>
