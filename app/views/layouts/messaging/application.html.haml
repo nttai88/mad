@@ -41,7 +41,7 @@
             - else
               = link_to "Trash", messages_path(:box => 'trash')
             = form_tag search_path do
-              %input{:name => "Search", :placehoder => "Search", :type => "search"}/
+              %input{:name => "Search", :placehoder => "Search", :type => "search"}
         %section#body_content_right
           .inner
             = yield

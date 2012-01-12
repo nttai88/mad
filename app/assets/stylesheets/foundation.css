@@ -662,7 +662,13 @@
 	
 	form.custom div.custom.dropdown.open ul { display: block; }
 	#menu_list li{display:inline;padding:10px;background-color:#eeeeee;}
-	
+	.custom-menu{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .custom-menu li{float:left; list-style: none; margin-right: 15px;}
+  #header .notice {float:right; padding: 10px; color: green;}
 /* CSS for jQuery Orbit Plugin 1.2.3
  * www.ZURB.com/playground
  * Copyright 2010, ZURB

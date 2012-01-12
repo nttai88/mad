@@ -7,6 +7,9 @@
     <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
     <div id="page_container" class="container row">
       <header id="header">
+        <div class="notice">
+          <%= flash[:notice] %>
+        </div>
         <%= render :partial => '/refinery/header' -%>
       </header>
       <section id="page">

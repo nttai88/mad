@@ -1,22 +1,16 @@
-<style>
-  .custom-menu{
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .custom-menu li{float:left; list-style: none; margin-right: 15px;}
-</style>
-<ul class="custom-menu" >
-    <li> <%= link_to "My Page", "/my-page" %> </li>
-    <% if refinery_user_signed_in? %>
-      <li> <%= link_to "Messages", main_app.messaging_path %> </li>
-      <li> <%= link_to "My Settings", main_app.edit_refinery_user_path(current_refinery_user) %> </li>
-      <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_path %> </li>
-    <% else %>
-      <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %></li>
-      <li><%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), main_app.new_refinery_user_registration_path %></li>
-    <% end %>
-</ul>
+<nav>
+  <ul class="custom-menu" >
+      <li> <%= link_to "My Page", "/my-page" %> </li>
+      <% if refinery_user_signed_in? %>
+        <li> <%= link_to "Messages", main_app.messaging_path %> </li>
+        <li> <%= link_to "My Settings", main_app.edit_refinery_user_path(current_refinery_user) %> </li>
+        <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_path %> </li>
+      <% else %>
+        <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %></li>
+        <li><%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), main_app.new_refinery_user_registration_path %></li>
+      <% end %>
+  </ul>
+</nav>
 <%
   # Collect the root items.
   # ::Refinery::Menu is smart enough to remember all of the items in the original collection.
