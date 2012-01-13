@@ -17,23 +17,14 @@ class ApplicationController < ActionController::Base
   private
 
   def force_ssl
-    if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?# && Rails.env == 'production'
-      redirect_to request.url.gsub(/^http:/, "https:")
-      return false;
+    if Rails.env == 'production'
+      if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?
+        redirect_to request.url.gsub(/^http:/, "https:")
+        return false;
+      end
+      if !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
+        redirect_to request.url.gsub(/^https:/, "http:")
+      end
     end
-
   end
-
-#  def default_url_options(options)
-#    defaults = {}
-#    # This will OVERRIDE only_path => true, not just set the default.
-#    options[:only_path] = false
-#    # Now set the default protocol appropriately:
-#    if SECURE_CONTROLLERS.include?(controller_name)
-#      defaults[:protocol] = 'https://'
-#    else
-#      defaults[:protocol] = 'http://'
-#    end
-#    return defaults
-#  end
 end
