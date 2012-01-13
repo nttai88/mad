@@ -24,16 +24,16 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def default_url_options(options)
-    defaults = {}
-    # This will OVERRIDE only_path => true, not just set the default.
-    options[:only_path] = false
-    # Now set the default protocol appropriately:
-    if SECURE_CONTROLLERS.include?(controller_name)
-      defaults[:protocol] = 'https://'
-    else
-      defaults[:protocol] = 'http://'
-    end
-    return defaults
-  end
+#  def default_url_options(options)
+#    defaults = {}
+#    # This will OVERRIDE only_path => true, not just set the default.
+#    options[:only_path] = false
+#    # Now set the default protocol appropriately:
+#    if SECURE_CONTROLLERS.include?(controller_name)
+#      defaults[:protocol] = 'https://'
+#    else
+#      defaults[:protocol] = 'http://'
+#    end
+#    return defaults
+#  end
 end
