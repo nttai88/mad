@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
         id == USER_ID && password == PASSWORD
     end
   end
+
+  private
+
+  def force_ssl
+    if !request.ssl?
+      redirect_to :protocol => 'https'
+    end
+  end
 end
