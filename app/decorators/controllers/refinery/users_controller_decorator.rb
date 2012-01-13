@@ -2,7 +2,6 @@ Refinery::UsersController.class_eval do
   skip_filter :redirect?
   before_filter :login_required, :only => [:edit, :update]
   before_filter :find_pages_for_menu
-  before_filter :force_ssl
   layout "application"
   def new
     @user = Refinery::User.new
