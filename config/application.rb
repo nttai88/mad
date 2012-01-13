@@ -61,5 +61,7 @@ module Mad2
       app.routes_reloader.paths << File.expand_path('../named_routes_overrides.rb',__FILE__)
     end
 
+    config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
+
   end
 end
