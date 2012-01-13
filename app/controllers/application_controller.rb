@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def force_ssl
     if !request.ssl?
-      redirect_to :protocol => 'https'
+      redirect_to request.url.gsub("http://", "https://")
     end
   end
 end
