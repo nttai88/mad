@@ -2,6 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  refinery:
+    sessions:
+      new:
+        hello_please_sign_in: Please sign in.
   devise:
     sessions:
       signed_in: 'You have been logged in successfully.'

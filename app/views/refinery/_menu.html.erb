@@ -21,9 +21,7 @@
           <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %></li>
           <li><%= link_to I18n.t(:forgot_password, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_password_path %></li>
         <% end %>
-        
     </ul>
-    <span class="notice"><%= flash[:notice] %></span>
   </div>
   <ul id="menu_list">
     <%= render :partial => '/refinery/menu_branch', :collection => roots,
