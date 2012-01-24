@@ -1,6 +1,7 @@
 #middle_content
   #left_container.left
     #edit_profile
+      - @user = current_refinery_user
       = form_for @project, :html => {:class => "simple_form"} do |f|
         %h2.blue_header#edit_profile_links
           .left
@@ -8,15 +9,22 @@
             = link_to_function 'Teaser', "$('.partial_profile').hide();$('#teaser').show();", :class => "title_link"
             = link_to_function 'Business Page', "$('.partial_profile').hide();$('#business').show();", :class => "title_link"
             = link_to_function 'Market Analysis', "$('.partial_profile').hide();$('#market').show();", :class => "title_link"
-            = link_to_function 'Competitors', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
+            = link_to_function 'Competitors Analysis', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
             = link_to_function 'Strategy', "$('.partial_profile').hide();$('#strategy').show();", :class => "title_link"
-            = link_to_function 'Progression', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
+            = link_to_function 'Progression Plan', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
             = link_to_function 'Finance', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
             = link_to_function 'Summary', "$('.partial_profile').hide();$('#summary').show();", :class => "title_link"
             = link_to_function 'Company', "$('.partial_profile').hide();$('#company').show();", :class => "title_link"
             = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
             = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
         #general.partial_profile
+          %div{:style => "width:100%;float:left;margin:10px 0px 20px 0px;"}
+            %div{:style => "float:left;width:600px;margin-top: 5px;"}
+              %span{:style => "float: left;"}
+                %input#use_existing{:name => "use_existing", :onClick => "copyProfileInfo(this);", :type => "checkbox", :value => "yes"}/
+              %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
+                Use your profiles existing contact-info
+          %br
           .field
             = f.label :name
             = f.text_field :name
@@ -27,6 +35,19 @@
             .field
               = fc.label :address2
               = fc.text_field :address2, :class => 'larger widest'
+            - @user.profile.contact.region = Region.new unless @user.profile.contact.region
+            = fc.fields_for :region_attributes, @user.profile.contact.region do |fr|
+              .region
+                .field
+                  = fr.label :country
+                  = fr.country_select :country, "US", {},{:class => "country"}
+                - country_code = (@user.profile.contact.region.country || "US")
+                .field.state
+                  = fr.label :state
+                  - begin
+                    = fr.state_select :state, country_code, {}, {:class => "state"}
+                  - rescue
+                    %select#user_profile_attributes_contact_attributes_region_attributes_state.state{:name => "user[profile_attributes][contact_attributes][region_attributes][state]"}
             .field
               = fc.label :city
               = fc.text_field :city, :class => 'larger widest'
@@ -35,50 +56,47 @@
               = fc.text_field :zip, :class => 'larger widest'
         #teaser.partial_profile.hidden
           .field
-            = f.label :owner_name
+            = f.label :project_name
             = f.text_field :owner_name
+          .field
+            = f.label :field_of_usage
+            = f.text_area :usage
+          .field
+            = f.label :which_fields_does_the_solve
+            = f.text_area :solves
           .field
             = f.label :category
             = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
-          .field
-            = f.label :usage
-            = f.text_area :usage
-          .field
-            = f.label :solves
-            = f.text_area :solves
-          .field
-            = f.label :idea
-            = f.text_area :idea
         #business.partial_profile.hidden
           .field
-            = f.label :description
+            = f.label :description_for_forretningside 
             = f.text_area :description
         #market.partial_profile.hidden
           .field
-            = f.label :market
+            = f.label :description_for_market_analysis
             = f.text_area :market
         #competitor_one.partial_profile.hidden
           .field
-            = f.label :competitors
+            = f.label :description_for_competitors
             = f.text_area :competitors
           .field
-            = f.label :competitors2
+            = f.label :description_for_competitors2
             = f.text_area :competitors2
         #strategy.partial_profile.hidden
           .field
-            = f.label :strategy
+            = f.label :description_for_strategy
             = f.text_area :strategy
         #progression.partial_profile.hidden
           .field
-            = f.label :progression
+            = f.label :description_for_progression
             = f.text_area :progression
         #finance.partial_profile.hidden
           .field
-            = f.label :finances
+            = f.label :description_for_finances
             = f.text_area :finances
         #summary.partial_profile.hidden
           .field
-            = f.label :summary
+            = f.label :description_for_summary
             = f.text_area :summary
         #company.partial_profile.hidden
           .field
@@ -147,14 +165,17 @@
                   = link_to_function "Remove", "$('#file9').remove()"
         #thoughts.partial_profile.hidden
           .field
-            = f.label :partners
+            = f.label :possible_production_or_industrial_partners
             = f.text_area :partners
           .field
-            = f.label :suppliers
+            = f.label :possible_suppliers
             = f.text_area :suppliers
           .field
-            = f.label :distributers
+            = f.label :possible_distrubitors
             = f.text_area :distributers
+          .field
+            = f.label :idea_or_patternprotection_needed
+            = f.text_area :idea
           .field
             = f.label :patenting
             = f.text_area :patenting
@@ -162,38 +183,37 @@
             = f.label :origin
             = f.text_area :origin
           .field
-            = f.label :marked_geographic
+            = f.label :geographical_marked
             = f.text_area :marked_geographic
           .field
-            = f.label :marked_size
+            = f.label :size_of_marked
             = f.text_area :marked_size
 
         .actions
           = f.submit 'Save', :class=>"nice small radius blue button"
-          
+        - @user = current_refinery_user
+        - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
         :javascript
-          function copyUserInfo(elem){
+          function copyProfileInfo(elem){
             if(elem.checked == true){
-              $('#phone_number').val("") ;
-              $('#zip').val("") ;
-              $('#city').val("") ;
+              $('#project_contact_attributes_zip').val("#{contact.zip}") ;
+              $('#project_contact_attributes_city').val("#{contact.city}") ;
               $('#state').val("");
               $('#country').val("") ;
-              $('#address2').val("") ;
-              $('#address1').val("") ;
+              $('#project_contact_attributes_address2').val("#{contact.address2}") ;
+              $('#project_contact_attributes_address1').val("#{contact.address1}") ;
               $('#name').val("") ;
 
               $('#project_org_name').val("") ;
               $('#project_org_number').val("") ;
             }else
             {
-              $('#phone_number').val("") ;
-              $('#zip').val("") ;
-              $('#city').val("") ;
+              $('#project_contact_attributes_zip').val("") ;
+              $('#project_contact_attributes_city').val("") ;
               $('#state').val("");
               $('#country').val("") ;
-              $('#address2').val("") ;
-              $('#address1').val("") ;
+              $('#project_contact_attributes_address2').val("") ;
+              $('#project_contact_attributes_address1').val("") ;
               $('#name').val("") ;
               $('#project_org_name').val("") ;
               $('#project_org_number').val("") ;

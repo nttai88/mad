@@ -1,7 +1,8 @@
 Refinery::UsersController.class_eval do
   skip_filter :redirect?
-  before_filter :login_required, :find_pages_for_menu, :only => [:edit, :update]
-  
+  before_filter :login_required, :only => [:edit, :update]
+  before_filter :find_pages_for_menu
+  layout "application"
   def new
     @user = Refinery::User.new
     @user.roles = [Refinery::Role.find_by_title("Entrepreneur")]
@@ -25,7 +26,6 @@ Refinery::UsersController.class_eval do
 
   def edit
     @user =  current_refinery_user
-    render :layout => "application"
   end
 
   def update
@@ -38,7 +38,7 @@ Refinery::UsersController.class_eval do
     if @user.save
       redirect_to main_app.edit_refinery_user_path(@user)
     else
-      render :action => :edit, :layout => "application"
+      render :action => :edit
     end
     
   end

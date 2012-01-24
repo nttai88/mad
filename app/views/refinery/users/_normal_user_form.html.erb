@@ -60,25 +60,10 @@
   <%= states_by_country %>
   <script>
     $(document).ready(function(){
-      $("input[type=radio]").change(function(){
+      $(".field.roles input[type=radio]").change(function(){
         var agreement = $(this).attr("title");
         $(".agreement").hide();
-        if($("." + agreement).length> 0){
-          $("." + agreement).show();
-        }else{
-          $(".partner").show();
-        }
-      });
-
-      $(".country").bind("change", function(){
-        var country = $(this).val();
-        var options = states[country];
-        if(options == ""){
-          $(".state").parents(".field").hide();
-        }else{
-          $(".state").parents(".field").show();
-        }
-        $(".state").html(options);
+        $("." + agreement + ".agreement").show();
       });
 
     });
