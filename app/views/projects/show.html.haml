@@ -1,76 +1,124 @@
-%p#notice= notice
-%p
-  %b Owner name:
-  = @project.owner_name
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Usage:
-  = @project.usage
-%p
-  %b Solves:
-  = @project.solves
-%p
-  %b Idea:
-  = @project.idea
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Market:
-  = @project.market
-%p
-  %b Competitors:
-  = @project.competitors
-%p
-  %b Strategy:
-  = @project.strategy
-%p
-  %b Progression:
-  = @project.progression
-%p
-  %b Finances:
-  = @project.finances
-%p
-  %b Summary:
-  = @project.summary
-%p
-  %b Marked geographic:
-  = @project.marked_geographic
-%p
-  %b Marked size:
-  = @project.marked_size
-%p
-  %b Developed:
-  = @project.developed
-%p
-  %b Need company:
-  = @project.need_company
-%p
-  %b Founder:
-  = @project.founder
-%p
-  %b Develop in own company:
-  = @project.develop_in_own_company
-%p
-  %b Partners:
-  = @project.partners
-%p
-  %b Suppliers:
-  = @project.suppliers
-%p
-  %b Distributers:
-  = @project.distributers
-%p
-  %b Patenting:
-  = @project.patenting
-%p
-  %b Competitors2:
-  = @project.competitors2
-%p
-  %b Origin:
-  = @project.origin
-= link_to 'Edit', edit_project_path(@project)
-|
-\#{link_to 'Back', projects_path}
+.project_show
+  %p#notice= notice
+  %h4
+    General
+  %p 
+    %b Name:
+    = @project.name
+  - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
+  %p 
+    %b Address1:
+    = contact.address1 if contact
+  %p 
+    %b Address2:
+    = contact.address2 if contact
+  %p
+    %b City:
+    = contact.city if contact
+  %p
+    %b Zip
+    = contact.zip if contact
+  %h4
+    Teaser  
+  %p 
+    %b Owner name:
+    = @project.owner_name
+  %p
+    %b Usage:
+    = @project.usage
+  %p
+    %b Solves:
+    = @project.solves
+  %p
+    %b Idea:
+    = @project.idea
+  = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
+  %h4
+    Bussiness Page
+  %p
+    %b Description:
+    = @project.description
+  = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
+  %h4
+    Market Analysis
+  %p
+    %b Market:
+    = @project.market
+    
+  %h4
+    Competitors
+  %p
+    %b Competitors:
+    = @project.competitors
+  %p
+    %b Competitors2:
+    = @project.competitors2
+  
+  %h4
+    Strategy
+  %p
+    %b Strategy:
+    = @project.strategy
+    
+  %h4
+    Progression
+  %p
+    %b Progression:
+    = @project.progression
+    
+  %h4
+    Finance
+  %p
+    %b Finances:
+    = @project.finances
+    
+  %h4
+    Summary
+  %p
+    %b Summary:
+    = @project.summary
+    
+  %h4
+    Company
+  %p
+    %b Developed:
+    = @project.developed
+  %p
+    %b Need company:
+    = @project.need_company
+  %p
+    %b Founder:
+    = @project.founder
+  %p
+    %b Develop in own company:
+    = @project.develop_in_own_company
+  
+  %h4
+    Attachments
+  
+  %h4
+    Thoughts and Wishes
+  %p
+    %b Marked geographic:
+    = @project.marked_geographic
+  %p
+    %b Marked size:
+    = @project.marked_size
+  %p
+    %b Partners:
+    = @project.partners
+  %p
+    %b Suppliers:
+    = @project.suppliers
+  %p
+    %b Distributers:
+    = @project.distributers
+  %p
+    %b Patenting:
+    = @project.patenting
+  %p
+    %b Origin:
+    = @project.origin
+  = link_to 'Edit', edit_project_path(@project)
+  |
+  \#{link_to 'Back', projects_path}

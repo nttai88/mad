@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -82,4 +81,16 @@ class ProjectsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def rate
+    @project = Project.find(params[:id])
+    respond_to do |format|
+      if @project.rate(params[:stars], current_user, params[:dimension])
+        format.js { render :partial => "rating", :locals => {:dimension => params[:dimension]} }
+      else
+        format.js { render :partial => "rating" }
+      end
+    end
+  end
+  
 end

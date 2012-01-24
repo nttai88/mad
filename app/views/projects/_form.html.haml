@@ -1,5 +1,3 @@
-= stylesheet_link_tag    "application", "jquery_ui"
-= javascript_include_tag "application", "jquery_ui"
 #middle_content
   #left_container.left
     #edit_profile
@@ -171,4 +169,33 @@
             = f.text_area :marked_size
 
         .actions
-          = f.submit 'Save', :class => "nice_btn"
+          = f.submit 'Save', :class=>"nice small radius blue button"
+          
+        :javascript
+          function copyUserInfo(elem){
+            if(elem.checked == true){
+              $('#phone_number').val("") ;
+              $('#zip').val("") ;
+              $('#city').val("") ;
+              $('#state').val("");
+              $('#country').val("") ;
+              $('#address2').val("") ;
+              $('#address1').val("") ;
+              $('#name').val("") ;
+
+              $('#project_org_name').val("") ;
+              $('#project_org_number').val("") ;
+            }else
+            {
+              $('#phone_number').val("") ;
+              $('#zip').val("") ;
+              $('#city').val("") ;
+              $('#state').val("");
+              $('#country').val("") ;
+              $('#address2').val("") ;
+              $('#address1').val("") ;
+              $('#name').val("") ;
+              $('#project_org_name').val("") ;
+              $('#project_org_number').val("") ;
+            }
+          }

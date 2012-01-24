@@ -1,321 +1,55 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
-*/
-/*body{background: #bce8ff url(body-bg.png) repeat-x;}*/
-body{background: #eee;}
-body, input {
-  color: #444444;
-  font-family: verdana, arial, helvetica, sans-serif;
-/*  font: 60px/68px 'QikkiRegRegular', Arial, sans-serif;*/
-/*  font: 60px/68px 'TeXGyreAdventorRegular', Arial, sans-serif;*/
-/*  font: 60px/68px 'MyndraineRegular', Arial, sans-serif;*/
-/*  font: 60px/68px 'ComfortaaRegular', Arial, sans-serif;*/
-  letter-spacing: 0;
-  font-size: 13px;
-  line-height: 18px;
+body {
+  margin: 0px;
 }
-
-p, ol, ul, td, textarea {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+#page, #site_bar_content, footer, header {
+  width: 1000px;
+  margin: 0px auto;
 }
-
-a {
-  text-decoration:none;
-  color:#444444;
-}
-
-a:hover {
-  text-decoration:none;
-  color:#499ad0;
-}
-
-h1{ font-size: 18px; }
-
-textarea{
-  resize: none;
-  width:400px;
-  height:100px;
-  color:#444444;
-  font-size:14px;
-  line-height:22px;
-  text-align:justify;
-}
-
-input, a{outline:none;}
-
-table td{
-  padding:5px;
-}
-
-p.padding{
-  padding:10px;
-}
-
-.hidden{ display:none;}
-
-.notice {
-  color: #009900;
-  padding: 5px 10px 5px 10px;
-  background: white;
-  font-size:12px; }
-
-.alert {
-  padding: 5px 10px 5px 10px;
-  background: white;
-  color: #ff0000;
-  font-size: 12px; }
-
-.align_left{
-  text-align:left !important;
-}
-
-.align_right{
-  text-align:right !important;
-}
-
-/* overide jquery slider range background */
-.ui-slider .ui-slider-range{
-  background:none repeat scroll 0 0 #499ad0;
-}
-
-.white { color:#ffffff; }
-.white a { color:#ffffff; }
-.white a:hover { color:#333333; }
-.blue { color:#499ad0; }
-.dark_grey { color:#444444; }
-.light_grey { color:#ffffff; }
-.grey { color:#b5b5b5; }
-.left { float:left; }
-.right { float:right; }
-.clearfloat { clear:both; }
-.align_right { text-align:right; }
-.align_left { text-align:left; }
-.align_center { text-align:center; }
-
-.red_color{color:#ff3c00;}
-.green_color{color:#01ba17;}
-
-a.red:hover{
-  background:#ff3c00 url(ui-bg_glass_65_ff3c00_1x400.png) 50% 50% repeat-x !important;
-}
-
-a.green:hover{
-  background:#01ba17 url(ui-bg_glass_65_01ba17_1x400.png) 50% 50% repeat-x !important;
-}
-
-a.bluebg:hover{
-  background:#499ad0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x !important;
-}
-
-a.greybg{
-  background:#e6e6e6 url(ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x !important;
-}
-
-input.nice_field{
-  padding:10px;
-  font-size:14px;
-  border:1px solid #ffffff;
-  width:200px;
-  background:#ffffff;
-}
-
-.nice_btn{
-  background:#ffffff;
-  border:0px;
-  padding:10px 20px 10px 20px;
-  font-size:16px;
-  border:1px solid #b5b5b5;
-  color:#444444;
-}
-
-.nice_btn:hover{
-  border:1px solid #5dbbd3;
-  cursor:pointer;
-  background:#499ad0;
-  color:#fff;
-}
-
-#middle_content {
-  background: url(bottombg.png) no-repeat bottom left;
-}
-
-#left_container {
-  padding:20px;
-  width:1080px;
-/*  overflow:hidden;*/
-  h1 {
-    color:#499ad0;
+#body_content_left {
+  float: left;
+  width: 600px;
+  .inner {
+    padding-right: 10px;
   }
 }
-
-h2 {
-  color:#499ad0;
-  margin-bottom:10px;
-  font-size: 16px;
-}
-
-#header{
-  height: 58px;
-  padding:30px 0 30px 0;
-}
-
-.actions {
-  padding:10px 0 10px 0;
-}
-
-h2.blue_header{
-  color:#499ad0;
-  overflow:hidden;
-  text-align:left;
-  padding:5px 0 5px 0;
-  border-bottom:1px solid #499ad0;
-  font-size:16px;
-  a{
-    color:#499ad0;
-  }
-  a:hover{
-    color:#ff4e00;
-  }
-  a.title_link{
-    font-size:11px;
-    padding:6px;
-    background:#E6E6E6 url(ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
-    color:#444444;
-  }
-  a.title_link:hover{
-    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
-    color:#fff;
-  }
-  input[type=submit].title_link{
-    font-size:12px;
-    padding:0.4em 1em;
-    margin:0px !important;
-    position:relative;
-    text-align:center;
-    border:none;
-    cursor:pointer;
-    background:#E6E6E6 url(ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
-    color:#444444;
-    text-decoration:none !important;
-    display:inline-block;
-    overflow:visible;
-  }
-  input[type=submit].title_link:hover{
-    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
-    color:#fff;
+#body_content_right {
+  float: right;
+  width: 400px;
+  .inner {
+    padding-left: 10px;
   }
 }
-
-#edit_profile_links{
-  a.title_link:hover{
-    background:#499AD0;
-    color:#fff;
-  }
-  a.title_link.active{
-    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
-    color:#fff;
-  }
-  a.title_link.active:hover{
-    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
-    color:#fff;
-  }
+#body_content.no_body_content_left #body_content_right,
+  #body_content.no_body_content_right #body_content_left {
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
 }
-
-#edit_profile{
-  margin-top:20px;
-  .form_table{
-    margin-top:0px;
-    .jqfield{
-      padding:10px 0 10px 10px;
-      line-height:normal;
+.menu {
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
+  li {
+    padding: 0px;
+    margin: 0px 9px 0px 0px;
+    list-style: none;
+    float: left;
+    &.last {
+      margin-right: 0px;
+    }
+    &.selected {
+      > a {
+        font-weight: bold;
+      }
     }
   }
 }
-
-.simple_form{
-  .blue_header{
-    margin-bottom:30px;
-  }
-  .field {
-    padding:10px;
-    line-height:45px;
-    label {
-      display:block;
-      float:left;
-      width:150px;
-      text-align:right;
-      margin-right:20px;
-      height:40px;
-    }
-    input, textarea{
-      background:#ffffff;
-      border:1px solid #dddddd;
-      padding:10px;
-      font-size:14px;
-    }
-    textarea{
-      width:450px;
-    }
-    input[type=file], input[type=checkbox]{
-      border:none;
-      background:none;
-      padding:auto;
-    }
-  }
-  .jquery_field{
-    padding:10px;
-    line-height:40px;
-    .form_label{
-      display:block;
-      float:left;
-      width:150px;
-      text-align:right;
-      margin-right:20px;
-      height:40px;
-    }
-  }
+.page_not_live {
+  border: 1px solid #A00027;
+  color: #A00027;
+  background: #FFB1B1;
+  padding:3px 9px;
+  font-weight:bold;
+  width:auto;
 }
-
-.ui-button-icon-only{
-  height:20px;
-  width:20px;
-}
-
-.field_with_errors {
-  display: inline;
-}
-
-#error_explanation {
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  overflow:hidden;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-  ul li {
-    margin-left:30px;
-    font-size: 12px;
-    list-style: square;
-  }
-}
-#page{
-	margin-top:70px;
-}
-
-

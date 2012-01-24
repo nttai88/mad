@@ -1,5 +1,9 @@
 Mad2::Application.routes.draw do
-  resources :projects
+  resources :projects do
+    member do
+      post 'rate'
+    end
+  end
 
   mount Messaging::Engine => "/messaging"
 
