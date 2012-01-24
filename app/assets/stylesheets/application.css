@@ -171,26 +171,26 @@ h2 {
 }
 
 h2.blue_header{
-  color:#8b1c26;
+  color:#499ad0;
   overflow:hidden;
   text-align:left;
   padding:5px 0 5px 0;
-  border-bottom:1px solid #8b1c26;
+  border-bottom:1px solid #499ad0;
   font-size:16px;
   a{
-    color:#8b1c26;
+    color:#499ad0;
   }
   a:hover{
     color:#ff4e00;
   }
   a.title_link{
-    font-size:11px;
-    padding:6px;
+    font-size:10px;
+    padding:5px;
     background:#E6E6E6 url(ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
     color:#444444;
   }
   a.title_link:hover{
-    background:#8b1c26 url(ui-bg_glass_65_8b1c26_1x400.png) 50% 50% repeat-x;
+    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
     color:#fff;
   }
   input[type=submit].title_link{
@@ -208,22 +208,22 @@ h2.blue_header{
     overflow:visible;
   }
   input[type=submit].title_link:hover{
-    background:#8b1c26 url(ui-bg_glass_65_8b1c26_1x400.png) 50% 50% repeat-x;
+    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
     color:#fff;
   }
 }
 
 #edit_profile_links{
   a.title_link:hover{
-    background:#8b1c26;
-    color:#fff;
+    background:#499AD0;
+    color:#ffffff;
   }
   a.title_link.active{
-    background:#8b1c26 url(ui-bg_glass_65_8b1c26_1x400.png) 50% 50% repeat-x;
+    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
     color:#fff;
   }
   a.title_link.active:hover{
-    background:#8b1c26 url(ui-bg_glass_65_8b1c26_1x400.png) 50% 50% repeat-x;
+    background:#499AD0 url(ui-bg_glass_65_499AD0_1x400.png) 50% 50% repeat-x;
     color:#fff;
   }
 }
