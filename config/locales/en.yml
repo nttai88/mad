@@ -6,7 +6,17 @@ en:
     sessions:
       new:
         hello_please_sign_in: Please sign in.
+    news_items:
+      category:
+        from_madlab: "From MadLab"
+        news: "News"
+        competitions: "Competitions"
+        press: "Press"
   devise:
     sessions:
       signed_in: 'You have been logged in successfully.'
       signed_out: 'You have been logged out successfully.'
+  activerecord:
+    attributes:
+      refinery/news_item:
+        category: Category
