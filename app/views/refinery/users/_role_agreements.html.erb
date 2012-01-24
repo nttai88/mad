@@ -1,11 +1,12 @@
-<div class='field'>
+<div class='field roles'>
   <%= f.label :role %>
   <% Refinery::Role.where(:title => Refinery::Role.user_roles).each_with_index do |role, i|%>
     <% roles = @user.roles.map{|x| x.id} %>
+    <% role_title = role.title.gsub("Request", "") %>
     <% if(roles.include?(role.id))%>
-      <%= f.radio_button :role_ids, role.id, :checked => "checked" %> <%= role.title.gsub("Request", "") %>
+      <%= f.radio_button :role_ids, role.id, :checked => "checked", :title => role_title.downcase %> <%= role_title %>
     <% else %>
-      <%= f.radio_button :role_ids, role.id %> <%= role.title.gsub("Request", "") %>
+      <%= f.radio_button :role_ids, role.id, :title => role_title.downcase %> <%= role_title %>
     <% end %>
   <% end %>
 </div>
@@ -28,7 +29,7 @@
     <%= Agreement.advisor %>
   </textarea>
 </div>
-<div class='field partner agreement' style="<%= "display:none" if ["Advisor", "Entrepreneur"].include?role.title %>">
+<div class='field distributor contractor producer investor agreement' style="<%= "display:none" if ["Advisor", "Entrepreneur"].include?role.title %>">
   <%= f.label :term_agreement, "Partner Agreement", :style => "display:inline" %>
   <span style="float:right">
     <%= link_to "Download PDF version", "/pdfs/partner-agreement.pdf" %>

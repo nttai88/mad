@@ -57,7 +57,7 @@
     end
   end
 -%>
-<section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %> style="margin-top:70px;">
+<section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
   <% if params[:path] == "my-page" %>
     <%= raw sections.map{|section| section[:html]}.join("\n").gsub("$new_emails", @new_emails.to_s).gsub("$projects", @projects.to_s) -%>
   <% else %>

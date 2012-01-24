@@ -1,5 +1,5 @@
 class Refinery::ConfirmationsController < Devise::ConfirmationsController
-  layout 'login'
-
+  layout 'application'
+  before_filter :find_pages_for_menu
 end
 
