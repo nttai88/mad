@@ -8,13 +8,13 @@
             = link_to_function 'General', "$('.partial_profile').hide();$('#general').show();", :class => "title_link"
             = link_to_function 'Teaser', "$('.partial_profile').hide();$('#teaser').show();", :class => "title_link"
             = link_to_function 'Business Page', "$('.partial_profile').hide();$('#business').show();", :class => "title_link"
+            = link_to_function 'Product Description', "$('.partial_profile').hide();$('#product').show();", :class => "title_link"
             = link_to_function 'Market Analysis', "$('.partial_profile').hide();$('#market').show();", :class => "title_link"
             = link_to_function 'Competitors Analysis', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
             = link_to_function 'Strategy', "$('.partial_profile').hide();$('#strategy').show();", :class => "title_link"
             = link_to_function 'Progression Plan', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
             = link_to_function 'Finance', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
             = link_to_function 'Summary', "$('.partial_profile').hide();$('#summary').show();", :class => "title_link"
-            = link_to_function 'Company', "$('.partial_profile').hide();$('#company').show();", :class => "title_link"
             = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
             = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
         #general.partial_profile
@@ -54,6 +54,9 @@
             .field
               = fc.label :zip, "Zip/Postal code"
               = fc.text_field :zip, :class => 'larger widest'
+            .field
+              = fc.label :phone
+              = fc.text_field :phone, :class => 'larger widest'
         #teaser.partial_profile.hidden
           .field
             = f.label :project_name
@@ -71,6 +74,10 @@
           .field
             = f.label :description_for_forretningside 
             = f.text_area :description
+        #product.partial_profile.hidden
+          .field
+            = f.label :product_description 
+            = f.text_area :product_description
         #market.partial_profile.hidden
           .field
             = f.label :description_for_market_analysis
@@ -79,9 +86,6 @@
           .field
             = f.label :description_for_competitors
             = f.text_area :competitors
-          .field
-            = f.label :description_for_competitors2
-            = f.text_area :competitors2
         #strategy.partial_profile.hidden
           .field
             = f.label :description_for_strategy
@@ -98,19 +102,7 @@
           .field
             = f.label :description_for_summary
             = f.text_area :summary
-        #company.partial_profile.hidden
-          .field
-            = f.label :developed
-            = f.text_field :developed
-          .field
-            = f.label :need_company
-            = f.check_box :need_company
-          .field
-            = f.label :founder
-            = f.check_box :founder
-          .field
-            = f.label :develop_in_own_company
-            = f.check_box :develop_in_own_company
+          
         #attachment.partial_profile.hidden
           = f.fields_for :document do |p|
             %table{:cellpadding => 0, :cellspacing => 0, :width => '100%'}
@@ -165,6 +157,28 @@
                   = link_to_function "Remove", "$('#file9').remove()"
         #thoughts.partial_profile.hidden
           .field
+            = f.label :geographical_marked
+            = f.text_area :marked_geographic
+          .field
+            = f.label :size_of_marked
+            = f.text_area :marked_size
+          .field
+            = f.label :how_far_is_the_idea_developed
+            = f.text_field :developed
+          %p Comercialization
+          .field
+            = f.label :establish_a_company_for_this_purpose
+            = f.check_box :need_company
+          .field
+            = f.label :do_you_see_yourself_as_the_founder
+            = f.check_box :founder
+          .field
+            = f.label :product_development_in_your_company
+            = f.check_box :develop_in_own_company
+          .field
+            = f.label :licensing_to_existing_company
+            = f.check_box :licensing
+          .field
             = f.label :possible_production_or_industrial_partners
             = f.text_area :partners
           .field
@@ -180,14 +194,11 @@
             = f.label :patenting
             = f.text_area :patenting
           .field
+            = f.label :possible_competitors_developing_similar_technology
+            = f.text_area :competitors2
+          .field
             = f.label :origin
             = f.text_area :origin
-          .field
-            = f.label :geographical_marked
-            = f.text_area :marked_geographic
-          .field
-            = f.label :size_of_marked
-            = f.text_area :marked_size
 
         .actions
           = f.submit 'Save', :class=>"nice small radius blue button"
@@ -198,24 +209,15 @@
             if(elem.checked == true){
               $('#project_contact_attributes_zip').val("#{contact.zip}") ;
               $('#project_contact_attributes_city').val("#{contact.city}") ;
-              $('#state').val("");
-              $('#country').val("") ;
+              $('#project_contact_attributes_phone').val("#{contact.phone}");
               $('#project_contact_attributes_address2').val("#{contact.address2}") ;
               $('#project_contact_attributes_address1').val("#{contact.address1}") ;
-              $('#name').val("") ;
-
-              $('#project_org_name').val("") ;
-              $('#project_org_number').val("") ;
             }else
             {
               $('#project_contact_attributes_zip').val("") ;
               $('#project_contact_attributes_city').val("") ;
-              $('#state').val("");
-              $('#country').val("") ;
+              $('#project_contact_attributes_phone').val("");
               $('#project_contact_attributes_address2').val("") ;
               $('#project_contact_attributes_address1').val("") ;
-              $('#name').val("") ;
-              $('#project_org_name').val("") ;
-              $('#project_org_number').val("") ;
             }
           }
