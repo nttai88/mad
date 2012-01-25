@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124180418) do
+ActiveRecord::Schema.define(:version => 20120125131149) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -94,12 +94,12 @@ ActiveRecord::Schema.define(:version => 20120124180418) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "owner_name"
+    t.string   "project_name"
     t.string   "name"
     t.text     "usage"
     t.text     "solves"
     t.text     "idea"
-    t.text     "description"
+    t.text     "business"
     t.text     "market"
     t.text     "competitors"
     t.text     "strategy"
@@ -125,6 +125,12 @@ ActiveRecord::Schema.define(:version => 20120124180418) do
     t.integer  "user_id"
     t.text     "product_description"
     t.boolean  "licensing"
+    t.string   "title"
+    t.boolean  "network_only"
+    t.boolean  "need_investor"
+    t.boolean  "need_producer"
+    t.boolean  "need_retail"
+    t.string   "project_status"
   end
 
   create_table "rates", :force => true do |t|
@@ -199,8 +205,10 @@ ActiveRecord::Schema.define(:version => 20120124180418) do
     t.integer  "image_id"
     t.datetime "expiration_date"
     t.string   "source"
+    t.string   "category"
   end
 
+  add_index "refinery_news_items", ["category"], :name => "index_refinery_news_items_on_category"
   add_index "refinery_news_items", ["id"], :name => "index_refinery_news_items_on_id"
 
   create_table "refinery_page_part_translations", :force => true do |t|

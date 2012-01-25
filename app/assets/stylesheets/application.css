@@ -244,12 +244,12 @@ h2.blue_header{
     margin-bottom:30px;
   }
   .field {
-    padding:10px;
-    line-height:45px;
+    padding:8px;
+    line-height:30px;
     label {
       display:block;
       float:left;
-      width:150px;
+      width:250px;
       text-align:right;
       margin-right:20px;
       height:40px;

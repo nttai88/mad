@@ -13,7 +13,7 @@
             = link_to_function 'Competitors Analysis', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
             = link_to_function 'Strategy', "$('.partial_profile').hide();$('#strategy').show();", :class => "title_link"
             = link_to_function 'Progression Plan', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
-            = link_to_function 'Finance', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
+            = link_to_function 'Financer', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
             = link_to_function 'Summary', "$('.partial_profile').hide();$('#summary').show();", :class => "title_link"
             = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
             = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
@@ -60,7 +60,13 @@
         #teaser.partial_profile.hidden
           .field
             = f.label :project_name
-            = f.text_field :owner_name
+            = f.text_field :project_name
+          .field
+            = f.label :title
+            = f.text_field :title
+          .field
+            = f.label :network_only
+            = f.check_box :network_only
           .field
             = f.label :field_of_usage
             = f.text_area :usage
@@ -70,37 +76,46 @@
           .field
             = f.label :category
             = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
+          .field
+            = f.label :need_investor
+            = f.check_box :need_investor
+          .field
+            = f.label :need_producer
+            = f.check_box :need_producer
+          .field
+            = f.label :need_retail
+            = f.check_box :need_retail
         #business.partial_profile.hidden
           .field
-            = f.label :description_for_forretningside 
-            = f.text_area :description
+            = f.label :business
+            = f.text_area :business
         #product.partial_profile.hidden
           .field
-            = f.label :product_description 
+            = f.label :product
             = f.text_area :product_description
         #market.partial_profile.hidden
           .field
-            = f.label :description_for_market_analysis
+            = f.label :market_analysis
             = f.text_area :market
         #competitor_one.partial_profile.hidden
           .field
-            = f.label :description_for_competitors
+            = f.label :competitors
             = f.text_area :competitors
         #strategy.partial_profile.hidden
           .field
-            = f.label :description_for_strategy
+            = f.label :strategy
             = f.text_area :strategy
         #progression.partial_profile.hidden
           .field
-            = f.label :description_for_progression
+            = f.label :progression
             = f.text_area :progression
         #finance.partial_profile.hidden
           .field
-            = f.label :description_for_finances
+            = f.label :financer
             = f.text_area :finances
         #summary.partial_profile.hidden
           .field
-            = f.label :description_for_summary
+            = f.label :summary
             = f.text_area :summary
           
         #attachment.partial_profile.hidden
@@ -156,16 +171,20 @@
                   = p.file_field :file9
                   = link_to_function "Remove", "$('#file9').remove()"
         #thoughts.partial_profile.hidden
+          %p Project Status
+          .field
+            %p
+              = f.radio_button :project_status, "published"
+              Published
+              = f.radio_button :project_status, "not published"
+              Not Published
           .field
             = f.label :geographical_marked
             = f.text_area :marked_geographic
           .field
             = f.label :size_of_marked
             = f.text_area :marked_size
-          .field
-            = f.label :how_far_is_the_idea_developed
-            = f.text_field :developed
-          %p Comercialization
+          %b Comercialization
           .field
             = f.label :establish_a_company_for_this_purpose
             = f.check_box :need_company
@@ -178,6 +197,26 @@
           .field
             = f.label :licensing_to_existing_company
             = f.check_box :licensing
+          %br
+          %b How far is the idea developed
+          .field
+            = f.label :theoretical_idea
+            = f.radio_button :developed, "Theoretical idea"
+          .field
+            = f.label :prototype_exists
+            = f.radio_button :developed, "Prototype exists"
+          .field
+            = f.label :idea_is_technically_tested
+            = f.radio_button :developed, "Idea is technically tested"
+          .field
+            = f.label :pilot_tested
+            = f.radio_button :developed, "Pilot tested"
+          .field
+            = f.label :company_established
+            = f.radio_button :developed, "Company established"
+          .field
+            = f.label :project_in_existing_company
+            = f.radio_button :developed, "Project in existing company"
           .field
             = f.label :possible_production_or_industrial_partners
             = f.text_area :partners
@@ -196,9 +235,6 @@
           .field
             = f.label :possible_competitors_developing_similar_technology
             = f.text_area :competitors2
-          .field
-            = f.label :origin
-            = f.text_area :origin
 
         .actions
           = f.submit 'Save', :class=>"nice small radius blue button"

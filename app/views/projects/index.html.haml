@@ -7,7 +7,7 @@
     %th Name
   - @projects.each do |project|
     %tr
-      %td= project.owner_name
+      %td= project.project_name
       %td= project.name
       %td= link_to 'Show', project
       %td= link_to 'Edit', edit_project_path(project)

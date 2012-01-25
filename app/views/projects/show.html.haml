@@ -21,8 +21,8 @@
   %h4
     Teaser  
   %p 
-    %b Owner name:
-    = @project.owner_name
+    %b Project name:
+    = @project.project_name
   %p
     %b Usage:
     = @project.usage
@@ -37,7 +37,7 @@
     Bussiness Page
   %p
     %b Description:
-    = @project.description
+    = @project.business
   = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
   %h4
     Market Analysis
