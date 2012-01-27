@@ -1,0 +1,21 @@
+<div class="right-menu">
+  <ul class="custom-menu" >
+      <% if refinery_user_signed_in? %>
+        <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_url %> </li>
+        <li> <%= link_to "My Settings", main_app.edit_refinery_user_url(current_refinery_user) %> </li>
+        <li> <%= link_to "Messages", main_app.messaging_url %> </li>
+        <li> <%= link_to "My Page", "/my-page" %> </li>
+      <% else %>
+        <li><%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), main_app.new_refinery_user_registration_path %></li>
+        <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %></li>
+      <% end %>
+  </ul>
+</div>
+<h1 id='logo'>
+  <%= link_to image_tag("logo-banner.png"), main_app.root_path %>
+</h1>
+<br/>
+<%= render(:partial => "/refinery/menu", :locals => {
+             :dom_id => 'menu',
+             :css => 'menu'
+           }) %>
