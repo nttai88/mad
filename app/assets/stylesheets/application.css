@@ -382,3 +382,10 @@ h2.blue_header{
     text-decoration: none;
 		color:#666666;
 }
+#page {
+    background-image: url(bg-right.png);
+    background-position: right center;
+    background-repeat: repeat-y;
+    float: left;
+    width: 990px;
+}
