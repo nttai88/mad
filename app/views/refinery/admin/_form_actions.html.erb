@@ -45,13 +45,13 @@
       <input type="hidden" name="approve" value="0" class="approve-field"/>
       <%= submit_tag "Approve",
                    :name => nil,
-                   :class => "approve button",
+                   :class => "approve button red",
                    :tooltip => "Approve" %>
     <% end %>
     <%= submit_tag submit_button_text,
                    :id => submit_button_id,
                    :name => nil,
-                   :class => "wymupdate button",
+                   :class => "wymupdate button red",
                    :tooltip => submit_button_title unless hide_submit %>
 
     <%= render :partial => "/refinery/admin/continue_editing", :locals => {:f => f} if continue_editing -%>
@@ -60,7 +60,7 @@
     <%= link_to(cancel_button_text, cancel_url,
                 :title => cancel_title,
                 :id => cancel_button_id,
-                :class => "close_dialog button") unless hide_cancel %>
+                :class => "close_dialog button red") unless hide_cancel %>
   </div>
   <div class='form-actions-right'>
     <%= link_to(delete_button_text, delete_url,

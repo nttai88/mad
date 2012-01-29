@@ -2,20 +2,31 @@
   #left_container.left
     #edit_profile
       - @user = current_refinery_user
-      = form_for @project, :html => {:class => "simple_form"} do |f|
+      = form_for @project, :html => {:class => "nice"} do |f|
         %h2.blue_header#edit_profile_links
           .left
             = link_to_function 'General', "$('.partial_profile').hide();$('#general').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Teaser', "$('.partial_profile').hide();$('#teaser').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Business Page', "$('.partial_profile').hide();$('#business').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Product Description', "$('.partial_profile').hide();$('#product').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Market Analysis', "$('.partial_profile').hide();$('#market').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Competitors Analysis', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Strategy', "$('.partial_profile').hide();$('#strategy').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Progression Plan', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Financer', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Summary', "$('.partial_profile').hide();$('#summary').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
+            &rarr;
             = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
         #general.partial_profile
           %div{:style => "width:100%;float:left;margin:10px 0px 20px 0px;"}
@@ -237,7 +248,7 @@
             = f.text_area :competitors2
 
         .actions
-          = f.submit 'Save', :class=>"nice small radius blue button"
+          = f.submit 'Save', :class=>"nice small radius red button"
         - @user = current_refinery_user
         - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
         :javascript
