@@ -76,8 +76,8 @@
             = f.label :title
             = f.text_field :title
           .field
-            = f.label :network_only
             = f.check_box :network_only
+            Network Only
           .field
             = f.label :field_of_usage
             = f.text_area :usage
@@ -88,14 +88,14 @@
             = f.label :category
             = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
           .field
-            = f.label :need_investor
             = f.check_box :need_investor
+            Investor
           .field
-            = f.label :need_producer
             = f.check_box :need_producer
+            Producer
           .field
-            = f.label :need_retail
             = f.check_box :need_retail
+            Retailer
         #business.partial_profile.hidden
           .field
             = f.label :business
@@ -197,37 +197,37 @@
             = f.text_area :marked_size
           %b Comercialization
           .field
-            = f.label :establish_a_company_for_this_purpose
             = f.check_box :need_company
+            Establish a company for this purpose
           .field
-            = f.label :do_you_see_yourself_as_the_founder
             = f.check_box :founder
+            Do you see yourself as the founder
           .field
-            = f.label :product_development_in_your_company
             = f.check_box :develop_in_own_company
+            Product development in your company
           .field
-            = f.label :licensing_to_existing_company
             = f.check_box :licensing
+            Licensing to existing company
           %br
           %b How far is the idea developed
           .field
-            = f.label :theoretical_idea
             = f.radio_button :developed, "Theoretical idea"
+            Theoretical idea
           .field
-            = f.label :prototype_exists
             = f.radio_button :developed, "Prototype exists"
+            Prototype exists
           .field
-            = f.label :idea_is_technically_tested
             = f.radio_button :developed, "Idea is technically tested"
+            Idea is technically tested
           .field
-            = f.label :pilot_tested
             = f.radio_button :developed, "Pilot tested"
+            Pilot tested
           .field
-            = f.label :company_established
             = f.radio_button :developed, "Company established"
+            Company established
           .field
-            = f.label :project_in_existing_company
             = f.radio_button :developed, "Project in existing company"
+            Project in existing company
           .field
             = f.label :possible_production_or_industrial_partners
             = f.text_area :partners
