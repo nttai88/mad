@@ -19,7 +19,7 @@
 	<%= stylesheet_link_tag    "application" %>
 	
 	<!-- Included JS Files  -->
-	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "application", "refinery/core" %>
 	<%= render :partial => '/refinery/html_tag' %>
   <% site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true}) -%>
   <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
@@ -38,6 +38,11 @@
         </div>
         <div id="shadow-showcase"></div>
         <section id="page">
+          <h1><%= yield :header %></h1>
+          <div id="flash_container">
+            <%#= render :partial => '/refinery/no_script' %>
+            <%= render :partial => '/refinery/message' %>
+          </div>
           <%= yield %>
         </section>
         <div id="shadow-showcase-mirror"></div>
