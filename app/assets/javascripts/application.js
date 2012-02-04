@@ -8,3 +8,21 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+
+$(document).ready(function(){
+  Register.init();
+})
+Register = {
+  init: function(){
+    $("input#user_username").blur(function(){
+      var input = $(this);
+      $.ajax({
+        url: "/users/check_username_availability",
+        type: "POST", data: {username: input.val()},
+        success: function(data){
+          input.parent().find(".error").text(data.message);
+        }
+      });
+    });
+  }
+}

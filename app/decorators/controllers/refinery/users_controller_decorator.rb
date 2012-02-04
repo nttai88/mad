@@ -43,6 +43,19 @@ Refinery::UsersController.class_eval do
     
   end
 
+  def check_username_availability
+    user = Refinery::User.new(:username => params[:username])
+    user.valid?
+    status = user.errors[:username].blank?
+    response = {:status => status}
+    if status
+      response[:message] = "Username is available!"
+    else
+      response[:message] = "Username #{user.errors[:username].first}"
+    end
+    render :json => response
+  end
+  
   protected
   def update_profile
     profile = @user.profile

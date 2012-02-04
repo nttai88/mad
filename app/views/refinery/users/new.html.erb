@@ -1,11 +1,7 @@
 <% content_for :header, t('fill_form', :scope => 'refinery.users.new') %>
 <%= form_for :user, :url => main_app.refinery_user_registration_path do |f| -%>
 
-  <%= render :partial => "/refinery/admin/error_messages",
-             :locals => {
-               :object => @user,
-               :include_object_name => true
-             } %>
+  <%= render :partial => "/refinery/admin/error_messages", :locals => {:object => @user, :include_object_name => true} %>
 
   <%= render :partial => "refinery/users/user_fields", :locals => {:f => f} %>
 

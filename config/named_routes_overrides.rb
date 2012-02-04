@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/users/confirmation' => 'refinery/confirmations#show', :as => :refinery_user_confirmation
     get '/users/:id/edit' => 'refinery/users#edit', :as => :edit_refinery_user
     post '/users/:id/update' => 'refinery/users#update', :as => :update_refinery_user
+    post '/users/check_username_availability' => 'refinery/users#check_username_availability', :as => :check_username_availability
   end if ::Refinery::User.respond_to?(:devise)
 
 end
