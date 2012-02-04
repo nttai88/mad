@@ -19,7 +19,7 @@
 	<%= stylesheet_link_tag    "application" %>
 	
 	<!-- Included JS Files  -->
-	<%= javascript_include_tag "application", "refinery/core" %>
+	<%= javascript_include_tag "application", "refinery/core", "foundation" %>
 	<%= render :partial => '/refinery/html_tag' %>
   <% site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true}) -%>
   <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
