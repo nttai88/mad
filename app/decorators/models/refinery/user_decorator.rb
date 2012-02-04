@@ -8,7 +8,7 @@ Refinery::User.class_eval do
   acts_as_messageable
   attr_accessible :profile_attributes, :role_ids
   after_save :create_profile
-  validates :username, :length => { :minimum => 3, :maximum => 15}
+  validates :username, :length => { :minimum => 3}
 
   def profile_attributes=(attrs)
     unless self.profile
