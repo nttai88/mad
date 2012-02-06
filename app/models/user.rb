@@ -1,3 +1,3 @@
 class User < Refinery::User
-  ajaxful_rater
+  # ajaxful_rater
 end

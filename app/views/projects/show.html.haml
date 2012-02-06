@@ -44,58 +44,42 @@
   %p
     %b Market:
     = @project.market
+  = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
     
   %h4
     Competitors
   %p
     %b Competitors:
     = @project.competitors
-  %p
-    %b Competitors2:
-    = @project.competitors2
-  
+  = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
   %h4
     Strategy
   %p
     %b Strategy:
     = @project.strategy
-    
+  = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
   %h4
     Progression
   %p
     %b Progression:
     = @project.progression
-    
+  = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
   %h4
     Finance
   %p
     %b Finances:
     = @project.finances
-    
+  = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
   %h4
     Summary
   %p
     %b Summary:
     = @project.summary
-    
-  %h4
-    Company
-  %p
-    %b Developed:
-    = @project.developed
-  %p
-    %b Need company:
-    = @project.need_company
-  %p
-    %b Founder:
-    = @project.founder
-  %p
-    %b Develop in own company:
-    = @project.develop_in_own_company
+  = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}  
   
   %h4
     Attachments
-  
+  = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
   %h4
     Thoughts and Wishes
   %p
@@ -119,6 +103,7 @@
   %p
     %b Origin:
     = @project.origin
+  = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
   = link_to 'Edit', edit_project_path(@project)
   |
   \#{link_to 'Back', projects_path}

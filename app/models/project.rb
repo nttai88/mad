@@ -1,5 +1,4 @@
 class Project < ActiveRecord::Base
-  ajaxful_rateable :stars => 10, :dimensions => [:teaser, :business, :market, :competitor, :strategy, :progression, :finance, :summary, :company, :attachment, :thoughts]
   has_one :contact, :as => :contactable
   belongs_to :category
   has_many :region_selections, :as => :parent
@@ -11,6 +10,8 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true
   
   has_one :document,  :dependent => :destroy
+  
+  ajaxful_rateable :stars => 10, :dimensions => [:teaser, :business, :market, :competitor, :strategy, :progression, :finance, :summary, :company, :attachment, :thoughts]
   
   accepts_nested_attributes_for :document
   accepts_nested_attributes_for :contact, :allow_destroy => true
