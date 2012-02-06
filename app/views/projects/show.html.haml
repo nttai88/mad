@@ -122,3 +122,30 @@
   = link_to 'Edit', edit_project_path(@project)
   |
   \#{link_to 'Back', projects_path}
+  %div{:style=>"margin-top:20px;width:680px;"}
+    %h2.blue_header Comments
+    - @project.comments.each do |com|
+      %div{:style=>"margin-bottom:10px;border-bottom:1px #ddd solid;padding-bottom:10px"}
+        %p
+          = com.comment
+        .posted_on
+          .left
+            = "Posted on: "
+            = nice_time com.created_at
+          .right
+            = "Posted by: "
+            = com.user.username
+          %br.clearfloat
+
+.new_comment{:style=>"margin-top:20px;width:680px;"}
+  %h2.blue_header Leave a Comment
+  = form_for([@project, @project.comments.build], :html=>{:class=>"simple_form"}) do |f|
+    = f.hidden_field 'commentable_type', :value => @project.class.name
+    = f.hidden_field 'commentable_id', :value => @project.id
+    %table
+      %tr
+        %td
+          .label Comment
+          .field= f.text_area :comment
+      %tr
+        %td= f.submit "Post Comment", :class => "nice small radius red button"

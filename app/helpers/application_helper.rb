@@ -16,4 +16,9 @@ module ApplicationHelper
       return false
     end
   end
+  
+  def nice_time time
+    time.strftime("%b %d, %Y at %l:%m %p")
+  end
+  
 end

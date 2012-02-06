@@ -6,6 +6,8 @@ class Project < ActiveRecord::Base
   has_many :regions, :through => :region_selections, :dependent => :delete_all
   belongs_to :user, :class_name => "Refinery::User"
   
+  has_many        :comments,      :as => :commentable
+  
   validates :name, :presence => true
   
   has_one :document,  :dependent => :destroy

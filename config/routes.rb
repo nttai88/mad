@@ -1,5 +1,6 @@
 Mad2::Application.routes.draw do
   resources :projects do
+    resources :comments
     member do
       post 'rate'
     end

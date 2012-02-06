@@ -2,6 +2,7 @@ Refinery::User.class_eval do
   ajaxful_rater
   has_one :profile
   has_many :projects
+  has_many :comments
   accepts_nested_attributes_for :profile, :allow_destroy => true
   devise :confirmable
   include Mailboxer::Models::Messageable
