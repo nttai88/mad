@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20120207041426) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
+    t.string   "file"
     t.integer  "user_id"
     t.text     "encrypted_product_description"
     t.boolean  "licensing"
