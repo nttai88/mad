@@ -17,4 +17,19 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :contact, :allow_destroy => true
   
   PROJECT_PARTS = ['teaser', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
+
+  #encrypt data
+  attr_encrypted :business, :key => :encryption_key
+  attr_encrypted :product_description, :key => :encryption_key
+  attr_encrypted :market, :key => :encryption_key
+  attr_encrypted :competitors, :key => :encryption_key
+  attr_encrypted :strategy, :key => :encryption_key
+  attr_encrypted :progression, :key => :encryption_key
+  attr_encrypted :finances, :key => :encryption_key
+  attr_encrypted :summary, :key => :encryption_key
+  
+  def encryption_key
+    Mad2::Application.config.secret_token
+  end
+  
 end

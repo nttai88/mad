@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206092704) do
+ActiveRecord::Schema.define(:version => 20120207041426) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -108,13 +108,13 @@ ActiveRecord::Schema.define(:version => 20120206092704) do
     t.text     "usage"
     t.text     "solves"
     t.text     "idea"
-    t.text     "business"
-    t.text     "market"
-    t.text     "competitors"
-    t.text     "strategy"
-    t.text     "progression"
-    t.text     "finances"
-    t.text     "summary"
+    t.text     "encrypted_business"
+    t.text     "encrypted_market"
+    t.text     "encrypted_competitors"
+    t.text     "encrypted_strategy"
+    t.text     "encrypted_progression"
+    t.text     "encrypted_finances"
+    t.text     "encrypted_summary"
     t.text     "marked_geographic"
     t.text     "marked_size"
     t.string   "developed"
@@ -130,9 +130,8 @@ ActiveRecord::Schema.define(:version => 20120206092704) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.string   "file"
     t.integer  "user_id"
-    t.text     "product_description"
+    t.text     "encrypted_product_description"
     t.boolean  "licensing"
     t.string   "title"
     t.boolean  "network_only"

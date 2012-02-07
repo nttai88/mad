@@ -76,6 +76,8 @@ gem 'messaging', :git => 'git://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr'
 
 gem 'thin'
+
+gem "attr_encrypted", "~> 1.2.0"
 group :production do
   gem "pg"
   gem 'therubyracer-heroku', '0.8.1.pre3'
