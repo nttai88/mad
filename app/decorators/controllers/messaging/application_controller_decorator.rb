@@ -13,6 +13,6 @@ Messaging::ApplicationController.class_eval do
                 :admin?,
                 :login?
 
-  before_filter  :find_pages_for_menu, :show_welcome_page?
+  before_filter  :find_pages_for_menu, :refinery_user_required?
   
 end
