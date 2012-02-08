@@ -103,8 +103,9 @@
     %b Origin:
     = @project.origin
   = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
-  = link_to 'Edit', edit_project_path(@project)
-  |
+  - if current_user.can_edit_project?(@project)
+    = link_to 'Edit', edit_project_path(@project)
+    |
   \#{link_to 'Back', projects_path}
   %div{:style=>"margin-top:20px;width:680px;"}
     %h2.blue_header Comments

@@ -55,6 +55,20 @@ Refinery::User.class_eval do
     return false
   end
 
+  def can_create_project?
+    ["Refinery", "Entrepreneur"].each do |role|
+      if self.has_role?(role)
+        return true
+      end
+    end
+    return false
+  end
+
+  def can_edit_project?(project)
+    return true if self.has_role?("Refinery")
+    return self.has_role?("Entrepreneur") && project.user_id == self.id ? true :false
+  end
+
   protected
   def create_profile
     self.profile = Profile.new(:first_name => self.username, :last_name => self.username) unless self.profile

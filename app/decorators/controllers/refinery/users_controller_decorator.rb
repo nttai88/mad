@@ -1,6 +1,5 @@
 Refinery::UsersController.class_eval do
   skip_filter :redirect?
-  before_filter :login_required, :only => [:edit, :update]
   before_filter :find_pages_for_menu
   layout "application"
   def new
@@ -29,10 +28,10 @@ Refinery::UsersController.class_eval do
 
   def update
     @user = current_refinery_user
-    if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-      params[:user].except!(:password, :password_confirmation)
+    if params[:refinery_user][:password].blank? and params[:refinery_user][:password_confirmation].blank?
+      params[:refinery_user].except!(:password, :password_confirmation)
     end
-    @user.update_attributes(params[:user])
+    @user.update_attributes(params[:refinery_user])
     update_profile
     if @user.save
       redirect_to main_app.edit_refinery_user_path(@user)
