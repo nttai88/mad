@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
       regions = current_refinery_user.profile.regions.map{|x| x.id}
       categories = current_refinery_user.profile.categories.map{|x| x.id}
       @projects = Project.includes(:region_selections).where(:category_id => categories).where("region_selections.region_id" => regions)
-    else
+    else 
       @projects = Project.all
     end
   end
