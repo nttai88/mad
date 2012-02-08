@@ -3,11 +3,14 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   before_filter :login_required
   def index
-    @projects = Project.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
+    if current_refinery_user.has_role?("Entrepreneur")
+      @projects = current_refinery_user.projects
+    elsif current_refinery_user.is_partner?
+      regions = current_refinery_user.profile.regions.map{|x| x.id}
+      categories = current_refinery_user.profile.categories.map{|x| x.id}
+      @projects = Project.includes(:region_selections).where(:category_id => categories).where("region_selections.region_id" => regions)
+    else
+      @projects = Project.all
     end
   end
 
@@ -42,7 +45,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
+    @project.user_id = current_refinery_user.id
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
