@@ -97,6 +97,10 @@ class ProjectsController < ApplicationController
       end
     end
   end
+
+  def members
+    @project = Project.find(params[:id])
+  end
   
   protected
   def can_create?

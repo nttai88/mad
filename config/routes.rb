@@ -3,6 +3,7 @@ Mad2::Application.routes.draw do
     resources :comments
     member do
       post 'rate'
+      get 'members'
     end
   end
 
