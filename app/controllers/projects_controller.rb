@@ -1,18 +1,22 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  before_filter :login_required
+  before_filter :login_required, :except => [:index, :show]
   before_filter :can_create?, :only => [:new, :create]
   before_filter :can_edit?, :only => [:edit, :update, :destroy]
   def index
-    if current_refinery_user.has_role?("Entrepreneur")
-      @projects = current_refinery_user.projects
-    elsif current_refinery_user.is_partner?
-      regions = current_refinery_user.profile.regions.map{|x| x.id}
-      categories = current_refinery_user.profile.categories.map{|x| x.id}
-      @projects = Project.where(:category_id => categories).joins(:contact).where("contacts.region_id" => regions)
-    else 
-      @projects = Project.all
+    if current_refinery_user
+      if current_refinery_user.has_role?("Entrepreneur")
+        @projects = current_refinery_user.projects
+      elsif current_refinery_user.is_partner?
+        regions = current_refinery_user.profile.regions.map{|x| x.id}
+        categories = current_refinery_user.profile.categories.map{|x| x.id}
+        @projects = Project.where(:category_id => categories).joins(:contact).where("contacts.region_id" => regions)
+      else
+        @projects = Project.all
+      end
+    else
+      @projects = Project.order("created_at DESC").limit 10
     end
   end
 

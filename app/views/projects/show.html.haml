@@ -1,22 +1,23 @@
 .project_show
-  %h4
-    General
-  %p 
-    %b Name:
-    = @project.name
-  - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
-  %p 
-    %b Address1:
-    = contact.address1 if contact
-  %p 
-    %b Address2:
-    = contact.address2 if contact
-  %p
-    %b City:
-    = contact.city if contact
-  %p
-    %b Zip
-    = contact.zip if contact
+  - if full_access?(@project)
+    %h4
+      General
+    %p
+      %b Name:
+      = @project.name
+    - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
+    %p
+      %b Address1:
+      = contact.address1 if contact
+    %p
+      %b Address2:
+      = contact.address2 if contact
+    %p
+      %b City:
+      = contact.city if contact
+    %p
+      %b Zip
+      = contact.zip if contact
   %h4
     Teaser  
   %p 
@@ -31,82 +32,84 @@
   %p
     %b Idea:
     = @project.idea
-  = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Bussiness Page
-  %p
-    %b Description:
-    = @project.business
-  = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Market Analysis
-  %p
-    %b Market:
-    = @project.market
-  = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
-    
-  %h4
-    Competitors
-  %p
-    %b Competitors:
-    = @project.competitors
-  = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Strategy
-  %p
-    %b Strategy:
-    = @project.strategy
-  = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Progression
-  %p
-    %b Progression:
-    = @project.progression
-  = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Finance
-  %p
-    %b Finances:
-    = @project.finances
-  = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Summary
-  %p
-    %b Summary:
-    = @project.summary
-  = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}  
+  - if full_access?(@project)
+    = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
   
-  %h4
-    Attachments
-  = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
-  %h4
-    Thoughts and Wishes
-  %p
-    %b Marked geographic:
-    = @project.marked_geographic
-  %p
-    %b Marked size:
-    = @project.marked_size
-  %p
-    %b Partners:
-    = @project.partners
-  %p
-    %b Suppliers:
-    = @project.suppliers
-  %p
-    %b Distributers:
-    = @project.distributers
-  %p
-    %b Patenting:
-    = @project.patenting
-  %p
-    %b Origin:
-    = @project.origin
-  = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
-  - if current_user.can_edit_project?(@project)
-    = link_to 'Edit', edit_project_path(@project)
-    |
-  \#{link_to 'Back', projects_path}
+    %h4
+      Bussiness Page
+    %p
+      %b Description:
+      = @project.business
+    = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
+    %h4
+      Market Analysis
+    %p
+      %b Market:
+      = @project.market
+    = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
+
+    %h4
+      Competitors
+    %p
+      %b Competitors:
+      = @project.competitors
+    = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
+    %h4
+      Strategy
+    %p
+      %b Strategy:
+      = @project.strategy
+    = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
+    %h4
+      Progression
+    %p
+      %b Progression:
+      = @project.progression
+    = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
+    %h4
+      Finance
+    %p
+      %b Finances:
+      = @project.finances
+    = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
+    %h4
+      Summary
+    %p
+      %b Summary:
+      = @project.summary
+    = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
+
+    %h4
+      Attachments
+    = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
+    %h4
+      Thoughts and Wishes
+    %p
+      %b Marked geographic:
+      = @project.marked_geographic
+    %p
+      %b Marked size:
+      = @project.marked_size
+    %p
+      %b Partners:
+      = @project.partners
+    %p
+      %b Suppliers:
+      = @project.suppliers
+    %p
+      %b Distributers:
+      = @project.distributers
+    %p
+      %b Patenting:
+      = @project.patenting
+    %p
+      %b Origin:
+      = @project.origin
+    = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
+    - if current_user.can_edit_project?(@project)
+      = link_to 'Edit', edit_project_path(@project)
+      |
+    \#{link_to 'Back', projects_path}
   %div{:style=>"margin-top:20px;width:680px;"}
     %h2.blue_header Comments
     - @project.comments.each do |com|

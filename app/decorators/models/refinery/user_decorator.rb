@@ -3,6 +3,8 @@ Refinery::User.class_eval do
   has_one :profile
   has_many :projects
   has_many :comments
+  has_and_belongs_to_many :partner_of_projects, :class_name => "Project", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
+  has_and_belongs_to_many :advisor_of_projects, :class_name => "Project", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
   accepts_nested_attributes_for :profile, :allow_destroy => true
   devise :confirmable
   include Mailboxer::Models::Messageable
@@ -67,6 +69,16 @@ Refinery::User.class_eval do
   def can_edit_project?(project)
     return true if self.has_role?("Refinery")
     return self.has_role?("Entrepreneur") && project.user_id == self.id ? true :false
+  end
+
+  def partner_of?(project)
+    project = partner_of_projects.where("projects_users.project_id" => project.id)
+    return project.empty? ? false : true
+  end
+
+  def advisor_of?(project)
+    project = advisor_of_projects.where("projects_users.project_id" => project.id)
+    return project.empty? ? false : true
   end
 
   protected

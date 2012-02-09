@@ -3,6 +3,9 @@ class Project < ActiveRecord::Base
   belongs_to :category
   has_many :region_selections, :as => :parent
   has_many :regions, :through => :region_selections, :dependent => :delete_all
+  has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
+  has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
+
   belongs_to :user, :class_name => "Refinery::User"
   
   has_many        :comments,      :as => :commentable

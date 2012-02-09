@@ -1,17 +1,19 @@
 = stylesheet_link_tag    "application", "jquery_ui"
 = javascript_include_tag "application", "jquery_ui"
 %h1 Listing projects
-%table
+%table{width: "600"}
   %tr
     %th Owner name
     %th Name
+    %th Created Date
   - @projects.each do |project|
     %tr
       %td= project.project_name
       %td= link_to project.name, project
-      - if current_user.can_edit_project?(project)
+      %td= project.created_at
+      - if current_user && current_user.can_edit_project?(project)
         %td= link_to 'Edit', edit_project_path(project)
         %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete, :remote => true
 %br/
-- if current_user.can_create_project?
+- if current_user && current_user.can_create_project?
   = link_to 'New Project', new_project_path, :class=>"nice small radius red button"
