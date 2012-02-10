@@ -1,22 +1,19 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :login_required, :except => [:recent, :show]
   before_filter :can_create?, :only => [:new, :create]
   before_filter :can_edit?, :only => [:edit, :update, :destroy, :members]
   def index
-    if current_user
-      if current_user.has_role?("Entrepreneur")
-        @projects = current_user.projects
-      elsif current_user.is_partner?
-        @projects = current_user.partnerable_projects
-      else
-        @projects = Project.all
-      end
+    if current_user.has_role?("Entrepreneur")
+      @projects = current_user.projects
+    elsif current_user.is_partner?
+      @projects = current_user.partnerable_projects
     else
-      @projects = Project.order("created_at DESC").limit 10
+      @projects = Project.all
     end
   end
+
 
   # GET /projects/1
   # GET /projects/1.json
@@ -96,7 +93,11 @@ class ProjectsController < ApplicationController
       end
     end
   end
-  
+
+  def recent
+    @projects = Project.order("created_at DESC").limit 10
+    render :action => :index
+  end
   protected
   def can_create?
     unless current_user.can_create_project?

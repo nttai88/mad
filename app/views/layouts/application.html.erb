@@ -38,7 +38,7 @@
         </div>
         <div id="shadow-showcase"></div>
         <section id="page">
-          <% if ["pages", "inquiries", "items"].include?(controller_name) %>
+          <% if ["items", "pages", "inquiries"].include?(controller_name) %>
             <%= yield %>
           <% else %>
             <section id="body_content">
@@ -53,7 +53,11 @@
               </section>
               <section id="body_content_right">
                 <div class="inner">
-                  <%= render :partial => "layouts/side_bar" %>
+                  <% if controller_name == "projects" && action_name == "recent" %>
+                    <%= render :partial => "layouts/news_side_bar" %>
+                  <% else %>
+                    <%= render :partial => "layouts/side_bar" %>
+                  <% end %>
                 </div>
               </section>
             </section>

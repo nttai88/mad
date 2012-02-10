@@ -1,0 +1,6 @@
+<% content_for :body_content_right do %>
+  <%= render :partial => "layouts/news_side_bar" %>
+  <%= yield(:body_content_right_prepend) %>
+  <%= news_item_archive_widget %>
+  <%= yield(:body_content_right_append) %>
+<% end %>
