@@ -1,6 +1,6 @@
 = stylesheet_link_tag    "application", "jquery_ui"
-= javascript_include_tag "application", "jquery_ui"
-%h1 Listing projects
+= content_for :header do
+  Listing Projects
 %table{width: "600"}
   %tr
     %th Title

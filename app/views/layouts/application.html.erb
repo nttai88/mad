@@ -38,12 +38,26 @@
         </div>
         <div id="shadow-showcase"></div>
         <section id="page">
-          <h1><%= yield :header %></h1>
-          <div id="flash_container">
-            <%#= render :partial => '/refinery/no_script' %>
-            <%= render :partial => '/refinery/message' %>
-          </div>
-          <%= yield %>
+          <% if ["pages", "inquiries", "items"].include?(controller_name) %>
+            <%= yield %>
+          <% else %>
+            <section id="body_content">
+              <h1 id="body_content_title"><%= yield :header %></h1>
+              <div id="flash_container">
+                <%= render :partial => '/refinery/message' %>
+              </div>
+              <section id="body_content_left">
+                <div class="inner">
+                  <%= yield %>
+                </div>
+              </section>
+              <section id="body_content_right">
+                <div class="inner">
+                  <%= render :partial => "layouts/side_bar" %>
+                </div>
+              </section>
+            </section>
+          <% end %>
         </section>
         <div id="shadow-showcase-mirror"></div>
         <footer>

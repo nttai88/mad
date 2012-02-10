@@ -1,18 +1,7 @@
 <% content_for :body_content_right do %>
-  <div id="menu_vert">
-  <ul>
-    <li><%= link_to "Overview", "#" %></li>
-    <li>
-      <%= link_to "Projects", "#" %>
-      <ul>
-        <li><%= link_to "Project (1)", "#" %></li>
-        <li><%= link_to "New project", "#" %></li>
-      </ul>
-    </li>
-    <li><%= link_to "Personal settings", "#" %></li>
-    <li><%= link_to "Logout", "#" %></li>
-  <ul>
-  </div>
+  <% if params[:path] == "my-page" %>
+    <%= render :partial => "layouts/side_bar" %>
+  <% end %>
 <% end %>
 
 <%= render :partial => "/refinery/content_page" %>

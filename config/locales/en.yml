@@ -3,9 +3,12 @@
 
 en:
   refinery:
+    users:
+      new:
+        fill_form: Enter the information for registration
     sessions:
       new:
-        hello_please_sign_in: Please sign in.
+        hello_please_sign_in: Enter your username and password
     news_items:
       category:
         from_madlab: "From MadLab"

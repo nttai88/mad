@@ -1,3 +1,5 @@
+= content_for :header do
+  = @project.name
 .project_show
   - if full_access?(@project)
     #show_info

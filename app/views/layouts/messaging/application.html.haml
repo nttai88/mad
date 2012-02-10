@@ -17,30 +17,21 @@
   };
 = javascript_include_tag "messaging/adapt"
 = javascript_include_tag "messaging/application"
+= javascript_include_tag "application"
 %body
   = render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/
   #page_container.container.row
     %header#header
       = render :partial => '/refinery/header'
+    #showcase
+      %img{:alt => "", :height => "110px", :src => "/assets/madLab-banner.png", :width => "990px"}
     #shadow-showcase
     %section#page
       %section#body_content
         %h1#body_content_title Messages
         %section#body_content_right
           .inner
-            %p= link_to "Compose", new_message_path, :class => 'compose'
-            - if @box == 'inbox'
-              %p= link_to "Inbox", messages_path(:box => 'inbox'), :class => 'selected'
-            - else
-              %p= link_to "Inbox", messages_path(:box => 'inbox')
-            - if @box == 'sent'
-              %p= link_to "Sent", messages_path(:box => 'sent'), :class => 'selected'
-            - else
-              %p= link_to "Sent", messages_path(:box => 'sent')
-            - if @box == 'trash'
-              %p= link_to "Trash", messages_path(:box => 'trash'), :class => 'selected'
-            - else
-              %p= link_to "Trash", messages_path(:box => 'trash')
+            = render :partial => "layouts/side_bar"
         %section#body_content_left
           = form_tag search_path do
             %input{:name => "Search", :placehoder => "Search", :type => "search"}
