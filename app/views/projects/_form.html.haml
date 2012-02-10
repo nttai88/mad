@@ -38,7 +38,7 @@
             %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
               Use your profiles existing contact-info
             %br
-          .field
+          .field{:class => "clear"}
             = f.label :name
             = f.text_field :name, :style=>"width:290px;"
           = f.fields_for :contact_attributes do |fc|
@@ -48,6 +48,7 @@
             .field
               = fc.label :address2
               = fc.text_field :address2, :class => 'larger widest', :style=>"width:290px;"
+            - @user.profile.contact = Contact.new unless @user.profile.contact
             - @user.profile.contact.region = Region.new unless @user.profile.contact.region
             = fc.fields_for :region_attributes, @user.profile.contact.region do |fr|
               .region
