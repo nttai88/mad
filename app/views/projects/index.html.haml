@@ -9,18 +9,18 @@
     %th Created Date
   - @projects.each do |project|
     %tr
-    -if project.title
+    -unless project.title.blank?
       %td= link_to project.title, project
     -else
       %td= link_to "no title", project
-      %td= project.project_status
-      %td= project.user.username
-      %td= nice_time project.created_at
-      - if current_user && current_user.can_edit_project?(project)
-        %td= link_to 'Edit', edit_project_path(project)
-        %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete, :remote => true
-        - if current_user.admin?
-          %td= link_to 'Manage Members', project_members_path(project)
+    %td= project.project_status
+    %td= project.user.username
+    %td= nice_time project.created_at
+    - if current_user && current_user.can_edit_project?(project)
+      %td= link_to 'Edit', edit_project_path(project)
+      %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete, :remote => true
+      - if current_user.admin?
+        %td= link_to 'Manage Members', project_members_path(project)
 %br/
 - if current_user && current_user.can_create_project?
   = link_to 'New Project', new_project_path, :class=>"nice small radius red button"
