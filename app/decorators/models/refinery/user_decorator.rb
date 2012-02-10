@@ -88,6 +88,15 @@ Refinery::User.class_eval do
   def full_name
     profile.full_name
   end
+
+  def partnerable_projects
+    categories = CategorySelection.where(:parent_type => "Profile", :parent_id => self.profile.id).where("expired_date is null or expired_date > '#{Time.now.to_s(:db)}'").map{|x| x.category_id}
+    regions = RegionSelection.where(:parent_type => "Profile", :parent_id => self.profile.id).where("expired_date is null or expired_date > '#{Time.now.to_s(:db)}'").map{|x| x.region_id}
+    conditions = {}
+    conditions[:category_id] = categories unless categories.empty?
+    conditions["contacts.region_id"] = regions unless regions.empty?
+    Project.joins(:contact).where(conditions)
+  end
   protected
   def create_profile
     self.profile = Profile.new(:first_name => self.username, :last_name => self.username) unless self.profile

@@ -5,13 +5,11 @@ class ProjectsController < ApplicationController
   before_filter :can_create?, :only => [:new, :create]
   before_filter :can_edit?, :only => [:edit, :update, :destroy, :members]
   def index
-    if current_refinery_user
-      if current_refinery_user.has_role?("Entrepreneur")
-        @projects = current_refinery_user.projects
-      elsif current_refinery_user.is_partner?
-        regions = current_refinery_user.profile.regions.map{|x| x.id}
-        categories = current_refinery_user.profile.categories.map{|x| x.id}
-        @projects = Project.where(:category_id => categories).joins(:contact).where("contacts.region_id" => regions)
+    if current_user
+      if current_user.has_role?("Entrepreneur")
+        @projects = current_user.projects
+      elsif current_user.is_partner?
+        @projects = current_user.partnerable_projects
       else
         @projects = Project.all
       end
