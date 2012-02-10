@@ -48,6 +48,10 @@ Refinery::User.class_eval do
     email
   end
 
+  def admin?
+    self.has_role?(Refinery::Role::REFINERY)
+  end
+
   def is_partner?
     Refinery::Role.partner_roles.each do |role|
       if self.has_role?(role)
@@ -81,6 +85,9 @@ Refinery::User.class_eval do
     return project.empty? ? false : true
   end
 
+  def full_name
+    profile.full_name
+  end
   protected
   def create_profile
     self.profile = Profile.new(:first_name => self.username, :last_name => self.username) unless self.profile

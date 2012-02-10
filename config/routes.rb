@@ -1,9 +1,14 @@
 Mad2::Application.routes.draw do
   resources :projects do
     resources :comments
+    resources :members do
+      member do
+        delete :remove
+      end
+      
+    end
     member do
       post 'rate'
-      get 'members'
     end
   end
 

@@ -34,5 +34,31 @@ class Project < ActiveRecord::Base
   def encryption_key
     Mad2::Application.config.secret_token
   end
-  
+
+
+  def advisor_candidates
+    advisor_candidates = User.includes(:roles, :profile).where("refinery_roles.title" => Refinery::Role::ADVISOR)
+    if advisors.size > 0
+      ids = advisors.map{|x| x.id}
+      advisor_candidates.delete_if{|x| ids.include?(x.id)}
+    end
+    return advisor_candidates
+  end
+
+  def partner_candidates
+    category_selections = CategorySelection.where(:parent_type => "Profile", :category_id => self.category_id).where("expired_date is null or expired_date > '#{Time.now.to_s(:db)}'")
+    profile_ids = category_selections.map{|x| x.parent_id}
+    region_id = self.contact.region_id
+    if region_id
+      region_selections = RegionSelection.where(:parent_type => "Profile").where("expired_date is null or expired_date > '#{Time.now.to_s(:db)}'")
+      profile_ids = profile_ids.concat(region_selections.map{|x| x.parent_id})
+    end
+    partner_candidates = User.includes(:roles, :profile).where("refinery_roles.title" => Refinery::Role.partner_roles, "profiles.id" => profile_ids.uniq!)
+    if partners.size > 0
+      ids = partners.map{|x| x.id}
+      partner_candidates.delete_if{|x| ids.include?(x.id)}
+    end
+    return partner_candidates
+  end
+
 end

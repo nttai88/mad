@@ -165,7 +165,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    daemons (1.1.7)
+    daemons (1.1.8)
     devise (1.4.9)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -275,7 +275,7 @@ GEM
       rspec (~> 2.8.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.6.1)
-    sass (3.1.14)
+    sass (3.1.15)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)

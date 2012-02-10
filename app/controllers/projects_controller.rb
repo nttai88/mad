@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   before_filter :login_required, :except => [:index, :show]
   before_filter :can_create?, :only => [:new, :create]
-  before_filter :can_edit?, :only => [:edit, :update, :destroy]
+  before_filter :can_edit?, :only => [:edit, :update, :destroy, :members]
   def index
     if current_refinery_user
       if current_refinery_user.has_role?("Entrepreneur")
@@ -96,10 +96,6 @@ class ProjectsController < ApplicationController
         format.js { render :partial => "rating" }
       end
     end
-  end
-
-  def members
-    @project = Project.find(params[:id])
   end
   
   protected
