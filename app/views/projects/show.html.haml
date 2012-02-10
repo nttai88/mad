@@ -36,114 +36,116 @@
       = @project.idea
     - if full_access?(@project)
       = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Bussiness Page
-    %p
-      %b Description:
-      = @project.business
-    = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Market Analysis
-    %p
-      %b Market:
-      = @project.market
-    = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Competitors
-    %p
-      %b Competitors:
-      = @project.competitors
-    = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Strategy
-    %p
-      %b Strategy:
-      = @project.strategy
-    = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Progression
-    %p
-      %b Progression:
-      = @project.progression
-    = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Finance
-    %p
-      %b Finances:
-      = @project.finances
-    = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Summary
-    %p
-      %b Summary:
-      = @project.summary
-    = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Attachments
-    = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
-  #show_info
-    %h4
-      Thoughts and Wishes
-    %p
-      %b Marked geographic:
-      = @project.marked_geographic
-    %p
-      %b Marked size:
-      = @project.marked_size
-    %p
-      %b Partners:
-      = @project.partners
-    %p
-      %b Suppliers:
-      = @project.suppliers
-    %p
-      %b Distributers:
-      = @project.distributers
-    %p
-      %b Patenting:
-      = @project.patenting
-    %p
-      %b Origin:
-      = @project.origin
-      = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
-  - if current_user.can_edit_project?(@project)
+  - if full_access?(@project)
+    #show_info
+      %h4
+        Bussiness Page
+      %p
+        %b Description:
+        = @project.business
+      = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Market Analysis
+      %p
+        %b Market:
+        = @project.market
+      = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Competitors
+      %p
+        %b Competitors:
+        = @project.competitors
+      = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Strategy
+      %p
+        %b Strategy:
+        = @project.strategy
+      = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Progression
+      %p
+        %b Progression:
+        = @project.progression
+      = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Finance
+      %p
+        %b Finances:
+        = @project.finances
+      = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Summary
+      %p
+        %b Summary:
+        = @project.summary
+      = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Attachments
+      = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
+    #show_info
+      %h4
+        Thoughts and Wishes
+      %p
+        %b Marked geographic:
+        = @project.marked_geographic
+      %p
+        %b Marked size:
+        = @project.marked_size
+      %p
+        %b Partners:
+        = @project.partners
+      %p
+        %b Suppliers:
+        = @project.suppliers
+      %p
+        %b Distributers:
+        = @project.distributers
+      %p
+        %b Patenting:
+        = @project.patenting
+      %p
+        %b Origin:
+        = @project.origin
+        = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
+  - if current_user && current_user.can_edit_project?(@project)
     #show_info_links
       %h4
         = link_to 'Edit', edit_project_path(@project)
         |
         = link_to 'Back', projects_path
-  %div{:style=>"margin-top:20px;width:680px;"}
-    %h2.blue_header Comments
-    - @project.comments.each do |com|
-      %div{:style=>"margin-bottom:10px;border-bottom:1px #ddd solid;padding-bottom:10px"}
-        %p
-          = com.comment
-        .posted_on
-          .left
-            = "Posted on: "
-            = nice_time com.created_at
-          .right
-            = "Posted by: "
-            = com.user.username
-          %br.clearfloat
-
-.new_comment{:style=>"margin-top:20px;width:680px;"}
-  %h2.blue_header Leave a Comment
-  = form_for([@project, @project.comments.build], :html=>{:class=>"simple_form"}) do |f|
-    = f.hidden_field 'commentable_type', :value => @project.class.name
-    = f.hidden_field 'commentable_id', :value => @project.id
-    %table
-      %tr
-        %td
-          .label Comment
-          .field= f.text_area :comment
-      %tr
-        %td= f.submit "Post Comment", :class => "nice small radius red button"
+  - if full_access?(@project)
+    %div{:style=>"margin-top:20px;width:680px;"}
+      %h2.blue_header Comments
+      - @project.comments.each do |com|
+        %div{:style=>"margin-bottom:10px;border-bottom:1px #ddd solid;padding-bottom:10px"}
+          %p
+            = com.comment
+          .posted_on
+            .left
+              = "Posted on: "
+              = nice_time com.created_at
+            .right
+              = "Posted by: "
+              = com.user.username
+            %br.clearfloat
+- if full_access?(@project)
+  .new_comment{:style=>"margin-top:20px;width:680px;"}
+    %h2.blue_header Leave a Comment
+    = form_for([@project, @project.comments.build], :html=>{:class=>"simple_form"}) do |f|
+      = f.hidden_field 'commentable_type', :value => @project.class.name
+      = f.hidden_field 'commentable_id', :value => @project.id
+      %table
+        %tr
+          %td
+            .label Comment
+            .field= f.text_area :comment
+        %tr
+          %td= f.submit "Post Comment", :class => "nice small radius red button"
