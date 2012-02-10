@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207041426) do
+ActiveRecord::Schema.define(:version => 20120209220713) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(:version => 20120207041426) do
     t.datetime "updated_at"
     t.date     "expired_date"
   end
+
+  create_table "ckeditor_assets", :force => true do |t|
+    t.string   "data_file_name",                  :null => false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    :limit => 30
+    t.string   "type",              :limit => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id"
@@ -140,6 +154,14 @@ ActiveRecord::Schema.define(:version => 20120207041426) do
     t.boolean  "need_producer"
     t.boolean  "need_retail"
     t.string   "project_status"
+  end
+
+  create_table "projects_users", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rates", :force => true do |t|

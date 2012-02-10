@@ -3,14 +3,19 @@
 %h1 Listing projects
 %table{width: "600"}
   %tr
-    %th Owner name
-    %th Name
+    %th Title
+    %th Status
+    %th Owner
     %th Created Date
   - @projects.each do |project|
     %tr
-      %td= project.project_name
-      %td= link_to project.name, project
-      %td= project.created_at
+    -if project.title
+      %td= link_to project.title, project
+    -else
+      %td= link_to "no title", project
+      %td= project.project_status
+      %td= project.user.username
+      %td= nice_time project.created_at
       - if current_user && current_user.can_edit_project?(project)
         %td= link_to 'Edit', edit_project_path(project)
         %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete, :remote => true

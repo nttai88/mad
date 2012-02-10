@@ -1,87 +1,95 @@
 .project_show
   - if full_access?(@project)
+    #show_info
+      %h4
+        General
+      %p
+        %b Name:
+        = @project.name
+      - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
+      %p
+        %b Address1:
+        = contact.address1 if contact
+      %p
+        %b Address2:
+        = contact.address2 if contact
+      %p
+        %b City:
+        = contact.city if contact
+      %p
+        %b Zip
+        = contact.zip if contact
+  #show_info
     %h4
-      General
+      Teaser  
+    %p 
+      %b Project name:
+      = @project.project_name
     %p
-      %b Name:
-      = @project.name
-    - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
+      %b Usage:
+      = @project.usage
     %p
-      %b Address1:
-      = contact.address1 if contact
+      %b Solves:
+      = @project.solves
     %p
-      %b Address2:
-      = contact.address2 if contact
-    %p
-      %b City:
-      = contact.city if contact
-    %p
-      %b Zip
-      = contact.zip if contact
-  %h4
-    Teaser  
-  %p 
-    %b Project name:
-    = @project.project_name
-  %p
-    %b Usage:
-    = @project.usage
-  %p
-    %b Solves:
-    = @project.solves
-  %p
-    %b Idea:
-    = @project.idea
-  - if full_access?(@project)
-    = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
-  
+      %b Idea:
+      = @project.idea
+    - if full_access?(@project)
+      = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Bussiness Page
     %p
       %b Description:
       = @project.business
     = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Market Analysis
     %p
       %b Market:
       = @project.market
     = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
-
+  #show_info
     %h4
       Competitors
     %p
       %b Competitors:
       = @project.competitors
     = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Strategy
     %p
       %b Strategy:
       = @project.strategy
     = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Progression
     %p
       %b Progression:
       = @project.progression
     = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Finance
     %p
       %b Finances:
       = @project.finances
     = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Summary
     %p
       %b Summary:
       = @project.summary
     = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
-
+  #show_info
     %h4
       Attachments
     = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
+  #show_info
     %h4
       Thoughts and Wishes
     %p
@@ -105,11 +113,13 @@
     %p
       %b Origin:
       = @project.origin
-    = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
-    - if current_user.can_edit_project?(@project)
-      = link_to 'Edit', edit_project_path(@project)
-      |
-    \#{link_to 'Back', projects_path}
+      = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
+  - if current_user.can_edit_project?(@project)
+    #show_info_links
+      %h4
+        = link_to 'Edit', edit_project_path(@project)
+        |
+        = link_to 'Back', projects_path
   %div{:style=>"margin-top:20px;width:680px;"}
     %h2.blue_header Comments
     - @project.comments.each do |com|

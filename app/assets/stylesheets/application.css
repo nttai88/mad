@@ -320,12 +320,36 @@ h2.blue_header{
 	min-height:350px;
 }
 .project_show h4{
-	font-size:16px;
+	font-size:13px;
 	padding:7px;
-	background-color:#cccccc;
-	width:500px;
-	margin:30px 0px 20px 0px;
-	margin-top:30px;
+	background-color:#EFEFEF;
+	width:660px;
+	margin-bottom:20px;
+}
+#show_info{
+	border-top:1px solid gray;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+	padding:0px 10px 10px 0px;
+	width:664px;
+	margin-top:25px;
+}
+#show_info p{
+	padding-left:10px;
+}
+#show_info_links{
+	border-top:1px solid gray;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+	width:673px;
+	margin-top:25px;
+}
+#show_info_links h4{
+	font-size:13px;
+	padding:7px;
+	background-color:#EFEFEF;
+	width:660px;
+	margin-bottom:0px;
 }
 #shadow-showcase {
     background-image: url(shadow-showcase.png);
