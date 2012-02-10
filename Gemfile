@@ -20,6 +20,7 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.8.1'
   gem 'capybara-webkit', '~> 0.9.0'
+  gem 'factory_girl_rails', '~> 1.6.0'
 end
 
 group :production do
