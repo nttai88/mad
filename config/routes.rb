@@ -10,6 +10,9 @@ Mad2::Application.routes.draw do
     member do
       post 'rate'
     end
+    collection do
+      get :recent
+    end
   end
 
   mount Messaging::Engine => "/messaging"

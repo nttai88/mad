@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120209220713) do
+ActiveRecord::Schema.define(:version => 20120210080241) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -28,20 +28,6 @@ ActiveRecord::Schema.define(:version => 20120209220713) do
     t.datetime "updated_at"
     t.date     "expired_date"
   end
-
-  create_table "ckeditor_assets", :force => true do |t|
-    t.string   "data_file_name",                  :null => false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    :limit => 30
-    t.string   "type",              :limit => 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id"
@@ -135,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20120209220713) do
     t.boolean  "need_company"
     t.boolean  "founder"
     t.boolean  "develop_in_own_company"
-    t.text     "partners"
+    t.text     "industrial_partners"
     t.text     "suppliers"
     t.text     "distributers"
     t.text     "patenting"
@@ -144,7 +130,6 @@ ActiveRecord::Schema.define(:version => 20120209220713) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.string   "file"
     t.integer  "user_id"
     t.text     "encrypted_product_description"
     t.boolean  "licensing"
@@ -225,6 +210,7 @@ ActiveRecord::Schema.define(:version => 20120209220713) do
     t.string   "source"
   end
 
+  add_index "refinery_news_item_translations", ["locale"], :name => "index_refinery_news_item_translations_on_locale"
   add_index "refinery_news_item_translations", ["refinery_news_item_id"], :name => "index_2fe5614a8b4e9a5c34c0f93f230e423e36d53bda"
 
   create_table "refinery_news_items", :force => true do |t|
@@ -250,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20120209220713) do
     t.datetime "updated_at"
   end
 
+  add_index "refinery_page_part_translations", ["locale"], :name => "index_refinery_page_part_translations_on_locale"
   add_index "refinery_page_part_translations", ["refinery_page_part_id"], :name => "index_f9716c4215584edbca2557e32706a5ae084a15ef"
 
   create_table "refinery_page_parts", :force => true do |t|
@@ -274,6 +261,7 @@ ActiveRecord::Schema.define(:version => 20120209220713) do
     t.datetime "updated_at"
   end
 
+  add_index "refinery_page_translations", ["locale"], :name => "index_refinery_page_translations_on_locale"
   add_index "refinery_page_translations", ["refinery_page_id"], :name => "index_d079468f88bff1c6ea81573a0d019ba8bf5c2902"
 
   create_table "refinery_pages", :force => true do |t|

@@ -1,3 +1,5 @@
+= content_for :header do
+  = @project.name
 .project_show
   - if full_access?(@project)
     #show_info
@@ -101,7 +103,7 @@
         = @project.marked_size
       %p
         %b Partners:
-        = @project.partners
+        = @project.industrial_partners
       %p
         %b Suppliers:
         = @project.suppliers

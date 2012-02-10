@@ -11,6 +11,7 @@
 
 $(document).ready(function(){
   Register.init();
+  Menu.init();
 })
 Register = {
   init: function(){
@@ -27,6 +28,15 @@ Register = {
   }
 }
 
-$('a').live('ajax:complete', function(xhr, status) {
+$('a').click('ajax:complete', function(xhr, status) {
   $(".ajaxful-rating-wrapper").replaceWith(status.responseText)
 });
+
+var Menu = {
+  init: function(){
+    $(".mnu-parent").click(function(){
+      $(this).parents("li").find(".mnu-child").toggle();
+      return false;
+    });
+  }
+}

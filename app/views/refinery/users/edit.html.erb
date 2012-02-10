@@ -1,9 +1,10 @@
-<h1>My Settings</h1>
+<% content_for :header do %>
+  Personal Settings
+<% end %>
 <% content_for :javascripts do %>
   <%= javascript_include_tag('jquery', 'categories', 'regions') %>
   <%= states_by_country %>
 <% end %>
-
 <%= form_for :refinery_user, :url => main_app.update_refinery_user_path(current_refinery_user) do |f| %>
   <%= render :partial => "/refinery/admin/error_messages",
            :locals => {
