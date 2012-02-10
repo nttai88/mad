@@ -31,11 +31,13 @@
         #general.partial_profile
           %div{:style => "width:100%;float:left;margin:10px 0px 20px 0px;"}
             %div{:style => "float:left;width:600px;margin-top: 5px;"}
-              %span{:style => "float: left;"}
-                %input#use_existing{:name => "use_existing", :onClick => "copyProfileInfo(this);", :type => "checkbox", :value => "yes"}/
-              %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
-                Use your profiles existing contact-info
-          %br
+          = render :partial => "/refinery/admin/error_messages", :locals => {:object => @project, :include_object_name => true}
+          .field
+            %span{:style => "float: left;"}
+              %input#use_existing{:name => "use_existing", :onClick => "copyProfileInfo(this);", :type => "checkbox", :value => "yes"}
+            %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
+              Use your profiles existing contact-info
+            %br
           .field
             = f.label :name
             = f.text_field :name, :style=>"width:290px;"
@@ -230,7 +232,7 @@
             Project in existing company
           .field
             = f.label :possible_production_or_industrial_partners
-            = f.text_area :partners
+            = f.text_area :industrial_partners
           .field
             = f.label :possible_suppliers
             = f.text_area :suppliers
