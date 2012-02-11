@@ -34,9 +34,13 @@ $ rake sunspot:solr:run
 Run tests
 ===========
 
+Copy a scheme from development to test DB
+
 ````
 $ bundle exec rake db:test:prepare
 ````
+
+Run tests
 
 ````
 $ bundle exec rake spec
