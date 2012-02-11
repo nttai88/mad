@@ -5,4 +5,9 @@ FactoryGirl.define do
     password "123456"
     password_confirmation "123456"
   end
+
+  factory :page, :class => Refinery::Page do
+    title "Test Page"
+    link_url "/"
+  end
 end

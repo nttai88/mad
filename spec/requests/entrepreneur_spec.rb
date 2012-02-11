@@ -2,7 +2,10 @@ require "spec_helper"
 
 describe "Entrepreneur" do
 
-  before(:each) do
+  before do
+    # create root page
+    FactoryGirl.create(:page)
+    
     # create Entrepreneur role
     @role = Refinery::Role["Entrepreneur"]
 
