@@ -10,25 +10,36 @@ $ bundle install
 Create database
 
 ````
-$ rake db:create
+$ bundle exec rake db:create
 ````
 
 Run migrations
 
 ````
-$ rake db:migrate
+$ bundle exec rake db:migrate
 ````
 
 Import seed data
 
 ````
-$ rake db:seed
+$ bundle exec rake db:seed
 ````
 
 Start the development solr server for support messaging system
 
 ````
 $ rake sunspot:solr:run
+````
+
+Run tests
+===========
+
+````
+$ bundle exec rake db:test:prepare
+````
+
+````
+$ bundle exec rake spec
 ````
 
 Deploy to heroku
