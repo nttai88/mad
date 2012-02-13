@@ -8,6 +8,5 @@ FactoryGirl.define do
 
   factory :page, :class => Refinery::Page do
     title "Test Page"
-    link_url "/"
   end
 end
