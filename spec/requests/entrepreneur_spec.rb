@@ -4,8 +4,11 @@ describe "Entrepreneur" do
 
   before do
     # create root page
-    FactoryGirl.create(:page)
-    
+    FactoryGirl.create(:page, :link_url => "/")
+
+    # create my-page
+    FactoryGirl.create(:page, :title => "My Page")
+
     # create Entrepreneur role
     @role = Refinery::Role["Entrepreneur"]
 
