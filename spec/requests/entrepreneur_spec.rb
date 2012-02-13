@@ -2,19 +2,9 @@ require "spec_helper"
 
 describe "Entrepreneur" do
 
-  before do
-    # create root page
-    FactoryGirl.create(:page, :link_url => "/")
+  setup_first_user_and_pages
 
-    # create my-page
-    FactoryGirl.create(:page, :title => "My Page")
-
-    # create Entrepreneur role
-    @role = Refinery::Role["Entrepreneur"]
-
-    # create first user
-    FactoryGirl.build(:user, :confirmed_at => Time.now).create_first
-  end
+  let(:role) { Refinery::Role.find_by_title("Entrepreneur") }
 
   describe "sign up" do
     before(:each) do
@@ -32,7 +22,7 @@ describe "Entrepreneur" do
         fill_in "Last name", :with => "tset"
 
         within ".roles" do
-          choose "user_role_ids_#{@role.id}"
+          choose "user_role_ids_#{role.id}"
         end
 
         click_button "Sign up"
