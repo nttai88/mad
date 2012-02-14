@@ -1,3 +1,6 @@
+= content_for :javascripts do
+  = javascript_include_tag('jquery', 'regions')
+  = states_by_country
 #middle_content
   #left_container.left
     #edit_profile
@@ -28,10 +31,8 @@
             = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
             &rarr;
             = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
+        = render :partial => "/refinery/admin/error_messages", :locals => {:object => @project, :include_object_name => true}
         #general.partial_profile
-          %div{:style => "width:100%;float:left;margin:10px 0px 20px 0px;"}
-            %div{:style => "float:left;width:600px;margin-top: 5px;"}
-          = render :partial => "/refinery/admin/error_messages", :locals => {:object => @project, :include_object_name => true}
           .field
             %span{:style => "float: left;"}
               %input#use_existing{:name => "use_existing", :onClick => "copyProfileInfo(this);", :type => "checkbox", :value => "yes"}
@@ -41,27 +42,28 @@
           .field{:class => "clear"}
             = f.label :name
             = f.text_field :name, :style=>"width:290px;"
-          = f.fields_for :contact_attributes do |fc|
+          - @project.contact = Contact.new unless @project.contact
+          = f.fields_for :contact_attributes, @project.contact do |fc|
             .field
               = fc.label :address1
               = fc.text_field :address1, :class => 'larger widest', :style=>"width:290px;"
             .field
               = fc.label :address2
               = fc.text_field :address2, :class => 'larger widest', :style=>"width:290px;"
-            - @user.profile.contact = Contact.new unless @user.profile.contact
-            - @user.profile.contact.region = Region.new unless @user.profile.contact.region
-            = fc.fields_for :region_attributes, @user.profile.contact.region do |fr|
+            
+            - @project.contact.region = Region.new unless @project.contact.region
+            = fc.fields_for :region_attributes, @project.contact.region do |fr|
               .region
                 .field
                   = fr.label :country
                   = fr.country_select :country, "US", {},{:class => "country", :style=>"width:295px;"}
-                - country_code = (@user.profile.contact.region.country || "US")
+                - country_code = (@project.contact.region.country || "US")
                 .field.state
                   = fr.label :state
                   - begin
                     = fr.state_select :state, country_code, {}, {:class => "state", :style=>"width:295px;"}
                   - rescue
-                    %select#user_profile_attributes_contact_attributes_region_attributes_state.state{:name => "user[profile_attributes][contact_attributes][region_attributes][state]"}
+                    %select#project_contact_attributes_region_attributes_state.state{:name => "project[contact_attributes][region_attributes][state]"}
             .field
               = fc.label :city
               = fc.text_field :city, :class => 'larger widest', :style=>"width:290px;"

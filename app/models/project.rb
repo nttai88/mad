@@ -6,6 +6,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
 
+  accepts_nested_attributes_for :contact, :allow_destroy => true
+  
   belongs_to :user, :class_name => "Refinery::User"
   
   has_many        :comments,      :as => :commentable
@@ -36,6 +38,13 @@ class Project < ActiveRecord::Base
     Mad2::Application.config.secret_token
   end
 
+  def contact_attributes=(attrs)
+    unless self.contact
+      self.contact = Contact.new(attrs)
+    else
+      self.contact.update_attributes(attrs)
+    end
+  end
 
   def advisor_candidates
     advisor_candidates = User.includes(:roles, :profile).where("refinery_roles.title" => Refinery::Role::ADVISOR)
