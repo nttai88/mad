@@ -42,6 +42,7 @@ gem 'messaging', :git => 'git://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr', '~> 1.3.0'
 gem 'thin', '~> 1.3.1'
 gem "attr_encrypted", "~> 1.2.0"
+gem 'state_machine', '~> 1.1.2'
 
 # Add i18n support (optional, you can remove this if you really want to but it is advised to keep it).
 gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
