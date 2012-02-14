@@ -77,4 +77,40 @@ describe "Entrepreneur" do
     end
   end
 
+  describe "create project" do
+    let!(:user) {
+      user = FactoryGirl.create(:user)
+      user.confirm!
+      user.roles = [Refinery::Role.find_by_title("Entrepreneur")]
+      user.save
+      user
+    }
+    before :each do
+      visit new_refinery_user_session_path
+
+      fill_in "Login", :with => user.username
+      fill_in "Password", :with => "123456"
+      click_button "Sign in"
+      page.should have_content("Logged in as: #{user.username}")
+      click_link "Projects"
+      click_link "New project"
+      page.current_path.should eq("/projects/new")
+    end
+
+    it "should be unsuccessful" do
+      fill_in "Name", :with => "test_project"
+      click_button "Save"
+      page.should have_content("Title can't be blank")
+    end
+
+    it "should be successful" do
+      fill_in "Name", :with => "test_project"
+      click_link "Teaser"
+      fill_in "Title", :with => "Project Title"
+      click_button "Save"
+      visit projects_path
+      page.should have_content("Project Title")
+    end
+  end
+  
 end

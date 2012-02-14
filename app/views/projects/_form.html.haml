@@ -256,6 +256,7 @@
           = f.submit 'Save', :class=>"nice small radius red button"
         - @user = current_refinery_user
         - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
+        - contact = Contact.new unless contact
         :javascript
           function copyProfileInfo(elem){
             if(elem.checked == true){
