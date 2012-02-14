@@ -58,7 +58,7 @@
                   = fr.label :country
                   = fr.country_select :country, "US", {},{:class => "country", :style=>"width:295px;"}
                 - country_code = (@project.contact.region.country || "US")
-                .field.state
+                .field.state{:style => "#{("display:none" unless has_state?(country_code))}"}
                   = fr.label :state
                   - begin
                     = fr.state_select :state, country_code, {}, {:class => "state", :style=>"width:295px;"}
