@@ -1,5 +1,5 @@
 = content_for :javascripts do
-  = javascript_include_tag('jquery', 'regions')
+  = javascript_include_tag('projects')
   = states_by_country
 #middle_content
   #left_container.left
@@ -104,35 +104,35 @@
         #business.partial_profile.hidden
           .field
             = f.label :business
-            = f.text_area :business
+            = f.text_area :business, :class => 'wymeditor'
         #product.partial_profile.hidden
           .field
             = f.label :product
-            = f.text_area :product_description
+            = f.text_area :product_description, :class => 'wymeditor'
         #market.partial_profile.hidden
           .field
             = f.label :market_analysis
-            = f.text_area :market
+            = f.text_area :market, :class => 'wymeditor'
         #competitor_one.partial_profile.hidden
           .field
             = f.label :competitors
-            = f.text_area :competitors
+            = f.text_area :competitors, :class => 'wymeditor'
         #strategy.partial_profile.hidden
           .field
             = f.label :strategy
-            = f.text_area :strategy
+            = f.text_area :strategy, :class => 'wymeditor'
         #progression.partial_profile.hidden
           .field
             = f.label :progression
-            = f.text_area :progression
+            = f.text_area :progression, :class => 'wymeditor'
         #finance.partial_profile.hidden
           .field
             = f.label :financer
-            = f.text_area :finances
+            = f.text_area :finances, :class => 'wymeditor'
         #summary.partial_profile.hidden
           .field
             = f.label :summary
-            = f.text_area :summary
+            = f.text_area :summary, :class => 'wymeditor'
           
         #attachment.partial_profile.hidden
           = f.fields_for :document do |p|
@@ -258,6 +258,7 @@
         - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
         - contact = Contact.new unless contact
         :javascript
+
           function copyProfileInfo(elem){
             if(elem.checked == true){
               $('#project_contact_attributes_zip').val("#{contact.zip}") ;

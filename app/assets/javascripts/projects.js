@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+// require foundation
+// require_tree .
+//= require regions
+//= require i18n-messages
+//= require wymeditor/jquery.refinery.wymeditor
+//= require jquery/jquery.corner
+//= require refinery/boot_wym
