@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery_ui
 //= require refinery/core
 // require foundation
 // require_tree .

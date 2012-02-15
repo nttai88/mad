@@ -253,7 +253,7 @@
             = f.text_area :competitors2
 
         .actions
-          = f.submit 'Save', :class=>"nice small radius red button"
+          = f.submit 'Save', :class=>"wymupdate nice small radius red button"
         - @user = current_refinery_user
         - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
         - contact = Contact.new unless contact

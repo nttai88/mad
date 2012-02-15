@@ -43,50 +43,43 @@
       %h4
         Bussiness Page
       %p
-        %b Description:
-        = @project.business
+        = raw @project.business
       = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
         Market Analysis
       %p
-        %b Market:
-        = @project.market
+        = raw @project.market
       = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
         Competitors
       %p
-        %b Competitors:
-        = @project.competitors
+        = raw @project.competitors
       = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
         Strategy
       %p
-        %b Strategy:
-        = @project.strategy
+        = raw @project.strategy
       = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
         Progression
       %p
-        %b Progression:
-        = @project.progression
+        = raw @project.progression
       = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
         Finance
       %p
-        %b Finances:
-        = @project.finances
+        = raw @project.finances
       = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
         Summary
       %p
-        %b Summary:
-        = @project.summary
+        = raw @project.summary
       = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4
