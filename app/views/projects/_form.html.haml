@@ -101,6 +101,12 @@
           .field
             = f.check_box :need_retail
             Retailer
+          .field
+            = f.label :embedded_video
+            = f.text_area :embedded_video
+          .field
+            = f.label :external_url
+            = f.text_field :external_url
         #business.partial_profile.hidden
           .field
             = f.label :business

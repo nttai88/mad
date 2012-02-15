@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210080241) do
+ActiveRecord::Schema.define(:version => 20120215092811) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20120210080241) do
     t.boolean  "need_producer"
     t.boolean  "need_retail"
     t.string   "project_status"
+    t.text     "embedded_video"
+    t.string   "external_url"
   end
 
   create_table "projects_users", :force => true do |t|

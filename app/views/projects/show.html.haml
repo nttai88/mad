@@ -36,6 +36,16 @@
     %p
       %b Idea:
       = @project.idea
+    - unless @project.embedded_video.blank?
+      %p
+        %b Embedded video:
+        %br
+        = raw @project.embedded_video
+    - unless @project.external_url.blank?
+      %p
+        %b External project homepage:
+        = link_to @project.external_url, @project.external_url
+
     - if full_access?(@project)
       = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
   - if full_access?(@project)
