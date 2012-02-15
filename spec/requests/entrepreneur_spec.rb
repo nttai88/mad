@@ -81,7 +81,7 @@ describe "Entrepreneur" do
     let!(:user) {
       user = FactoryGirl.create(:user)
       user.confirm!
-      user.roles = [Refinery::Role.find_by_title("Entrepreneur")]
+      user.roles << Refinery::Role.find_by_title("Entrepreneur")
       user.save
       user
     }
@@ -91,7 +91,6 @@ describe "Entrepreneur" do
       fill_in "Login", :with => user.username
       fill_in "Password", :with => "123456"
       click_button "Sign in"
-      page.should have_content("Logged in as: #{user.username}")
       click_link "Projects"
       click_link "New project"
       page.current_path.should eq("/projects/new")
