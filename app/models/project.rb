@@ -12,9 +12,6 @@ class Project < ActiveRecord::Base
   
   has_many        :comments,      :as => :commentable
   
-  validates :name, :presence => true
-  validates :title, :presence => true
-  
   has_one :document,  :dependent => :destroy
   
   ajaxful_rateable :stars => 10, :dimensions => [:teaser, :business, :market, :competitor, :strategy, :progression, :finance, :summary, :company, :attachment, :thoughts]

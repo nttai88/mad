@@ -31,6 +31,8 @@
             = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
             &rarr;
             = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
+            &rarr;
+            = link_to_function 'Payment', "$('.partial_profile').hide();$('#payment').show();", :class => "title_link"
         = render :partial => "/refinery/admin/error_messages", :locals => {:object => @project, :include_object_name => true}
         #general.partial_profile
           .field
@@ -257,7 +259,10 @@
           .field
             = f.label :possible_competitors_developing_similar_technology
             = f.text_area :competitors2
-
+        #payment.partial_profile.hidden
+          %p Pay with Paypal
+          %img{:src => "https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif"}
+              
         .actions
           = f.submit 'Save', :class=>"wymupdate nice small radius red button"
         - @user = current_refinery_user

@@ -97,17 +97,20 @@ describe "Entrepreneur" do
     end
 
     it "should be unsuccessful" do
-      fill_in "Name", :with => "test_project"
       click_button "Save"
-      page.should have_content("Title can't be blank")
+      page.should have_content "no title"
+      click_link "Back"
+      page.should have_content("no title")
     end
 
     it "should be successful" do
-      fill_in "Name", :with => "test_project"
+      fill_in "Name", :with => "test project"
       click_link "Teaser"
       fill_in "Title", :with => "Project Title"
       click_button "Save"
-      visit projects_path
+      page.should have_content "Project Title"
+      page.should have_content "test project"
+      click_link "Back"
       page.should have_content("Project Title")
     end
   end
