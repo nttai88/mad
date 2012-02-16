@@ -20,6 +20,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :contact, :allow_destroy => true
   
   PROJECT_PARTS = ['teaser', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
+  SERVICES = { :business_plan => "Business Plan", :kick_starter => "Kick Starter", :design_contest => "Design Contest", :partner_needed => "Partner Needed" }
 
   #encrypt data
   attr_encrypted :business, :key => :encryption_key

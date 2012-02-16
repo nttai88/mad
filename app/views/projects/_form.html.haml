@@ -75,6 +75,10 @@
             .field
               = fc.label :phone
               = fc.text_field :phone, :class => 'larger widest', :style=>"width:290px;"
+            .field
+              - Project::SERVICES.each_pair do |key, value|
+                = f.radio_button :service, key
+                = value
         #teaser.partial_profile.hidden
           .field
             = f.label :project_name
@@ -272,17 +276,17 @@
 
           function copyProfileInfo(elem){
             if(elem.checked == true){
-              $('#project_contact_attributes_zip').val("#{contact.zip}") ;
-              $('#project_contact_attributes_city').val("#{contact.city}") ;
+              $('#project_contact_attributes_zip').val("#{contact.zip}");
+              $('#project_contact_attributes_city').val("#{contact.city}");
               $('#project_contact_attributes_phone').val("#{contact.phone}");
-              $('#project_contact_attributes_address2').val("#{contact.address2}") ;
-              $('#project_contact_attributes_address1').val("#{contact.address1}") ;
+              $('#project_contact_attributes_address2').val("#{contact.address2}");
+              $('#project_contact_attributes_address1').val("#{contact.address1}");
             }else
             {
-              $('#project_contact_attributes_zip').val("") ;
-              $('#project_contact_attributes_city').val("") ;
+              $('#project_contact_attributes_zip').val("");
+              $('#project_contact_attributes_city').val("");
               $('#project_contact_attributes_phone').val("");
-              $('#project_contact_attributes_address2').val("") ;
-              $('#project_contact_attributes_address1').val("") ;
+              $('#project_contact_attributes_address2').val("");
+              $('#project_contact_attributes_address1').val("");
             }
           }

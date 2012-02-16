@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215092811) do
+ActiveRecord::Schema.define(:version => 20120216201245) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20120215092811) do
     t.string   "project_status"
     t.text     "embedded_video"
     t.string   "external_url"
+    t.string   "service"
   end
 
   create_table "projects_users", :force => true do |t|
@@ -402,9 +403,5 @@ ActiveRecord::Schema.define(:version => 20120215092811) do
   add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
-
-  add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
-
-  add_foreign_key "receipts", "notifications", :name => "receipts_on_notification_id"
 
 end
