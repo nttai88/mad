@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216201245) do
+ActiveRecord::Schema.define(:version => 20120216203739) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20120216201245) do
     t.string   "file7"
     t.string   "file8"
     t.string   "file9"
+    t.string   "avatar"
   end
 
   create_table "notifications", :force => true do |t|

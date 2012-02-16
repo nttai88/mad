@@ -76,6 +76,10 @@
               = fc.label :phone
               = fc.text_field :phone, :class => 'larger widest', :style=>"width:290px;"
             .field
+              = f.fields_for :document do |p|
+                = p.label :avatar, "Avatar/Logo"
+                = p.file_field :avatar
+            .field
               - Project::SERVICES.each_pair do |key, value|
                 = f.radio_button :service, key
                 = value
