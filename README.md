@@ -82,8 +82,19 @@ $ heroku run rake db:migrate #run this command on the first setup or when the da
 $ heroku run rake db:seed #run this command on the first setup
 ````
 
+How to use Amazon S3 for storage in development mode
+==================
 
+Add unix variables
 
+````
+$ export S3_KEY=AKIAJTQFZ4U56OEW33WQ
+$ export S3_SECRET=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
+$ export S3_BUCKET=madlab.development
+````
 
+Change s3 config on /config/environments/development.rb
 
-
+````ruby
+  config.s3_backend = true
+````
