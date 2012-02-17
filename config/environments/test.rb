@@ -40,6 +40,16 @@ Mad2::Application.configure do
   config.action_mailer.default_url_options = { :host => 'example.com' }
 
 end
+
 Refinery::Core.configure do |config|
   config.s3_backend = false
+end
+
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+    :provider               => 'AWS',
+    :aws_access_key_id      => ENV['S3_KEY'] || "AKIAJTQFZ4U56OEW33WQ",
+    :aws_secret_access_key  => ENV['S3_SECRET'] || "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"
+  }
+  config.fog_directory  = ENV['S3_BUCKET'] || "madlab.development"
 end
