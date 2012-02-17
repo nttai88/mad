@@ -6,8 +6,6 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
 
-  accepts_nested_attributes_for :contact, :allow_destroy => true
-  
   belongs_to :user, :class_name => "Refinery::User"
   
   has_many        :comments,      :as => :commentable
@@ -20,6 +18,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :contact, :allow_destroy => true
   
   PROJECT_PARTS = ['teaser', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
+  SERVICES = { :business_plan => "Business Plan", :kick_starter => "Kick Starter", :design_contest => "Design Contest", :partner_needed => "Partner Needed" }
 
   #encrypt data
   attr_encrypted :business, :key => :encryption_key

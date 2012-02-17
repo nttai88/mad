@@ -11,5 +11,6 @@ class Document < ActiveRecord::Base
   mount_uploader :file7, FileUploader
   mount_uploader :file8, FileUploader
   mount_uploader :file9, FileUploader
+  mount_uploader :avatar, FileUploader
 
 end
