@@ -80,6 +80,9 @@
                 = p.label :avatar, "Avatar/Logo"
                 = p.file_field :avatar
             .field
+              = fc.label :about
+              = fc.text_area :about, :class => 'larger widest'
+            .field
               - Project::SERVICES.each_pair do |key, value|
                 = f.radio_button :service, key
                 = value
@@ -285,6 +288,7 @@
               $('#project_contact_attributes_phone').val("#{contact.phone}");
               $('#project_contact_attributes_address2').val("#{contact.address2}");
               $('#project_contact_attributes_address1').val("#{contact.address1}");
+              $('#project_contact_attributes_about').val("#{@user.profile.about}");
             }else
             {
               $('#project_contact_attributes_zip').val("");
@@ -292,5 +296,6 @@
               $('#project_contact_attributes_phone').val("");
               $('#project_contact_attributes_address2').val("");
               $('#project_contact_attributes_address1').val("");
+              $('#project_contact_attributes_about').val("");
             }
           }

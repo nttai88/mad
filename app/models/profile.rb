@@ -14,7 +14,8 @@ class Profile < ActiveRecord::Base
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-  attr_accessible :categories_attributes, :contact_attributes, :user_attributes, :first_name, :last_name, :receive_newsleter
+  attr_accessible :categories_attributes, :contact_attributes, :user_attributes, :first_name, :last_name,
+                  :receive_newsleter, :about
 
   def contact_attributes=(attrs)
     unless self.contact
