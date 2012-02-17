@@ -38,4 +38,8 @@ Mad2::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = { :host => 'example.com' }
+
+end
+Refinery::Core.configure do |config|
+  config.s3_backend = false
 end

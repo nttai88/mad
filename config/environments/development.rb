@@ -28,4 +28,13 @@ Mad2::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  
+end
+
+ENV['S3_KEY']='AKIAJTQFZ4U56OEW33WQ'
+ENV['S3_SECRET']='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'
+ENV['S3_BUCKET']='madlab.development'
+
+Refinery::Core.configure do |config|
+  config.s3_backend = false
 end

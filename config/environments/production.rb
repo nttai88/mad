@@ -68,4 +68,9 @@ Mad2::Application.configure do
   }
   ActionMailer::Base.default :from => 'notify@madlab.com'
 
+
+end
+
+Refinery::Core.configure do |config|
+  config.s3_backend = true
 end
