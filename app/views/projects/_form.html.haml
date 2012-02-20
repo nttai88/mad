@@ -83,6 +83,8 @@
               = fc.label :about
               = fc.text_area :about, :class => 'larger widest'
             .field
+              Choose Project Type
+              %br
               - Project::SERVICES.each_pair do |key, value|
                 = f.radio_button :service, key
                 = value
