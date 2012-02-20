@@ -11,7 +11,7 @@ Refinery::User.class_eval do
   acts_as_messageable
   attr_accessible :profile_attributes, :role_ids
   after_save :create_profile
-  validates :username, :length => { :minimum => 3}
+  validates :username, :length => { :minimum => 4}, :format => { :with =>  /^[A-Za-z\d_\.\-\_ ]+$/i}
 
   def profile_attributes=(attrs)
     unless self.profile
@@ -21,7 +21,7 @@ Refinery::User.class_eval do
     end
   end
 
-  def create_first
+  def create_user
     if valid?
       # first we need to save user
       save

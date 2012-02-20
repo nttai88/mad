@@ -24,9 +24,9 @@
       <div class="region">
         <div class='field'>
           <%= fr.label :country %>
-          <%= fr.country_select :country, "US", {},{:class => "country"} %>
+          <%= fr.country_select :country, "NO", {},{:class => "country"} %>
         </div>
-        <% country_code = (@user.profile.contact.region.country || "US") %>
+        <% country_code = (@user.profile.contact.region.country || "NO") %>
         <div class='field state' style="<%= "display:none" unless has_state?(country_code) %>">
           <%= fr.label :state %>
           <% begin %>

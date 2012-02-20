@@ -428,3 +428,7 @@ form .new-member {
   float: right
 }
 .clear{clear:both}
+
+.field span.error{ color:red}
+.field span.notice{ color:green}
+
