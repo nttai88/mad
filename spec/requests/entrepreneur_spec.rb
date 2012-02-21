@@ -39,7 +39,7 @@ describe "Entrepreneur" do
           page.should have_content("Email can't be blank")
           page.should have_content("Password can't be blank")
           page.should have_content("Username can't be blank")
-          page.should have_content("Username is too short (minimum is 3 characters)")
+          page.should have_content("Username is too short (minimum is 4 characters)")
           page.should have_content("Profile first name can't be blank")
           page.should have_content("Profile last name can't be blank")
         end
