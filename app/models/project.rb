@@ -1,10 +1,10 @@
 class Project < ActiveRecord::Base
   has_one :contact, :as => :contactable
-  belongs_to :category
   has_many :region_selections, :as => :parent
   has_many :regions, :through => :region_selections, :dependent => :delete_all
   has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
+  has_and_belongs_to_many :categories
 
   belongs_to :user, :class_name => "Refinery::User"
   

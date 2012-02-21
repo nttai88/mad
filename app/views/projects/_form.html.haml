@@ -112,8 +112,8 @@
             = f.label :which_fields_does_the_solve
             = f.text_area :solves
           .field
-            = f.label :category
-            = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
+            = f.label :category_ids, "Category"
+            = f.collection_select :category_ids, Category.all, :id, :title, {}, { :multiple => true }
           MadLab Partners you may need contact with
           .field
             = f.check_box :need_investor
