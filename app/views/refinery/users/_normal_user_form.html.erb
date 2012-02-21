@@ -63,6 +63,12 @@
     <%= fp.label :receive_newsleter, :style => "display:inline" %>
   </div>
 <% end %>
+<div class='field'>
+  <%= f.fields_for :document_attributes do |p| %>
+    <%= p.label :avatar, "Avatar/Logo" %>
+    <%= p.file_field :avatar %>
+  <% end %>
+</div>
 <% if ["new", "create"].index(action_name) %>
   <%= render :partial => "role_agreements", :locals => {:f => f} %>
   <%= states_by_country %>

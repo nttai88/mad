@@ -78,7 +78,13 @@
             .field
               = f.fields_for :document do |p|
                 = p.label :avatar, "Avatar/Logo"
-                = p.file_field :avatar
+                - if (@user.document && @user.document.avatar.url)
+                  = f.check_box :use_user_avatar
+                  Use 
+                  = link_to "existing profile avatar", @user.document.avatar.url, :target => "_blank"
+                  or upload a new one
+                  %br
+                = p.file_field :avatar, :class => "upload-avatar"
             .field
               = fc.label :about
               = fc.text_area :about, :class => 'larger widest'

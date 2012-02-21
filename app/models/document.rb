@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :documentable, :polymorphic => true
 
   mount_uploader :file, FileUploader
   mount_uploader :file1, FileUploader
