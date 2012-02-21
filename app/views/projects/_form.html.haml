@@ -301,9 +301,9 @@
               $('#project_contact_attributes_address1').val("#{contact.address1}");
               $('#project_contact_attributes_about').val("#{@user.profile.about}");
               $('#project_external_url').val("#{contact.url}");
-              $('#project_contact_attributes_region_attributes_country option[value=#{contact.region.country}]').attr('selected', 'selected');
-              if(#{has_state?(contact.region.country)}) {
-                $('#project_contact_attributes_region_attributes_state option[value=#{contact.region.state}]').attr('selected', 'selected');
+              $('#project_contact_attributes_region_attributes_country option[value=#{contact.country}]').attr('selected', 'selected');
+              if(#{has_state?(contact.country)}) {
+                $('#project_contact_attributes_region_attributes_state option[value=#{contact.state}]').attr('selected', 'selected');
               } else {
                 $('label[for=project_contact_attributes_region_attributes_state]').hide();
                 $('#project_contact_attributes_region_attributes_state').hide();
@@ -319,7 +319,7 @@
               $('#project_contact_attributes_about').val("");
               $('#project_external_url').val("");
               $('#project_contact_attributes_region_attributes_country option[value=US]').attr('selected', 'selected');
-              if(#{has_state?(contact.region.country)}) {
+              if(#{has_state?(contact.country)}) {
                 $('#project_contact_attributes_region_attributes_state option[value=AL]').attr('selected', 'selected');
               } else {
                 $('label[for=project_contact_attributes_region_attributes_state]').show();
