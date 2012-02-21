@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @project.user = current_user
     @project.document ||= Document.new
   end
 

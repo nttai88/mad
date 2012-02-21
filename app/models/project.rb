@@ -67,4 +67,18 @@ class Project < ActiveRecord::Base
     return partner_candidates
   end
 
+  def profile_avatar
+    self.user.document.avatar.url if self.user && self.user.document
+  end
+  def private_avatar
+    self.document.avatar.url if self.document
+  end
+
+  def avatar
+    if self.use_user_avatar && !private_avatar
+      profile_avatar
+    else
+      private_avatar
+    end
+  end
 end

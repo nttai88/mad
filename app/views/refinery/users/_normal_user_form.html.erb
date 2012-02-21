@@ -66,6 +66,11 @@
 <div class='field'>
   <%= f.fields_for :document_attributes do |p| %>
     <%= p.label :avatar, "Avatar/Logo" %>
+    <% if @user.document && @user.document.avatar.url %>
+      <img src="<%= @user.document.avatar.url %>" style="height: 50px;">
+      <br/>
+      Upload a new image
+    <% end %>
     <%= p.file_field :avatar %>
   <% end %>
 </div>

@@ -78,12 +78,13 @@
             .field
               = f.fields_for :document do |p|
                 = p.label :avatar, "Avatar/Logo"
-                - if (@user.document && @user.document.avatar.url)
+                - if (!@project.avatar && @project.profile_avatar)
                   = f.check_box :use_user_avatar
                   Use 
                   = link_to "existing profile avatar", @user.document.avatar.url, :target => "_blank"
-                  or upload a new one
-                  %br
+                - elsif @project.avatar
+                  = image_tag @project.avatar, :style => "height: 50px;"
+                %br
                 = p.file_field :avatar, :class => "upload-avatar"
             .field
               = fc.label :about
