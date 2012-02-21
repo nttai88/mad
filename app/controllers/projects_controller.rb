@@ -80,13 +80,7 @@ class ProjectsController < ApplicationController
   
   def rate
     @project = Project.find(params[:id])
-    respond_to do |format|
-      if @project.rate(params[:stars], current_user, params[:dimension])
-        format.js { render :partial => "rating", :locals => {:dimension => params[:dimension]} }
-      else
-        format.js { render :partial => "rating" }
-      end
-    end
+    @project.rate(params[:stars], current_user, params[:dimension])
   end
 
   def recent
