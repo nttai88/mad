@@ -114,6 +114,7 @@
           .field
             = f.label :category
             = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
+          MadLab Partners you may need contact with
           .field
             = f.check_box :need_investor
             Investor
@@ -292,19 +293,37 @@
 
           function copyProfileInfo(elem){
             if(elem.checked == true){
+              $('#project_name').val("#{@user.full_name}");
               $('#project_contact_attributes_zip').val("#{contact.zip}");
               $('#project_contact_attributes_city').val("#{contact.city}");
               $('#project_contact_attributes_phone').val("#{contact.phone}");
               $('#project_contact_attributes_address2').val("#{contact.address2}");
               $('#project_contact_attributes_address1').val("#{contact.address1}");
               $('#project_contact_attributes_about').val("#{@user.profile.about}");
+              $('#project_external_url').val("#{contact.url}");
+              $('#project_contact_attributes_region_attributes_country option[value=#{contact.region.country}]').attr('selected', 'selected');
+              if(#{has_state?(contact.region.country)}) {
+                $('#project_contact_attributes_region_attributes_state option[value=#{contact.region.state}]').attr('selected', 'selected');
+              } else {
+                $('label[for=project_contact_attributes_region_attributes_state]').hide();
+                $('#project_contact_attributes_region_attributes_state').hide();
+              }
             }else
             {
+              $('#project_name').val("");
               $('#project_contact_attributes_zip').val("");
               $('#project_contact_attributes_city').val("");
               $('#project_contact_attributes_phone').val("");
               $('#project_contact_attributes_address2').val("");
               $('#project_contact_attributes_address1').val("");
               $('#project_contact_attributes_about').val("");
+              $('#project_external_url').val("");
+              $('#project_contact_attributes_region_attributes_country option[value=US]').attr('selected', 'selected');
+              if(#{has_state?(contact.region.country)}) {
+                $('#project_contact_attributes_region_attributes_state option[value=AL]').attr('selected', 'selected');
+              } else {
+                $('label[for=project_contact_attributes_region_attributes_state]').show();
+                $('#project_contact_attributes_region_attributes_state').show();
+              }
             }
           }
