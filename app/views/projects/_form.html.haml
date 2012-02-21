@@ -114,6 +114,7 @@
           .field
             = f.label :category
             = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
+          MadLab Partners you may need contact with
           .field
             = f.check_box :need_investor
             Investor
