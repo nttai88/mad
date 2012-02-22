@@ -9,4 +9,7 @@ FactoryGirl.define do
   factory :page, :class => Refinery::Page do
     title "Test Page"
   end
+
+  factory :region do
+  end
 end
