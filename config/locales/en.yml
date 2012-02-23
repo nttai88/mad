@@ -16,6 +16,9 @@ en:
         competitions: "Competitions"
         press: "Press"
   devise:
+    users:
+      refinery_user:
+        confirmed: "Thank you for registering. A verification email is sent to your email account"
     sessions:
       signed_in: 'You have been logged in successfully.'
       signed_out: 'You have been logged out successfully.'
