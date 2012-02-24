@@ -1,0 +1,40 @@
+- if @project.document && !@project.document["file"].blank?
+  %p
+    = link_to @project.document["file"], @project.document.file.url
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file1"].blank?
+  %p
+    = link_to @project.document["file1"], @project.document.file1.url unless @project.document.file1.blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file1"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file2"].blank?
+  %p
+    = link_to @project.document["file2"], @project.document.file2.url unless @project.document["file2"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file2"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file3"].blank?
+  %p
+    = link_to @project.document["file3"], @project.document.file3.url unless @project.document["file3"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file3"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file4"].blank?
+  %p
+    = link_to @project.document["file4"], @project.document.file4.url unless @project.document["file4"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file4"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file5"].blank?
+  %p
+    = link_to @project.document["file5"], @project.document.file5.url unless @project.document["file5"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file5"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file6"].blank?
+  %p
+    = link_to @project.document["file6"], @project.document.file6.url unless @project.document["file6"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file6"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file7"].blank?
+  %p
+    = link_to @project.document["file7"], @project.document.file7.url unless @project.document["file7"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file7"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file8"].blank?
+  %p
+    = link_to @project.document["file8"], @project.document.file8.url unless @project.document["file8"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file8"), :confirm => 'Are you sure?', :method => :delete
+- if @project.document && !@project.document["file9"].blank?
+  %p
+    = link_to @project.document["file9"], @project.document.file9.url unless @project.document["file9"].blank?
+    = link_to 'Remove', remove_attach_project_path(@project, :type => "file9"), :confirm => 'Are you sure?', :method => :delete

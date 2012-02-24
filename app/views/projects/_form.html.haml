@@ -164,57 +164,9 @@
             = f.text_area :summary, :class => 'wymeditor'
           
         #attachment.partial_profile.hidden
-          = f.fields_for :document do |p|
-            %table{:cellpadding => 0, :cellspacing => 0, :width => '100%'}
-              %tr
-                %td
-                  = p.file_field :file
-                %td
-                  #at1= link_to_function "add another attachment", "$('#file1').show();$('#at1').hide();$('#at2').show()"
-                  #at2.hidden= link_to_function "add another attachment", "$('#file2').show();$('#at2').hide();$('#at3').show()"
-                  #at3.hidden= link_to_function "add another attachment", "$('#file3').show();$('#at3').hide();$('#at4').show()"
-                  #at4.hidden= link_to_function "add another attachment", "$('#file4').show();$('#at4').hide();$('#at5').show()"
-                  #at5.hidden= link_to_function "add another attachment", "$('#file5').show();$('#at5').hide();$('#at6').show()"
-                  #at6.hidden= link_to_function "add another attachment", "$('#file6').show();$('#at6').hide();$('#at7').show()"
-                  #at7.hidden= link_to_function "add another attachment", "$('#file7').show();$('#at7').hide();$('#at8').show()"
-                  #at8.hidden= link_to_function "add another attachment", "$('#file8').show();$('#at8').hide();$('#at9').show()"
-                  #at9.hidden= link_to_function "add another attachment", "$('#file9').show();$('#at9').hide();$('#at1').show()"
-              %tr{:id=>"file1", :class=>"hidden"}
-                %td
-                  = p.file_field :file1
-                  = link_to_function "Remove", "$('#file1').remove()"
-              %tr{:id=>"file2", :class=>"hidden"}
-                %td
-                  = p.file_field :file2
-                  = link_to_function "Remove", "$('#file2').remove()"
-              %tr{:id=>"file3", :class=>"hidden"}
-                %td
-                  = p.file_field :file3
-                  = link_to_function "Remove", "$('#file3').remove()"
-              %tr{:id=>"file4", :class=>"hidden"}
-                %td
-                  = p.file_field :file4
-                  = link_to_function "Remove", "$('#file4').remove()"
-              %tr{:id=>"file5", :class=>"hidden"}
-                %td
-                  = p.file_field :file5
-                  = link_to_function "Remove", "$('#file5').remove()"
-              %tr{:id=>"file6", :class=>"hidden"}
-                %td
-                  = p.file_field :file6
-                  = link_to_function "Remove", "$('#file6').remove()"
-              %tr{:id=>"file7", :class=>"hidden"}
-                %td
-                  = p.file_field :file7
-                  = link_to_function "Remove", "$('#file7').remove()"
-              %tr{:id=>"file8", :class=>"hidden"}
-                %td
-                  = p.file_field :file8
-                  = link_to_function "Remove", "$('#file8').remove()"
-              %tr{:id=>"file9", :class=>"hidden"}
-                %td
-                  = p.file_field :file9
-                  = link_to_function "Remove", "$('#file9').remove()"
+          = render :partial => "attachments"
+          = render :partial => "new_attachments", :locals => {:f => f}
+
         #thoughts.partial_profile.hidden
           %p Project Status
           .field

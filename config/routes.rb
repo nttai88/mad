@@ -9,6 +9,7 @@ Mad2::Application.routes.draw do
     end
     member do
       post 'rate'
+      delete 'remove_attach'
     end
     collection do
       get :recent

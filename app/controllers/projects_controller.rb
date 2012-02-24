@@ -87,6 +87,38 @@ class ProjectsController < ApplicationController
     @projects = Project.order("created_at DESC").limit 10
     render :action => :index
   end
+
+  def remove_attach
+    @project = Project.find(params[:id])
+    doc = @project.document
+    case params[:type]
+      when "file"
+        doc.remove_file = true
+      when "file1"
+        doc.remove_file1 = true
+      when "file2"
+        doc.remove_file2 = true
+      when "file3"
+        doc.remove_file3 = true
+      when "file4"
+        doc.remove_file4 = true
+      when "file5"
+        doc.remove_file5 = true
+      when "file6"
+        doc.remove_file6 = true
+      when "file7"
+        doc.remove_file7 = true
+      when "file8"
+        doc.remove_file8 = true
+      when "file9"
+        doc.remove_file1 = true
+    else
+      
+    end
+    doc.save
+    redirect_to edit_project_path(@project, :anchor => "attachments")
+  end
+
   protected
   def can_create?
     unless current_user.can_create_project?

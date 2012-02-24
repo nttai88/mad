@@ -14,6 +14,7 @@
 $(document).ready(function(){
   Register.init();
   Menu.init();
+  Attachment.init();
 })
 Register = {
   init: function(){
@@ -48,5 +49,43 @@ var Menu = {
       $(this).parents("li").find(".mnu-child").toggle();
       return false;
     });
+  }
+}
+
+var Attachment = {
+  init: function(){
+    var numOfAttachments = $(".new_attachments tr").length;
+    if (numOfAttachments == 0){
+      $(".new_attachments").hide();
+    }
+    $(".new_attachments tr:first-child").show().find(".remove").text("add more").css("float", "right").attr("class", "new-attachment");
+    $(".new-attachment").click(function(){
+      $(".new_attachments tr").each(function(){
+        if($(this).is(":visible") == false){
+          $(this).show();
+          if ($(".new_attachments tr:visible").length == numOfAttachments){
+            $(".new-attachment").hide();
+          }else{
+            $(".new-attachment").show();
+          }
+          return false;
+        }
+      });
+      return false;
+    });
+    $(".new_attachments .remove").click(function(){
+      $(this).parents("tr").hide();
+      if($(".new_attachments tr:visible").length == $(".new_attachments tr").length){
+        $(".new-attachment").hide();
+      }else{
+        $(".new-attachment").show();
+      }
+      return false;
+    });
+    var url = window.location.href;
+    var hash = url.substring(url.indexOf("#")+1);
+    if(hash == "attachments"){
+      $('.partial_profile').hide();$('#attachment').show(); return false;
+    };
   }
 }
