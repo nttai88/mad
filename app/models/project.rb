@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
   attr_encrypted :progression, :key => :encryption_key
   attr_encrypted :finances, :key => :encryption_key
   attr_encrypted :summary, :key => :encryption_key
+
+  after_initialize :init
   
   def encryption_key
     Mad2::Application.config.secret_token
@@ -80,5 +82,9 @@ class Project < ActiveRecord::Base
     else
       private_avatar
     end
+  end
+  
+  def init
+    self['project_status'] ||= "not published"
   end
 end

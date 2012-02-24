@@ -13,7 +13,7 @@
       %td= link_to project.title, project
     -else
       %td= link_to "no title", project
-    %td= project.project_status
+    %td= project.project_status.titlecase
     %td= project.user.username
     %td= nice_time project.created_at
     - if current_user && current_user.can_edit_project?(project)
