@@ -1,6 +1,10 @@
 <div class="right-menu">
   <ul class="custom-menu" >
       <% if refinery_user_signed_in? %>
+        <li>
+          <%= link_to image_tag("nn.png"), "/nb" %>
+          <%= link_to image_tag("en.jpeg"), "/en" %>
+        </li>
         <li> <%= link_to "My Page", "/my-page" %> </li>
         <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_url %> </li>
         <li> Logged in as: <b><%= current_user.username %></b> </li>
