@@ -37,7 +37,7 @@
         #general.partial_profile
           .field
             %span{:style => "float: left;"}
-              %input#use_existing{:name => "use_existing", :onClick => "copyProfileInfo(this);", :type => "checkbox", :value => "yes"}
+              %input#use_existing{:name => "use_existing", :type => "checkbox", :value => "yes", :"data-user" => formated_user_data(@user)}
             %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
               Use your profiles existing contact-info
             %br
@@ -58,8 +58,8 @@
               .region
                 .field
                   = fr.label :country
-                  = fr.country_select :country, "US", {},{:class => "country", :style=>"width:295px;"}
-                - country_code = (@project.contact.region.country || "US")
+                  = fr.country_select :country, "NO", {}, {:class => "country", :style=>"width:295px;"}
+                - country_code = (@project.contact.region.country || "NO")
                 .field.state{:style => "#{("display:none" unless has_state?(country_code))}"}
                   = fr.label :state
                   - begin
@@ -283,47 +283,6 @@
         #payment.partial_profile.hidden
           %p Pay with Paypal
           %img{:src => "https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif"}
-              
         .actions
           = f.submit 'Save', :class=>"wymupdate nice small radius red button"
-        - @user = current_refinery_user
-        - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
-        - contact = Contact.new unless contact
-        :javascript
-
-          function copyProfileInfo(elem){
-            if(elem.checked == true){
-              $('#project_name').val("#{@user.full_name}");
-              $('#project_contact_attributes_zip').val("#{contact.zip}");
-              $('#project_contact_attributes_city').val("#{contact.city}");
-              $('#project_contact_attributes_phone').val("#{contact.phone}");
-              $('#project_contact_attributes_address2').val("#{contact.address2}");
-              $('#project_contact_attributes_address1').val("#{contact.address1}");
-              $('#project_contact_attributes_about').val("#{@user.profile.about}");
-              $('#project_external_url').val("#{contact.url}");
-              $('#project_contact_attributes_region_attributes_country option[value=#{contact.country}]').attr('selected', 'selected');
-              if(#{has_state?(contact.country)}) {
-                $('#project_contact_attributes_region_attributes_state option[value=#{contact.state}]').attr('selected', 'selected');
-              } else {
-                $('label[for=project_contact_attributes_region_attributes_state]').hide();
-                $('#project_contact_attributes_region_attributes_state').hide();
-              }
-            }else
-            {
-              $('#project_name').val("");
-              $('#project_contact_attributes_zip').val("");
-              $('#project_contact_attributes_city').val("");
-              $('#project_contact_attributes_phone').val("");
-              $('#project_contact_attributes_address2').val("");
-              $('#project_contact_attributes_address1').val("");
-              $('#project_contact_attributes_about').val("");
-              $('#project_external_url').val("");
-              $('#project_contact_attributes_region_attributes_country option[value=US]').attr('selected', 'selected');
-              if(#{has_state?(contact.country)}) {
-                $('#project_contact_attributes_region_attributes_state option[value=AL]').attr('selected', 'selected');
-              } else {
-                $('label[for=project_contact_attributes_region_attributes_state]').show();
-                $('#project_contact_attributes_region_attributes_state').show();
-              }
-            }
-          }
+          
