@@ -53,32 +53,42 @@ var Menu = {
 }
 
 var Attachment = {
+  numOfAttachments: null,
   init: function(){
-    var numOfAttachments = $(".new_attachments tr").length;
-    if (numOfAttachments == 0){
-      $(".new_attachments").hide();
-    }
-    $(".new_attachments tr:first-child").show().find(".remove").text("add more").css("float", "right").attr("class", "new-attachment");
+    $(".new_attachments").hide();
+    Attachment.numOfAttachments = $(".new_attachments tr").length;
+    Attachment.displayAttachLink();
+    Attachment.bindRemoveAction();
+    Attachment.bindNewAction();
+  },
+  bindNewAction: function(){
     $(".new-attachment").click(function(){
+      $(".new_attachments").show();
       $(".new_attachments tr").each(function(){
         if($(this).is(":visible") == false){
           $(this).show();
-          if ($(".new_attachments tr:visible").length == numOfAttachments){
+          if ($(".new_attachments tr:visible").length == Attachment.numOfAttachments){
             $(".new-attachment").hide();
           }else{
             $(".new-attachment").show();
           }
+          Attachment.displayAttachLink();
           return false;
         }
       });
       return false;
     });
+  },
+  bindRemoveAction: function(){
     $(".new_attachments .remove").click(function(){
-      $(this).parents("tr").hide();
+      $(this).parents("tr").hide().find("input").val("");
       if($(".new_attachments tr:visible").length == $(".new_attachments tr").length){
         $(".new-attachment").hide();
       }else{
         $(".new-attachment").show();
+      }
+      if ($(".new_attachments tr:visible").length == 0){
+        $(".new_attachments").hide();
       }
       return false;
     });
@@ -86,6 +96,13 @@ var Attachment = {
     var hash = url.substring(url.indexOf("#")+1);
     if(hash == "attachments"){
       $('.partial_profile').hide();$('#attachment').show(); return false;
-    };
+    }
+  },
+  displayAttachLink: function(){
+    if (Attachment.numOfAttachments == 10 && $(".new_attachments tr:visible").length == 0){
+      $(".new-attachment").text("Attach a file");
+    }else{
+      $(".new-attachment").text("Attach another file");
+    }
   }
 }
