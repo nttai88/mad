@@ -18,7 +18,7 @@
     %td= nice_time project.created_at
     - if current_user && current_user.can_edit_project?(project)
       %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete, :remote => true
+      %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete
       - if current_user.admin?
         %td= link_to 'Manage Members', project_members_path(project)
 %br/
