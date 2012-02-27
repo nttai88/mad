@@ -52,4 +52,5 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => ENV['S3_SECRET'] || "WkvVB47T4UKWXSnvdjn9hq8Ur1vpakDOcw/eCp5q"
   }
   config.fog_directory  = ENV['S3_BUCKET'] || "madlab.development"
+  config.fog_host       = "http://#{ENV['S3_BUCKET']}.s3.amazonaws.com"
 end

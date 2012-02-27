@@ -82,4 +82,5 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => ENV['S3_SECRET']
   }
   config.fog_directory  = ENV['S3_BUCKET']
+  config.fog_host       = "http://#{ENV['S3_BUCKET']}.s3.amazonaws.com"
 end
