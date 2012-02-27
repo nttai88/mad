@@ -89,7 +89,7 @@ var Attachment = {
       }
       if ($(".new_attachments tr:visible").length == 0){
         $(".new_attachments").hide();
-      }
+      } 
       return false;
     });
     var url = window.location.href;
