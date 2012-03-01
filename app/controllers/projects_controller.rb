@@ -29,6 +29,8 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @project.user = current_user
     @project.document ||= Document.new
+    @project.save
+    redirect_to edit_project_url(@project)
   end
 
   # GET /projects/1/edit
@@ -54,12 +56,12 @@ class ProjectsController < ApplicationController
 
   # PUT /projects/1
   # PUT /projects/1.json
-  def update
+  def save
     @project = Project.find(params[:id])
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { head :ok }
+        format.json { render json: {success: true} }
       else
         format.html { render action: "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }

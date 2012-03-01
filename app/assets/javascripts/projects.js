@@ -2,6 +2,8 @@
 //= require i18n-messages
 //= require jquery/jquery.corner
 //= require refinery/wymeditor
+//= require wymeditor/lang/en
+//= require wymeditor/skins/refinery/skin
 //= require jquery.form
 //= require jquery.tools.min
 
@@ -14,8 +16,34 @@ $(document).ready(function(){
 })
 
 Project = {
+  projectUrl: null,
   init: function(){
-    this.autosave();
+    this.projectUrl = $("#project-form").attr("action");
+    this.initTabs();
+    this.autoSave();
+    this.useExistingProfile();
+    this.useUploadedAvatar();
+  },
+  autoSave: function(){
+    $(".field input[type=text]").each(function(){
+      $(this).data("initial_value",$(this).val());
+    });
+    $(".field input[type=text]").blur(function(){
+      var input = $(this);
+      if(input.val() != input.data('initial_value')){
+        var data = {};
+        data[$(this).attr("name")] = $(this).val();
+        $.ajax({
+          type: 'POST', url: Project.projectUrl,
+          data: data, dataType: "json",
+          success: function(data){
+            input.data("initial_value",input.val());
+          }
+        });
+      }
+    });
+  },
+  useUploadedAvatar: function(){
     $("#project_use_user_avatar").click(function(){
       if($(this).is(":checked")){
         $("input.upload-avatar").hide();
@@ -23,7 +51,8 @@ Project = {
         $("input.upload-avatar").show();
       }
     });
-
+  },
+  useExistingProfile: function(){
     $("#use_existing").click(function() {
       if ($(this).is(":checked")) {
         $("#project_name").val($(this).data("user").full_name);
@@ -44,7 +73,7 @@ Project = {
       }
     });
   },
-  autosave: function(){
+  initTabs: function(){
     $("ul#tab-headers").tabs("div#tab-panes > div",{
       initialIndex: 0,
       onClick: function(event, tabIndex) {
