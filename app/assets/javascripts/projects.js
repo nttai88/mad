@@ -2,6 +2,8 @@
 //= require i18n-messages
 //= require jquery/jquery.corner
 //= require refinery/wymeditor
+//= require jquery.form
+//= require jquery.tools.min
 
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
@@ -13,6 +15,7 @@ $(document).ready(function(){
 
 Project = {
   init: function(){
+    this.autosave();
     $("#project_use_user_avatar").click(function(){
       if($(this).is(":checked")){
         $("input.upload-avatar").hide();
@@ -38,6 +41,14 @@ Project = {
         "#project_external_url"], function(idx, value) {
           $(value).val("");
         });
+      }
+    });
+  },
+  autosave: function(){
+    $("ul#tab-headers").tabs("div#tab-panes > div",{
+      initialIndex: 0,
+      onClick: function(event, tabIndex) {
+        return false;
       }
     });
   }

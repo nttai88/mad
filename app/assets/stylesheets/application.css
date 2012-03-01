@@ -432,3 +432,13 @@ form .new-member {
 .field span.error{ color:red}
 .field span.notice{ color:green}
 
+#tab-headers{
+  border-bottom: 1px solid #E91C21;
+  color: #E91C21;
+  font-size: 16px;
+  overflow: hidden;
+  text-align: left;
+  font-weight: bold
+}
+#tab-headers li{ float: left; margin-left: 2px;margin-bottom: 4px;}
+#tab-headers li a.current{color: #B42723}

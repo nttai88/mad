@@ -116,7 +116,7 @@ class ProjectsController < ApplicationController
       
     end
     doc.save
-    redirect_to edit_project_path(@project, :anchor => "attachments")
+    redirect_to edit_project_path(@project)
   end
 
   protected
