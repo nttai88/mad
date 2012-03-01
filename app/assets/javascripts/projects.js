@@ -25,10 +25,10 @@ Project = {
     this.useUploadedAvatar();
   },
   autoSave: function(){
-    $(".field input[type=text]").each(function(){
+    $(".field input[type=text], .field textarea").each(function(){
       $(this).data("initial_value",$(this).val());
     });
-    $(".field input[type=text]").blur(function(){
+    $(".field input[type=text], .field textarea").blur(function(){
       var input = $(this);
       if(input.val() != input.data('initial_value')){
         var data = {};
