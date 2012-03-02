@@ -169,6 +169,40 @@ h2 {
   padding:10px 0 10px 0;
 }
 
+#edit_project .actions {
+ -moz-box-shadow: 0 4px 5px 0 rgba(196, 220, 245, 0.6) inset;
+  background: none repeat scroll 0 0 rgba(227, 240, 253, 0.898);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  padding-top: 25px;
+  text-align: center;
+  height: 60px;
+}
+#edit_project .actions img.spinner{
+  position: absolute;
+  margin-left: 10px;
+  display: none;
+}
+#edit_project .actions ul.alt-tools{
+  float: right;
+  margin-right: 100px;
+}
+#edit_project .actions ul.alt-tools li{
+  float:left;
+  margin-right: 50px;
+}
+
+#edit_project .actions ul.alt-tools li .delete{
+  background: url("icon-delete.png") no-repeat scroll 0 1px transparent;
+  padding-left: 15px;
+}
+#edit_project .actions ul.alt-tools li .exit{
+  background: url("icon-exit.png") no-repeat scroll 0 1px transparent;
+  padding-left: 20px;
+}
 h2.blue_header{
   color:#E91C21;
   overflow:hidden;

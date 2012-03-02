@@ -13,38 +13,65 @@ iframed = function() {
 
 $(document).ready(function(){
   Project.init();
+  Attachment.init();
 })
 
 Project = {
-  projectUrl: null,
+  tabs: null,
   init: function(){
-    this.projectUrl = $("#project-form").attr("action");
     this.initTabs();
-    this.autoSave();
     this.useExistingProfile();
     this.useUploadedAvatar();
+    this.initButtons();
   },
-  autoSave: function(){
-    $(".field input[type=text], .field textarea").each(function(){
-      $(this).data("initial_value",$(this).val());
+  initButtons: function(){
+    $(".actions .next").unbind().click(function(){
+      Project.tabs.next();
+      $(this).blur()
+      Project.showHideNextPrevButtons();
     });
-    $(".field input[type=text], .field textarea").blur(function(){
-      var input = $(this);
-      if(input.val() != input.data('initial_value')){
-        var data = {};
-        data[$(this).attr("name")] = $(this).val();
-        $.ajax({
-          type: 'POST', url: Project.projectUrl,
-          data: data, dataType: "json",
-          success: function(data){
-            input.data("initial_value",input.val());
-          }
-        });
+    $(".actions .save").unbind().click(function(){
+      $(".actions .spinner").show();
+      Project.updateHtmlEditor();
+      Project.tabs.getCurrentPane().find("form").ajaxSubmit({
+        dataType: 'script',
+        success: function(){
+          $(".actions .spinner").hide();
+          $(".actions .save").blur();
+        }
+      });
+    });
+    $(".actions .prev").unbind().click(function(){
+      Project.tabs.prev();
+      $(this).blur()
+      Project.showHideNextPrevButtons();
+    });
+  },
+  updateHtmlEditor: function(){
+    var currentPane = Project.tabs.getCurrentPane();
+    if(currentPane.find("iframe").length > 0){
+      var html = currentPane.find("iframe").contents().find("body").html();
+      currentPane.find("textarea.wymeditor").val(html);
+    }
+  },
+  showHideNextPrevButtons: function(){
+    if(Project.tabs){
+      Project.updateHtmlEditor();
+      var length = Project.tabs.getTabs().length -1;
+      if(Project.tabs.getIndex() == length){
+       $(".actions .next").hide();
+      }else{
+        $(".actions .next").show();
       }
-    });
+      if(Project.tabs.getIndex() == 0){
+        $(".actions .prev").hide();
+      }else{
+        $(".actions .prev").show();
+      }
+    }
   },
   useUploadedAvatar: function(){
-    $("#project_use_user_avatar").click(function(){
+    $("#project_use_user_avatar").unbind().click(function(){
       if($(this).is(":checked")){
         $("input.upload-avatar").hide();
       }else{
@@ -53,7 +80,7 @@ Project = {
     });
   },
   useExistingProfile: function(){
-    $("#use_existing").click(function() {
+    $("#use_existing").unbind().click(function() {
       if ($(this).is(":checked")) {
         $("#project_name").val($(this).data("user").full_name);
         $("#project_contact_attributes_address1").val($(this).data("user").address1);
@@ -77,8 +104,66 @@ Project = {
     $("ul#tab-headers").tabs("div#tab-panes > div",{
       initialIndex: 0,
       onClick: function(event, tabIndex) {
+        Project.showHideNextPrevButtons();
         return false;
       }
     });
+    this.tabs = $("ul#tab-headers").data("tabs");
+    $(".actions .prev").hide();
+  }
+}
+
+var Attachment = {
+  numOfAttachments: null,
+  init: function(){
+    $(".new_attachments").hide();
+    Attachment.numOfAttachments = $(".new_attachments tr").length;
+    Attachment.displayAttachLink();
+    Attachment.bindRemoveAction();
+    Attachment.bindNewAction();
+  },
+  bindNewAction: function(){
+    $(".new-attachment").unbind().click(function(){
+      $(".new_attachments").show();
+      $(".new_attachments tr").each(function(){
+        if($(this).is(":visible") == false){
+          $(this).show();
+          if ($(".new_attachments tr:visible").length == Attachment.numOfAttachments){
+            $(".new-attachment").hide();
+          }else{
+            $(".new-attachment").show();
+          }
+          Attachment.displayAttachLink();
+          return false;
+        }
+      });
+      return false;
+    });
+  },
+  bindRemoveAction: function(){
+    $(".new_attachments .remove").unbind().click(function(){
+      $(this).parents("tr").hide().find("input").val("");
+      if($(".new_attachments tr:visible").length == $(".new_attachments tr").length){
+        $(".new-attachment").hide();
+      }else{
+        $(".new-attachment").show();
+      }
+      if ($(".new_attachments tr:visible").length == 0){
+        $(".new_attachments").hide();
+      }
+      return false;
+    });
+    var url = window.location.href;
+    var hash = url.substring(url.indexOf("#")+1);
+    if(hash == "attachments"){
+      $('.partial_profile').hide();$('#attachment').show(); return false;
+    }
+  },
+  displayAttachLink: function(){
+    if (Attachment.numOfAttachments == 10 && $(".new_attachments tr:visible").length == 0){
+      $(".new-attachment").text("Attach a file");
+    }else{
+      $(".new-attachment").text("Attach another file");
+    }
   }
 }

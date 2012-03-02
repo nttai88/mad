@@ -58,15 +58,8 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def save
     @project = Project.find(params[:id])
-    respond_to do |format|
-      if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render json: {success: true} }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
+    @project.update_attributes(params[:project])
+    render :layout => false
   end
 
   # DELETE /projects/1
@@ -118,7 +111,6 @@ class ProjectsController < ApplicationController
       
     end
     doc.save
-    redirect_to edit_project_path(@project)
   end
 
   protected

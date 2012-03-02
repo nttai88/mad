@@ -1,7 +1,8 @@
-#general.partial_profile
+= form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+  %input{:type => "hidden", :name => "tab", :value=> "general"}
   .field
     %span{:style => "float: left;"}
-      %input#use_existing{:name => "use_existing", :type => "checkbox", :value => "yes", :"data-user" => formated_user_data(@user)}
+      %input#use_existing{:name => "use_existing", :type => "checkbox", :value => "yes", :"data-user" => formated_user_data(@project.user)}
     %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
       Use your profiles existing contact-info
     %br
