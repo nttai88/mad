@@ -2,6 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  helpers:
+    label:
+      user:
+        username: Username
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
   refinery:
     users:
       new:
