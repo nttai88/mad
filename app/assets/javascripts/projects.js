@@ -6,6 +6,7 @@
 //= require wymeditor/skins/refinery/skin
 //= require jquery.form
 //= require jquery.tools.min
+//= require jquery.alerts
 
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
@@ -17,46 +18,101 @@ $(document).ready(function(){
 })
 
 Project = {
+  checkDirty: false,
   tabs: null,
+  tags: ".field input[type=text], input[type=file], .field textarea.larger.widest, .field textarea.wymeditor, .field select",
+  radioValues: {},
+  checkboxValues:{},
   init: function(){
+    this.initDataValue();
     this.initTabs();
     this.useExistingProfile();
     this.useUploadedAvatar();
     this.initButtons();
   },
+  initDataValue: function(){
+    $(Project.tags).each(function(){
+      $(this).data("initial_value", $(this).val());
+    });
+    $(".field input[type=radio]:checked").each(function(){
+      Project.radioValues[$(this).attr("name")] = $(this).val();
+    });
+    $(".field input[type=checkbox]").each(function(){
+      Project.checkboxValues[$(this).attr("name")] = $(this).is(":checked");
+    });
+  },
   initButtons: function(){
     $(".actions .next").unbind().click(function(){
+      Project.updateHtmlEditor();
+      if(Project.isDirtyForm()){
+        Project.showDirtyWarning("next");
+        return false;
+      }
       Project.tabs.next();
       $(this).blur()
       Project.showHideNextPrevButtons();
     });
     $(".actions .save").unbind().click(function(){
-      $(".actions .spinner").show();
       Project.updateHtmlEditor();
-      Project.tabs.getCurrentPane().find("form").ajaxSubmit({
-        dataType: 'script',
-        success: function(){
-          $(".actions .spinner").hide();
-          $(".actions .save").blur();
-        }
-      });
+      Project.saveChanges(null);
     });
     $(".actions .prev").unbind().click(function(){
+      Project.updateHtmlEditor();
+      if(Project.isDirtyForm()){
+        Project.showDirtyWarning("prev");
+        return false;
+      }
       Project.tabs.prev();
       $(this).blur()
       Project.showHideNextPrevButtons();
     });
+
+    $(".alt-tools .exit").click(function(){
+      if(Project.isDirtyForm()){
+        Project.showDirtyWarning(null);
+        return false;
+      }
+      return true;
+    });
+  },
+  saveChanges: function(action){
+    $(".actions .spinner").show();
+    Project.tabs.getCurrentPane().find("form").ajaxSubmit({
+      dataType: 'script',
+      success: function(){
+        $(".actions .spinner").hide();
+        $(".actions .save").blur();
+        Project.nextPrev(action);
+      }
+    });
+  },
+  rejectChanges: function(){
+    var form = Project.tabs.getCurrentPane().find("form");
+    var tags = form.find(Project.tags);
+    tags.each(function(){
+      $(this).val($(this).data("initial_value"));
+      if($(this).hasClass("wymeditor")){
+        try{
+        wym.html($(this).val());
+        }catch(ex){}
+      }
+    });
+    form.find(".field input[type=radio]").each(function(){
+      if($(this).val() == Project.radioValues[$(this).attr("name")]){
+        $(this).attr("checked", "checked");
+      }
+    })
+    form.find(".field input[type=checkbox]").each(function(){
+      $(this).attr("checked", Project.checkboxValues[$(this).attr("name")]);
+    })
   },
   updateHtmlEditor: function(){
-    var currentPane = Project.tabs.getCurrentPane();
-    if(currentPane.find("iframe").length > 0){
-      var html = currentPane.find("iframe").contents().find("body").html();
-      currentPane.find("textarea.wymeditor").val(html);
-    }
+    try{
+      wym.update();
+    }catch(ex){}
   },
   showHideNextPrevButtons: function(){
     if(Project.tabs){
-      Project.updateHtmlEditor();
       var length = Project.tabs.getTabs().length -1;
       if(Project.tabs.getIndex() == length){
        $(".actions .next").hide();
@@ -103,6 +159,18 @@ Project = {
   initTabs: function(){
     $("ul#tab-headers").tabs("div#tab-panes > div",{
       initialIndex: 0,
+      onBeforeClick: function(){
+        if(Project.checkDirty == true){
+          Project.updateHtmlEditor();
+          if (Project.isDirtyForm()){
+            Project.showDirtyWarning(null);
+            return false;
+          }
+        }else{
+          Project.checkDirty = true;
+        }
+        return true;
+      },
       onClick: function(event, tabIndex) {
         Project.showHideNextPrevButtons();
         return false;
@@ -110,6 +178,55 @@ Project = {
     });
     this.tabs = $("ul#tab-headers").data("tabs");
     $(".actions .prev").hide();
+  },
+  isDirtyForm: function(){
+    if(Project.tabs){
+      var form = Project.tabs.getCurrentPane().find("form");
+      var tags = form.find(Project.tags);
+      for(var i = 0; i < tags.length; i ++){
+        var t = $(tags[i]);
+        if(t.val().toString() != t.data("initial_value").toString()){
+          return true;
+        }
+      }
+      var radioTags = form.find(".field input[type=radio]:checked");
+      for(var j = 0; j < radioTags.length; j ++){
+        var e = $(radioTags[j]);
+        if(e.val() != Project.radioValues[e.attr("name")]){
+          return true;
+        }
+      }
+      var checkboxTags = form.find(".field input[type=checkbox]");
+      for(var k = 0; k < checkboxTags.length; k ++){
+        var el = $(checkboxTags[k]);
+        if(el.is(":checked") != Project.checkboxValues[el.attr("name")]){
+          return true;
+        }
+      }
+      return false;
+    }else{
+      return true;
+    }
+  },
+  showDirtyWarning: function(action){
+    $.alerts.okButton ='Save';
+    $.alerts.cancelButton = 'Discard Changes';
+    $.alerts.confirm("Please save or discard your changes to continue", "You have unsaved changes", function(result){
+      if (result) {
+        Project.saveChanges(action);
+      }else {
+        Project.rejectChanges();
+        Project.nextPrev(action)
+      }
+      Project.showHideNextPrevButtons();
+    });
+  },
+  nextPrev: function(action){
+    if(action == "next"){
+      Project.tabs.next();
+    }else if(action == "prev"){
+      Project.tabs.prev();
+    }
   }
 }
 

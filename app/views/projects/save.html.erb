@@ -2,11 +2,14 @@
   <!--javascript code here -->
   <% if params[:tab] == "general" %>
     $("#general").html("<%= escape_javascript(render :partial => "general") %>");
-    Project.init();
+    Project.initDataValue();
+    Project.useExistingProfile();
+    Project.useUploadedAvatar();
   <% elsif params[:tab] == "attachments" %>
     $("#attachments").html("<%= escape_javascript(render :partial => "attachments") %>");
     Attachment.init();
+    Project.initDataValue();
   <% end %>
-
+  
   
 </textarea>

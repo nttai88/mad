@@ -86,5 +86,7 @@ class Project < ActiveRecord::Base
   
   def init
     self['project_status'] ||= "not published"
+    self['service'] ||= "business_plan"
+    self['developed'] ||= "Theoretical idea"
   end
 end
