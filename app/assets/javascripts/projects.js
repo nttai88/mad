@@ -25,10 +25,10 @@ Project = {
   checkboxValues:{},
   init: function(){
     this.initDataValue();
-    this.initTabs();
     this.useExistingProfile();
     this.useUploadedAvatar();
     this.initButtons();
+    this.initTabs();
   },
   initDataValue: function(){
     $(Project.tags).each(function(){
@@ -185,7 +185,11 @@ Project = {
       var tags = form.find(Project.tags);
       for(var i = 0; i < tags.length; i ++){
         var t = $(tags[i]);
-        if(t.val().toString() != t.data("initial_value").toString()){
+        if($.type(t.val) == "array"){
+          if(t.val().toString() != t.data("initial_value").toString()){
+            return true;
+          }
+        }else if(t.val() != t.data("initial_value")){
           return true;
         }
       }
