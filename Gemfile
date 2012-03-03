@@ -23,6 +23,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'launchy', '~> 2.0.5'
   gem 'database_cleaner', '~> 0.7.1'
+  gem 'ruby-debug19',:require=> 'ruby-debug'
 end
 
 group :production do
