@@ -1,20 +1,20 @@
-  <div class='field'>
-    <%= f.label :username %>
-    <%= f.text_field :username, :class => 'larger widest' %>
-    <span class="error"></span>
-  </div>
-  <div class='field'>
-    <%= f.label :email %>
-    <%= f.text_field :email, :class => 'larger widest' %>
-  </div>
-  <div class='field'>
-    <%= f.label :password %>
-    <%= f.password_field :password, :class => 'larger widest' %>
-    <% if ["edit", "update"].index(action_name) %>
-      <p>Leaving password blank keeps the current password  </p>
-    <% end %>
-  </div>
-  <div class='field'>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, :class => 'larger widest' %>
-  </div>
+<div class='field'>
+  <%= f.label :username %>
+  <%= f.text_field :username, :class => 'larger widest' %>
+  <span class="error"></span>
+</div>
+<div class='field'>
+  <%= f.label :email %>
+  <%= f.text_field :email, :class => 'larger widest' %>
+</div>
+<div class='field'>
+  <%= f.label :password %>
+  <%= f.password_field :password, :class => 'larger widest' %>
+  <% if ["edit", "update"].index(action_name) %>
+    <p>Leaving password blank keeps the current password  </p>
+  <% end %>
+</div>
+<div class='field'>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, :class => 'larger widest' %>
+</div>

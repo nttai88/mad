@@ -7,10 +7,10 @@
 <% end %>
 <%= form_for :refinery_user, :url => main_app.update_refinery_user_path(current_refinery_user) do |f| %>
   <%= render :partial => "/refinery/admin/error_messages",
-           :locals => {
-             :object => @user,
-             :include_object_name => true
-           } %>
+    :locals => {
+    :object => @user,
+    :include_object_name => true
+  } %>
   <%= render :partial => "refinery/users/user_fields", :locals => {:f => f} %>
   <%= render :partial => "normal_user_form", :locals => {:f =>f} %>
   <%= f.fields_for :profile do |fr| %>

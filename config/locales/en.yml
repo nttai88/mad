@@ -18,14 +18,14 @@ en:
         hello_please_sign_in: Enter your username and password
     news_items:
       category:
-        from_madlab: "From MadLab"
-        news: "News"
-        competitions: "Competitions"
-        press: "Press"
+        from_madlab: From MadLab
+        news: News
+        competitions: Competitions
+        press: Press
   devise:
     sessions:
-      signed_in: 'You have been logged in successfully.'
-      signed_out: 'You have been logged out successfully.'
+      signed_in: You have been logged in successfully.
+      signed_out: You have been logged out successfully.
   activerecord:
     attributes:
       refinery/news_item:

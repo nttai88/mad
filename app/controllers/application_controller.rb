@@ -31,8 +31,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
    # if params[:locale] is nil then I18n.default_locale will be used
-    I18n.locale = :nb#params[:locale]
-    debugger
-    p "d"
+    I18n.locale = params[:_locale] #where is params[:locale] get overridden ? Using _locale for testing 
   end
 end

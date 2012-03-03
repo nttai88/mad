@@ -26,7 +26,4 @@ nb:
     sessions:
       signed_in: Y*ou have been logged in successfully.
       signed_out: Y*ou have been logged out successfully.
-  activerecord:
-    attributes:
-      refinery/news_item:
-        category: C*ategory
+  

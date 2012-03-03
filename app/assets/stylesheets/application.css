@@ -428,3 +428,7 @@ form .new-member {
   float: right
 }
 .clear{clear:both}
+ul.custom-menu{float: left;}
+#local_selector .selected img{
+/*    border: solid #F2F1F0;*/
+}
