@@ -1,0 +1,32 @@
+# Sample localization file for Norway. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+nb:
+  helpers:
+    label:
+      user:
+        username: U*sername
+        email: E*mail
+        password: P*assword
+        password_confirmation: P*assword Confirmation
+  refinery:
+    users:
+      new:
+        fill_form: E*nter the information for registration
+    sessions:
+      new:
+        hello_please_sign_in: E*nter your username and password
+    news_items:
+      category:
+        from_madlab: F*rom MadLab
+        news: N*ews
+        competitions: C*ompetitions
+        press: P*ress
+  devise:
+    sessions:
+      signed_in: Y*ou have been logged in successfully.
+      signed_out: Y*ou have been logged out successfully.
+  activerecord:
+    attributes:
+      refinery/news_item:
+        category: C*ategory
