@@ -36,14 +36,14 @@
       = fc.label :city
       = fc.text_field :city, :class => 'larger widest', :style=>"width:290px;"
     .field
-      = fc.label :zip, "Zip/Postal code"
+      = fc.label :zip
       = fc.text_field :zip, :class => 'larger widest', :style=>"width:290px;"
     .field
       = fc.label :phone
       = fc.text_field :phone, :class => 'larger widest', :style=>"width:290px;"
     .field
       = f.fields_for :document do |p|
-        = p.label :avatar, "Avatar/Logo"
+        = p.label :avatar
         - if (!@project.avatar && @project.profile_avatar)
           = f.check_box :use_user_avatar
           Use
@@ -56,7 +56,7 @@
       = fc.label :about
       = fc.text_area :about, :class => 'larger widest'
     .field
-      Choose Project Type
+      =t 'project.form.choose_type'
       %br
       - Project::SERVICES.each_pair do |key, value|
         = f.radio_button :service, key

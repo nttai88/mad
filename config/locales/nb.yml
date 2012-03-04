@@ -14,7 +14,6 @@ nb:
         last_name: L*ast name
         about: A*bout
         receive_newsleter: R*eceive Newsleter
-        
       region:
         country: C*ountry
         state: S*tate
@@ -25,12 +24,59 @@ nb:
         zip:  Z*ip/Postal code
         url: U*rl
         phone: P*hone
-        
-        
-
-
-
-
+        about: A*bout
+      project:
+        name: N*ame
+        project_name: P*roject name
+        title: T*itle
+        network_only: N*etwork Ony
+        field_of_usage: F*ield of usage
+        which_fields_does_the_solve: W*hich fields does the solve
+        category_ids: C*ategory
+        embedded_video: E*mbedded video
+        external_url: E*xternal url
+        business: B*usiness
+        product: P*roduct
+        market_analysis: M*arket analysis
+        competitors: C*ompetitors
+        strategy: S*trategy
+        progression: P*rogression
+        financer: F*inancer
+        summary: S*ummary
+        project_status: P*roject Status
+        geographical_marked: G*eographical marked
+        size_of_marked: S*ize of marked
+        need_company:  E*stablish a company for this purpose
+        founder:     D*o you see yourself as the founder
+        develop_in_own_company: P*roduct development in your company
+        licensing: L*icensing to existing company
+        possible_production_or_industrial_partners: P*ossible production or industrial partners
+        possible_suppliers: P*ossible suppliers
+        possible_distrubitors: P*ossible distrubitors
+        idea_or_patternprotection_needed: I*dea or patternprotection needed
+        patenting: P*atenting
+        possible_competitors_developing_similar_technology: P*ossible competitors developing similar technology
+      document:
+        avatar: A*vatar/Logo
+  project:
+    form:
+      needed_patners: M*adLab Partners you may need contact with
+      published: P*ublished
+      not_published: N*ot published
+      comercialization : C*omercialization
+      current_stage: H*ow far is the idea developed
+      choose_type: C*hoose Project Type
+    stages:
+      theoretical_idea: T*heoretical idea
+      prototype_exists: P*rototype exists
+      technically_tested: T*echnically tested
+      pilot_tested: P*ilot tested
+      company_established: C*ompany established
+      project_in_existing_company: P*roject in existing company
+    patners:
+      investor: I*nvestor
+      producer: P*roducer
+      retailer: R*etailer
   refinery:
     users:
       new:
@@ -45,6 +91,9 @@ nb:
         competitions: C*ompetitions
         press: P*ress
   devise:
+    users:
+      refinery_user:
+        confirmed: T*hank you for registering. A verification email is sent to your email account
     sessions:
       signed_in: Y*ou have been logged in successfully.
       signed_out: Y*ou have been logged out successfully.
@@ -54,3 +103,18 @@ nb:
         category: C*ategory
   message:
     available: "%{what} i*s available!"
+  navigations:
+    project:
+      general: G*eneral
+      teaser: T*easer
+      business_page: B*usiness Page
+      product_description: P*roduct Description
+      market_analysis: M*arket Analysis
+      competitors_analysis: C*ompetitors Analysis
+      strategy: S*trategy
+      progression_plan: P*rogression Plan
+      financer: F*inancer
+      summary: S*ummary
+      attachments: A*ttachments
+      thoughts_and_wishes: T*houghts & wishes
+      payment: P*ayment

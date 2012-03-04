@@ -8,7 +8,7 @@
       = f.text_field :title, :style=>"width:290px;"
     .field
       = f.check_box :network_only
-      Network Only
+      = t('network_only',:scope => 'helpers.label.project')
     .field
       = f.label :field_of_usage
       = f.text_area :usage, :class => 'larger widest'
@@ -16,18 +16,18 @@
       = f.label :which_fields_does_the_solve
       = f.text_area :solves, :class => 'larger widest'
     .field
-      = f.label :category_ids, "Category"
+      = f.label :category_ids
       = f.collection_select :category_ids, Category.all, :id, :title, {}, { :multiple => true }
-    MadLab Partners you may need contact with
+    = t 'project.form.needed_patners'
     .field
       = f.check_box :need_investor
-      Investor
+      = t 'project.patners.investor'
     .field
       = f.check_box :need_producer
-      Producer
+      = t 'project.patners.producer'
     .field
       = f.check_box :need_retail
-      Retailer
+      = t 'project.patners.retailer'
     .field
       = f.label :embedded_video
       = f.text_area :embedded_video, :class => 'larger widest'
