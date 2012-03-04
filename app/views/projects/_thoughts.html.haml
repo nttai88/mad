@@ -1,0 +1,66 @@
+#thoughts.partial_profile.hidden
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %p Project Status
+    .field
+      %p
+        = f.radio_button :project_status, "published"
+        Published
+        = f.radio_button :project_status, "not published"
+        Not Published
+    .field
+      = f.label :geographical_marked
+      = f.text_area :marked_geographic, :class => 'larger widest'
+    .field
+      = f.label :size_of_marked
+      = f.text_area :marked_size, :class => 'larger widest'
+    %b Comercialization
+    .field
+      = f.check_box :need_company
+      Establish a company for this purpose
+    .field
+      = f.check_box :founder
+      Do you see yourself as the founder
+    .field
+      = f.check_box :develop_in_own_company
+      Product development in your company
+    .field
+      = f.check_box :licensing
+      Licensing to existing company
+    %br
+    %b How far is the idea developed
+    .field
+      = f.radio_button :developed, "Theoretical idea"
+      Theoretical idea
+    .field
+      = f.radio_button :developed, "Prototype exists"
+      Prototype exists
+    .field
+      = f.radio_button :developed, "Idea is technically tested"
+      Idea is technically tested
+    .field
+      = f.radio_button :developed, "Pilot tested"
+      Pilot tested
+    .field
+      = f.radio_button :developed, "Company established"
+      Company established
+    .field
+      = f.radio_button :developed, "Project in existing company"
+      Project in existing company
+    .field
+      = f.label :possible_production_or_industrial_partners
+      = f.text_area :industrial_partners, :class => 'larger widest'
+    .field
+      = f.label :possible_suppliers
+      = f.text_area :suppliers, :class => 'larger widest'
+    .field
+      = f.label :possible_distrubitors
+      = f.text_area :distributers, :class => 'larger widest'
+    .field
+      = f.label :idea_or_patternprotection_needed
+      = f.text_area :idea, :class => 'larger widest'
+    .field
+      = f.label :patenting
+      = f.text_area :patenting, :class => 'larger widest'
+    .field
+      = f.label :possible_competitors_developing_similar_technology
+      = f.text_area :competitors2, :class => 'larger widest'

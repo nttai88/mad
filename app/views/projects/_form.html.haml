@@ -3,299 +3,63 @@
   = states_by_country
 #middle_content
   #left_container.left
-    #edit_profile
-      - @user = current_refinery_user
-      = form_for @project, :html => {:class => "nice"} do |f|
-        %h2.blue_header#edit_profile_links
-          .left
-            = link_to_function 'General', "$('.partial_profile').hide();$('#general').show();", :class => "title_link"
+    #edit_project
+      %div
+        %ul#tab-headers
+          %li
+            = link_to 'General', "#"
             &rarr;
-            = link_to_function 'Teaser', "$('.partial_profile').hide();$('#teaser').show();", :class => "title_link"
+          %li
+            = link_to 'Teaser', "#"
             &rarr;
-            = link_to_function 'Business Page', "$('.partial_profile').hide();$('#business').show();", :class => "title_link"
+          %li
+            = link_to 'Business Page', "#"
             &rarr;
-            = link_to_function 'Product Description', "$('.partial_profile').hide();$('#product').show();", :class => "title_link"
+          %li
+            = link_to 'Product Description', "#"
             &rarr;
-            = link_to_function 'Market Analysis', "$('.partial_profile').hide();$('#market').show();", :class => "title_link"
+          %li
+            = link_to 'Market Analysis', "#"
             &rarr;
-            = link_to_function 'Competitors Analysis', "$('.partial_profile').hide();$('#competitor_one').show();", :class => "title_link"
+          %li
+            = link_to 'Competitors Analysis', "#"
             &rarr;
-            = link_to_function 'Strategy', "$('.partial_profile').hide();$('#strategy').show();", :class => "title_link"
+          %li
+            = link_to 'Strategy', "#"
             &rarr;
-            = link_to_function 'Progression Plan', "$('.partial_profile').hide();$('#progression').show();", :class => "title_link"
+          %li
+            = link_to 'Progression Plan', "#"
             &rarr;
-            = link_to_function 'Financer', "$('.partial_profile').hide();$('#finance').show();", :class => "title_link"
+          %li
+            = link_to 'Financer', "#"
             &rarr;
-            = link_to_function 'Summary', "$('.partial_profile').hide();$('#summary').show();", :class => "title_link"
+          %li
+            = link_to 'Summary', "#"
             &rarr;
-            = link_to_function 'Attachments', "$('.partial_profile').hide();$('#attachment').show();", :class => "title_link"
+          %li
+            = link_to 'Attachments', "#"
             &rarr;
-            = link_to_function 'Thoughts & wishes', "$('.partial_profile').hide();$('#thoughts').show();", :class => "title_link"
+          %li
+            = link_to 'Thoughts & wishes', "#"
             &rarr;
-            = link_to_function 'Payment', "$('.partial_profile').hide();$('#payment').show();", :class => "title_link"
-        = render :partial => "/refinery/admin/error_messages", :locals => {:object => @project, :include_object_name => true}
-        #general.partial_profile
-          .field
-            %span{:style => "float: left;"}
-              %input#use_existing{:name => "use_existing", :onClick => "copyProfileInfo(this);", :type => "checkbox", :value => "yes"}
-            %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
-              Use your profiles existing contact-info
-            %br
-          .field{:class => "clear"}
-            = f.label :name
-            = f.text_field :name, :style=>"width:290px;"
-          - @project.contact = Contact.new unless @project.contact
-          = f.fields_for :contact_attributes, @project.contact do |fc|
-            .field
-              = fc.label :address1
-              = fc.text_field :address1, :class => 'larger widest', :style=>"width:290px;"
-            .field
-              = fc.label :address2
-              = fc.text_field :address2, :class => 'larger widest', :style=>"width:290px;"
-            
-            - @project.contact.region = Region.new unless @project.contact.region
-            = fc.fields_for :region_attributes, @project.contact.region do |fr|
-              .region
-                .field
-                  = fr.label :country
-                  = fr.country_select :country, "US", {},{:class => "country", :style=>"width:295px;"}
-                - country_code = (@project.contact.region.country || "US")
-                .field.state{:style => "#{("display:none" unless has_state?(country_code))}"}
-                  = fr.label :state
-                  - begin
-                    = fr.state_select :state, country_code, {}, {:class => "state", :style=>"width:295px;"}
-                  - rescue
-                    %select#project_contact_attributes_region_attributes_state.state{:name => "project[contact_attributes][region_attributes][state]"}
-            .field
-              = fc.label :city
-              = fc.text_field :city, :class => 'larger widest', :style=>"width:290px;"
-            .field
-              = fc.label :zip, "Zip/Postal code"
-              = fc.text_field :zip, :class => 'larger widest', :style=>"width:290px;"
-            .field
-              = fc.label :phone
-              = fc.text_field :phone, :class => 'larger widest', :style=>"width:290px;"
-            .field
-              = f.fields_for :document do |p|
-                = p.label :avatar, "Avatar/Logo"
-                = p.file_field :avatar
-            .field
-              = fc.label :about
-              = fc.text_area :about, :class => 'larger widest'
-            .field
-              - Project::SERVICES.each_pair do |key, value|
-                = f.radio_button :service, key
-                = value
-        #teaser.partial_profile.hidden
-          .field
-            = f.label :project_name
-            = f.text_field :project_name, :style=>"width:290px;"
-          .field
-            = f.label :title
-            = f.text_field :title, :style=>"width:290px;"
-          .field
-            = f.check_box :network_only
-            Network Only
-          .field
-            = f.label :field_of_usage
-            = f.text_area :usage
-          .field
-            = f.label :which_fields_does_the_solve
-            = f.text_area :solves
-          .field
-            = f.label :category
-            = select(:project, :category_id, Category.find(:all).collect{|s| [ s.title, s.id ] }, { :include_blank => true })
-          .field
-            = f.check_box :need_investor
-            Investor
-          .field
-            = f.check_box :need_producer
-            Producer
-          .field
-            = f.check_box :need_retail
-            Retailer
-          .field
-            = f.label :embedded_video
-            = f.text_area :embedded_video
-          .field
-            = f.label :external_url
-            = f.text_field :external_url
-        #business.partial_profile.hidden
-          .field
-            = f.label :business
-            = f.text_area :business, :class => 'wymeditor'
-        #product.partial_profile.hidden
-          .field
-            = f.label :product
-            = f.text_area :product_description, :class => 'wymeditor'
-        #market.partial_profile.hidden
-          .field
-            = f.label :market_analysis
-            = f.text_area :market, :class => 'wymeditor'
-        #competitor_one.partial_profile.hidden
-          .field
-            = f.label :competitors
-            = f.text_area :competitors, :class => 'wymeditor'
-        #strategy.partial_profile.hidden
-          .field
-            = f.label :strategy
-            = f.text_area :strategy, :class => 'wymeditor'
-        #progression.partial_profile.hidden
-          .field
-            = f.label :progression
-            = f.text_area :progression, :class => 'wymeditor'
-        #finance.partial_profile.hidden
-          .field
-            = f.label :financer
-            = f.text_area :finances, :class => 'wymeditor'
-        #summary.partial_profile.hidden
-          .field
-            = f.label :summary
-            = f.text_area :summary, :class => 'wymeditor'
-          
-        #attachment.partial_profile.hidden
-          = f.fields_for :document do |p|
-            %table{:cellpadding => 0, :cellspacing => 0, :width => '100%'}
-              %tr
-                %td
-                  = p.file_field :file
-                %td
-                  #at1= link_to_function "add another attachment", "$('#file1').show();$('#at1').hide();$('#at2').show()"
-                  #at2.hidden= link_to_function "add another attachment", "$('#file2').show();$('#at2').hide();$('#at3').show()"
-                  #at3.hidden= link_to_function "add another attachment", "$('#file3').show();$('#at3').hide();$('#at4').show()"
-                  #at4.hidden= link_to_function "add another attachment", "$('#file4').show();$('#at4').hide();$('#at5').show()"
-                  #at5.hidden= link_to_function "add another attachment", "$('#file5').show();$('#at5').hide();$('#at6').show()"
-                  #at6.hidden= link_to_function "add another attachment", "$('#file6').show();$('#at6').hide();$('#at7').show()"
-                  #at7.hidden= link_to_function "add another attachment", "$('#file7').show();$('#at7').hide();$('#at8').show()"
-                  #at8.hidden= link_to_function "add another attachment", "$('#file8').show();$('#at8').hide();$('#at9').show()"
-                  #at9.hidden= link_to_function "add another attachment", "$('#file9').show();$('#at9').hide();$('#at1').show()"
-              %tr{:id=>"file1", :class=>"hidden"}
-                %td
-                  = p.file_field :file1
-                  = link_to_function "Remove", "$('#file1').remove()"
-              %tr{:id=>"file2", :class=>"hidden"}
-                %td
-                  = p.file_field :file2
-                  = link_to_function "Remove", "$('#file2').remove()"
-              %tr{:id=>"file3", :class=>"hidden"}
-                %td
-                  = p.file_field :file3
-                  = link_to_function "Remove", "$('#file3').remove()"
-              %tr{:id=>"file4", :class=>"hidden"}
-                %td
-                  = p.file_field :file4
-                  = link_to_function "Remove", "$('#file4').remove()"
-              %tr{:id=>"file5", :class=>"hidden"}
-                %td
-                  = p.file_field :file5
-                  = link_to_function "Remove", "$('#file5').remove()"
-              %tr{:id=>"file6", :class=>"hidden"}
-                %td
-                  = p.file_field :file6
-                  = link_to_function "Remove", "$('#file6').remove()"
-              %tr{:id=>"file7", :class=>"hidden"}
-                %td
-                  = p.file_field :file7
-                  = link_to_function "Remove", "$('#file7').remove()"
-              %tr{:id=>"file8", :class=>"hidden"}
-                %td
-                  = p.file_field :file8
-                  = link_to_function "Remove", "$('#file8').remove()"
-              %tr{:id=>"file9", :class=>"hidden"}
-                %td
-                  = p.file_field :file9
-                  = link_to_function "Remove", "$('#file9').remove()"
-        #thoughts.partial_profile.hidden
-          %p Project Status
-          .field
-            %p
-              = f.radio_button :project_status, "published"
-              Published
-              = f.radio_button :project_status, "not published"
-              Not Published
-          .field
-            = f.label :geographical_marked
-            = f.text_area :marked_geographic
-          .field
-            = f.label :size_of_marked
-            = f.text_area :marked_size
-          %b Comercialization
-          .field
-            = f.check_box :need_company
-            Establish a company for this purpose
-          .field
-            = f.check_box :founder
-            Do you see yourself as the founder
-          .field
-            = f.check_box :develop_in_own_company
-            Product development in your company
-          .field
-            = f.check_box :licensing
-            Licensing to existing company
-          %br
-          %b How far is the idea developed
-          .field
-            = f.radio_button :developed, "Theoretical idea"
-            Theoretical idea
-          .field
-            = f.radio_button :developed, "Prototype exists"
-            Prototype exists
-          .field
-            = f.radio_button :developed, "Idea is technically tested"
-            Idea is technically tested
-          .field
-            = f.radio_button :developed, "Pilot tested"
-            Pilot tested
-          .field
-            = f.radio_button :developed, "Company established"
-            Company established
-          .field
-            = f.radio_button :developed, "Project in existing company"
-            Project in existing company
-          .field
-            = f.label :possible_production_or_industrial_partners
-            = f.text_area :industrial_partners
-          .field
-            = f.label :possible_suppliers
-            = f.text_area :suppliers
-          .field
-            = f.label :possible_distrubitors
-            = f.text_area :distributers
-          .field
-            = f.label :idea_or_patternprotection_needed
-            = f.text_area :idea
-          .field
-            = f.label :patenting
-            = f.text_area :patenting
-          .field
-            = f.label :possible_competitors_developing_similar_technology
-            = f.text_area :competitors2
-        #payment.partial_profile.hidden
-          %p Pay with Paypal
-          %img{:src => "https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif"}
-              
-        .actions
-          = f.submit 'Save', :class=>"wymupdate nice small radius red button"
-        - @user = current_refinery_user
-        - contact = Contact.find(:first, :conditions => { :contactable_type => "Profile", :contactable_id=>"#{@user.profile.id}"})
-        - contact = Contact.new unless contact
-        :javascript
+          %li
+            = link_to 'Payment', "#"
 
-          function copyProfileInfo(elem){
-            if(elem.checked == true){
-              $('#project_contact_attributes_zip').val("#{contact.zip}");
-              $('#project_contact_attributes_city').val("#{contact.city}");
-              $('#project_contact_attributes_phone').val("#{contact.phone}");
-              $('#project_contact_attributes_address2').val("#{contact.address2}");
-              $('#project_contact_attributes_address1').val("#{contact.address1}");
-              $('#project_contact_attributes_about').val("#{@user.profile.about}");
-            }else
-            {
-              $('#project_contact_attributes_zip').val("");
-              $('#project_contact_attributes_city').val("");
-              $('#project_contact_attributes_phone').val("");
-              $('#project_contact_attributes_address2').val("");
-              $('#project_contact_attributes_address1').val("");
-              $('#project_contact_attributes_about').val("");
-            }
-          }
+        %div#tab-panes
+          #general.partial_profile
+            = render :partial => "general"
+          = render :partial => "teaser"
+          = render :partial => "wymeditor", :locals => {:label => :business, :field => :business}
+          = render :partial => "wymeditor", :locals => {:label => :product, :field => :product_description}
+          = render :partial => "wymeditor", :locals => {:label => :market_analysis, :field => :market}
+          = render :partial => "wymeditor", :locals => {:label => :competitors, :field => :competitors}
+          = render :partial => "wymeditor", :locals => {:label => :strategy, :field => :strategy}
+          = render :partial => "wymeditor", :locals => {:label => :progression, :field => :progression}
+          = render :partial => "wymeditor", :locals => {:label => :financer, :field => :finances}
+          = render :partial => "wymeditor", :locals => {:label => :summary, :field => :summary}
+          #attachments.partial_profile.hidden
+            = render :partial => "attachments"
+          = render :partial => "thoughts"
+          = render :partial => "payment"
+        = render :partial => "form_actions"
+          

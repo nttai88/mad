@@ -37,7 +37,11 @@
         </div>
         <div id="shadow-showcase"></div>
         <section id="page">
+
           <% if ["items", "pages", "inquiries"].include?(controller_name) %>
+            <div id="flash_container">
+              <%= render :partial => '/refinery/message' %>
+            </div>
             <%= yield %>
           <% else %>
             <section id="body_content">

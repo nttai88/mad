@@ -7,4 +7,12 @@ class Contact < ActiveRecord::Base
     region = Region.where(attrs).first
     self.region = region
   end
+
+  def country
+    region && region.country
+  end
+
+  def state
+    region && region.state
+  end
 end

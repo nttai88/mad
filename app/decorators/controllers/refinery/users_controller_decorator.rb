@@ -10,8 +10,9 @@ Refinery::UsersController.class_eval do
   def create
     @user = Refinery::User.new(params[:user])
     @user.roles = [Refinery::Role.find(params[:user][:role_ids])] if params[:user][:role_ids]
-    if @user.create_first
+    if @user.create_user
       create_internal_message
+      set_flash_message(:notice, :confirmed)
       redirect_back_or_default(main_app.root_path)
     else
       render :action => 'new'

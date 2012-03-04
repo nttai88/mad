@@ -38,7 +38,7 @@ gem 'carrierwave', '~> 0.5.8'
 gem 'fog', '~> 1.1.2'
 gem "carmen", "~> 0.2.12"
 gem "simple_form", '~> 1.5.2'
-gem 'mailboxer', :git => 'git://github.com/dickeytk/mailboxer.git'
+gem 'mailboxer', :path => 'vendor/engines/mailboxer'
 gem 'messaging', :git => 'git://github.com/frodefi/rails-messaging.git'
 gem 'sunspot_solr', '~> 1.3.0'
 gem 'thin', '~> 1.3.1'

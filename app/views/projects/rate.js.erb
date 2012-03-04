@@ -1,0 +1,1 @@
+$("#<%= @project.wrapper_dom_id(params) %>").html("<%= escape_javascript(ratings_for @project, :dimension => params[:dimension], :remote_options => {:url => rate_project_path(@project)}) %>")

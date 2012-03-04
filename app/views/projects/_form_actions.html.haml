@@ -1,0 +1,10 @@
+.actions
+  = button_tag 'Previous', :class=>"wymupdate nice small radius blue button prev"
+  = submit_tag 'Save', :class=>"wymupdate nice small radius red button save"
+  = button_tag 'Next', :class=>"wymupdate nice small radius blue button next"
+  = image_tag "ajax-loader.gif", :class => "spinner"
+  %ul.alt-tools
+    %li
+      = link_to 'Delete Project', project_path(@project), :confirm => 'Are you sure?', :method => :delete, :title =>"Delete this project", :class => "delete"
+    %li
+      = link_to "Exit", projects_path, :title => "Exit to All Projects page", :class => "exit"

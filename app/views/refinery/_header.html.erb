@@ -1,6 +1,10 @@
 <div class="right-menu">
   <ul class="custom-menu" id="user_credential_menu" >
     <% if refinery_user_signed_in? %>
+      <li>
+        <%= link_to image_tag("nn.png"), "/nb" %>
+        <%= link_to image_tag("en.jpeg"), "/en" %>
+      </li>
       <li> <%= link_to "My Page", "/my-page" %> </li>
       <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_url %> </li>
       <li> Logged in as: <b><%= current_user.username %></b> </li>
@@ -9,7 +13,7 @@
       <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %></li>
     <% end %>
   </ul>
-   <%= render :partial => '/refinery/locale_selector' %>
+  <%= render :partial => '/refinery/locale_selector' unless refinery_user_signed_in? %>
 
 </div>
 <h1 id='logo'>
