@@ -9,6 +9,28 @@ nb:
         email: E*mail
         password: P*assword
         password_confirmation: P*assword Confirmation
+      profile:
+        first_name: F*irst name
+        last_name: L*ast name
+        about: A*bout
+        receive_newsleter: R*eceive Newsleter
+        
+      region:
+        country: C*ountry
+        state: S*tate
+      contact:
+        address1: A*ddress 1
+        address2: A*ddress 2
+        city: C*ity
+        zip:  Z*ip/Postal code
+        url: U*rl
+        phone: P*hone
+        
+        
+
+
+
+
   refinery:
     users:
       new:
@@ -26,4 +48,9 @@ nb:
     sessions:
       signed_in: Y*ou have been logged in successfully.
       signed_out: Y*ou have been logged out successfully.
-  
+  activerecord:
+    attributes:
+      refinery/news_item:
+        category: C*ategory
+  message:
+    available: "%{what} i*s available!"

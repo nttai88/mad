@@ -44,5 +44,4 @@ module ApplicationHelper
     end
     url.html_safe
   end
-  
 end

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
 
-  helper_method :current_user
+  helper_method :current_user,:locale_key
 
   private
 
@@ -30,7 +30,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-   # if params[:locale] is nil then I18n.default_locale will be used
-    I18n.locale = params[:_locale] #where is params[:locale] get overridden ? Using _locale for testing 
+    #where is params[:locale] get overridden ? Using _locale for testing 
+    I18n.locale = params[locale_key] || session[locale_key] || I18n.default_locale
+    session[locale_key]=I18n.locale
+  end
+  
+  def locale_key
+    'l'
   end
 end

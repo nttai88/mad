@@ -47,9 +47,9 @@ Refinery::UsersController.class_eval do
     status = user.errors[:username].blank?
     response = {:status => status}
     if status
-      response[:message] = "Username is available!"
+      response[:message] =  t('message.available',:what=>user.class.human_attribute_name(:username))
     else
-      response[:message] = "Username #{user.errors[:username].first}"
+      response[:message] = "#{user.class.human_attribute_name(:username)} #{user.errors[:username].first}"
     end
     render :json => response
   end
