@@ -1,0 +1,36 @@
+#teaser.partial_profile.hidden
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    .field
+      = f.label :project_name
+      = f.text_field :project_name, :style=>"width:290px;"
+    .field
+      = f.label :title
+      = f.text_field :title, :style=>"width:290px;"
+    .field
+      = f.check_box :network_only
+      = t('network_only',:scope => 'helpers.label.project')
+    .field
+      = f.label :field_of_usage
+      = f.text_area :usage, :class => 'larger widest'
+    .field
+      = f.label :which_fields_does_the_solve
+      = f.text_area :solves, :class => 'larger widest'
+    .field
+      = f.label :category_ids
+      = f.collection_select :category_ids, Category.all, :id, :title, {}, { :multiple => true }
+    = t 'project.form.needed_patners'
+    .field
+      = f.check_box :need_investor
+      = t 'project.patners.investor'
+    .field
+      = f.check_box :need_producer
+      = t 'project.patners.producer'
+    .field
+      = f.check_box :need_retail
+      = t 'project.patners.retailer'
+    .field
+      = f.label :embedded_video
+      = f.text_area :embedded_video, :class => 'larger widest'
+    .field
+      = f.label :external_url
+      = f.text_field :external_url

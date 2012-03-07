@@ -4,29 +4,29 @@
 <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8" />
-	
-	<!-- Uncomment to make IE8 render like IE7 -->
-	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
-	
-	<!-- Set the viewport width to device width for mobile -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<title><%= content_for?(:title) ? yield(:title) : "Company Name" %></title>
-  
-	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag    "application" %>
-	<!-- Included JS Files  -->
-	<%= javascript_include_tag "application" %>
-	<%= render :partial => '/refinery/html_tag' %>
-  <% site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true}) -%>
-  <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= ajaxful_rating_style %>
-    <%#= site_bar -%>
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Uncomment to make IE8 render like IE7 -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Company Name" %></title>
+
+    <!-- Included CSS Files -->
+    <%= stylesheet_link_tag    "application" %>
+    <!-- Included JS Files  -->
+    <%= javascript_include_tag "application" %>
+    <%= render :partial => '/refinery/html_tag' %>
+    <% site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true}) -%>
+    <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= ajaxful_rating_style %>
+<%#= site_bar -%>
     <div id="container">
       <div id="page_container" class="container row">
         <header id="header">
@@ -37,7 +37,11 @@
         </div>
         <div id="shadow-showcase"></div>
         <section id="page">
+
           <% if ["items", "pages", "inquiries"].include?(controller_name) %>
+            <div id="flash_container">
+              <%= render :partial => '/refinery/message' %>
+            </div>
             <%= yield %>
           <% else %>
             <section id="body_content">

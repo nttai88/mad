@@ -19,13 +19,21 @@ Register = {
   init: function(){
     $("input#user_username").blur(function(){
       var input = $(this);
-      $.ajax({
-        url: "/users/check_username_availability",
+      var container = input.parents(".field");
+      $.ajax({ url: "/users/check_username_availability",
         type: "POST", data: {username: input.val()},
         success: function(data){
-          input.parent().find(".error").text(data.message);
+          container.find("span.error, span.notice").hide();
+          if(data.status == true){
+            container.find(".notice").text(data.message).show();
+          }else{
+            container.find(".error").text(data.message).show();
+          }
         }
       });
+    }).keydown(function(){
+      var spans = $(this).parents(".field").find("span.error, span.notice");
+      spans.text("");
     });
   }
 }

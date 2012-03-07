@@ -8,6 +8,10 @@
       %p
         %b Name:
         = @project.name
+      %p
+        %b Avatar/Logo:
+        %br
+        = image_tag @project.avatar, :style => "height: 50px;"
       - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
       %p
         %b Address1:
@@ -92,8 +96,8 @@
         = raw @project.summary
       = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
     #show_info
-      %h4
-        Attachments
+      %h4 Attachments
+      = render :partial => "attachments"
       = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
     #show_info
       %h4

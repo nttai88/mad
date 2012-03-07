@@ -6,4 +6,13 @@ module ProjectsHelper
     end
     return false
   end
+
+  def formated_user_data(user)
+    contact = Contact.where(:contactable_type => "Profile",
+                            :contactable_id => user.profile.id).first || Contact.new
+
+    { :full_name => user.full_name, :zip => contact.zip, :city => contact.city,
+      :phone => contact.phone, :address1 => contact.address1, :address2 => contact.address2,
+      :about => user.profile.about, :url => contact.url }.to_json
+  end
 end

@@ -17,7 +17,7 @@ describe "Entrepreneur" do
         fill_in "Username", :with => "test"
         fill_in "Email", :with => "test@test.com"
         fill_in "Password", :with => "123456"
-        fill_in "Password confirmation", :with => "123456"
+        fill_in "Password Confirmation", :with => "123456"
         fill_in "First name", :with => "test"
         fill_in "Last name", :with => "tset"
 
@@ -39,7 +39,7 @@ describe "Entrepreneur" do
           page.should have_content("Email can't be blank")
           page.should have_content("Password can't be blank")
           page.should have_content("Username can't be blank")
-          page.should have_content("Username is too short (minimum is 3 characters)")
+          page.should have_content("Username is too short (minimum is 4 characters)")
           page.should have_content("Profile first name can't be blank")
           page.should have_content("Profile last name can't be blank")
         end
@@ -93,6 +93,7 @@ describe "Entrepreneur" do
       click_button "Sign in"
       click_link "Projects"
       click_link "New project"
+      
       page.current_path.should eq("/projects/new")
     end
 

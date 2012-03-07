@@ -10,8 +10,9 @@ Refinery::UsersController.class_eval do
   def create
     @user = Refinery::User.new(params[:user])
     @user.roles = [Refinery::Role.find(params[:user][:role_ids])] if params[:user][:role_ids]
-    if @user.create_first
+    if @user.create_user
       create_internal_message
+      set_flash_message(:notice, :confirmed)
       redirect_back_or_default(main_app.root_path)
     else
       render :action => 'new'
@@ -47,9 +48,9 @@ Refinery::UsersController.class_eval do
     status = user.errors[:username].blank?
     response = {:status => status}
     if status
-      response[:message] = "Username is available!"
+      response[:message] =  t('message.available',:what=>user.class.human_attribute_name(:username))
     else
-      response[:message] = "Username #{user.errors[:username].first}"
+      response[:message] = "#{user.class.human_attribute_name(:username)} #{user.errors[:username].first}"
     end
     render :json => response
   end

@@ -1,17 +1,27 @@
 Refinery::User.class_eval do
   ajaxful_rater
   has_one :profile
+  has_one :document, :as => :documentable,  :dependent => :destroy
   has_many :projects
   has_many :comments
   has_and_belongs_to_many :partner_of_projects, :class_name => "Project", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisor_of_projects, :class_name => "Project", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
   accepts_nested_attributes_for :profile, :allow_destroy => true
+  accepts_nested_attributes_for :document, :allow_destroy => true
   devise :confirmable
   include Mailboxer::Models::Messageable
   acts_as_messageable
-  attr_accessible :profile_attributes, :role_ids
+  attr_accessible :profile_attributes, :role_ids, :document_attributes
   after_save :create_profile
-  validates :username, :length => { :minimum => 3}
+  validates :username, :length => { :minimum => 4}, :format => { :with =>  /^[A-Za-z\d_\.\-\_ ]+$/i}
+
+  def document_attributes=(attrs)
+    unless self.document
+      self.document = Document.new(attrs)
+    else
+      self.document.update_attributes(attrs)
+    end
+  end
 
   def profile_attributes=(attrs)
     unless self.profile
@@ -21,7 +31,7 @@ Refinery::User.class_eval do
     end
   end
 
-  def create_first
+  def create_user
     if valid?
       # first we need to save user
       save
@@ -96,6 +106,14 @@ Refinery::User.class_eval do
     conditions[:category_id] = categories unless categories.empty?
     conditions["contacts.region_id"] = regions unless regions.empty?
     Project.joins(:contact).where(conditions)
+  end
+
+  def avatar
+    if self.document && self.document.avatar.url
+      return self.document.avatar.url
+    else
+      return nil
+    end
   end
   protected
   def create_profile

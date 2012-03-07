@@ -9,6 +9,9 @@ Mad2::Application.routes.draw do
     end
     member do
       post 'rate'
+      post 'save'
+      put 'save'
+      delete 'remove_attach'
     end
     collection do
       get :recent

@@ -14,21 +14,17 @@
 <div class='field entrepreneur agreement' style="<%= "display:none" unless role.title == "Entrepreneur" %>">
   <%= f.label :term_agreement, "Entrepreneur Agreement", :style => "display:inline" %>
     <%= link_to "Download PDF version", "/pdfs/entrepreneur-agreement.pdf" %>
-  <textarea style="width:65%">
-    <%= Agreement.entrepreneur %>
-  </textarea>
+  <textarea style="width:65%"><%= Agreement.entrepreneur %></textarea>
 </div>
 <div class='field advisor agreement' style="<%= "display:none" unless role.title == "Advisor" %>">
   <%= f.label :term_agreement, "Advisor Agreement", :style => "display:inline" %>
     <%= link_to "Download PDF version", "/pdfs/advisor-agreement.pdf" %>
-  <textarea style="width:65%">
-    <%= Agreement.advisor %>
+  <textarea style="width:65%"><%= Agreement.advisor %>
   </textarea>
 </div>
 <div class='field distributor contractor producer investor agreement' style="<%= "display:none" if ["Advisor", "Entrepreneur"].include?role.title %>">
   <%= f.label :term_agreement, "Partner Agreement", :style => "display:inline" %>
     <%= link_to "Download PDF version", "/pdfs/partner-agreement.pdf" %>
-  <textarea style="width:65%">
-    <%= Agreement.partner %>
+  <textarea style="width:65%"><%= Agreement.partner %>
   </textarea>
 </div>

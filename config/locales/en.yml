@@ -2,6 +2,81 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  helpers:
+    label:
+      user:
+        username: Username
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
+      profile:
+        first_name: First name
+        last_name: Last name
+        about: About
+        receive_newsleter: Receive Newsleter
+      region:
+        country: Country
+        state: State
+      contact:
+        address1: Address 1
+        address2: Address 2
+        city: City
+        zip:  Zip/Postal code
+        url: Url
+        phone: Phone
+        about: About
+      project:
+        name: Name
+        project_name: Project name
+        title: Title
+        network_only: Network Ony
+        field_of_usage: Field of usage
+        which_fields_does_the_solve: Which fields does the solve
+        category_ids: Category
+        embedded_video: Embedded video
+        external_url: External url
+        business: Business
+        product: Product
+        market_analysis: Market analysis
+        competitors: Competitors
+        strategy: Strategy
+        progression: Progression
+        financer: Financer
+        summary: Summary
+        project_status: Project Status
+        geographical_marked: Geographical marked
+        size_of_marked: Size of marked
+        need_company:  Establish a company for this purpose
+        founder:     Do you see yourself as the founder
+        develop_in_own_company: Product development in your company
+        licensing: Licensing to existing company
+        possible_production_or_industrial_partners: Possible production or industrial partners
+        possible_suppliers: Possible suppliers
+        possible_distrubitors: Possible distrubitors
+        idea_or_patternprotection_needed: Idea or patternprotection needed
+        patenting: Patenting
+        possible_competitors_developing_similar_technology: Possible competitors developing similar technology
+      document:
+        avatar: Avatar/Logo
+  project:
+    form:
+      needed_patners: MadLab Partners you may need contact with
+      published: Published
+      not_published: Not published
+      comercialization : Comercialization
+      current_stage: How far is the idea developed
+      choose_type: Choose Project Type
+    stages:
+      theoretical_idea: Theoretical idea
+      prototype_exists: Prototype exists
+      technically_tested: Technically tested
+      pilot_tested: Pilot tested
+      company_established: Company established
+      project_in_existing_company: Project in existing company
+    patners:
+      investor: Investor
+      producer: Producer
+      retailer: Retailer
   refinery:
     users:
       new:
@@ -11,15 +86,35 @@ en:
         hello_please_sign_in: Enter your username and password
     news_items:
       category:
-        from_madlab: "From MadLab"
-        news: "News"
-        competitions: "Competitions"
-        press: "Press"
+        from_madlab: From MadLab
+        news: News
+        competitions: Competitions
+        press: Press
   devise:
+    users:
+      refinery_user:
+        confirmed: Thank you for registering. A verification email is sent to your email account
     sessions:
-      signed_in: 'You have been logged in successfully.'
-      signed_out: 'You have been logged out successfully.'
+      signed_in: You have been logged in successfully.
+      signed_out: You have been logged out successfully.
   activerecord:
     attributes:
       refinery/news_item:
         category: Category
+  message:
+    available: "%{what} is available!"
+  navigations:
+    project:
+      general: General
+      teaser: Teaser
+      business_page: Business Page
+      product_description: Product Description
+      market_analysis: Market Analysis
+      competitors_analysis: Competitors Analysis
+      strategy: Strategy
+      progression_plan: Progression Plan
+      financer: Financer
+      summary: Summary
+      attachments: Attachments
+      thoughts_and_wishes: Thoughts & wishes
+      payment: Payment

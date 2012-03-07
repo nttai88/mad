@@ -24,9 +24,9 @@
       <div class="region">
         <div class='field'>
           <%= fr.label :country %>
-          <%= fr.country_select :country, "US", {},{:class => "country"} %>
+          <%= fr.country_select :country, "NO", {},{:class => "country"} %>
         </div>
-        <% country_code = (@user.profile.contact.region.country || "US") %>
+        <% country_code = (@user.profile.contact.region.country || "NO") %>
         <div class='field state' style="<%= "display:none" unless has_state?(country_code) %>">
           <%= fr.label :state %>
           <% begin %>
@@ -42,7 +42,7 @@
       <%= fc.text_field :city, :class => 'larger widest' %>
     </div>
     <div class='field'>
-      <%= fc.label :zip, "Zip/Postal code" %>
+      <%= fc.label :zip %>
       <%= fc.text_field :zip, :class => 'larger widest' %>
     </div>
     <div class='field'>
@@ -60,9 +60,20 @@
   </div>
   <div class='field'>
     <%= fp.check_box :receive_newsleter %>
-    <%= fp.label :receive_newsleter, :style => "display:inline" %>
+    <%= fp.label :receive_newsleter,t('helpers.label.profile.receive_newsleter'),:style => "display:inline" %>
   </div>
 <% end %>
+<div class='field'>
+  <%= f.fields_for :document_attributes do |p| %>
+    <%= p.label :avatar, "Avatar/Logo" %>
+    <% if @user.document && @user.document.avatar.url %>
+      <img src="<%= @user.document.avatar.url %>" style="height: 50px;">
+      <br/>
+      Upload a new image
+    <% end %>
+    <%= p.file_field :avatar %>
+  <% end %>
+</div>
 <% if ["new", "create"].index(action_name) %>
   <%= render :partial => "role_agreements", :locals => {:f => f} %>
   <%= states_by_country %>

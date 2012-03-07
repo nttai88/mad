@@ -1,42 +1,42 @@
 <%
-  unless (hide_submit ||= false)
-    submit_button_text  ||= t('.save')
-    submit_button_id    ||= "submit_button"
-    submit_button_title ||= nil
-  end
+unless (hide_submit ||= false)
+  submit_button_text  ||= t('.save')
+  submit_button_id    ||= "submit_button"
+  submit_button_title ||= nil
+end
 
-  unless defined?(hide_cancel).presence
-    hide_cancel = from_dialog?
-  end
+unless defined?(hide_cancel).presence
+  hide_cancel = from_dialog?
+end
 
-  unless hide_cancel
-    cancel_button_text  ||= t('.cancel')
-    unless defined?(cancel_title)
-      cancel_title = t('.cancel_lose_changes')
-    end
-    cancel_button_id    ||= "cancel_button"
-    cancel_url          ||= (((back = url_for(:back)).include?('javascript') or action_name =~ /^(create|update)$/) ? main_app.send("refinery_admin_#{f.object_name.to_s.pluralize}_path") : back)
+unless hide_cancel
+  cancel_button_text  ||= t('.cancel')
+  unless defined?(cancel_title)
+    cancel_title = t('.cancel_lose_changes')
   end
+  cancel_button_id    ||= "cancel_button"
+  cancel_url          ||= (((back = url_for(:back)).include?('javascript') or action_name =~ /^(create|update)$/) ? main_app.send("refinery_admin_#{f.object_name.to_s.pluralize}_path") : back)
+end
 
-  continue_editing = defined?(continue_editing) ? continue_editing : (f.object.present? and f.object.persisted?)
+continue_editing = defined?(continue_editing) ? continue_editing : (f.object.present? and f.object.persisted?)
 
-  unless defined?(hide_delete).presence
-    hide_delete = (from_dialog? or
-                   f.object.nil? or (f.object.respond_to?(:persisted?) ? !f.object.persisted? : f.object.new_record?) or
-                   (f.object.respond_to?(:deletable?) && !f.object.deletable?))
-  end
+unless defined?(hide_delete).presence
+  hide_delete = (from_dialog? or
+      f.object.nil? or (f.object.respond_to?(:persisted?) ? !f.object.persisted? : f.object.new_record?) or
+      (f.object.respond_to?(:deletable?) && !f.object.deletable?))
+end
 
-  unless hide_delete
-    delete_button_text  ||= t('.delete')
-    delete_title        ||= nil
-    delete_confirmation ||= nil
-    delete_button_id    ||= "delete_button"
-    delete_url          ||= eval("main_app.refinery_admin_#{f.object_name}_path(#{f.object.id})")
-  end
+unless hide_delete
+  delete_button_text  ||= t('.delete')
+  delete_title        ||= nil
+  delete_confirmation ||= nil
+  delete_button_id    ||= "delete_button"
+  delete_url          ||= eval("main_app.refinery_admin_#{f.object_name}_path(#{f.object.id})")
+end
 -%>
 <% if from_dialog? %>
-<input type='hidden' name='modal' value='true' />
-<input type='hidden' name='dialog' value='true' />
+  <input type='hidden' name='modal' value='true' />
+  <input type='hidden' name='dialog' value='true' />
 <% end %>
 
 <div class='form-actions<%= ' form-actions-dialog' if from_dialog? %>'>
@@ -44,30 +44,30 @@
     <% if params[:controller] == "refinery/admin/users" && @user.has_role?("AdvisorRequest") %>
       <input type="hidden" name="approve" value="0" class="approve-field"/>
       <%= submit_tag "Approve",
-                   :name => nil,
-                   :class => "approve button red",
-                   :tooltip => "Approve" %>
+        :name => nil,
+        :class => "approve button red",
+        :tooltip => "Approve" %>
     <% end %>
     <%= submit_tag submit_button_text,
-                   :id => submit_button_id,
-                   :name => nil,
-                   :class => "wymupdate button red radius",
-                   :tooltip => submit_button_title unless hide_submit %>
+      :id => submit_button_id,
+      :name => nil,
+      :class => "wymupdate button red radius",
+      :tooltip => submit_button_title unless hide_submit %>
 
     <%= render :partial => "/refinery/admin/continue_editing", :locals => {:f => f} if continue_editing -%>
     <%= hidden_field_tag :continue_editing, false if continue_editing %>
 
     <%= link_to(cancel_button_text, cancel_url,
-                :title => cancel_title,
-                :id => cancel_button_id,
-                :class => "close_dialog button red radius") unless hide_cancel %>
+      :title => cancel_title,
+      :id => cancel_button_id,
+      :class => "close_dialog button red radius") unless hide_cancel %>
   </div>
   <div class='form-actions-right'>
     <%= link_to(delete_button_text, delete_url,
-                :title => delete_title,
-                :id => delete_button_id,
-                :method => :delete,
-                :confirm => delete_confirmation,
-                :class => "button confirm-delete") unless hide_delete %>
+      :title => delete_title,
+      :id => delete_button_id,
+      :method => :delete,
+      :confirm => delete_confirmation,
+      :class => "button confirm-delete") unless hide_delete %>
   </div>
 </div>

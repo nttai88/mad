@@ -20,5 +20,8 @@ module ApplicationHelper
   def nice_time time
     time.strftime("%b %d, %Y at %l:%m %p")
   end
-  
+
+  def current_url_with_locale(locale)
+    request.fullpath.gsub /#{I18n::locale}\//,"#{locale}/"
+  end
 end

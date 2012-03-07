@@ -1,16 +1,16 @@
 class Project < ActiveRecord::Base
   has_one :contact, :as => :contactable
-  belongs_to :category
   has_many :region_selections, :as => :parent
   has_many :regions, :through => :region_selections, :dependent => :delete_all
   has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
+  has_and_belongs_to_many :categories
 
   belongs_to :user, :class_name => "Refinery::User"
   
   has_many        :comments,      :as => :commentable
   
-  has_one :document,  :dependent => :destroy
+  has_one :document, :as => :documentable,  :dependent => :destroy
   
   ajaxful_rateable :stars => 10, :dimensions => [:teaser, :business, :market, :competitor, :strategy, :progression, :finance, :summary, :company, :attachment, :thoughts]
   
@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
   attr_encrypted :progression, :key => :encryption_key
   attr_encrypted :finances, :key => :encryption_key
   attr_encrypted :summary, :key => :encryption_key
+
+  after_initialize :init
   
   def encryption_key
     Mad2::Application.config.secret_token
@@ -67,4 +69,24 @@ class Project < ActiveRecord::Base
     return partner_candidates
   end
 
+  def profile_avatar
+    self.user.document.avatar.url if self.user && self.user.document
+  end
+  def private_avatar
+    self.document.avatar.url if self.document
+  end
+
+  def avatar
+    if self.use_user_avatar && !private_avatar
+      profile_avatar
+    else
+      private_avatar
+    end
+  end
+  
+  def init
+    self['project_status'] ||= "not published"
+    self['service'] ||= "business_plan"
+    self['developed'] ||= "Theoretical idea"
+  end
 end

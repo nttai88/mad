@@ -11,13 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217055726) do
+ActiveRecord::Schema.define(:version => 20120221131927) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "categories_projects", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "project_id"
   end
 
   create_table "category_selections", :force => true do |t|
@@ -61,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20120217055726) do
   end
 
   create_table "documents", :force => true do |t|
-    t.integer  "project_id"
+    t.integer  "documentable_id"
     t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -75,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20120217055726) do
     t.string   "file8"
     t.string   "file9"
     t.string   "avatar"
+    t.string   "documentable_type"
   end
 
   create_table "notifications", :force => true do |t|
@@ -132,7 +138,6 @@ ActiveRecord::Schema.define(:version => 20120217055726) do
     t.text     "origin"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id"
     t.integer  "user_id"
     t.text     "encrypted_product_description"
     t.boolean  "licensing"
@@ -145,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20120217055726) do
     t.text     "embedded_video"
     t.string   "external_url"
     t.string   "service"
+    t.boolean  "use_user_avatar"
   end
 
   create_table "projects_users", :force => true do |t|
@@ -406,5 +412,9 @@ ActiveRecord::Schema.define(:version => 20120217055726) do
   add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
+
+  add_foreign_key "receipts", "notifications", :name => "receipts_on_notification_id"
 
 end
