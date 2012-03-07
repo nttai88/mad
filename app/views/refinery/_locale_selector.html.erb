@@ -1,11 +1,7 @@
-<%#
-will be siplified(just prefix request with /nb or /en) when issue of overriding locals has been sloved
-%>
 <%=content_tag :ul, :id => 'local_selector', :class => 'custom-menu' do%>
-  <%= content_tag :li,:class => "locale #{'selected' if [:nb,'nb'].include?(I18n.locale)}", :id => 'locale_nb'  do%>
-    <%=  link_to image_tag('locale/nb.png'),current_url_with_params(locale_key => :nb) %>
-  <%end%>
-  <%= content_tag :li,:class => "locale #{'selected' if [:en,'en'].include?(I18n.locale)}", :id => 'locale_en'  do%>
-    <%=  link_to image_tag('locale/en.jpg'),current_url_with_params(locale_key => :en) %>
+  <%  available_locals.each do |l| %>
+    <%= content_tag :li,:class => "locale #{'selected' if l.to_s==I18n.locale.to_s}", :id => "locale_#{l}"  do%>
+      <%=  link_to image_tag("locale/#{l}.png"),current_url_with_locale(l) %>
+    <%end%>
   <%end%>
 <%end%>

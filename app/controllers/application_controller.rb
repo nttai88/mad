@@ -1,13 +1,12 @@
 class ApplicationController < ActionController::Base
   SECURE_CONTROLLERS = ["sessions", "users", "confirmations", "passwords"]
   before_filter :force_ssl
-  before_filter :set_locale
 
   protect_from_forgery
 
   include AuthenticatedSystem
 
-  helper_method :current_user,:locale_key
+  helper_method :current_user,:available_locals
 
   private
 
@@ -29,13 +28,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_locale
-    #where is params[:locale] get overridden ? Using _locale for testing 
-    I18n.locale = params[locale_key] || session[locale_key] || I18n.default_locale
-    session[locale_key]=I18n.locale
-  end
-  
-  def locale_key
-    'l'
+  def available_locals
+    ['en','nb']
   end
 end

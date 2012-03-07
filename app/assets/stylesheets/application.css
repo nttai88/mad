@@ -463,8 +463,11 @@ form .new-member {
 }
 .clear{clear:both}
 ul.custom-menu{float: left;}
+#local_selector .locale img{
+    border: solid #FFF;
+}
 #local_selector .selected img{
-/*    border: solid #F2F1F0;*/
+    border: solid #F2F1F0;
 }
 .field span.error{ color:red}
 .field span.notice{ color:green}

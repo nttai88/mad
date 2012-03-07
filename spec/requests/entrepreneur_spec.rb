@@ -17,7 +17,7 @@ describe "Entrepreneur" do
         fill_in "Username", :with => "test"
         fill_in "Email", :with => "test@test.com"
         fill_in "Password", :with => "123456"
-        fill_in "Password confirmation", :with => "123456"
+        fill_in "Password Confirmation", :with => "123456"
         fill_in "First name", :with => "test"
         fill_in "Last name", :with => "tset"
 
@@ -93,6 +93,7 @@ describe "Entrepreneur" do
       click_button "Sign in"
       click_link "Projects"
       click_link "New project"
+      
       page.current_path.should eq("/projects/new")
     end
 
