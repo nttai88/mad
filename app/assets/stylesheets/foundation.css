@@ -667,7 +667,7 @@
 	div.right-menu .custom-menu a{font-size:13px;color:#444444;}
 	div.right-menu .custom-menu a:hover{color:#B42723;text-decoration:underline;}
 	div.right-menu{float:right; margin-top: 1px;}
-  div.right-menu .custom-menu li{float:right; list-style: none; margin-left: 15px;display:inline;}
+  div.right-menu .custom-menu li{float:left; list-style: none; margin-left: 15px;display:inline;}
   #header .notice {float:right; color: green; padding:0px;}
 /* CSS for jQuery Orbit Plugin 1.2.3
  * www.ZURB.com/playground

@@ -1,0 +1,56 @@
+.uiButton {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	-ms-border-radius: 3px;
+	 -khtml-border-radius: 3px;
+	 border-radius: 3px;
+	 margin-left: 0;
+	 padding: 6px 15px;
+}
+
+a.uiButton {
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-o-border-top-right-radius: 3px;
+	-ms-border-top-right-radius: 3px;
+	-khtml-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-o-border-bottom-right-radius: 3px;
+	-ms-border-bottom-right-radius: 3px;
+	-khtml-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,white),color-stop(100%,#DDDDDD));
+	background-image: -webkit-linear-gradient(top,white,#DDDDDD);
+	background-image: -moz-linear-gradient(top,white,#DDDDDD);
+	background-image: -o-linear-gradient(top,white,#DDDDDD);
+	background-image: -ms-linear-gradient(top,white,#DDDDDD);
+	background-image: linear-gradient(top,white,#DDDDDD);
+	display: -moz-inline-box;
+	display: -moz-inline-stack;
+	-moz-box-orient: vertical;
+	display: inline-block;
+	vertical-align: middle;
+	zoom: 1;
+	padding: 3px 10px;
+	height: 15px;
+	border: 1px solid #999999;
+	text-transform: uppercase;
+	font-size: 11px;
+	line-height: 20px;
+	vertical-align: top;
+	color: #575757;
+	font-weight: bold;
+}
+
+a.uiButton:hover {
+	background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,white),color-stop(100%,#999999));
+	background-image: -webkit-linear-gradient(top,white,#999999);
+	background-image: -moz-linear-gradient(top,white,#999999);
+	background-image: -o-linear-gradient(top,white,#999999);
+	background-image: -ms-linear-gradient(top,white,#999999);
+	background-image: linear-gradient(top,white,#999999);
+    color: #1071D1;
+}

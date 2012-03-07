@@ -1,0 +1,17 @@
+#options {float:right; text-align:right; color:#9ac1c9; margin-right:10px; margin-bottom:5px;}
+#options a {text-decoration:none; color:#9ac1c9}
+#options a:hover {color:#033}
+
+#acc {width:658px; list-style:none; color:#033; margin:0 auto 40px}
+#acc h3 {width:643px; border:1px solid #dadbd8; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer; background:#eeeeee}
+#acc h3:hover {background:#f5f5f5}
+#acc .acc-section {overflow:hidden; background:#fff}
+#acc .acc-content {width:630px; padding:15px;border-top:none; background:#fff}
+#acc .acc-content .show p{margin-bottom: 20px; color: black; font-size: 13px}
+
+#nested {width:631px; list-style:none; color:#033; margin-bottom:15px}
+#nested h3 {width:611px;border:1px solid #dadbd8; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer;  background:#eeeeee}
+#nested h3:hover {background:#f5f5f5}
+#nested .acc-section {overflow:hidden; background:#fff}
+#nested .acc-content {width:600px; padding:15px; border-top:none; background:#fff}
+#nested .acc-selected {background:url(/assets/project/header_over.gif)}

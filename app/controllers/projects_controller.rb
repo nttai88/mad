@@ -19,10 +19,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @project }
-    end
+    render :layout => "project"
   end
 
   def new
@@ -30,12 +27,12 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     @project.document ||= Document.new
     @project.save
-    redirect_to edit_project_url(@project)
+    redirect_to project_url(@project)
   end
 
   # GET /projects/1/edit
   def edit
-    @project.document ||= Document.new
+    redirect_to project_url(@project)
   end
 
   # PUT /projects/1

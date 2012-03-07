@@ -1,36 +1,63 @@
-#teaser.partial_profile.hidden
-  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
-    .field
-      = f.label :project_name
-      = f.text_field :project_name, :style=>"width:290px;"
-    .field
-      = f.label :title
-      = f.text_field :title, :style=>"width:290px;"
-    .field
-      = f.check_box :network_only
-      Network Only
-    .field
-      = f.label :field_of_usage
-      = f.text_area :usage, :class => 'larger widest'
-    .field
-      = f.label :which_fields_does_the_solve
-      = f.text_area :solves, :class => 'larger widest'
-    .field
-      = f.label :category_ids, "Category"
-      = f.collection_select :category_ids, Category.all, :id, :title, {}, { :multiple => true }
-    MadLab Partners you may need contact with
-    .field
-      = f.check_box :need_investor
-      Investor
-    .field
-      = f.check_box :need_producer
-      Producer
-    .field
-      = f.check_box :need_retail
-      Retailer
-    .field
-      = f.label :embedded_video
-      = f.text_area :embedded_video, :class => 'larger widest'
-    .field
-      = f.label :external_url
-      = f.text_field :external_url
+.show
+  %p
+    %b Project name:
+    = @project.project_name
+  %p
+    %b Usage:
+    = @project.usage
+  %p
+    %b Solves:
+    = @project.solves
+  %p
+    %b Idea:
+    = @project.idea
+  - unless @project.embedded_video.blank?
+    %p
+      %b Embedded video:
+      %br
+      = raw @project.embedded_video
+  - unless @project.external_url.blank?
+    %p
+      %b External project homepage:
+      = link_to @project.external_url, @project.external_url
+
+  - if full_access?(@project)
+    = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
+
+.edit{:style => "display:none"}
+  #teaser.partial_profile.hidden
+    = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+      .field
+        = f.label :project_name
+        = f.text_field :project_name, :style=>"width:290px;"
+      .field
+        = f.label :title
+        = f.text_field :title, :style=>"width:290px;"
+      .field
+        = f.check_box :network_only
+        Network Only
+      .field
+        = f.label :field_of_usage
+        = f.text_area :usage, :class => 'larger widest'
+      .field
+        = f.label :which_fields_does_the_solve
+        = f.text_area :solves, :class => 'larger widest'
+      .field
+        = f.label :category_ids, "Category"
+        = f.collection_select :category_ids, Category.all, :id, :title, {}, { :multiple => true }
+      MadLab Partners you may need contact with
+      .field
+        = f.check_box :need_investor
+        Investor
+      .field
+        = f.check_box :need_producer
+        Producer
+      .field
+        = f.check_box :need_retail
+        Retailer
+      .field
+        = f.label :embedded_video
+        = f.text_area :embedded_video, :class => 'larger widest'
+      .field
+        = f.label :external_url
+        = f.text_field :external_url

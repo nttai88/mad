@@ -1,160 +1,120 @@
+= ajaxful_rating_style
 = content_for :header do
-  = @project.title.blank? ? "no title" : @project.title
-.project_show
-  - if full_access?(@project)
-    #show_info
-      %h4
-        General
-      %p
-        %b Name:
-        = @project.name
-      %p
-        %b Avatar/Logo:
-        %br
-        = image_tag @project.avatar, :style => "height: 50px;"
-      - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
-      %p
-        %b Address1:
-        = contact.address1 if contact
-      %p
-        %b Address2:
-        = contact.address2 if contact
-      %p
-        %b City:
-        = contact.city if contact
-      %p
-        %b Zip
-        = contact.zip if contact
-  #show_info
-    %h4
-      Teaser  
-    %p 
-      %b Project name:
-      = @project.project_name
-    %p
-      %b Usage:
-      = @project.usage
-    %p
-      %b Solves:
-      = @project.solves
-    %p
-      %b Idea:
-      = @project.idea
-    - unless @project.embedded_video.blank?
-      %p
-        %b Embedded video:
-        %br
-        = raw @project.embedded_video
-    - unless @project.external_url.blank?
-      %p
-        %b External project homepage:
-        = link_to @project.external_url, @project.external_url
+  Business Plan
+= content_for :under_side_bar do
+  #contact-info
+    .avatar-block
+      %div
+        %img{:alt => "default", :src => "/assets/project/default-avatar.jpg"}
+    .contact-information
+      %h3 Jason Henry
+      %ul
+        %li Address : adfasd, adsf asd, etedfgd
+        %li Country : United States
+        %li City : City
+        %li Zip/ Postal Code : 105425
+        %li Phone : 0202 000 2022 020
+    .about
+      %span About
+      %br/
+      %p We just finished recording our new album, Look Out Mama. We're excited to release it into the world and need.
 
-    - if full_access?(@project)
-      = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
-  - if full_access?(@project)
-    #show_info
-      %h4
-        Bussiness Page
-      %p
-        = raw @project.business
-      = ratings_for @project, :dimension => :business, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Market Analysis
-      %p
-        = raw @project.market
-      = ratings_for @project, :dimension => :market, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Competitors
-      %p
-        = raw @project.competitors
-      = ratings_for @project, :dimension => :competitor, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Strategy
-      %p
-        = raw @project.strategy
-      = ratings_for @project, :dimension => :strategy, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Progression
-      %p
-        = raw @project.progression
-      = ratings_for @project, :progression => :progression, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Finance
-      %p
-        = raw @project.finances
-      = ratings_for @project, :dimension => :finance, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Summary
-      %p
-        = raw @project.summary
-      = ratings_for @project, :dimension => :summary, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4 Attachments
-      = render :partial => "attachments"
-      = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
-    #show_info
-      %h4
-        Thoughts and Wishes
-      %p
-        %b Marked geographic:
-        = @project.marked_geographic
-      %p
-        %b Marked size:
-        = @project.marked_size
-      %p
-        %b Partners:
-        = @project.industrial_partners
-      %p
-        %b Suppliers:
-        = @project.suppliers
-      %p
-        %b Distributers:
-        = @project.distributers
-      %p
-        %b Patenting:
-        = @project.patenting
-      %p
-        %b Origin:
-        = @project.origin
-        = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
-  - if current_user && current_user.can_edit_project?(@project)
-    #show_info_links
-      %h4
-        = link_to 'Edit', edit_project_path(@project)
-        |
-        = link_to 'Back', projects_path
-  - if full_access?(@project)
-    %div{:style=>"margin-top:20px;width:680px;"}
-      %h2.blue_header Comments
-      - @project.comments.each do |com|
-        %div{:style=>"margin-bottom:10px;border-bottom:1px #ddd solid;padding-bottom:10px"}
-          %p
-            = com.comment
-          .posted_on
-            .left
-              = "Posted on: "
-              = nice_time com.created_at
-            .right
-              = "Posted by: "
-              = com.user.username
-            %br.clearfloat
-- if full_access?(@project)
-  .new_comment{:style=>"margin-top:20px;width:680px;"}
-    %h2.blue_header Leave a Comment
-    = form_for([@project, @project.comments.build], :html=>{:class=>"simple_form"}) do |f|
-      = f.hidden_field 'commentable_type', :value => @project.class.name
-      = f.hidden_field 'commentable_id', :value => @project.id
-      %table
-        %tr
-          %td
-            .label Comment
-            .field= f.text_area :comment
-        %tr
-          %td= f.submit "Post Comment", :class => "nice small radius red button"
+/ / Left content
+%div{:style => "padding-bottom:50px"}
+  %span.project-title{:style => "display:inline;"} Hook Tool
+  %a.uiButton{:href => "#", :style => "display:inline; margin-left:20px;"} Edit
+#tab-menu
+  %ul
+    %li
+      %a{:href => "#"}
+        %span Project Home
+    %li
+      %a{:href => "#"}
+        %span Updates
+    %li
+      %a{:href => "#"}
+        %span Partners Needd
+    %li
+      %a{:href => "#"}
+        %span Payments
+#tab-panes
+  %div.project-home.clear
+    %span#options
+      %a{:href => "javascript:parentAccordion.pr(1)"} Show All
+      |
+      %a{:href => "javascript:parentAccordion.pr(-1)"} Hide All
+    %ul#acc.acc.clear
+      %li
+        %h3 Description
+        .acc-section
+          .acc-content
+            = render :partial => "teaser"
+      %li
+        %h3 Toughts & Wishes
+        .acc-section
+          .acc-content
+            = render :partial => "thoughts"
+      %li
+        %h3 Business Plan
+        .acc-section
+          .acc-content
+            %ul#nested.acc
+              %li
+                %h3 Business Idea
+                .acc-section
+                  .acc-content
+                    = render :partial => "wymeditor", :locals => {:label => :business, :field => :business}
+              %li
+                %h3 Product Description
+                .acc-section
+                  .acc-content
+                    = render :partial => "wymeditor", :locals => {:label => :product, :field => :product_description}
+              %li
+                %h3 Summary
+                .acc-section
+                  .acc-content
+                    = render :partial => "wymeditor", :locals => {:label => :summary, :field => :summary}
+      %li
+        %h3 Market Analysis
+        .acc-section
+          .acc-content
+            = render :partial => "wymeditor", :locals => {:label => :market_analysis, :field => :market}
+      %li
+        %h3 Competitors Analysis
+        .acc-section
+          .acc-content
+            = render :partial => "wymeditor", :locals => {:label => :competitors, :field => :competitors}
+      %li
+        %h3 Strategy
+        .acc-section
+          .acc-content
+            = render :partial => "wymeditor", :locals => {:label => :strategy, :field => :strategy}
+      %li
+        %h3 Progression Plan
+        .acc-section
+          .acc-content
+            = render :partial => "wymeditor", :locals => {:label => :progression, :field => :progression}
+      %li
+        %h3 Finances
+        .acc-section
+          .acc-content
+            = render :partial => "wymeditor", :locals => {:label => :finances, :field => :finances}
+      %li
+        %h3 Attachments
+        .acc-section
+          .acc-content
+            #attachments.partial_profile.hidden
+              = render :partial => "attachments"
+  %div.project-updates
+    Feature under construction.
+  %div.project-partners
+    Feature under construction.
+  %div.project-payment
+    = render :partial => "payment"
+
+:javascript
+  var parentAccordion=new TINY.accordion.slider("parentAccordion");
+  parentAccordion.init("acc","h3",1,-1);
+
+  var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
+  nestedAccordion.init("nested","h3",1,-1,"acc-selected");

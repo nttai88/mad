@@ -7,6 +7,7 @@
 //= require jquery.form
 //= require jquery.tools.min
 //= require jquery.alerts
+//= require script
 
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
@@ -157,27 +158,14 @@ Project = {
     });
   },
   initTabs: function(){
-    $("ul#tab-headers").tabs("div#tab-panes > div",{
+    $("#tab-menu ul").tabs("#tab-panes > div",{
       initialIndex: 0,
-      onBeforeClick: function(){
-        if(Project.checkDirty == true){
-          Project.updateHtmlEditor();
-          if (Project.isDirtyForm()){
-            Project.showDirtyWarning(null);
-            return false;
-          }
-        }else{
-          Project.checkDirty = true;
-        }
-        return true;
-      },
-      onClick: function(event, tabIndex) {
-        Project.showHideNextPrevButtons();
-        return false;
-      }
+      current: "active"
     });
-    this.tabs = $("ul#tab-headers").data("tabs");
-    $(".actions .prev").hide();
+    this.tabs = $("#tab-menu ul").data("tabs");
+    $("#tab-menu ul li a").click(function(){
+      $(this).blur();
+    });
   },
   isDirtyForm: function(){
     if(Project.tabs){

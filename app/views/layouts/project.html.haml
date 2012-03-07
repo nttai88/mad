@@ -1,0 +1,48 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title= content_for?(:title) ? yield(:title) : "MadLab"
+    / Included CSS Files
+    = stylesheet_link_tag    "project"
+    / Included JS Files
+    = javascript_include_tag "application"
+    = render :partial => '/refinery/html_tag'
+    = javascript_include_tag "project"
+    = csrf_meta_tags
+  %body
+    = ajaxful_rating_style
+    / Main Wrapper
+    #main-wrappper
+      #main-holder-1
+        / Header
+        #header
+          #top_menu
+            = render :partial => "shared/top_menu"
+          #logo
+            %a{:href => "#"}
+              %img{:alt => "logo", :height => "133", :src => "/assets/project/logo_beta.jpg", :width => "551"}
+        #main_menu
+          = render :partial => "refinery/menu"
+      #content-area
+        #content-wrapper
+          %h2.heading
+            = yield(:header)
+          #flash_container
+            = render :partial => '/refinery/message'
+          #inner-content-wrapper
+            / Left Content
+            #left-colmmn-wrapper.fl_left
+              = yield
+            / Right Content
+            #right-column-wrapper.fl_right
+              = render "layouts/side_bar"
+              = yield :under_side_bar
+            / /Right Content
+            .clear_fix
+      / /Content holder
+      / Footer
+      #footer-wrapper
+        = render "refinery/footer"
+      / /Footer
+    / /Main Wrapper
