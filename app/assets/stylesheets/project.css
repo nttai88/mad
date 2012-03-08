@@ -7,4 +7,7 @@
  *= require project/style
  *= require project/tab-style
  *= require ajaxful_rating
+ *= require jquery.alerts
+ *= require jquery_ui
+ *= require wymeditor/skins/refinery/skin
 */

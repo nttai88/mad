@@ -7,7 +7,7 @@
 //= require jquery.form
 //= require jquery.tools.min
 //= require jquery.alerts
-//= require script
+//= require slider
 
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
@@ -43,52 +43,59 @@ Project = {
     });
   },
   initButtons: function(){
-    $(".actions .next").unbind().click(function(){
+    $(".acc li h3").mouseover(function(){
+      if(!$(this).find(".save").is(":visible")){
+        $(this).find(".edit").show();
+      }
+    });
+    $(".acc li h3").mouseout(function(){
+      $(this).find(".edit").hide();
+    });
+    $(".acc li h3 .edit").click(function(){
+      $(this).parents("li").first().find(".acc-section").css("height", "auto").css("opacity", "1");
+      $(this).parents("li").first().find(".acc-content .show").hide();
+      $(this).parents("li").first().find(".acc-content .edit").show();
+      $(this).parents("h3").find(".save").show();
+      $(this).parents("h3").find(".cancel").show();
+      $(this).hide();
+      return false;
+    });
+    $(".acc li h3 .cancel").unbind().click(function(){
       Project.updateHtmlEditor();
-      if(Project.isDirtyForm()){
-        Project.showDirtyWarning("next");
+      var form = $(this).parents("li").find("form");
+      if(Project.isDirtyForm(form)){
+        Project.showDirtyWarning(form);
         return false;
       }
-      Project.tabs.next();
-      $(this).blur()
-      Project.showHideNextPrevButtons();
+      $(this).parents("li").first().find(".acc-content .show").show();
+      $(this).parents("li").first().find(".acc-content .edit").hide();
+      $(this).parents("h3").find(".save, .cancel").hide();
+      $(this).parents("h3").find(".edit, .show").hide();
+      return false;
     });
-    $(".actions .save").unbind().click(function(){
+    $(".acc li h3 .save").unbind().click(function(){
       Project.updateHtmlEditor();
-      Project.saveChanges(null);
-    });
-    $(".actions .prev").unbind().click(function(){
-      Project.updateHtmlEditor();
-      if(Project.isDirtyForm()){
-        Project.showDirtyWarning("prev");
-        return false;
-      }
-      Project.tabs.prev();
-      $(this).blur()
-      Project.showHideNextPrevButtons();
-    });
-
-    $(".alt-tools .exit").click(function(){
-      if(Project.isDirtyForm()){
-        Project.showDirtyWarning(null);
-        return false;
-      }
-      return true;
+      var form = $(this).parents("li").find("form");
+      Project.saveChanges(form);
+      var h3 = $(this).parents("h3");
+      h3.find(".save, .cancel").hide();
+      h3.find(".edit, .show").hide();
+      return false;
     });
   },
-  saveChanges: function(action){
+  saveChanges: function(form){
     $(".actions .spinner").show();
-    Project.tabs.getCurrentPane().find("form").ajaxSubmit({
+    form.ajaxSubmit({
       dataType: 'script',
       success: function(){
         $(".actions .spinner").hide();
-        $(".actions .save").blur();
-        Project.nextPrev(action);
+        var c = form.parents(".acc-content").first();
+        c.find(".edit").hide();
+        c.find(".show").show();
       }
     });
   },
-  rejectChanges: function(){
-    var form = Project.tabs.getCurrentPane().find("form");
+  rejectChanges: function(form){
     var tags = form.find(Project.tags);
     tags.each(function(){
       $(this).val($(this).data("initial_value"));
@@ -111,21 +118,6 @@ Project = {
     try{
       wym.update();
     }catch(ex){}
-  },
-  showHideNextPrevButtons: function(){
-    if(Project.tabs){
-      var length = Project.tabs.getTabs().length -1;
-      if(Project.tabs.getIndex() == length){
-       $(".actions .next").hide();
-      }else{
-        $(".actions .next").show();
-      }
-      if(Project.tabs.getIndex() == 0){
-        $(".actions .prev").hide();
-      }else{
-        $(".actions .prev").show();
-      }
-    }
   },
   useUploadedAvatar: function(){
     $("#project_use_user_avatar").unbind().click(function(){
@@ -167,58 +159,44 @@ Project = {
       $(this).blur();
     });
   },
-  isDirtyForm: function(){
-    if(Project.tabs){
-      var form = Project.tabs.getCurrentPane().find("form");
-      var tags = form.find(Project.tags);
-      for(var i = 0; i < tags.length; i ++){
-        var t = $(tags[i]);
-        if($.type(t.val) == "array"){
-          if(t.val().toString() != t.data("initial_value").toString()){
-            return true;
-          }
-        }else if(t.val() != t.data("initial_value")){
+  isDirtyForm: function(form){
+    var tags = form.find(Project.tags);
+    for(var i = 0; i < tags.length; i ++){
+      var t = $(tags[i]);
+      if($.type(t.val) == "array"){
+        if(t.val().toString() != t.data("initial_value").toString()){
           return true;
         }
+      }else if(t.val() != t.data("initial_value")){
+        return true;
       }
-      var radioTags = form.find(".field input[type=radio]:checked");
-      for(var j = 0; j < radioTags.length; j ++){
-        var e = $(radioTags[j]);
-        if(e.val() != Project.radioValues[e.attr("name")]){
-          return true;
-        }
-      }
-      var checkboxTags = form.find(".field input[type=checkbox]");
-      for(var k = 0; k < checkboxTags.length; k ++){
-        var el = $(checkboxTags[k]);
-        if(el.is(":checked") != Project.checkboxValues[el.attr("name")]){
-          return true;
-        }
-      }
-      return false;
-    }else{
-      return true;
     }
+    var radioTags = form.find(".field input[type=radio]:checked");
+    for(var j = 0; j < radioTags.length; j ++){
+      var e = $(radioTags[j]);
+      if(e.val() != Project.radioValues[e.attr("name")]){
+        return true;
+      }
+    }
+    var checkboxTags = form.find(".field input[type=checkbox]");
+    for(var k = 0; k < checkboxTags.length; k ++){
+      var el = $(checkboxTags[k]);
+      if(el.is(":checked") != Project.checkboxValues[el.attr("name")]){
+        return true;
+      }
+    }
+    return false;
   },
-  showDirtyWarning: function(action){
+  showDirtyWarning: function(form){
     $.alerts.okButton ='Save';
     $.alerts.cancelButton = 'Discard Changes';
     $.alerts.confirm("Please save or discard your changes to continue", "You have unsaved changes", function(result){
       if (result) {
-        Project.saveChanges(action);
+        Project.saveChanges(form);
       }else {
-        Project.rejectChanges();
-        Project.nextPrev(action)
+        Project.rejectChanges(form);
       }
-      Project.showHideNextPrevButtons();
     });
-  },
-  nextPrev: function(action){
-    if(action == "next"){
-      Project.tabs.next();
-    }else if(action == "prev"){
-      Project.tabs.prev();
-    }
   }
 }
 

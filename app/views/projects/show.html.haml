@@ -39,82 +39,10 @@
         %span Payments
 #tab-panes
   %div.project-home.clear
-    %span#options
-      %a{:href => "javascript:parentAccordion.pr(1)"} Show All
-      |
-      %a{:href => "javascript:parentAccordion.pr(-1)"} Hide All
-    %ul#acc.acc.clear
-      %li
-        %h3 Description
-        .acc-section
-          .acc-content
-            = render :partial => "teaser"
-      %li
-        %h3 Toughts & Wishes
-        .acc-section
-          .acc-content
-            = render :partial => "thoughts"
-      %li
-        %h3 Business Plan
-        .acc-section
-          .acc-content
-            %ul#nested.acc
-              %li
-                %h3 Business Idea
-                .acc-section
-                  .acc-content
-                    = render :partial => "wymeditor", :locals => {:label => :business, :field => :business}
-              %li
-                %h3 Product Description
-                .acc-section
-                  .acc-content
-                    = render :partial => "wymeditor", :locals => {:label => :product, :field => :product_description}
-              %li
-                %h3 Summary
-                .acc-section
-                  .acc-content
-                    = render :partial => "wymeditor", :locals => {:label => :summary, :field => :summary}
-      %li
-        %h3 Market Analysis
-        .acc-section
-          .acc-content
-            = render :partial => "wymeditor", :locals => {:label => :market_analysis, :field => :market}
-      %li
-        %h3 Competitors Analysis
-        .acc-section
-          .acc-content
-            = render :partial => "wymeditor", :locals => {:label => :competitors, :field => :competitors}
-      %li
-        %h3 Strategy
-        .acc-section
-          .acc-content
-            = render :partial => "wymeditor", :locals => {:label => :strategy, :field => :strategy}
-      %li
-        %h3 Progression Plan
-        .acc-section
-          .acc-content
-            = render :partial => "wymeditor", :locals => {:label => :progression, :field => :progression}
-      %li
-        %h3 Finances
-        .acc-section
-          .acc-content
-            = render :partial => "wymeditor", :locals => {:label => :finances, :field => :finances}
-      %li
-        %h3 Attachments
-        .acc-section
-          .acc-content
-            #attachments.partial_profile.hidden
-              = render :partial => "attachments"
+    = render :partial => "project_home"
   %div.project-updates
     Feature under construction.
   %div.project-partners
     Feature under construction.
   %div.project-payment
     = render :partial => "payment"
-
-:javascript
-  var parentAccordion=new TINY.accordion.slider("parentAccordion");
-  parentAccordion.init("acc","h3",1,-1);
-
-  var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
-  nestedAccordion.init("nested","h3",1,-1,"acc-selected");

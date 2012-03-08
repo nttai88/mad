@@ -1,1 +1,6 @@
+<% if ["teaser", "thoughts"].include?(params[:tab]) %>
+  $("#<%= params[:tab] %>").html("<%= escape_javascript(render :partial => params[:tab]) %>");
+<% else %>
+  $("#<%= params[:tab] %> .show").html("<%= escape_javascript(render :partial => "wymeditor_show", :locals => {:field => params[:tab]}) %>");
+<% end %>
 Project.initDataValue();

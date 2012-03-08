@@ -1,9 +1,7 @@
 .show
-  = raw @project[field]
-  = ratings_for @project, :dimension => field, :remote_options => {:url => rate_project_path(@project)}
+  = render :partial => "wymeditor_show", :locals => {:field => field}
 .edit{:style => "display:none"}
-  %div.partial_profile.hidden
-    = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
-      .field
-        = f.label label
-        = f.text_area field, :class => 'wymeditor wymupdate'
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %input{:type => "hidden", :name => "tab", :value=> field}
+    .field
+      = f.text_area field, :class => 'wymeditor wymupdate'

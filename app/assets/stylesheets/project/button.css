@@ -3,10 +3,14 @@
 	-webkit-border-radius: 3px;
 	-o-border-radius: 3px;
 	-ms-border-radius: 3px;
-	 -khtml-border-radius: 3px;
-	 border-radius: 3px;
-	 margin-left: 0;
-	 padding: 6px 15px;
+	
+-khtml-border-radius: 3px;
+	
+border-radius: 3px;
+	
+margin-left: 0;
+	
+padding: 6px 15px;
 }
 
 a.uiButton {
@@ -53,4 +57,11 @@ a.uiButton:hover {
 	background-image: -ms-linear-gradient(top,white,#999999);
 	background-image: linear-gradient(top,white,#999999);
     color: #1071D1;
+}
+
+.acc h3 .uiButton{
+  margin-top: -3px;
+  padding-top: 1px;
+  padding-bottom: 4px;
+  margin-left: 10px;
 }

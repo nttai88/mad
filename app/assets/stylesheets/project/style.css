@@ -14,6 +14,23 @@ li{list-style:none}
 .bordernone{ border:none!important}
 .clear{clear:both;}
 
+form label {
+  cursor: pointer;
+  display: block;
+  line-height: 18px;
+  margin: 10px 0 1px;
+}
+
+body input, body select{
+  font-family: verdana,arial,helvetica,sans-serif;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 18px;
+}
+#thoughts.acc-content textarea, #teaser.acc-content textarea {
+  height: 250px;
+  width: 600px;
+}
 /*Main Wrapper*/
 #main-wrappper{
 	width:100%;
@@ -126,23 +143,23 @@ li{list-style:none}
 		background:#f5fbff;
 		}
 		
-		#menu_vert{
+		#right-column-wrapper #menu_vert{
 			width:100%;
 			border-bottom:1px solid #dce0e4;
 		}
-		#menu_vert ul{ width:255px;margin-left:15px;}
-		#menu_vert li{
+		#right-column-wrapper #menu_vert ul{ width:255px;margin-left:15px;}
+		#right-column-wrapper #menu_vert li{
 			width:100%;
 			line-height:38px;
 			border-bottom:dashed 1px #999999;
 			}
-		#menu_vert li a{ display:block; color:#2da6ea; font:12px/38px "Trebuchet MS", Arial, Helvetica, sans-serif}
-    #menu_vert ul ul{margin: 0;}
-      #menu_vert ul ul li{
+		#right-column-wrapper #menu_vert li a{ display:block; color:#2da6ea; font:12px/38px "Trebuchet MS", Arial, Helvetica, sans-serif}
+    #right-column-wrapper #menu_vert ul ul{margin: 0;}
+      #right-column-wrapper #menu_vert ul ul li{
         border-top:dashed 1px #999999;
         border-bottom:dashed 0px #999999;
       }
-      #menu_vert ul ul li a {
+      #right-column-wrapper #menu_vert ul ul li a {
         padding-left:30px;
         background-image: url("/assets/arrow.png");
         background-position: 15px 14px;
