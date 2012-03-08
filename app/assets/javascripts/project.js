@@ -62,41 +62,42 @@ Project = {
     });
     $(".acc li h3 .cancel").unbind().click(function(){
       Project.updateHtmlEditor();
-      var form = $(this).parents("li").find("form");
-      if(Project.isDirtyForm(form)){
-        Project.showDirtyWarning(form);
+      var container = $(this).parents("li").first();
+      if(Project.isDirtyForm(container)){
+        Project.showDirtyWarning(container);
         return false;
       }
-      $(this).parents("li").first().find(".acc-content .show").show();
-      $(this).parents("li").first().find(".acc-content .edit").hide();
-      $(this).parents("h3").find(".save, .cancel").hide();
-      $(this).parents("h3").find(".edit, .show").hide();
+      Project.cancelChanges(container);
       return false;
     });
     $(".acc li h3 .save").unbind().click(function(){
       Project.updateHtmlEditor();
-      var form = $(this).parents("li").find("form");
-      Project.saveChanges(form);
-      var h3 = $(this).parents("h3");
-      h3.find(".save, .cancel").hide();
-      h3.find(".edit, .show").hide();
+      var container = $(this).parents("li").first();
+      Project.saveChanges(container);
       return false;
     });
   },
-  saveChanges: function(form){
-    $(".actions .spinner").show();
-    form.ajaxSubmit({
+  cancelChanges: function(container){
+    container.find(".acc-content .show").show();
+    container.find(".acc-content .edit").hide();
+    container.find("h3 .save, h3 .cancel").hide();
+    container.find("h3 .edit, h3 .show").hide();
+  },
+  saveChanges: function(container){
+    container.find(".spinner").show();
+    container.find("form").ajaxSubmit({
       dataType: 'script',
       success: function(){
-        $(".actions .spinner").hide();
-        var c = form.parents(".acc-content").first();
-        c.find(".edit").hide();
-        c.find(".show").show();
+        container.find(".spinner").hide();
+        container.find("h3 .save, h3 .cancel").hide();
+        container.find("h3 .edit, h3 .show").hide();
+        container.find(".acc-content .edit").hide();
+        container.find(".acc-content .show").show();
       }
     });
   },
-  rejectChanges: function(form){
-    var tags = form.find(Project.tags);
+  rejectChanges: function(container){
+    var tags = container.find(Project.tags);
     tags.each(function(){
       $(this).val($(this).data("initial_value"));
       if($(this).hasClass("wymeditor")){
@@ -105,12 +106,12 @@ Project = {
         }catch(ex){}
       }
     });
-    form.find(".field input[type=radio]").each(function(){
+    container.find(".field input[type=radio]").each(function(){
       if($(this).val() == Project.radioValues[$(this).attr("name")]){
         $(this).attr("checked", "checked");
       }
     })
-    form.find(".field input[type=checkbox]").each(function(){
+    container.find(".field input[type=checkbox]").each(function(){
       $(this).attr("checked", Project.checkboxValues[$(this).attr("name")]);
     })
   },
@@ -159,8 +160,8 @@ Project = {
       $(this).blur();
     });
   },
-  isDirtyForm: function(form){
-    var tags = form.find(Project.tags);
+  isDirtyForm: function(container){
+    var tags = container.find(Project.tags);
     for(var i = 0; i < tags.length; i ++){
       var t = $(tags[i]);
       if($.type(t.val) == "array"){
@@ -171,14 +172,14 @@ Project = {
         return true;
       }
     }
-    var radioTags = form.find(".field input[type=radio]:checked");
+    var radioTags = container.find(".field input[type=radio]:checked");
     for(var j = 0; j < radioTags.length; j ++){
       var e = $(radioTags[j]);
       if(e.val() != Project.radioValues[e.attr("name")]){
         return true;
       }
     }
-    var checkboxTags = form.find(".field input[type=checkbox]");
+    var checkboxTags = container.find(".field input[type=checkbox]");
     for(var k = 0; k < checkboxTags.length; k ++){
       var el = $(checkboxTags[k]);
       if(el.is(":checked") != Project.checkboxValues[el.attr("name")]){
@@ -187,16 +188,20 @@ Project = {
     }
     return false;
   },
-  showDirtyWarning: function(form){
+  showDirtyWarning: function(container){
     $.alerts.okButton ='Save';
     $.alerts.cancelButton = 'Discard Changes';
     $.alerts.confirm("Please save or discard your changes to continue", "You have unsaved changes", function(result){
       if (result) {
-        Project.saveChanges(form);
+        Project.saveChanges(container);
       }else {
-        Project.rejectChanges(form);
+        Project.rejectChanges(container);
+        Project.cancelChanges(container);
       }
     });
+  },
+  loading: function(el){
+    el.parents("li").first().find(".spinner").show();
   }
 }
 
@@ -212,9 +217,11 @@ var Attachment = {
   bindNewAction: function(){
     $(".new-attachment").unbind().click(function(){
       $(".new_attachments").show();
-      $(".new_attachments tr").each(function(){
-        if($(this).is(":visible") == false){
-          $(this).show();
+      var trs = $(".new_attachments tr");
+      for(var i = 0; i < trs.length; i ++){
+        var tr = $(trs[i]);
+        if(tr.is(":visible") == false){
+          tr.show();
           if ($(".new_attachments tr:visible").length == Attachment.numOfAttachments){
             $(".new-attachment").hide();
           }else{
@@ -223,7 +230,7 @@ var Attachment = {
           Attachment.displayAttachLink();
           return false;
         }
-      });
+      }
       return false;
     });
   },

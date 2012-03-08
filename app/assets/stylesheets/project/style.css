@@ -20,7 +20,12 @@ form label {
   line-height: 18px;
   margin: 10px 0 1px;
 }
-
+.spinner{
+  background: url("/assets/ajax-loader.gif") no-repeat;
+  padding-left: 16px;
+  padding-right: 16px;
+  display:none;
+}
 body input, body select{
   font-family: verdana,arial,helvetica,sans-serif;
   font-size: 12px;
