@@ -13,7 +13,7 @@ a img {border: 0 none;}
 li{list-style:none}
 .bordernone{ border:none!important}
 .clear{clear:both;}
-
+.hidden{display:none}
 form label {
   cursor: pointer;
   display: block;

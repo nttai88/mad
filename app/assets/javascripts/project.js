@@ -199,9 +199,6 @@ Project = {
         Project.cancelChanges(container);
       }
     });
-  },
-  loading: function(el){
-    el.parents("li").first().find(".spinner").show();
   }
 }
 
