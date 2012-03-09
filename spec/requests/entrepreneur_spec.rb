@@ -93,27 +93,27 @@ describe "Entrepreneur" do
       click_button "Sign in"
       click_link "Projects"
       click_link "New project"
-      
-      page.current_path.should eq("/projects/new")
     end
 
-    it "should be unsuccessful" do
-      click_button "Save"
-      page.should have_content "no title"
-      click_link "Back"
-      page.should have_content("no title")
-    end
-
-    it "should be successful" do
+    it "edit general tab", :js => true do
+      page.execute_script("$('#acc .general h3').mouseover();")
+      page.find("#acc .general h3 .edit").click
       fill_in "Name", :with => "test project"
-      click_link "Teaser"
-      fill_in "Title", :with => "Project Title"
-      click_button "Save"
-      page.should have_content "Project Title"
-      page.should have_content "test project"
-      click_link "Back"
-      page.should have_content("Project Title")
+      fill_in "Address 1", :with => "123 ABC str"
+      page.find("#acc .general h3 .save").click
+      page.should have_content("Name: test project")
+      page.should have_content("Address1: 123 ABC str")
     end
+    
+    it "should show the warning message", :js => true do
+      page.execute_script("$('#acc .general h3').mouseover();")
+      page.find("#acc .general h3 .edit").click
+      fill_in "Name", :with => "test project"
+      page.find("#acc .general h3").click
+      page.should have_content("Please save or discard your changes to continue")
+    end
+
+    
   end
   
 end
