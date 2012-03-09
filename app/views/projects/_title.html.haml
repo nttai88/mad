@@ -1,10 +1,12 @@
 .show
   %span.project-title{:style => "display:inline;"}
     = @project.title
-  %a.uiButton.edit{:href => "#", :style => "display:inline; margin-left:20px;"} Edit
-.edit.hidden
-  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
-    %input{:type => "hidden", :name => "tab", :value=> "title"}
-    = f.text_field :title
-    %a.uiButton.save{:href => "#", :style => "display:inline; margin-left:7px;"} Save
-    %a.uiButton.cancel{:href => "#", :style => "display:inline; margin-left:7px;"} Cancel
+  - if current_user && (current_user.admin? || current_user == @project.user)
+    %a.uiButton.edit{:href => "#", :style => "display:inline; margin-left:20px;"} Edit
+- if current_user && (current_user.admin? || current_user == @project.user)
+  .edit.hidden
+    = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+      %input{:type => "hidden", :name => "tab", :value=> "title"}
+      = f.text_field :title
+      %a.uiButton.save{:href => "#", :style => "display:inline; margin-left:7px;"} Save
+      %a.uiButton.cancel{:href => "#", :style => "display:inline; margin-left:7px;"} Cancel
