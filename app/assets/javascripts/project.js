@@ -51,6 +51,16 @@ Project = {
     $(".acc li h3").mouseout(function(){
       $(this).find(".edit").hide();
     });
+    $(".acc li h3").click(function(){
+      Project.updateHtmlEditor();
+      var container = $("#acc");
+      if(Project.isDirtyForm(container)){
+        container = $("#acc h3 .save:visible").parents("li").first();
+        Project.showDirtyWarning(container);
+        return false;
+      }
+      return false;
+    });
     $(".acc li h3 .edit").click(function(){
       $(this).parents("li").first().find(".acc-section").css("height", "auto").css("opacity", "1");
       $(this).parents("li").first().find(".acc-content .show").hide();
