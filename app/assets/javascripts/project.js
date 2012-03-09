@@ -35,7 +35,7 @@ Project = {
   },
   initDataValue: function(){
     $(Project.tags).each(function(){
-      $(this).data("initial_value", $(this).val());
+      $(this).data("initial_value", $(this).val().toString());
     });
     $(".field input[type=radio]:checked").each(function(){
       Project.radioValues[$(this).attr("name")] = $(this).val();
