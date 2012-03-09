@@ -88,5 +88,6 @@ class Project < ActiveRecord::Base
     self['project_status'] ||= "not published"
     self['service'] ||= "business_plan"
     self['developed'] ||= "Theoretical idea"
+    self['title'] ||= "no title"
   end
 end

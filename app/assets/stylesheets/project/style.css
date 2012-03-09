@@ -229,3 +229,13 @@ body input, body select{
 			line-height:60px;
 			color:#545454
 			}
+
+div#title{
+  padding-bottom:50px
+}
+div#title input#project_title{
+  font: 20px Arial,Helvetica,sans-serif;
+  height: 30px;
+  margin-top: -7px;
+  width: 280px;
+}

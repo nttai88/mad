@@ -7,9 +7,8 @@
   #contact-info
     = render :partial => "contact"
 / / Left content
-%div{:style => "padding-bottom:50px"}
-  %span.project-title{:style => "display:inline;"} Hook Tool
-  %a.uiButton{:href => "#", :style => "display:inline; margin-left:20px;"} Edit
+%div#title
+  = render :partial => "title"
 #tab-menu
   %ul
     %li

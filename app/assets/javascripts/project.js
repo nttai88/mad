@@ -31,6 +31,7 @@ Project = {
     this.useUploadedAvatar();
     this.initButtons();
     this.initTabs();
+    this.initEditTitle();
   },
   initDataValue: function(){
     $(Project.tags).each(function(){
@@ -65,8 +66,7 @@ Project = {
       $(this).parents("li").first().find(".acc-section").css("height", "auto").css("opacity", "1");
       $(this).parents("li").first().find(".acc-content .show").hide();
       $(this).parents("li").first().find(".acc-content .edit").show();
-      $(this).parents("h3").find(".save").show();
-      $(this).parents("h3").find(".cancel").show();
+      $(this).parents("h3").find(".cancel, .save").show();
       $(this).hide();
       return false;
     });
@@ -86,22 +86,46 @@ Project = {
       return false;
     });
   },
+  initEditTitle: function(){
+    $("#title form").submit(function(){
+      $("#title a.save").click();
+      return false;
+    });
+    $("#title a.edit").click(function(){
+      var container = $(this).parents("#title");
+      container.find("div.show").hide();
+      container.find("div.edit, a.save, a.cancel").show();
+      container.find("#project_title").data("initial_value", container.find("#project_title").val());
+      return false;
+    });
+    $("#title a.cancel").click(function(){
+      var container = $(this).parents("#title");
+      container.find("div.show").show();
+      container.find("div.edit").hide();
+      container.find("#project_title").val(container.find("#project_title").data("initial_value"));
+      return false;
+    });
+    $("#title a.save").click(function(){
+      var container = $(this).parents("#title");
+      Project.saveChanges(container);
+      container.find("span.project-title").text(container.find("#project_title").val());
+      container.find("#project_title").data("initial_value", container.find("#project_title").val());
+      container.find("div.show").show();
+      container.find("div.edit").hide();
+      return false;
+    });
+  },
   cancelChanges: function(container){
     container.find(".acc-content .show").show();
-    container.find(".acc-content .edit").hide();
-    container.find("h3 .save, h3 .cancel").hide();
-    container.find("h3 .edit, h3 .show").hide();
+    container.find("h3 .edit, h3 .save, h3 .cancel, .acc-content .edit").hide();
   },
   saveChanges: function(container){
     container.find(".spinner").show();
     container.find("form").ajaxSubmit({
       dataType: 'script',
       success: function(){
-        container.find(".spinner").hide();
-        container.find("h3 .save, h3 .cancel").hide();
-        container.find("h3 .edit, h3 .show").hide();
-        container.find(".acc-content .edit").hide();
-        container.find(".acc-content .show").show();
+        container.find("div.edit, .spinner, a.save, a.cancel").hide();
+        container.find("div.show").show();
       }
     });
   },
