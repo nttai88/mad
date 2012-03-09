@@ -1,0 +1,93 @@
+%span#options
+  %a{:href => "javascript:parentAccordion.pr(1)"} Show All
+  |
+  %a{:href => "javascript:parentAccordion.pr(-1)"} Hide All
+%ul#acc.acc.clear
+  %li.teaser
+    %h3 
+      Description
+      = render :partial => "form_actions"
+    .acc-section
+      #teaser.acc-content
+        = render :partial => "teaser"
+  %li.thoughts
+    %h3 
+      Toughts & Wishes
+      = render :partial => "form_actions"
+    .acc-section
+      #thoughts.acc-content
+        = render :partial => "thoughts"
+  %li
+    %h3 Business Plan
+    .acc-section
+      .acc-content
+        %ul#nested.acc
+          %li.business
+            %h3 
+              Business Idea
+              = render :partial => "form_actions"
+            .acc-section
+              #business.acc-content
+                = render :partial => "wymeditor", :locals => {:field => :business}
+          %li.product_description
+            %h3 
+              Product Description
+              = render :partial => "form_actions"
+            .acc-section
+              #product_description.acc-content
+                = render :partial => "wymeditor", :locals => {:field => :product_description}
+          %li.summary
+            %h3 
+              Summary
+              = render :partial => "form_actions"
+            .acc-section
+              #summary.acc-content
+                = render :partial => "wymeditor", :locals => {:field => :summary}
+  %li.market
+    %h3 
+      Market Analysis
+      = render :partial => "form_actions"
+    .acc-section
+      #market.acc-content
+        = render :partial => "wymeditor", :locals => {:field => :market}
+  %li.competitors
+    %h3 
+      Competitors Analysis
+      = render :partial => "form_actions"
+    .acc-section
+      #competitors.acc-content
+        = render :partial => "wymeditor", :locals => {:field => :competitors}
+  %li.strategy
+    %h3 
+      Strategy
+      = render :partial => "form_actions"
+    .acc-section
+      #strategy.acc-content
+        = render :partial => "wymeditor", :locals => {:field => :strategy}
+  %li.progression
+    %h3 
+      Progression Plan
+      = render :partial => "form_actions"
+    .acc-section
+      #progression.acc-content
+        = render :partial => "wymeditor", :locals => {:field => :progression}
+  %li.finances
+    %h3 
+      Finances
+      = render :partial => "form_actions"
+    .acc-section
+      #finances.acc-content
+        = render :partial => "wymeditor", :locals => {:field => :finances}
+  %li.attachments
+    %h3 
+      Attachments
+      = render :partial => "form_actions"
+    .acc-section
+      #attachments.acc-content
+        = render :partial => "attachments"
+:javascript
+  var parentAccordion=new TINY.accordion.slider("parentAccordion");
+  parentAccordion.init("acc","h3",1,-1);
+
+  var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
+  nestedAccordion.init("nested","h3",1,-1,"acc-selected");

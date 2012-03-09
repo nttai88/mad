@@ -1,6 +1,32 @@
-#thoughts.partial_profile.hidden
+.show
+  %p
+    %b Marked geographic:
+    = @project.marked_geographic
+  %p
+    %b Marked size:
+    = @project.marked_size
+  %p
+    %b Partners:
+    = @project.industrial_partners
+  %p
+    %b Suppliers:
+    = @project.suppliers
+  %p
+    %b Distributers:
+    = @project.distributers
+  %p
+    %b Patenting:
+    = @project.patenting
+  %p
+    %b Origin:
+    = @project.origin
+  = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
+
+.edit{:style => "display:none"}
   = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+
     = f.label :project_status
+    %input{:type => "hidden", :name => "tab", :value=> "thoughts"}
     .field
       %p
         = f.radio_button :project_status, "published"

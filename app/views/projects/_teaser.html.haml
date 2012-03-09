@@ -1,5 +1,30 @@
-#teaser.partial_profile.hidden
+.show
+  %p
+    %b Project name:
+    = @project.project_name
+  %p
+    %b Usage:
+    = @project.usage
+  %p
+    %b Solves:
+    = @project.solves
+  %p
+    %b Idea:
+    = @project.idea
+  - unless @project.embedded_video.blank?
+    %p
+      %b Embedded video:
+      %br
+      = raw @project.embedded_video
+  - unless @project.external_url.blank?
+    %p
+      %b External project homepage:
+      = link_to @project.external_url, @project.external_url
+
+  = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
+.edit{:style => "display:none"}
   = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %input{:type => "hidden", :name => "tab", :value=> "teaser"}
     .field
       = f.label :project_name
       = f.text_field :project_name, :style=>"width:290px;"

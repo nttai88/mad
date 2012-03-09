@@ -7,6 +7,7 @@
 //= require jquery.form
 //= require jquery.tools.min
 //= require jquery.alerts
+//= require slider
 
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
@@ -42,53 +43,61 @@ Project = {
     });
   },
   initButtons: function(){
-    $(".actions .next").unbind().click(function(){
+    $(".acc li h3").mouseover(function(){
+      if(!$(this).find(".save").is(":visible")){
+        $(this).find(".edit").show();
+      }
+    });
+    $(".acc li h3").mouseout(function(){
+      $(this).find(".edit").hide();
+    });
+    $(".acc li h3 .edit").click(function(){
+      $(this).parents("li").first().find(".acc-section").css("height", "auto").css("opacity", "1");
+      $(this).parents("li").first().find(".acc-content .show").hide();
+      $(this).parents("li").first().find(".acc-content .edit").show();
+      $(this).parents("h3").find(".save").show();
+      $(this).parents("h3").find(".cancel").show();
+      $(this).hide();
+      return false;
+    });
+    $(".acc li h3 .cancel").unbind().click(function(){
       Project.updateHtmlEditor();
-      if(Project.isDirtyForm()){
-        Project.showDirtyWarning("next");
+      var container = $(this).parents("li").first();
+      if(Project.isDirtyForm(container)){
+        Project.showDirtyWarning(container);
         return false;
       }
-      Project.tabs.next();
-      $(this).blur()
-      Project.showHideNextPrevButtons();
+      Project.cancelChanges(container);
+      return false;
     });
-    $(".actions .save").unbind().click(function(){
+    $(".acc li h3 .save").unbind().click(function(){
       Project.updateHtmlEditor();
-      Project.saveChanges(null);
-    });
-    $(".actions .prev").unbind().click(function(){
-      Project.updateHtmlEditor();
-      if(Project.isDirtyForm()){
-        Project.showDirtyWarning("prev");
-        return false;
-      }
-      Project.tabs.prev();
-      $(this).blur()
-      Project.showHideNextPrevButtons();
-    });
-
-    $(".alt-tools .exit").click(function(){
-      if(Project.isDirtyForm()){
-        Project.showDirtyWarning(null);
-        return false;
-      }
-      return true;
+      var container = $(this).parents("li").first();
+      Project.saveChanges(container);
+      return false;
     });
   },
-  saveChanges: function(action){
-    $(".actions .spinner").show();
-    Project.tabs.getCurrentPane().find("form").ajaxSubmit({
+  cancelChanges: function(container){
+    container.find(".acc-content .show").show();
+    container.find(".acc-content .edit").hide();
+    container.find("h3 .save, h3 .cancel").hide();
+    container.find("h3 .edit, h3 .show").hide();
+  },
+  saveChanges: function(container){
+    container.find(".spinner").show();
+    container.find("form").ajaxSubmit({
       dataType: 'script',
       success: function(){
-        $(".actions .spinner").hide();
-        $(".actions .save").blur();
-        Project.nextPrev(action);
+        container.find(".spinner").hide();
+        container.find("h3 .save, h3 .cancel").hide();
+        container.find("h3 .edit, h3 .show").hide();
+        container.find(".acc-content .edit").hide();
+        container.find(".acc-content .show").show();
       }
     });
   },
-  rejectChanges: function(){
-    var form = Project.tabs.getCurrentPane().find("form");
-    var tags = form.find(Project.tags);
+  rejectChanges: function(container){
+    var tags = container.find(Project.tags);
     tags.each(function(){
       $(this).val($(this).data("initial_value"));
       if($(this).hasClass("wymeditor")){
@@ -97,12 +106,12 @@ Project = {
         }catch(ex){}
       }
     });
-    form.find(".field input[type=radio]").each(function(){
+    container.find(".field input[type=radio]").each(function(){
       if($(this).val() == Project.radioValues[$(this).attr("name")]){
         $(this).attr("checked", "checked");
       }
     })
-    form.find(".field input[type=checkbox]").each(function(){
+    container.find(".field input[type=checkbox]").each(function(){
       $(this).attr("checked", Project.checkboxValues[$(this).attr("name")]);
     })
   },
@@ -110,21 +119,6 @@ Project = {
     try{
       wym.update();
     }catch(ex){}
-  },
-  showHideNextPrevButtons: function(){
-    if(Project.tabs){
-      var length = Project.tabs.getTabs().length -1;
-      if(Project.tabs.getIndex() == length){
-       $(".actions .next").hide();
-      }else{
-        $(".actions .next").show();
-      }
-      if(Project.tabs.getIndex() == 0){
-        $(".actions .prev").hide();
-      }else{
-        $(".actions .prev").show();
-      }
-    }
   },
   useUploadedAvatar: function(){
     $("#project_use_user_avatar").unbind().click(function(){
@@ -157,80 +151,54 @@ Project = {
     });
   },
   initTabs: function(){
-    $("ul#tab-headers").tabs("div#tab-panes > div",{
+    $("#tab-menu ul").tabs("#tab-panes > div",{
       initialIndex: 0,
-      onBeforeClick: function(){
-        if(Project.checkDirty == true){
-          Project.updateHtmlEditor();
-          if (Project.isDirtyForm()){
-            Project.showDirtyWarning(null);
-            return false;
-          }
-        }else{
-          Project.checkDirty = true;
-        }
-        return true;
-      },
-      onClick: function(event, tabIndex) {
-        Project.showHideNextPrevButtons();
-        return false;
-      }
+      current: "active"
     });
-    this.tabs = $("ul#tab-headers").data("tabs");
-    $(".actions .prev").hide();
+    this.tabs = $("#tab-menu ul").data("tabs");
+    $("#tab-menu ul li a").click(function(){
+      $(this).blur();
+    });
   },
-  isDirtyForm: function(){
-    if(Project.tabs){
-      var form = Project.tabs.getCurrentPane().find("form");
-      var tags = form.find(Project.tags);
-      for(var i = 0; i < tags.length; i ++){
-        var t = $(tags[i]);
-        if($.type(t.val) == "array"){
-          if(t.val().toString() != t.data("initial_value").toString()){
-            return true;
-          }
-        }else if(t.val() != t.data("initial_value")){
+  isDirtyForm: function(container){
+    var tags = container.find(Project.tags);
+    for(var i = 0; i < tags.length; i ++){
+      var t = $(tags[i]);
+      if($.type(t.val) == "array"){
+        if(t.val().toString() != t.data("initial_value").toString()){
           return true;
         }
+      }else if(t.val() != t.data("initial_value")){
+        return true;
       }
-      var radioTags = form.find(".field input[type=radio]:checked");
-      for(var j = 0; j < radioTags.length; j ++){
-        var e = $(radioTags[j]);
-        if(e.val() != Project.radioValues[e.attr("name")]){
-          return true;
-        }
-      }
-      var checkboxTags = form.find(".field input[type=checkbox]");
-      for(var k = 0; k < checkboxTags.length; k ++){
-        var el = $(checkboxTags[k]);
-        if(el.is(":checked") != Project.checkboxValues[el.attr("name")]){
-          return true;
-        }
-      }
-      return false;
-    }else{
-      return true;
     }
+    var radioTags = container.find(".field input[type=radio]:checked");
+    for(var j = 0; j < radioTags.length; j ++){
+      var e = $(radioTags[j]);
+      if(e.val() != Project.radioValues[e.attr("name")]){
+        return true;
+      }
+    }
+    var checkboxTags = container.find(".field input[type=checkbox]");
+    for(var k = 0; k < checkboxTags.length; k ++){
+      var el = $(checkboxTags[k]);
+      if(el.is(":checked") != Project.checkboxValues[el.attr("name")]){
+        return true;
+      }
+    }
+    return false;
   },
-  showDirtyWarning: function(action){
+  showDirtyWarning: function(container){
     $.alerts.okButton ='Save';
     $.alerts.cancelButton = 'Discard Changes';
     $.alerts.confirm("Please save or discard your changes to continue", "You have unsaved changes", function(result){
       if (result) {
-        Project.saveChanges(action);
+        Project.saveChanges(container);
       }else {
-        Project.rejectChanges();
-        Project.nextPrev(action)
+        Project.rejectChanges(container);
+        Project.cancelChanges(container);
       }
-      Project.showHideNextPrevButtons();
     });
-  },
-  nextPrev: function(action){
-    if(action == "next"){
-      Project.tabs.next();
-    }else if(action == "prev"){
-      Project.tabs.prev();
-    }
   }
 }
 
@@ -246,9 +214,11 @@ var Attachment = {
   bindNewAction: function(){
     $(".new-attachment").unbind().click(function(){
       $(".new_attachments").show();
-      $(".new_attachments tr").each(function(){
-        if($(this).is(":visible") == false){
-          $(this).show();
+      var trs = $(".new_attachments tr");
+      for(var i = 0; i < trs.length; i ++){
+        var tr = $(trs[i]);
+        if(tr.is(":visible") == false){
+          tr.show();
           if ($(".new_attachments tr:visible").length == Attachment.numOfAttachments){
             $(".new-attachment").hide();
           }else{
@@ -257,7 +227,7 @@ var Attachment = {
           Attachment.displayAttachLink();
           return false;
         }
-      });
+      }
       return false;
     });
   },

@@ -1,0 +1,18 @@
+#options {float:right; text-align:right; color:#9ac1c9; margin-right:10px; margin-bottom:5px;}
+#options a {text-decoration:none; color:#9ac1c9}
+#options a:hover {color:#033}
+
+#acc {width:658px; list-style:none; color:#033; margin:0 auto 40px}
+#acc h3 {width:643px; border:1px solid #dadbd8; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer; background:#eeeeee}
+#acc h3:hover {background:#f5f5f5}
+#acc .acc-section {overflow:hidden; background:#fff}
+#acc .acc-content {border-top:none; background:#fff; margin-top:1px;}
+#attachments.acc-content .edit, #teaser.acc-content .edit, #thoughts.acc-content .edit, .acc-content .show{padding:10px 25px; font-size: 13px; color: #444444;}
+.acc-content .edit p, .acc-content .show p{margin-bottom:15px;}
+
+#nested {width:631px; list-style:none; color:#033; margin-bottom:15px;float:right}
+#nested h3 {width:617px;border:1px solid #dadbd8; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer;  background:#eeeeee}
+#nested h3:hover {background:#f5f5f5}
+#nested .acc-section {overflow:hidden; background:#fff}
+#nested .acc-content { border-top:none; background:#fff}
+/*#nested .acc-selected {background:url(/assets/project/header_over.gif)}*/
