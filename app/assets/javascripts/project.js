@@ -35,7 +35,7 @@ Project = {
   },
   initDataValue: function(){
     $(Project.tags).each(function(){
-      $(this).data("initial_value", $(this).val().toString());
+      $(this).data("initial_value", $(this).val());
     });
     $(".field input[type=radio]:checked").each(function(){
       Project.radioValues[$(this).attr("name")] = $(this).val();
@@ -199,7 +199,7 @@ Project = {
     var tags = container.find(Project.tags);
     for(var i = 0; i < tags.length; i ++){
       var t = $(tags[i]);
-      if($.type(t.val) == "array"){
+      if($.type(t.val) == "array" || $.type(t.data("initial_value")) == "array"){
         if(t.val().toString() != t.data("initial_value").toString()){
           return true;
         }
