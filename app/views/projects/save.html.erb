@@ -2,6 +2,7 @@
   <!--javascript code here -->
   <% if params[:tab] == "general" %>
     $("#general").html("<%= escape_javascript(render :partial => "general") %>");
+    $("#contact-info").html("<%= escape_javascript(render :partial => "contact") %>");
     Project.initDataValue();
     Project.useExistingProfile();
     Project.useUploadedAvatar();

@@ -3,22 +3,7 @@
   Business Plan
 = content_for :under_side_bar do
   #contact-info
-    .avatar-block
-      %div
-        %img{:alt => "default", :src => "/assets/project/default-avatar.jpg"}
-    .contact-information
-      %h3 Jason Henry
-      %ul
-        %li Address : adfasd, adsf asd, etedfgd
-        %li Country : United States
-        %li City : City
-        %li Zip/ Postal Code : 105425
-        %li Phone : 0202 000 2022 020
-    .about
-      %span About
-      %br/
-      %p We just finished recording our new album, Look Out Mama. We're excited to release it into the world and need.
-
+    = render :partial => "contact"
 / / Left content
 %div{:style => "padding-bottom:50px"}
   %span.project-title{:style => "display:inline;"} Hook Tool
@@ -36,7 +21,8 @@
         %span Partners Needd
     %li
       %a{:href => "#"}
-        %span Payments
+        %span
+          = t('payment',:scope => 'navigations.project')
 #tab-panes
   %div.project-home.clear
     = render :partial => "project_home"

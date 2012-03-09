@@ -41,7 +41,7 @@ en:
         competitors: Competitors
         strategy: Strategy
         progression: Progression
-        financer: Financer
+        finances: Finances
         summary: Summary
         project_status: Project Status
         geographical_marked: Geographical marked
@@ -107,7 +107,8 @@ en:
     project:
       general: General
       teaser: Teaser
-      business_page: Business Page
+      business_plan: Business Plan
+      business_idea: Business Idea
       product_description: Product Description
       market_analysis: Market Analysis
       competitors_analysis: Competitors Analysis
