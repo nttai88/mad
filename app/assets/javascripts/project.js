@@ -18,6 +18,7 @@ $(document).ready(function(){
   Attachment.init();
 })
 
+
 Project = {
   checkDirty: false,
   tabs: null,
@@ -52,10 +53,9 @@ Project = {
       $(this).find(".edit").hide();
     });
     $(".acc li h3").click(function(){
-      Project.updateHtmlEditor();
       var container = $("#acc");
       if(Project.isDirtyForm(container)){
-        container = $("#acc h3 .save:visible").parents("li").first();
+        container = container.find("h3 .save:visible").parents("li").first();
         Project.showDirtyWarning(container);
         return false;
       }
@@ -71,7 +71,6 @@ Project = {
       return false;
     });
     $(".acc li h3 .cancel").unbind().click(function(){
-      Project.updateHtmlEditor();
       var container = $(this).parents("li").first();
       if(Project.isDirtyForm(container)){
         Project.showDirtyWarning(container);
@@ -171,6 +170,8 @@ Project = {
     });
   },
   isDirtyForm: function(container){
+    Project.updateHtmlEditor();
+    if(!container){container = $("#acc")};
     var tags = container.find(Project.tags);
     for(var i = 0; i < tags.length; i ++){
       var t = $(tags[i]);

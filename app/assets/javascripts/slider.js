@@ -17,6 +17,7 @@ TINY.accordion=function(){
 		this.l=s
 	};
 	slider.prototype.pr=function(f,d){
+    try{if(Project.isDirtyForm(null)){return false;}}catch(ex){}
 		for(var i=0;i<this.l;i++){
 			var h=this.a[i].h, c=this.a[i].c, k=c.style.height; k=k=='auto'?1:parseInt(k); clearInterval(c.t);
 			if((k!=1&&c.d==-1)&&(f==1||i==d)){
