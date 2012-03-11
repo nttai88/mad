@@ -112,7 +112,6 @@ body input, body select{
 			float:left;
 			position:absolute;
 			top: 375px;
-			/padding-top:18px
 	}
   #tab-menu li a.active { margin-top:1px; }
 
