@@ -47,7 +47,7 @@ gem 'state_machine', '~> 1.1.2'
 
 # Add i18n support (optional, you can remove this if you really want to but it is advised to keep it).
 gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
-gem 'refinerycms-i18n',   '~> 2.0.0', :git => 'git://github.com/parndt/refinerycms-i18n.git'
+gem 'refinerycms-i18n'
 gem "refinerycms", :git => "git://github.com/resolve/refinerycms.git", :ref => "cd94008a5e3104dd2d650a5ef3ba70b1b4b89a3f"
 gem 'refinerycms-inquiries', :git => 'git://github.com/resolve/refinerycms-inquiries.git', :ref => 'bb4827422d04bca56ad55bb38f7c0bd7bb45e280'
 gem 'refinerycms-news', :git => 'git://github.com/resolve/refinerycms-news.git', :ref => '66db97c724a604e7565188a42cdde28d48ac89f2'
