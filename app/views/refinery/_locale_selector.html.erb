@@ -1,0 +1,7 @@
+<%=content_tag :ul, :id => 'local_selector', :class => 'custom-menu' do%>
+  <%  available_locals.each do |l| %>
+    <%= content_tag :li,:class => "locale #{'selected' if l.to_s==I18n.locale.to_s}", :id => "locale_#{l}"  do%>
+      <%=  link_to image_tag("locale/#{l}.png"),current_url_with_locale(l) %>
+    <%end%>
+  <%end%>
+<%end%>

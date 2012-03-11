@@ -1,0 +1,88 @@
+.show
+  %p
+    %b Name:
+    = @project.name
+  %p
+    %b Avatar/Logo:
+    %br
+    = image_tag @project.avatar, :style => "height: 50px;"
+  - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
+  %p
+    %b Address1:
+    = contact.address1 if contact
+  %p
+    %b Address2:
+    = contact.address2 if contact
+  %p
+    %b City:
+    = contact.city if contact
+  %p
+    %b Zip
+    = contact.zip if contact
+  %p
+    %b About
+    = contact.about if contact
+.edit.hidden
+  - @user = @project.user
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %input{:type => "hidden", :name => "tab", :value=> "general"}
+    .field
+      %span{:style => "float: left;"}
+        %input#use_existing{:name => "use_existing", :type => "checkbox", :value => "yes", :"data-user" => formated_user_data(@project.user)}
+      %span{:style => "float: left;padding-top: 3px;font-weight: bold;"}
+        Use your profiles existing contact-info
+      %br
+    .field{:class => "clear"}
+      = f.label :name
+      = f.text_field :name, :style=>"width:290px;"
+    - @project.contact = Contact.new unless @project.contact
+    = f.fields_for :contact_attributes, @project.contact do |fc|
+      .field
+        = fc.label :address1
+        = fc.text_field :address1, :class => 'larger widest', :style=>"width:290px;"
+      .field
+        = fc.label :address2
+        = fc.text_field :address2, :class => 'larger widest', :style=>"width:290px;"
+
+      - @project.contact.region = Region.new unless @project.contact.region
+      = fc.fields_for :region_attributes, @project.contact.region do |fr|
+        .region
+          .field
+            = fr.label :country
+            = fr.country_select :country, "NO", {}, {:class => "country", :style=>"width:295px;"}
+          - country_code = (@project.contact.region.country || "NO")
+          .field.state{:style => "#{("display:none" unless has_state?(country_code))}"}
+            = fr.label :state
+            - begin
+              = fr.state_select :state, country_code, {}, {:class => "state", :style=>"width:295px;"}
+            - rescue
+              %select#project_contact_attributes_region_attributes_state.state{:name => "project[contact_attributes][region_attributes][state]"}
+      .field
+        = fc.label :city
+        = fc.text_field :city, :class => 'larger widest', :style=>"width:290px;"
+      .field
+        = fc.label :zip
+        = fc.text_field :zip, :class => 'larger widest', :style=>"width:290px;"
+      .field
+        = fc.label :phone
+        = fc.text_field :phone, :class => 'larger widest', :style=>"width:290px;"
+      .field
+        = f.fields_for :document do |p|
+          = p.label :avatar
+          - if (!@project.avatar && @project.profile_avatar)
+            = f.check_box :use_user_avatar
+            Use
+            = link_to "existing profile avatar", @user.document.avatar.url, :target => "_blank"
+          - elsif @project.avatar
+            = image_tag @project.avatar, :style => "height: 50px;"
+          %br
+          = p.file_field :avatar, :class => "upload-avatar"
+      .field
+        = fc.label :about
+        = fc.text_area :about, :class => 'larger widest'
+      .field
+        =t 'project.form.choose_type'
+        %br
+        - Project::SERVICES.each_pair do |key, value|
+          = f.radio_button :service, key
+          = value

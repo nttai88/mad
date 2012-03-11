@@ -1,0 +1,4 @@
+#payment
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %p Pay with Paypal
+    %img{:src => "https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif"}

@@ -1,0 +1,16 @@
+<% if params[:tab] == "general" %>
+  $("#general").html("<%= escape_javascript(render :partial => "general") %>");
+  $("#contact-info").html("<%= escape_javascript(render :partial => "contact") %>");
+  Project.useExistingProfile();
+  Project.useUploadedAvatar();
+<% elsif params[:tab] == "attachments" %>
+  $("#attachments").html("<%= escape_javascript(render :partial => "attachments") %>");
+  Attachment.init();
+<% elsif ["teaser", "thoughts"].include?(params[:tab]) %>
+  $("#<%= params[:tab] %>").html("<%= escape_javascript(render :partial => params[:tab]) %>");
+<% elsif params[:tab] == "title" %>
+  //Do nothing
+<% else %>
+  $("#<%= params[:tab] %> .show").html("<%= escape_javascript(render :partial => "wymeditor_show", :locals => {:field => params[:tab]}) %>");
+<% end %>
+Project.initDataValue();

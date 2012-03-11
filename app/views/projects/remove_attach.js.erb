@@ -1,0 +1,6 @@
+$("#attachments").html("<%= escape_javascript(render :partial => "attachments") %>");
+Attachment.init();
+Project.initDataValue();
+var container = $("#attachments").parents("li").first();
+container.find("h3 .save, h3 .cancel").hide();
+container.find("h3 .edit").show();

@@ -1,0 +1,58 @@
+.show
+  %p
+    %b Project name:
+    = @project.project_name
+  %p
+    %b Usage:
+    = @project.usage
+  %p
+    %b Solves:
+    = @project.solves
+  %p
+    %b Idea:
+    = @project.idea
+  - unless @project.embedded_video.blank?
+    %p
+      %b Embedded video:
+      %br
+      = raw @project.embedded_video
+  - unless @project.external_url.blank?
+    %p
+      %b External project homepage:
+      = link_to @project.external_url, @project.external_url
+
+  = ratings_for @project, :dimension => :teaser, :remote_options => {:url => rate_project_path(@project)}
+.edit{:style => "display:none"}
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %input{:type => "hidden", :name => "tab", :value=> "teaser"}
+    .field
+      = f.label :project_name
+      = f.text_field :project_name, :style=>"width:290px;"
+    .field
+      = f.check_box :network_only
+      = t('network_only',:scope => 'helpers.label.project')
+    .field
+      = f.label :field_of_usage
+      = f.text_area :usage, :class => 'larger widest'
+    .field
+      = f.label :which_fields_does_the_solve
+      = f.text_area :solves, :class => 'larger widest'
+    .field
+      = f.label :category_ids
+      = f.collection_select :category_ids, Category.all, :id, :title, {}, { :multiple => true }
+    = t 'project.form.needed_patners'
+    .field
+      = f.check_box :need_investor
+      = t 'project.patners.investor'
+    .field
+      = f.check_box :need_producer
+      = t 'project.patners.producer'
+    .field
+      = f.check_box :need_retail
+      = t 'project.patners.retailer'
+    .field
+      = f.label :embedded_video
+      = f.text_area :embedded_video, :class => 'larger widest'
+    .field
+      = f.label :external_url
+      = f.text_field :external_url

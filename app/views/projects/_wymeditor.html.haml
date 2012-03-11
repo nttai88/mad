@@ -1,0 +1,7 @@
+.show
+  = render :partial => "wymeditor_show", :locals => {:field => field}
+.edit{:style => "display:none"}
+  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+    %input{:type => "hidden", :name => "tab", :value=> field}
+    .field
+      = f.text_area field, :class => 'wymeditor wymupdate'

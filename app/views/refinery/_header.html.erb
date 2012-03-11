@@ -1,23 +1,10 @@
 <div class="right-menu">
-  <ul class="custom-menu" >
-      <% if refinery_user_signed_in? %>
-        <li>
-          <%= link_to image_tag("nn.png"), "/nb" %>
-          <%= link_to image_tag("en.jpeg"), "/en" %>
-        </li>
-        <li> <%= link_to "My Page", "/my-page" %> </li>
-        <li> <%= link_to "Log out", main_app.destroy_refinery_user_session_url %> </li>
-        <li> Logged in as: <b><%= current_user.username %></b> </li>
-      <% else %>
-        <li><%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), main_app.new_refinery_user_registration_path %></li>
-        <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), main_app.new_refinery_user_session_path %></li>
-      <% end %>
-  </ul>
+  <%= render :partial => "shared/top_menu" %>
 </div>
 <h1 id='logo'>
   <%= link_to image_tag("logo-banner.png"), main_app.root_path %>
 </h1>
 <%= render(:partial => "/refinery/menu", :locals => {
-             :dom_id => 'menu',
-             :css => 'menu'
-           }) %>
+    :dom_id => 'menu',
+    :css => 'menu'
+  }) %>

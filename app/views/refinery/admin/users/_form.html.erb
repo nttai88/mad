@@ -5,10 +5,10 @@
 <%= form_for [main_app, :refinery_admin, @user] do |f| %>
 
   <%= render :partial => "/refinery/admin/error_messages",
-             :locals => {
-               :object => @user,
-               :include_object_name => true
-             } %>
+    :locals => {
+    :object => @user,
+    :include_object_name => true
+  } %>
 
   <div class='field'>
     <%= f.label :username %>
@@ -30,33 +30,33 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, :autocomplete => 'off' %>
   </div>
-<% if @user.has_role?(:refinery) %>
-  <div class='field plugin_access'>
-    <span class='label_with_help'>
-      <%= f.label :plugin_access, t('.plugin_access'), :class => "title_label" %>
-      <%= link_to "(#{t('.enable_all')})", "", :id => "user_plugins_enable_all" %>
-    </span>
-    <ul id='plugins' class='checkboxes'>
-      <% @available_plugins.each do |plugin| -%>
-        <% if ::Refinery::Plugins.always_allowed.names.include?(plugin[:name]) or
+  <% if @user.has_role?(:refinery) %>
+    <div class='field plugin_access'>
+      <span class='label_with_help'>
+        <%= f.label :plugin_access, t('.plugin_access'), :class => "title_label" %>
+        <%= link_to "(#{t('.enable_all')})", "", :id => "user_plugins_enable_all" %>
+      </span>
+      <ul id='plugins' class='checkboxes'>
+        <% @available_plugins.each do |plugin| -%>
+          <% if ::Refinery::Plugins.always_allowed.names.include?(plugin[:name]) or
               (plugin[:name] == 'refinery_users' and @user.id == current_refinery_user.id) %>
-          <%= hidden_field_tag 'user[plugins][]', plugin[:name],
-                               :id => "plugins_#{plugin[:name]}" %>
-        <% else %>
-          <li>
-            <%= check_box_tag 'user[plugins][]', plugin[:name],
-                              @selected_plugin_names.include?(plugin[:name]),
-                              :id => "plugins_#{plugin[:name]}" %>
-            <%= f.label 'user[plugins][]',
-                        t('title', :scope => "refinery.plugins.#{plugin[:name].downcase}", :default => plugin[:title]),
-                        :class => "stripped",
-                        :for => "plugins_#{plugin[:name]}" %>
-          </li>
+            <%= hidden_field_tag 'user[plugins][]', plugin[:name],
+              :id => "plugins_#{plugin[:name]}" %>
+          <% else %>
+            <li>
+              <%= check_box_tag 'user[plugins][]', plugin[:name],
+                @selected_plugin_names.include?(plugin[:name]),
+                :id => "plugins_#{plugin[:name]}" %>
+              <%= f.label 'user[plugins][]',
+                t('title', :scope => "refinery.plugins.#{plugin[:name].downcase}", :default => plugin[:title]),
+                :class => "stripped",
+                :for => "plugins_#{plugin[:name]}" %>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <% if @user.is_partner? %>
     <div class="field">
@@ -84,11 +84,11 @@
           downcased_title = (title = role[:title]).downcase -%>
           <li>
             <%= check_box_tag 'user[roles][]', downcased_title, @user.has_role?(title),
-                              :id => "roles_#{downcased_title}" %>
+              :id => "roles_#{downcased_title}" %>
             <%= f.label 'user[roles][]',
-                        t(downcased_title, :scope => 'refinery.roles', :default => title),
-                        :class => 'stripped',
-                        :for => "roles_#{downcased_title}" %>
+              t(downcased_title, :scope => 'refinery.roles', :default => title),
+              :class => 'stripped',
+              :for => "roles_#{downcased_title}" %>
           </li>
         <% end %>
       </ul>
@@ -96,25 +96,25 @@
   <% end %>
 
   <%= render :partial => "/refinery/admin/form_actions",
-             :locals => {
-               :f => f,
-               :continue_editing => false,
-               :hide_delete => !current_refinery_user.can_delete?(@user),
-               :delete_title => t('delete', :scope => 'refinery.admin.users'),
-               :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @user.username)
-             } %>
+    :locals => {
+    :f => f,
+    :continue_editing => false,
+    :hide_delete => !current_refinery_user.can_delete?(@user),
+    :delete_title => t('delete', :scope => 'refinery.admin.users'),
+    :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @user.username)
+  } %>
 <% end %>
 
 <% content_for :javascripts do %>
   <script>
     $(document).ready(function() {
-      $('#user_plugins_enable_all').click(function(e, a) {
-        $('div.field.plugin_access ul#plugins li input:checkbox').attr('checked', true);
-        e.preventDefault();
-      });
-      $(".approve.button").click(function(){
-        $(".approve-field").val(1);
-      });
+    $('#user_plugins_enable_all').click(function(e, a) {
+    $('div.field.plugin_access ul#plugins li input:checkbox').attr('checked', true);
+    e.preventDefault();
+    });
+    $(".approve.button").click(function(){
+    $(".approve-field").val(1);
+    });
     });
   </script>
 <% end %>

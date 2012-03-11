@@ -42,7 +42,7 @@
       <%= fc.text_field :city, :class => 'larger widest' %>
     </div>
     <div class='field'>
-      <%= fc.label :zip, "Zip/Postal code" %>
+      <%= fc.label :zip %>
       <%= fc.text_field :zip, :class => 'larger widest' %>
     </div>
     <div class='field'>
@@ -60,7 +60,7 @@
   </div>
   <div class='field'>
     <%= fp.check_box :receive_newsleter %>
-    <%= fp.label :receive_newsleter, :style => "display:inline" %>
+    <%= fp.label :receive_newsleter,t('helpers.label.profile.receive_newsleter'),:style => "display:inline" %>
   </div>
 <% end %>
 <div class='field'>

@@ -107,6 +107,14 @@ Refinery::User.class_eval do
     conditions["contacts.region_id"] = regions unless regions.empty?
     Project.joins(:contact).where(conditions)
   end
+
+  def avatar
+    if self.document && self.document.avatar.url
+      return self.document.avatar.url
+    else
+      return nil
+    end
+  end
   protected
   def create_profile
     self.profile = Profile.new(:first_name => self.username, :last_name => self.username) unless self.profile

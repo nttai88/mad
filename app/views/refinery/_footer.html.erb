@@ -1,49 +1,55 @@
-<div id="front">
-  <ul>
-          <li><a href="#">Company Name</a></li>
-
-          <li><a href="#">Services</a>
-            <ul>
-
-              <li><a href="#">service1</a></li>
-              <li><a href="#">service2</a></li>
-              <li><a href="#">service3</a></li>
-              <li><a href="#">service4</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Interest Groups</a>
-            <ul>
-
-              <li><a href="#">Group1</a></li>
-              <li><a href="#">Group2</a></li>
-
-              <li><a href="#">Group3</a></li>
-              <li><a href="#">Group4</a></li>
-            </ul>
-          </li>
-          <li><a href="#">News</a>
-            <ul>
-              <li><a href="#">News1</a></li>
-
-              <li><a href="#">Press Coverage</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Playground</a>
-
-            <ul>
-              <li><a href="#">FAQ</a></li>
-
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Affiliates</a></li>
-            </ul>
-          </li>
-  </ul>
-</div>
 <div id="footer">
-<p id="copy">
-  <%= t('.copyright', :year => Time.now.year,
-                      :site_name => Refinery::Core.config.site_name) %>
-</p>
+  <div class="footer-blocks fl_left">
+    <h3>Company Name</h3>
+    <ul>
+      <li><a href="#">Company Name 1</a></li>
+      <li><a href="#">Company Name 2</a></li>
+      <li><a href="#">Company Name 3</a></li>
+      <li><a href="#">Company Name 4</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-blocks fl_left">
+    <h3>Services</h3>
+    <ul>
+      <li><a href="#">Services 1</a></li>
+      <li><a href="#">Services 2</a></li>
+      <li><a href="#">Services 3</a></li>
+      <li><a href="#">Services 4</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-blocks fl_left">
+    <h3>Interest Groups</h3>
+    <ul>
+      <li><a href="#">Group 1</a></li>
+      <li><a href="#">Group 2</a></li>
+      <li><a href="#">Group 3</a></li>
+      <li><a href="#">Group 4</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-blocks fl_left">
+    <h3>Interest Groups</h3>
+    <ul>
+      <li><a href="#">News 1</a></li>
+      <li><a href="#">Press Coverage</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Facebook</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-blocks fl_left">
+    <h3>Playground</h3>
+    <ul>
+      <li><a href="#">Faq</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Affiliates</a></li>
+    </ul>
+  </div>
+  <div class="clear_fix"></div>
+  <div class="copy-right">
+    <a href="#"><%= t('.copyright', :year => Time.now.year,
+        :site_name => Refinery::Core.config.site_name) %></a>
+  </div>
 </div>

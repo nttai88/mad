@@ -1,0 +1,37 @@
+.avatar-block
+  %div
+    - if @project.avatar
+      = image_tag @project.avatar, :style => "width: 138px;", :alt => @project.name
+    - else
+      %img{:alt => "default", :src => "/assets/project/default-avatar.jpg"}
+.contact-information
+  %h3
+    = @project.name
+  - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
+  %ul
+    %li
+      Address1 :
+      = contact.address1 if contact
+    %li
+      Address2 :
+      = contact.address2 if contact
+    %li
+      Country :
+      = contact.region.country if contact && contact.region
+    %li
+      State :
+      = contact.region.state if contact && contact.region
+    %li
+      City :
+      = contact.city if contact
+    %li
+      Zip/ Postal Code :
+      = contact.zip if contact
+    %li
+      Phone :
+      = contact.phone if contact
+.about
+  %span About
+  %br/
+  %p
+    = contact.about if contact

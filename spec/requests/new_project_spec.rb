@@ -21,6 +21,8 @@ describe "Create new project" do
     it "allows to copy/remove user info in form", :js => true do
       visit new_project_path
 
+      page.execute_script("$('#acc .general h3').mouseover();")
+      page.find("#acc .general h3 .edit").click
       # populate fields
       check "use_existing"
 
@@ -31,12 +33,6 @@ describe "Create new project" do
       find_field("project_contact_attributes_zip").value.should eq(user.profile.contact.zip)
       find_field("project_contact_attributes_phone").value.should eq(user.profile.contact.phone)
       find_field("project_contact_attributes_about").value.should eq(user.profile.about)
-
-      click_link "Teaser"
-
-      find_field("project_external_url").value.should eq(user.profile.contact.url)
-
-      click_link "General"
 
       # clear fields
       uncheck "use_existing"
@@ -49,9 +45,6 @@ describe "Create new project" do
       find_field("project_contact_attributes_phone").value.should be_blank
       find_field("project_contact_attributes_about").value.should be_blank
 
-      click_link "Teaser"
-
-      find_field("project_external_url").value.should be_blank
     end
   end
 
