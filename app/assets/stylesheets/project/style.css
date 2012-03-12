@@ -42,7 +42,7 @@ body input, body select{
 	}
 	#main-holder-1{
 		width:974px;
-		margin:0 auto;d
+		margin:0 auto;
 	}
 
 /*Header Styles*/
@@ -112,7 +112,6 @@ body input, body select{
 			float:left;
 			position:absolute;
 			top: 375px;
-			/padding-top:18px
 	}
   #tab-menu li a.active { margin-top:1px; }
 
