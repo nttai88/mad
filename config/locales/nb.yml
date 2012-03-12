@@ -41,7 +41,7 @@ nb:
         competitors: C*ompetitors
         strategy: S*trategy
         progression: P*rogression
-        financer: F*inancer
+        finances: F*inancer
         summary: S*ummary
         project_status: P*roject Status
         geographical_marked: G*eographical marked
@@ -107,13 +107,14 @@ nb:
     project:
       general: G*eneral
       teaser: T*easer
-      business_page: B*usiness Page
+      business_plan: B*usiness Plan
+      business_idea: B*usiness Idea
       product_description: P*roduct Description
       market_analysis: M*arket Analysis
       competitors_analysis: C*ompetitors Analysis
       strategy: S*trategy
       progression_plan: P*rogression Plan
-      financer: F*inancer
+      finances: F*inances
       summary: S*ummary
       attachments: A*ttachments
       thoughts_and_wishes: T*houghts & wishes

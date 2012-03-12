@@ -1,10 +1,13 @@
 <textarea>
   <!--javascript code here -->
   <% if params[:tab] == "general" %>
-    $("#general").html("<%= escape_javascript(render :partial => "general") %>");
-    Project.initDataValue();
-    Project.useExistingProfile();
-    Project.useUploadedAvatar();
+    try{
+      $("#general").html("<%= escape_javascript(render :partial => "general") %>");
+      $("#contact-info").html("<%= escape_javascript(render :partial => "contact") %>");
+      Project.initDataValue();
+      Project.useExistingProfile();
+      Project.useUploadedAvatar();
+    }catch(ex){alert(ex)}
   <% elsif params[:tab] == "attachments" %>
     $("#attachments").html("<%= escape_javascript(render :partial => "attachments") %>");
     Attachment.init();
