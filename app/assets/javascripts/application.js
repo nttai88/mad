@@ -19,6 +19,8 @@ Register = {
   init: function(){
     $("input#user_username").blur(function(){
       var input = $(this);
+      if(input.val().length == 0)
+        return;
       var container = input.parents(".field");
       $.ajax({ url: "/users/check_username_availability",
         type: "POST", data: {username: input.val()},
