@@ -1,7 +1,7 @@
 Refinery::UsersController.class_eval do
   skip_filter :redirect?
   before_filter :find_pages_for_menu
-  layout "application"
+  layout "static"
   def new
     @user = Refinery::User.new
     @user.roles = [Refinery::Role.find_by_title("Entrepreneur")]

@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user,:available_locals
 
+  layout 'static'
+
   private
 
   def current_user
