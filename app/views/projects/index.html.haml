@@ -22,3 +22,7 @@
         - if current_user.admin?
           %td= link_to 'Manage Members', project_members_path(project)
 
+    %tr
+      %td.pagination{colspan: 7}
+        =will_paginate @projects
+%br/
