@@ -57,11 +57,22 @@
     end
   end
 -%>
+
+<%
+  content_for :header do
+    sections[0][:fallback]
+  end
+  
+  content_for :under_side_bar do
+    raw sections[2][:html]
+  end
+-%>
+
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
   <% if params[:path] == "my-page" %>
-    <%= raw sections.map{|section| section[:html]}.join("\n").gsub("$new_emails", @new_emails.to_s).gsub("$projects", @projects.to_s) -%>
+    <%= raw sections[1][:html].gsub("$new_emails", @new_emails.to_s).gsub("$projects", @projects.to_s) -%>
   <% else %>
-    <%= raw sections.map{|section| section[:html]}.join("\n") -%>
+    <%= raw sections[1][:html] -%>
   <% end %>
 </section>
 <%= render :partial => '/refinery/draft_page_message' unless @page.nil? or @page.live? -%>

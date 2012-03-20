@@ -63,7 +63,7 @@ body input, body select{
 		height:30px;
 		}
 		#top_menu ul{ float:right}
-		#top_menu ul li{ float:left; display:inline; line-height:30px; height:30px; padding:0 18px}
+		#top_menu ul li{ float:left; display:inline; line-height:30px; height:30px; margin-left: 15px;}
 		#top_menu ul li a img{margin-top:5px;}
 
 #main_menu{

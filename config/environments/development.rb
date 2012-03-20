@@ -33,7 +33,7 @@ end
 
 
 Refinery::Core.configure do |config|
-  config.s3_backend = false
+  config.s3_backend = true
 end
 
 CarrierWave.configure do |config|
