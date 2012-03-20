@@ -9,9 +9,9 @@ class ProjectsController < ApplicationController
       @projects = current_user.projects
     elsif current_user.is_partner?
       @projects = current_user.partnerable_projects
-    else
-      @projects = Project.all
     end
+      
+    @projects = (@projects.present? ? @projects : Project).paginate :per_page => PAGINATE_ITEM_COUNT , :page => params[:page]
   end
 
 
@@ -68,26 +68,26 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     doc = @project.document
     case params[:type]
-      when "file"
-        doc.remove_file = true
-      when "file1"
-        doc.remove_file1 = true
-      when "file2"
-        doc.remove_file2 = true
-      when "file3"
-        doc.remove_file3 = true
-      when "file4"
-        doc.remove_file4 = true
-      when "file5"
-        doc.remove_file5 = true
-      when "file6"
-        doc.remove_file6 = true
-      when "file7"
-        doc.remove_file7 = true
-      when "file8"
-        doc.remove_file8 = true
-      when "file9"
-        doc.remove_file1 = true
+    when "file"
+      doc.remove_file = true
+    when "file1"
+      doc.remove_file1 = true
+    when "file2"
+      doc.remove_file2 = true
+    when "file3"
+      doc.remove_file3 = true
+    when "file4"
+      doc.remove_file4 = true
+    when "file5"
+      doc.remove_file5 = true
+    when "file6"
+      doc.remove_file6 = true
+    when "file7"
+      doc.remove_file7 = true
+    when "file8"
+      doc.remove_file8 = true
+    when "file9"
+      doc.remove_file1 = true
     else
       
     end
