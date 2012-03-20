@@ -118,7 +118,9 @@ li{list-style:none}
 #body_content_right{
     margin: 15px;
 }
-
+td.pagination_wrapper{
+  text-align: center;
+}
 form { padding-top: 15px;}
 .inner-content-block {width:95%; clear:both; margin-top:70px; margin-bottom:70px;}
 .inner-content-block p{ line-height:18px}
@@ -217,6 +219,7 @@ form { padding-top: 15px;}
 
 .banner-top,.banner-bottom{ margin:20px auto; width:960px;}
 .banner-bottom{ margin-bottom:40px; text-align: center;}
+
 /*footer*/
 
 #footer-wrapper{
