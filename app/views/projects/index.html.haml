@@ -1,24 +1,24 @@
-= stylesheet_link_tag    "application", "jquery_ui"
 = content_for :header do
   Listing Projects
-%table{width: "600"}
-  %tr
-    %th Title
-    %th Status
-    %th Owner
-    %th Created Date
-  - @projects.each do |project|
+#body_content_left
+  %table{width: "600"}
     %tr
-    -unless project.title.blank?
-      %td= link_to project.title, project
-    -else
-      %td= link_to "no title", project
-    %td= project.project_status.titlecase
-    %td= project.user.username
-    %td= nice_time project.created_at
-    - if current_user && current_user.can_edit_project?(project)
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete
-      - if current_user.admin?
-        %td= link_to 'Manage Members', project_members_path(project)
-%br/
+      %th Title
+      %th Status
+      %th Owner
+      %th Created Date
+    - @projects.each do |project|
+      %tr
+      -unless project.title.blank?
+        %td= link_to project.title, project
+      -else
+        %td= link_to "no title", project
+      %td= project.project_status.titlecase
+      %td= project.user.username
+      %td= nice_time project.created_at
+      - if current_user && current_user.can_edit_project?(project)
+        %td= link_to 'Edit', edit_project_path(project)
+        %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete
+        - if current_user.admin?
+          %td= link_to 'Manage Members', project_members_path(project)
+
