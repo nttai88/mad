@@ -3,16 +3,17 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Company Name" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Company Name" %></title>
 
-  <!-- Included CSS Files -->
-  <%= stylesheet_link_tag "static" %>
-  <!-- Included JS Files  -->
-  <%= javascript_include_tag "application" %>
-  <%= render :partial => '/refinery/html_tag' %>
-  <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
-  <%= csrf_meta_tags %>
-  <%= javascript_include_tag "project" %>
+    <!-- Included CSS Files -->
+    <%= stylesheet_link_tag    "static" %>
+    <!-- Included JS Files  -->
+    <%= javascript_include_tag "application" %>
+    <%= render :partial => '/refinery/html_tag' %>
+    <% site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true}) -%>
+    <%= render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+    <%= yield :javascripts %>
+    <%= csrf_meta_tags %>
 </head>
 
 <body>
@@ -28,27 +29,29 @@
     </div>
   <!-- Header-->
   <!--Main Menu-->
-    <%= render(:partial => "/refinery/menu", :locals => {
-    :dom_id => 'menu',
-    :css => 'menu'
-    }) %>
+  <div id="main_menu">
+    <%= render :partial => "refinery/menu" %>
+  </div>
   <!--Main Menu-->
   </div>
     
   <!--Content holder-->
-  <!-- 
-  <div class="banner-top"><img src="/assets/logos/banner.jpg" /></div>
-  -->
+  <center class="banner-top"><img src="/assets/madLab-banner.png" alt=""/></center>
+  <center class="banner-top"><img src="/assets/logos/banner.jpg" alt=""/></center>
   <div id="content-area">
     <div id="content-wrapper">
-      <h2 class="heading"><%= yield :header %></h2>
-      <div id="flash_container">
-        <%= render :partial => '/refinery/message' %>
-      </div>
       <div id="inner-content-wrapper">
-      
         <!--Left Content-->
         <div id="left-colmmn-wrapper" class="fl_left">
+          <div class="content-header">
+            <h2 class="heading"><%= yield :header %>
+              <br>
+              <span class="project-title"><%= yield :title %></span>
+            </h2>
+            <div id="flash_container">
+              <%= render :partial => '/refinery/message' %>
+            </div>
+          </div>
           <div class="inner-content-block">
             <%= yield %>
           </div>

@@ -92,13 +92,14 @@ li{list-style:none}
 
 #content-area{
 		width:100%;
-		background:url(/assets/sub-header-bg.jpg) repeat-x;
-		padding-top:35px
+		background:url(/assets/sub-header-bg-1.jpg) repeat-x;
+		padding-top:35px;
 		}
 	#content-wrapper{
 			width:974px;
 			margin:0 auto;
-			padding-bottom:40px
+			padding-bottom:40px;
+      font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
 			}
 			#content-wrapper h2.heading{ font:32px Arial, Helvetica, sans-serif; color:#20a0e9;}
 			
@@ -107,7 +108,6 @@ li{list-style:none}
 #inner-content-wrapper{
 		width:100%;
 		height:auto;
-		padding-top:20px
 }
 
 #body_content_left{
@@ -122,8 +122,9 @@ td.pagination_wrapper{
   text-align: center;
 }
 form { padding-top: 15px;}
-.inner-content-block {width:95%; clear:both; margin-top:70px; margin-bottom:70px;}
+.inner-content-block {width:95%; clear:both; margin-top:10px; margin-bottom:70px;}
 .inner-content-block p{ line-height:18px}
+
 /*Left Styles*/
 
 #left-colmmn-wrapper{
@@ -131,6 +132,7 @@ form { padding-top: 15px;}
 		height:auto;
     margin-bottom: 70px;
 		}
+  #left-colmmn-wrapper .content-header{height: 83px;}
 	#left-colmmn-wrapper span.project-title{ font:20px Arial, Helvetica, sans-serif;}
 	#tab-menu{
 		width:686px;
@@ -217,7 +219,7 @@ form { padding-top: 15px;}
 .logo-sponsors ul{ width:200px; margin:0 auto;}
 .logo-sponsors ul li{ width:190px; margin-top:10px; margin-bottom:10px;}
 
-.banner-top,.banner-bottom{ margin:20px auto; width:960px;}
+.banner-bottom{ margin:20px auto; width:960px;}
 .banner-bottom{ margin-bottom:40px; text-align: center;}
 
 /*footer*/

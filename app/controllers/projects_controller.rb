@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
   end
 
   def recent
-    @projects = Project.order("created_at DESC").limit 10
+    @projects = Project.order("created_at DESC").limit(10).paginate(:page => 1, :per_page => 10)
     render :action => :index
   end
 

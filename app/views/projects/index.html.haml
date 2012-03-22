@@ -1,5 +1,8 @@
 = content_for :header do
-  Listing Projects
+  - if action_name == "index"
+    Listing Projects
+  - else
+    Recent Projects
 #body_content_left
   %table{width: "600"}
     %tr
