@@ -36,19 +36,16 @@
   </div>
     
   <!--Content holder-->
-  <!-- 
-  <div class="banner-top"><img src="/assets/static/logos/banner.jpg" /></div>    
-  -->
+  <div class="banner-top"><img src="/assets/madLab-banner.png" /></div> 
+  <div id="flash_container">
+    <%= render :partial => '/refinery/message' %>
+  </div>
   <div id="content-area">
     <div id="content-wrapper">
-      <h2 class="heading"><%= yield :header %></h2>
-      <div id="flash_container">
-        <%= render :partial => '/refinery/message' %>
-      </div>
-      <div id="inner-content-wrapper">
-      
+      <div id="inner-content-wrapper">      
         <!--Left Content-->
         <div id="left-colmmn-wrapper" class="fl_left">
+          <h2 class="heading"><%= yield :header %></h2>
           <div class="inner-content-block">
             <%= yield %>
           </div>
