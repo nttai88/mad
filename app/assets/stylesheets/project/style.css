@@ -50,7 +50,7 @@ body input, body select{
 		width:974px;
 		height:210px;      
 		margin:0 auto;
-		background:url(/assets/project/innovation_1.jpg) no-repeat 100% 40px;
+		background:url(/assets/innovation_1.jpg) no-repeat 100% 40px;
 		}
 	#logo{
 		width:551px;
@@ -81,7 +81,7 @@ body input, body select{
 
 #content-area{
 		width:100%;
-		background:url(/assets/project/sub-header-bg.jpg) repeat-x;
+		background:url(/assets/sub-header-bg.jpg) repeat-x;
 		padding-top:35px
 		}
 	#content-wrapper{
@@ -128,14 +128,14 @@ body input, body select{
 /*	#tab-menu ul li{ float:left; margin-right:8px}
 	#tab-menu ul li a{text-align:center; padding:10px 0 10px 12px; font:12px "Trebuchet MS", Arial, Helvetica, sans-serif;}
 	#tab-menu ul li a span{ padding:10px 12px 10px 0;}
-	#tab-menu ul li a:hover span,#tab-menu ul li.active a span{background:url(/assets/project/tab-right.gif) no-repeat right top;}
-	#tab-menu ul li a:hover,#tab-menu ul li.active a{ background:url(/assets/project/tab-left.gif) no-repeat left top;}*/
+	#tab-menu ul li a:hover span,#tab-menu ul li.active a span{background:url(/assets/tab-right.gif) no-repeat right top;}
+	#tab-menu ul li a:hover,#tab-menu ul li.active a{ background:url(/assets/tab-left.gif) no-repeat left top;}*/
 	
 	#tab-menu ul li{ float:left; margin-right:8px}
 	#tab-menu ul li a{text-align:center; display:block; width:110px;font:12px/38px "Trebuchet MS", Arial, Helvetica, sans-serif; padding-left:5px;}
 	#tab-menu ul li a span{ width:110px; height:35px;display:block}
-	#tab-menu ul li a:hover span,#tab-menu ul li a.active span{background:url(/assets/project/tab-right.gif) no-repeat right top;}
-	#tab-menu ul li a.active, #tab-menu ul li a:hover{ background:url(/assets/project/tab-left.gif) no-repeat left top;}
+	#tab-menu ul li a:hover span,#tab-menu ul li a.active span{background:url(/assets/tab-right.gif) no-repeat right top;}
+	#tab-menu ul li a.active, #tab-menu ul li a:hover{ background:url(/assets/tab-left.gif) no-repeat left top;}
 	
   #tab-panes{
     padding-top:20px;
@@ -174,12 +174,12 @@ body input, body select{
 #contact-info{
 	width:100%;
 	height:auto;
-	background:url(/assets/project/contact-info-bg.jpg) repeat-y;
+	background:url(/assets/contact-info-bg.jpg) repeat-y;
 	}
 	.avatar-block{
 		width:284px;
 		height:184px;
-		background:url(/assets/project/avatar-bg.jpg) no-repeat;
+		background:url(/assets/avatar-bg.jpg) no-repeat;
 		}
 		.avatar-block div{ width:138px; height:138px; float:left; margin:23px 0 0 35px}
 		
@@ -197,7 +197,7 @@ body input, body select{
 #footer-wrapper{
 	width:100%;
 	height:220px;
-	background:url(/assets/project/footer_bg.jpg) repeat-x;
+	background:url(/assets/footer_bg.jpg) repeat-x;
 	}
 	#footer{
 			width:974px;
