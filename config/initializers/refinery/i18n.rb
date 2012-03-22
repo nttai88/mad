@@ -3,11 +3,11 @@
 Refinery::I18n.configure do |config|
   config.enabled = true
 
-  # config.default_locale = :en
+  config.default_locale = :nb
 
-  # config.current_locale = :en
+  config.current_locale = :nb
 
-  # config.default_frontend_locale = :en
+  config.default_frontend_locale = :nb
 
   config.frontend_locales = [:en, :nb]
 
