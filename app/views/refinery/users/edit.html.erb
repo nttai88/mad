@@ -22,5 +22,5 @@
     <% end %>
   <% end %>
   <input type="hidden" value="<%= params[:id] %>" name="id"/>
-  <div class="actions"><%= f.submit "Save", :class => "submit nice small radius red button" %></div>
+  <div class="actions"><%= f.submit "Save", :class => "submit nice small radius red button",:disable_with => 'Please wait...' %></div>
 <% end %>

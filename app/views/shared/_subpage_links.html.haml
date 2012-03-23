@@ -1,0 +1,10 @@
+#subpage_links
+  %ul
+    %li
+      =link_to "Subpages", "#", :class => "mnu-parent"
+      %ul{:class => 'mnu-child'}
+        - if @page.children.present?
+          -@page.children.each do|subpage|
+            %li=link_to subpage.title, subpage.path rescue "d"
+        - else
+          %p= 'no link'

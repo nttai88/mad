@@ -19,6 +19,11 @@ body {
     padding-left: 10px;
   }
 }
+#right-column-wrapper{
+ section{
+   margin: 15px;
+ }
+}
 #body_content.no_body_content_left #body_content_right,
   #body_content.no_body_content_right #body_content_left {
   width: 100%;
@@ -46,7 +51,7 @@ body {
   }
 }
 
-#menu_vert ul {
+#menu_vert ul,#subpage_links ul{
   margin: -75px 0 0 -20px;
   padding: 0;
   width: 300px;
