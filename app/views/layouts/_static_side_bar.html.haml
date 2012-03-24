@@ -1,0 +1,13 @@
+#menu_vert
+  - if page == "news"
+    %ul
+      %li= link_to "Summary", "#"
+      %li= link_to "From MadLab", "#"
+      %li= link_to "News", "#"
+      %li= link_to "Competitions", "#"
+      %li= link_to "Press", "#"
+      %li{:class => "bordernone"}= link_to "Projects", main_app.recent_projects_path
+  - if page == "about"
+    %ul
+      %li= link_to "Overview", "#"
+      %li= link_to "Affiliates", "#"

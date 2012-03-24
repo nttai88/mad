@@ -26,12 +26,12 @@
               %img{:alt => "logo", :height => "133", :src => "/assets/logo_beta.jpg", :width => "551"}
         #main_menu
           = render :partial => "refinery/menu"
+      %center#flash-message
+        = render :partial => '/refinery/message'
       #content-area
         #content-wrapper
           %h2.heading
             = yield(:header)
-          #flash_container
-            = render :partial => '/refinery/message'
           #inner-content-wrapper
             / Left Content
             #left-colmmn-wrapper.fl_left

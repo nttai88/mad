@@ -14,6 +14,10 @@
 $(document).ready(function(){
   Register.init();
   Menu.init();
+  if ($("#right-column-wrapper").text().trim() == ""){
+    $("#right-column-wrapper").hide();
+  }
+
 })
 Register = {
   init: function(){

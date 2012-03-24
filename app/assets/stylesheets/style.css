@@ -89,7 +89,24 @@ li{list-style:none}
 			
 #main_menu ul li a{ font-size:14px;}
 */
+#flash-message{
+  margin: 0 auto;
+  width: 974px;
+  margin-top: 10px;
 
+}
+#flash-message #flash{
+  width: 974px;
+  font-size: 12px;
+  padding: 5px;
+  font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+#flash-message #flash.flash_alert{
+  color: red;
+}
+#flash-message #flash.flash_notice{
+  color: green;
+}
 #content-area{
 		width:100%;
 		background:url(/assets/sub-header-bg-1.jpg) repeat-x;
@@ -173,8 +190,12 @@ form { padding-top: 15px;}
 		}
 		#right-column-wrapper #menu_vert ul{
       width:255px;
-      margin-left:15px;
       margin-bottom: 0px;
+      margin-left: 15px;
+
+    }
+		#right-column-wrapper #menu_vert li:last-child{
+      border-bottom:none;
     }
 		#right-column-wrapper #menu_vert li{
 			width:100%;

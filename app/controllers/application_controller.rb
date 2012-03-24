@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
 
-  helper_method :current_user,:available_locals
-
-  layout 'static'
+  helper_method :current_user,:available_locals, :current_url_with_locale
 
   private
 
@@ -30,7 +28,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def available_locals
-    ['en','nb']
-  end
 end
