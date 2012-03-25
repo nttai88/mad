@@ -1,10 +1,10 @@
-#menu_vert{:class => 'page_links'}
-  %ul
-    %li
-      =link_to "Subpages", "#", :class => "mnu-parent menu-header"
-      %ul{:class => 'mnu-child'}
-        - if @page.children.present?
-          -@page.children.each do|subpage|
+- visiable_children = @page.children.where :show_in_menu => true
+- if visiable_children.present?
+  #menu_vert{:class => 'page_links'}
+    %ul
+      %li
+        =link_to "Subpages", "#", :class => "mnu-parent menu-header"
+        %ul{:class => 'mnu-child'}
+          -visiable_children.each do|subpage|
             %li=link_to subpage.title, main_app.url_for(subpage.url)
-        - else
-          %p= 'no link'
+        
