@@ -1,7 +1,7 @@
-#subpage_links
+#menu_vert{:class => 'page_links'}
   %ul
     %li
-      =link_to "Subpages", "#", :class => "mnu-parent"
+      =link_to "Subpages", "#", :class => "mnu-parent menu-header"
       %ul{:class => 'mnu-child'}
         - if @page.children.present?
           -@page.children.each do|subpage|

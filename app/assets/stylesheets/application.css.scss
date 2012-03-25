@@ -51,7 +51,7 @@ body {
   }
 }
 
-#menu_vert ul,#subpage_links ul{
+#menu_vert ul{
   margin: -75px 0 0 -20px;
   padding: 0;
   width: 300px;
@@ -91,6 +91,12 @@ body {
       }
     }
   }
+}
+.page_links
+{
+  .menu-header{
+     font-weight: bold;
+   }
 }
 
 .page_not_live {
