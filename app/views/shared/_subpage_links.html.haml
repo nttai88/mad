@@ -5,6 +5,6 @@
       %ul{:class => 'mnu-child'}
         - if @page.children.present?
           -@page.children.each do|subpage|
-            %li=link_to subpage.title, subpage.path rescue "d"
+            %li=link_to subpage.title, main_app.url_for(subpage.url)
         - else
           %p= 'no link'
