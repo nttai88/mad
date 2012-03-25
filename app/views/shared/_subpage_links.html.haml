@@ -1,4 +1,4 @@
-- visiable_children = @page.children.where :show_in_menu => true
+- visiable_children = @page.children.live.where :show_in_menu => true
 - if visiable_children.present?
   #menu_vert{:class => 'page_links'}
     %ul
