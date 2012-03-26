@@ -4,9 +4,9 @@
   = @conversation.subject
 #actions
   - if @conversation.is_trashed?(current_messaging_user)
-    = link_to "Untrash", untrash_message_path(@conversation), class: :button, method: :post
+    = link_to "Untrash", untrash_message_path(@conversation), class: "button radius", method: :post
   - else
-    = link_to "Trash", trash_message_path(@conversation), class: :button, method: :delete
+    = link_to "Trash", trash_message_path(@conversation), class: "button radius", method: :delete
 
 %ul#conversation
   - @conversation.messages.each do |message|
@@ -24,4 +24,4 @@
     = f.label :body, label: 'Reply', required: false
     = f.input_field :body, as: :text, label: 'Reply'
     = f.input :attachment, as: :file
-    = f.button :submit, 'Reply to conversation'
+    = f.button :submit, 'Reply to conversation', :class => "radius"
