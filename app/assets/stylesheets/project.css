@@ -5,7 +5,6 @@
  *= require_self
  *= require button
  *= require project/style
- *= require foundation
  *= require tab-style
  *= require ajaxful_rating
  *= require jquery.alerts
