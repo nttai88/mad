@@ -11,18 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326091653) do
+ActiveRecord::Schema.define(:version => 20120326171619) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.integer  "parent_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "categories_projects", :id => false, :force => true do |t|
-    t.integer "category_id"
-    t.integer "project_id"
   end
 
   create_table "category_selections", :force => true do |t|

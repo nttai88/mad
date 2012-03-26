@@ -5,6 +5,7 @@ class MembersController < ProjectsController
   def index
     @partners = @project.partners.includes(:profile)
     @advisors = @project.advisors.includes(:profile)
+    render :layout => "project"
   end
   
   def create
