@@ -4,7 +4,8 @@ class Project < ActiveRecord::Base
   has_many :regions, :through => :region_selections, :dependent => :delete_all
   has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
-  has_and_belongs_to_many :categories
+  has_many :category_selections, :as => :parent
+  has_many :categories, :through => :category_selections, :dependent => :delete_all
 
   belongs_to :user, :class_name => "Refinery::User"
   
@@ -54,7 +55,7 @@ class Project < ActiveRecord::Base
   end
 
   def partner_candidates
-    category_selections = CategorySelection.where(:parent_type => "Profile", :category_id => self.category_id).where("expired_date is null or expired_date > '#{Time.now.to_s(:db)}'")
+    category_selections = CategorySelection.where(:parent_type => "Profile", :category_id => self.category_ids).where("expired_date is null or expired_date > '#{Time.now.to_s(:db)}'")
     profile_ids = category_selections.map{|x| x.parent_id}
     region_id = self.contact.region_id
     if region_id

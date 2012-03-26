@@ -71,6 +71,15 @@ Refinery::User.class_eval do
     return false
   end
 
+  def is_advisor?
+    Refinery::Role.advisor_roles.each do |role|
+      if self.has_role?(role)
+        return true
+      end
+    end
+    return false
+  end
+
   def can_create_project?
     ["Refinery", "Entrepreneur"].each do |role|
       if self.has_role?(role)

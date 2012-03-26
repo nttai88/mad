@@ -8,8 +8,13 @@ Refinery::Role.class_eval do
   INVESTOR = "Investor"
   ENTREPRENEUR = "Entrepreneur"
   ADVISOR_REQUEST = "AdvisorRequest"
+
   def self.admin_roles
     [REFINERY, SUPERUSER]
+  end
+
+  def self.advisor_roles
+    [ADVISOR_REQUEST, ADVISOR]
   end
 
   def self.partner_roles
@@ -23,4 +28,5 @@ Refinery::Role.class_eval do
   def self.all_roles
     admin_roles + user_roles + [ADVISOR]
   end
+
 end
