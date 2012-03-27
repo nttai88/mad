@@ -1,6 +1,6 @@
 <ul class="custom-menu" id="user_credential_menu">
     <% if refinery_user_signed_in? %>
-      <li> Logged in as: <b><%= current_user.username %></b> </li>
+      <li> Logged in as: <b><%= current_refinery_user.username %></b> </li>
       <li> <%= link_to "My Page", "/my-page" %> </li>
       <li> <%= link_to "Log out", refinery.destroy_refinery_user_session_url %> </li>
     <% else %>
