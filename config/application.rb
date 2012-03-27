@@ -55,11 +55,5 @@ module Mad2
       # If you want your assets lazily compiled in production, use this line
       Bundler.require(:default, :assets, Rails.env)
     end
-
-
-    config.after_initialize do |app|
-      app.routes_reloader.paths << File.expand_path('../named_routes_overrides.rb',__FILE__)
-    end
-
   end
 end
