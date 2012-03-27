@@ -1,11 +1,11 @@
 #menu_vert
   - if page == "news"
     %ul
-      %li= link_to "Summary", "#"
-      %li= link_to "From MadLab", "#"
-      %li= link_to "News", "#"
-      %li= link_to "Competitions", "#"
-      %li= link_to "Press", "#"
+      %li= link_to "Summary", refinery.news_items_path
+      %li= link_to "From MadLab", refinery.news_items_path(:category => "from_madlab")
+      %li= link_to "News", refinery.news_items_path(:category => "news")
+      %li= link_to "Competitions", refinery.news_items_path(:category => "competitions")
+      %li= link_to "Press", refinery.news_items_path(:category => "press")
       %li{:class => "bordernone"}= link_to "Projects", main_app.recent_projects_path
   - if page == "about"
     %ul
