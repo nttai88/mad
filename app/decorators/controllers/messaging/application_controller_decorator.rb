@@ -11,8 +11,8 @@ Messaging::ApplicationController.class_eval do
                 :just_installed?,
                 :from_dialog?,
                 :admin?,
-                :login?
-
+                :login?,
+                :available_locals, :current_url_with_locale
   before_filter  :find_pages_for_menu, :refinery_user_required?
   
 end

@@ -1,7 +1,16 @@
 = content_for :header do
-  Listing Projects
+  - if action_name == "index"
+    Listing Projects
+  - else
+    Recent Projects
+
+= content_for :side_bar do
+  - if action_name == "recent"
+    = render :partial => "layouts/static_side_bar", :locals => {:page => "news"}
+  - else
+    = render :partial => "layouts/side_bar"
 #body_content_left
-  %table{width: "600"}
+  %table{:width => "600"}
     %tr
       %th Title
       %th Status

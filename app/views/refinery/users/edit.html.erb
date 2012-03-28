@@ -1,3 +1,6 @@
+<%= content_for :side_bar do %>
+  <%= render :partial => "layouts/side_bar" %>
+<% end %>
 <% content_for :header do %>
   Personal Settings
 <% end %>
@@ -22,5 +25,5 @@
     <% end %>
   <% end %>
   <input type="hidden" value="<%= params[:id] %>" name="id"/>
-  <div class="actions"><%= f.submit "Save", :class => "submit nice small radius red button",:disable_with => 'Please wait...' %></div>
+  <div class="actions"><%= f.submit "Save", :class => "submit nice radius blue button",:disable_with => 'Please wait...' %></div>
 <% end %>

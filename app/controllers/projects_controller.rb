@@ -9,9 +9,11 @@ class ProjectsController < ApplicationController
       @projects = current_user.projects
     elsif current_user.is_partner?
       @projects = current_user.partnerable_projects
+    elsif current_user.is_advisor?
+      @projects = current_user.advisor_of_projects
     end
-      
-    @projects = (@projects.present? ? @projects : Project).paginate :per_page => PAGINATE_ITEM_COUNT , :page => params[:page]
+    puts @projects.inspect
+    @projects = (@projects.nil? ? Project : @projects).paginate :per_page => PAGINATE_ITEM_COUNT , :page => params[:page]
   end
 
 
@@ -60,7 +62,7 @@ class ProjectsController < ApplicationController
   end
 
   def recent
-    @projects = Project.order("created_at DESC").limit 10
+    @projects = Project.order("created_at DESC").limit(10).paginate(:page => 1, :per_page => 10)
     render :action => :index
   end
 

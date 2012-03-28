@@ -10,21 +10,6 @@
     = render :partial => '/refinery/html_tag'
     - site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true})
     = render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/
-    :javascript
-      // Edit to suit your needs.
-      var ADAPT_CONFIG = {
-        path: '#{request.protocol}#{request.host}:#{request.port}',
-        dynamic: true,
-        range: [
-          '0px    to 760px  = #{asset_path('messaging/mobile.css')}',
-          '760px  to 980px  = #{asset_path('messaging/720.css')}',
-          '980px  to 1280px = #{asset_path('messaging/960.css')}',
-          '1280px to 1600px = #{asset_path('messaging/1200.css')}',
-          '1600px = #{asset_path('messaging/1560.css')}',
-        ]
-      };
-    = javascript_include_tag "messaging/adapt"
-    = javascript_include_tag "messaging/application"
     = yield :javascripts
     = csrf_meta_tags
   %body
@@ -42,6 +27,11 @@
         #main_menu
           = render :partial => "refinery/menu"
         / Main Menu
+      - if action_name == "home"
+        %center.banner-top
+          %img{:alt => "", :src => "/assets/madLab-banner.png"}
+        %center.banner-top
+          %img{:alt => "", :src => "/assets/logos/banner.jpg"}
       %center#flash-message
         = render :partial => '/refinery/message'
       #content-area
@@ -59,7 +49,7 @@
             / /left Content
             / Right Content
             #right-column-wrapper.fl_right
-              = render :partial => "layouts/side_bar"
+              = yield :side_bar
               = yield :under_side_bar
               / /Right Content
             / inner-content-wrapper

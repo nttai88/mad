@@ -1,4 +1,4 @@
-- if current_user && (current_user.admin? || current_user == @project.user)
+- if current_user && (current_user.admin? || current_user == @project.user || current_user.advisor_of?(@project))
   %a.uiButton.fl_right.edit{:href => "#", :style => "display:none"} Edit
   %a.uiButton.fl_right.cancel{:href => "#", :style => "display:none"} Cancel
   %a.uiButton.fl_right.save{:href => "#", :style => "display:none"} Save

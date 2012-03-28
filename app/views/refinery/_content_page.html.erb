@@ -73,9 +73,17 @@ end
 
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
   <% if params[:path] == "my-page" %>
-    <%= raw sections[:body_content_left][:html].gsub("$new_emails", @new_emails.to_s).gsub("$projects", @projects.to_s) -%>
+    <%= raw sections[1][:html].gsub("$new_emails", @new_emails.to_s).gsub("$projects", @projects.to_s) -%>
+    <%= content_for :side_bar do %>
+      <%= render :partial => "layouts/side_bar" %>
+    <% end %>
   <% else %>
-    <%= raw sections[:body_content_left][:html] -%>
+    <%= raw sections[1][:html] -%>
+    <% if params[:path] == "about" %>
+      <%= content_for :side_bar do %>
+        <%= render :partial => "layouts/static_side_bar", :locals => {:page => "about"} %>
+      <% end %>
+    <% end %>
   <% end %>
 </section>
 <%= render :partial => '/refinery/draft_page_message' unless @page.nil? or @page.live? -%>
