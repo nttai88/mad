@@ -29,6 +29,7 @@ end
 group :production do
   gem "pg", '~> 0.12.2'
   gem 'therubyracer-heroku', '0.8.1.pre3'
+  gem 'newrelic_rpm'
 end
 
 gem 'jquery-rails', '~> 1.0.19'
