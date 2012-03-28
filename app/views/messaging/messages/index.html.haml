@@ -1,11 +1,14 @@
-- if @search
-  %h2 Search results for '#{@search}'
-- if @box == 'inbox'
-  %h2 Inbox
-- if @box == 'sent'
-  %h2 Sent
-- if @box == 'trash'
-  %h2 Trash
+= content_for :header do
+  Messages
+= content_for :title do
+  - if @search
+    Search results for '#{@search}'
+  - if @box == 'inbox'
+    Inbox
+  - if @box == 'sent'
+    Sent
+  - if @box == 'trash'
+    Trash
 = form_tag trash_messages_path, method: :delete do
   = hidden_field_tag 'current_box', @box
   %table#box{:width => "100%"}

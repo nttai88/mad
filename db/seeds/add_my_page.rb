@@ -1,8 +1,6 @@
 unless ::Refinery::Page.by_title("My Page").any?
-  page_position = (Refinery::Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)
   my_page = ::Refinery::Page.create(:title => "My Page",
-    :deletable => false,
-    :position => (page_position += 1))
+    :deletable => false)
   my_page.parts.create({
       :title => "Body",
       :body => "<p>Number of new emails: $new_emails </p><p>Number of projects: $projects </p>",

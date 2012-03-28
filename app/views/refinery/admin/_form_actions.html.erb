@@ -15,7 +15,7 @@ unless hide_cancel
     cancel_title = t('.cancel_lose_changes')
   end
   cancel_button_id    ||= "cancel_button"
-  cancel_url          ||= (((back = url_for(:back)).include?('javascript') or action_name =~ /^(create|update)$/) ? main_app.send("refinery_admin_#{f.object_name.to_s.pluralize}_path") : back)
+  cancel_url          ||= (((back = url_for(:back)).include?('javascript') or action_name =~ /^(create|update)$/) ? refinery.send(Refinery.route_for_model(f.object.class, true)) : back)
 end
 
 continue_editing = defined?(continue_editing) ? continue_editing : (f.object.present? and f.object.persisted?)
@@ -31,7 +31,7 @@ unless hide_delete
   delete_title        ||= nil
   delete_confirmation ||= nil
   delete_button_id    ||= "delete_button"
-  delete_url          ||= eval("main_app.refinery_admin_#{f.object_name}_path(#{f.object.id})")
+  delete_url          ||= eval("refinery.#{Refinery.route_for_model(f.object.class)}(#{f.object.id})")
 end
 -%>
 <% if from_dialog? %>
@@ -51,7 +51,7 @@ end
     <%= submit_tag submit_button_text,
       :id => submit_button_id,
       :name => nil,
-      :class => "wymupdate button red radius",
+      :class => "wymupdate button blue radius nice",
       :tooltip => submit_button_title unless hide_submit %>
 
     <%= render :partial => "/refinery/admin/continue_editing", :locals => {:f => f} if continue_editing -%>
@@ -60,7 +60,7 @@ end
     <%= link_to(cancel_button_text, cancel_url,
       :title => cancel_title,
       :id => cancel_button_id,
-      :class => "close_dialog button red radius") unless hide_cancel %>
+      :class => "close_dialog button blue radius") unless hide_cancel %>
   </div>
   <div class='form-actions-right'>
     <%= link_to(delete_button_text, delete_url,

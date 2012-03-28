@@ -1,3 +1,6 @@
+<%= content_for :side_bar do %>
+  <%= render :partial => "layouts/side_bar" %>
+<% end %>
 <% content_for :header do %>
   Personal Settings
 <% end %>
@@ -5,7 +8,7 @@
   <%= javascript_include_tag('categories', 'regions') %>
   <%= states_by_country %>
 <% end %>
-<%= form_for :refinery_user, :url => main_app.update_refinery_user_path(current_refinery_user) do |f| %>
+<%= form_for :refinery_user, :url => refinery.update_refinery_user_path(current_refinery_user) do |f| %>
   <%= render :partial => "/refinery/admin/error_messages",
     :locals => {
     :object => @user,
@@ -22,5 +25,5 @@
     <% end %>
   <% end %>
   <input type="hidden" value="<%= params[:id] %>" name="id"/>
-  <div class="actions"><%= f.submit "Save", :class => "submit nice small radius red button" %></div>
+  <div class="actions"><%= f.submit "Save", :class => "submit nice radius blue button" %></div>
 <% end %>

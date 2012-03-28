@@ -1,0 +1,65 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title= content_for?(:title) ? yield(:title) : "Company Name"
+    / Included CSS Files
+    = stylesheet_link_tag "application"
+    / Included JS Files
+    = javascript_include_tag "application"
+    = render :partial => '/refinery/html_tag'
+    - site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true})
+    = render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+    = yield :javascripts
+    = csrf_meta_tags
+  %body
+    / Main Wrapper
+    #main-wrappper
+      #main-holder-1
+        / Header
+        #header
+          #top_menu
+            = render :partial => "shared/top_menu"
+          #logo
+            %img{:alt => "logo", :height => "133", :src => "/assets/logo_beta.jpg", :width => "551"}
+        / Header
+        / Main Menu
+        #main_menu
+          = render :partial => "refinery/menu"
+        / Main Menu
+      - if action_name == "home"
+        %center.banner-top
+          %img{:alt => "", :src => "/assets/madLab-banner.png"}
+        %center.banner-top
+          %img{:alt => "", :src => "/assets/logos/banner.jpg"}
+      %center#flash-message
+        = render :partial => '/refinery/message'
+      #content-area
+        #content-wrapper
+          #inner-content-wrapper
+            / Left Content
+            #left-colmmn-wrapper.fl_left
+              .content-header
+                %h2.heading
+                  = yield :header
+                  %br
+                    %span.project-title= yield :title
+              .inner-content-block
+                = yield
+            / /left Content
+            / Right Content
+            #right-column-wrapper.fl_right
+              = yield :side_bar
+              = yield :under_side_bar
+              / /Right Content
+            / inner-content-wrapper
+          / content-wrapper
+        .banner-top.banner-bottom
+          %img{:src => "/assets/logos/banner.jpg"}
+        .clear_fix
+        / /Content holder
+        / Footer
+        #footer-wrapper
+          = render "refinery/footer"
+        / /Footer
+      / /Main Wrapper

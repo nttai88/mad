@@ -1,36 +1,53 @@
-.project_show
-  %h1
-    = @project.name
-  %h4 Partners
-  - if @partners.size > 0
-    %div{:class => "members"}
-      - @partners.each do |partner|
-        %div{:class => "member"}
-          = "#{partner.profile.full_name} (#{partner.email})"
-          %span{:class => "remove"}
-            = link_to "Remove", remove_project_member_path(@project, :id => partner.id), :confirm => "Are you sure?", :method => "delete"
-  - else
-    %p No partners in this project
-  %h5 New Partner
-  = form_for :partner, :url => project_members_path(@project) do |f|
-    %div{:class => 'form new-member'}
-      %label Select a partner from list
-      = collection_select("partner_id", "", @project.partner_candidates, :id, :full_name , {:prompt => true}, {:name => "partner_id"})
-      = submit_tag "Submit"
-  %h4 Advisors
-  - if @advisors.size > 0
-    %div{:class => "members"}
-      - @advisors.each do |advisor|
-        %div{:class => "member"}
-          = "#{advisor.profile.full_name} (#{advisor.email})"
-          %span{:class => "remove"}
-            = link_to "Remove", remove_project_member_path(@project, :id => advisor.id), :confirm => "Are you sure?", :method => "delete"
-  - else
-    %p No advisors in this project
-  %h5 New Partner
-  = form_for :advisor, :url => project_members_path(@project) do |f|
-    %div{:class => 'form new-member'}
-      %label Select an advisor from list
-      = collection_select("partner_id", "", @project.advisor_candidates, :id, :full_name , {:prompt => true}, {:name => "advisor_id"})
-      = submit_tag "Submit"
-  =link_to 'Back to project list', projects_path
+= content_for :header do
+  Business Plan
+
+= content_for :side_bar do
+  = render :partial => "layouts/side_bar"
+
+#title
+  %span.project-title
+    = @project.title
+#tab-panes
+  #acc
+    %h3 Partners
+    .acc-content
+      .show
+        - if @partners.size > 0
+          %div{:class => "members"}
+            - @partners.each do |partner|
+              %div{:class => "member"}
+                = "#{partner.profile.full_name} (#{partner.email})"
+                %span{:class => "remove"}
+                  = link_to "Remove", remove_project_member_path(@project, :id => partner.id), :confirm => "Are you sure?", :method => "delete"
+        - else
+          %p No partners in this project
+
+    .acc-content
+      .show
+        = form_for :partner, :url => project_members_path(@project) do |f|
+          %div{:class => 'form new-member'}
+            %label Add more partners
+            = collection_select("partner_id", "", @project.partner_candidates, :id, :full_name , {:prompt => true}, {:name => "partner_id"})
+            = submit_tag "Submit"
+
+    %h3 Advisors
+    .acc-content
+      .show
+        - if @advisors.size > 0
+          %div{:class => "members"}
+            - @advisors.each do |advisor|
+              %div{:class => "member"}
+                = "#{advisor.profile.full_name} (#{advisor.email})"
+                %span{:class => "remove"}
+                  = link_to "Remove", remove_project_member_path(@project, :id => advisor.id), :confirm => "Are you sure?", :method => "delete"
+        - else
+          %p No advisors in this project
+
+    .acc-content
+      .show
+        = form_for :advisor, :url => project_members_path(@project) do |f|
+          %div{:class => 'form new-member'}
+            %label Add more Advisors
+            = collection_select("partner_id", "", @project.advisor_candidates, :id, :full_name , {:prompt => true}, {:name => "advisor_id"})
+            = submit_tag "Submit"
+    =link_to 'Back', projects_path

@@ -28,9 +28,7 @@ Mad2::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
-  
 end
-
 
 Refinery::Core.configure do |config|
   config.s3_backend = true
@@ -45,3 +43,5 @@ CarrierWave.configure do |config|
   config.fog_directory  = ENV['S3_BUCKET'] || "madlab.development"
   config.fog_host       = "http://#{ENV['S3_BUCKET']}.s3.amazonaws.com"
 end
+
+Excon.defaults[:ssl_verify_peer] = false

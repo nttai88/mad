@@ -1,7 +1,6 @@
 Refinery::UsersController.class_eval do
   skip_filter :redirect?
-  before_filter :find_pages_for_menu
-  layout "static"
+  layout 'application'
   def new
     @user = Refinery::User.new
     @user.roles = [Refinery::Role.find_by_title("Entrepreneur")]
@@ -13,7 +12,7 @@ Refinery::UsersController.class_eval do
     if @user.create_user
       create_internal_message
       set_flash_message(:notice, :confirmed)
-      redirect_back_or_default(main_app.root_path)
+      redirect_back_or_default(refinery.root_path)
     else
       render :action => 'new'
     end
@@ -35,7 +34,7 @@ Refinery::UsersController.class_eval do
     @user.update_attributes(params[:refinery_user])
     update_profile
     if @user.save
-      redirect_to main_app.edit_refinery_user_path(@user)
+      redirect_to refinery.edit_refinery_user_path(@user)
     else
       render :action => :edit
     end

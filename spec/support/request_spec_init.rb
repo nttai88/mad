@@ -17,7 +17,7 @@ module RequestSpecInit
 
   def login_user
     before do
-      visit new_refinery_user_session_path
+      visit refinery.new_refinery_user_session_path
 
       fill_in "Login", :with => Refinery::User.first.username
       fill_in "Password", :with => "123456"

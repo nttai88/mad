@@ -1,43 +1,75 @@
 !!!
-= render :partial => '/refinery/html_tag'
-- site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true})
-= render :partial => '/refinery/head'
-:javascript
-  // Edit to suit your needs.
-  var ADAPT_CONFIG = {
-    path: '#{request.protocol}#{request.host}:#{request.port}',
-    dynamic: true,
-    range: [
-      '0px    to 760px  = #{asset_path('messaging/mobile.css')}',
-      '760px  to 980px  = #{asset_path('messaging/720.css')}',
-      '980px  to 1280px = #{asset_path('messaging/960.css')}',
-      '1280px to 1600px = #{asset_path('messaging/1200.css')}',
-      '1600px = #{asset_path('messaging/1560.css')}',
-    ]
-  };
-= javascript_include_tag "messaging/adapt"
-= javascript_include_tag "messaging/application"
-= javascript_include_tag "application"
-%body
-  = render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/
-  #page_container.container.row
-    %header#header
-      = render :partial => '/refinery/header'
-    #showcase
-      %img{:alt => "", :height => "110px", :src => "/assets/madLab-banner.png", :width => "990px"}
-    #shadow-showcase
-    %section#page
-      %section#body_content
-        %h1#body_content_title Messages
-        %section#body_content_right
-          .inner
-            = render :partial => "layouts/side_bar"
-        %section#body_content_left
-          = form_tag search_path do
-            %input{:name => "Search", :placehoder => "Search", :type => "search"}
-          .inner{:style=>"width:680px;"}
-            = yield
-    #shadow-showcase-mirror
-    %footer
-      = render :partial => '/refinery/footer'
-  = render :partial => '/refinery/javascripts'
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title= content_for?(:title) ? yield(:title) : "Company Name"
+    / Included CSS Files
+    = stylesheet_link_tag "application"
+    / Included JS Files
+    = javascript_include_tag "application"
+    = render :partial => '/refinery/html_tag'
+    - site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true})
+    = render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+    :javascript
+      // Edit to suit your needs.
+      var ADAPT_CONFIG = {
+        path: '#{request.protocol}#{request.host}:#{request.port}',
+        dynamic: true,
+        range: [
+          '0px    to 760px  = #{asset_path('messaging/mobile.css')}',
+          '760px  to 980px  = #{asset_path('messaging/720.css')}',
+          '980px  to 1280px = #{asset_path('messaging/960.css')}',
+          '1280px to 1600px = #{asset_path('messaging/1200.css')}',
+          '1600px = #{asset_path('messaging/1560.css')}',
+        ]
+      };
+    = javascript_include_tag "messaging/adapt"
+    = javascript_include_tag "messaging/application"
+    = yield :javascripts
+    = csrf_meta_tags
+  %body
+    / Main Wrapper
+    #main-wrappper
+      #main-holder-1
+        / Header
+        #header
+          #top_menu
+            = render :partial => "shared/top_menu"
+          #logo
+            %img{:alt => "logo", :height => "133", :src => "/assets/logo_beta.jpg", :width => "551"}
+        / Header
+        / Main Menu
+        #main_menu
+          = render :partial => "refinery/menu"
+        / Main Menu
+      %center#flash-message
+        = render :partial => '/refinery/message'
+      #content-area
+        #content-wrapper
+          #inner-content-wrapper
+            / Left Content
+            #left-colmmn-wrapper.fl_left
+              .content-header
+                %h2.heading
+                  = yield :header
+                  %br
+                    %span.project-title= yield :title
+              .inner-content-block
+                = yield
+            / /left Content
+            / Right Content
+            #right-column-wrapper.fl_right
+              = render :partial => "layouts/side_bar"
+              = yield :under_side_bar
+              / /Right Content
+            / inner-content-wrapper
+          / content-wrapper
+        .banner-top.banner-bottom
+          %img{:src => "/assets/logos/banner.jpg"}
+        .clear_fix
+        / /Content holder
+        / Footer
+        #footer-wrapper
+          = render "refinery/footer"
+        / /Footer
+      / /Main Wrapper
