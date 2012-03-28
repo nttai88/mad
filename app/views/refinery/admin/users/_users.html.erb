@@ -1,7 +1,7 @@
 <span>
   <% roles = ["All"] + Refinery::Role.all_roles %>
-  <% roles = roles.map{|x| [x, main_app.refinery_admin_users_path(:role => x)]} %>
-  Filter: <%= select_tag :role, options_for_select(roles, [params[:role], main_app.refinery_admin_users_path(:role => params[:role])]), {:class => "role-filter"} %>
+  <% roles = roles.map{|x| [x, refinery.admin_users_path(:role => x)]} %>
+  Filter: <%= select_tag :role, options_for_select(roles, [params[:role], refinery.admin_users_path(:role => params[:role])]), {:class => "role-filter"} %>
 </span>
 <ul>
   <%= render :partial => "user", :collection => @users %>

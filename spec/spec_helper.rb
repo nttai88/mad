@@ -41,6 +41,7 @@ RSpec.configure do |config|
   end
 
   config.extend RequestSpecInit, :type => :request
+  config.include RefineryUrlHelper, :type => :request
 end
 
 # set javascript driver for capybara

@@ -1,5 +1,5 @@
 #menu_vert
-  - if current_user
+  - if current_refinery_user
     %ul
       %li= link_to "Overview", "/my-page"
       %li
@@ -9,14 +9,16 @@
           %li= link_to "Inbox", messaging.messages_path(:box => 'inbox')
           %li= link_to "Sent", messaging.messages_path(:box => 'sent')
           %li= link_to "Trash", messaging.messages_path(:box => 'trash')
-      - if current_user && current_user.can_create_project?
+      - if current_refinery_user && current_refinery_user.can_create_project?
         %li
           = link_to "Projects", "#", :class => "mnu-parent"
           %ul{:style => (controller_name == "projects" ? "" :"display:none"), :class => "mnu-child"}
-            - number_projects = (current_user.admin? ? Project.count : current_user.projects.count)
+            - number_projects = (current_refinery_user.admin? ? Project.count : current_refinery_user.projects.count)
             %li= link_to "#{(number_projects == 1 ? "Project" : "Projects")} (#{number_projects})", main_app.projects_path
             %li= link_to "New project", main_app.new_project_path
       - else
         %li= link_to "Projects", main_app.projects_path
       %li= link_to "Personal settings", main_app.edit_refinery_user_url(current_refinery_user)
-      %li{:class => "bordernone"}= link_to "Logout", main_app.destroy_refinery_user_session_url
+      - if current_refinery_user.admin?
+        %li= link_to "Admin", refinery.admin_root_path
+      %li{:class => "bordernone"}= link_to "Logout", refinery.destroy_refinery_user_session_url

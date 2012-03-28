@@ -7,7 +7,7 @@ describe "sign in" do
   let(:user) { Refinery::User.last }
 
   it "redirects to overview page after successful sign in" do
-    visit root_path
+    visit refinery.root_path
 
     click_link "Sign in"
 

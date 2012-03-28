@@ -4,6 +4,6 @@ class RemoveCategoryIdFromProjects < ActiveRecord::Migration
   end
 
   def down
-    add_column :projects, :category_id, :inetegr
+    add_column :projects, :category_id, :integer
   end
 end

@@ -67,8 +67,6 @@ Mad2::Application.configure do
     :authentication  => :login
   }
   ActionMailer::Base.default :from => 'notify@madlab.com'
-
-
 end
 
 Refinery::Core.configure do |config|

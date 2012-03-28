@@ -4,9 +4,9 @@ require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+  Bundler.require(:default, :assets, Rails.env)
 end
 
 module Mad2
@@ -43,23 +43,7 @@ module Mad2
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    config.to_prepare do
-      ::Refinery::Admin::DashboardController.send :before_filter, :admin_permission?
-    end
 
     config.assets.initialize_on_precompile = false
-
-    if defined?(Bundler)
-      # If you precompile assets before deploying to production, use this line
-      # Bundler.require *Rails.groups(:assets => %w(development test))
-      # If you want your assets lazily compiled in production, use this line
-      Bundler.require(:default, :assets, Rails.env)
-    end
-
-
-    config.after_initialize do |app|
-      app.routes_reloader.paths << File.expand_path('../named_routes_overrides.rb',__FILE__)
-    end
-
   end
 end

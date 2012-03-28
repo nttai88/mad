@@ -89,6 +89,11 @@ li{list-style:none}
 			
 #main_menu ul li a{ font-size:14px;}
 */
+#main_menu ul li a {
+//  font-size:14px;
+  text-transform: uppercase;
+}
+
 #flash-message{
   margin: 0 auto;
   width: 974px;
