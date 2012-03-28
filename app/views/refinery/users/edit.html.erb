@@ -8,7 +8,7 @@
   <%= javascript_include_tag('categories', 'regions') %>
   <%= states_by_country %>
 <% end %>
-<%= form_for :refinery_user, :url => refinery.update_refinery_user_path(current_refinery_user) do |f| %>
+<%= form_for :refinery_user, :url => main_app.update_refinery_user_path(current_refinery_user.username) do |f| %>
   <%= render :partial => "/refinery/admin/error_messages",
     :locals => {
     :object => @user,

@@ -18,7 +18,7 @@
             %li= link_to "New project", main_app.new_project_path
       - else
         %li= link_to "Projects", main_app.projects_path
-      %li= link_to "Personal settings", main_app.edit_refinery_user_url(current_refinery_user)
+      %li= link_to "Personal settings", main_app.edit_refinery_user_url(current_refinery_user.username)
       - if current_refinery_user.admin?
         %li= link_to "Admin", refinery.admin_root_path
       %li{:class => "bordernone"}= link_to "Logout", refinery.destroy_refinery_user_session_url

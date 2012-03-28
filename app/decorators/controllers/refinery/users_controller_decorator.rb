@@ -34,7 +34,7 @@ Refinery::UsersController.class_eval do
     @user.update_attributes(params[:refinery_user])
     update_profile
     if @user.save
-      redirect_to refinery.edit_refinery_user_path(@user)
+      redirect_to main_app.edit_refinery_user_path(@user)
     else
       render :action => :edit
     end
