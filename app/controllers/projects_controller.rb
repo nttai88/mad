@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
     elsif current_user.is_advisor?
       @projects = current_user.advisor_of_projects
     end
-    puts @projects.inspect
     @projects = (@projects.nil? ? Project : @projects).paginate :per_page => PAGINATE_ITEM_COUNT , :page => params[:page]
   end
 
