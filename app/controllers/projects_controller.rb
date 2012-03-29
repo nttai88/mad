@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  before_filter :login_required, :except => [:recent, :show]
+  before_filter :login_required, :except => [:recent]
   before_filter :can_create?, :only => [:new, :create]
   before_filter :can_edit?, :only => [:edit, :update, :destroy, :members]
   def index
