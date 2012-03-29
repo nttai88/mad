@@ -8,7 +8,7 @@ describe "Entrepreneur" do
 
   describe "sign up" do
     before(:each) do
-      visit root_path
+      visit refinery.root_path
       click_link "Sign up"
     end
 
@@ -27,7 +27,7 @@ describe "Entrepreneur" do
 
         click_button "Sign up"
 
-        page.current_path.should eq(root_path)
+        page.current_path.should eq(refinery.root_path)
       end
     end
 
@@ -52,7 +52,7 @@ describe "Entrepreneur" do
 
     context "when account not confirmed" do
       it "shows message" do
-        visit new_refinery_user_session_path
+        visit refinery.new_refinery_user_session_path
 
         fill_in "Login", :with => user.username
         fill_in "Password", :with => "123456"
@@ -66,7 +66,7 @@ describe "Entrepreneur" do
       before { user.confirm! }
 
       it "signs in user" do
-        visit new_refinery_user_session_path
+        visit refinery.new_refinery_user_session_path
 
         fill_in "Login", :with => user.username
         fill_in "Password", :with => "123456"
@@ -86,7 +86,7 @@ describe "Entrepreneur" do
       user
     }
     before :each do
-      visit new_refinery_user_session_path
+      visit refinery.new_refinery_user_session_path
 
       fill_in "Login", :with => user.username
       fill_in "Password", :with => "123456"

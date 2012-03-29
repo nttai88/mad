@@ -1,4 +1,4 @@
-Refinery::NewsItem.class_eval do
+Refinery::News::Item.class_eval do
   unless defined?(CATEGORIES)
     CATEGORIES = [ "from_madlab", "news", "competitions", "press" ]
   end

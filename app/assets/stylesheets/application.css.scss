@@ -19,11 +19,13 @@ body {
     padding-left: 10px;
   }
 }
+
 #right-column-wrapper{
  section{
    margin: 15px;
  }
 }
+
 #body_content.no_body_content_left #body_content_right,
   #body_content.no_body_content_right #body_content_left {
   width: 100%;
@@ -98,6 +100,7 @@ body {
      font-weight: bold;
    }
 }
+
 
 .page_not_live {
   border: 1px solid #A00027;

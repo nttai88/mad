@@ -5,75 +5,35 @@ Mad2::Application.routes.draw do
       member do
         delete :remove
       end
-      
     end
+
     member do
       post 'rate'
       post 'save'
       put 'save'
       delete 'remove_attach'
     end
+
     collection do
       get :recent
     end
   end
 
-  mount Messaging::Engine => "/messaging"
+  devise_scope :refinery_user do
+    scope :path => 'users' do
+      get 'register' => 'refinery/users#new', :as => :new_refinery_user_registration
+      post 'register' => 'refinery/users#create', :as => :refinery_user_registration
+      get 'sign_in' => 'refinery/sessions#new', :as => :new_refinery_user_session
+      post 'sign_in' => 'refinery/sessions#create', :as => :refinery_user_session
+      get 'password/new' => 'refinery/passwords#new', :as => :new_refinery_user_password
+      get 'password' => 'refinery/passwords#create', :as => :refinery_user_password
+      get 'confirmation' => 'refinery/confirmations#show', :as => :refinery_user_confirmation
+      get ':id/edit' => 'refinery/users#edit', :as => :edit_refinery_user
+      post ':id/update' => 'refinery/users#update', :as => :update_refinery_user
+      post 'check_username_availability' => 'refinery/users#check_username_availability', :as => :check_username_availability
+    end
+  end
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  mount Messaging::Engine => '/messaging'
+  mount Refinery::Core::Engine => '/'
 end

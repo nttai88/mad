@@ -30,6 +30,8 @@
         %td= link_to 'Destroy', project_path(project), :confirm => 'Are you sure?', :method => :delete
         - if current_user.admin?
           %td= link_to 'Manage Members', project_members_path(project)
+
     %tr
       %td.pagination_wrapper{colspan: 7}
         =will_paginate @projects
+%br/
