@@ -45,6 +45,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.recent(page = 1, per_page = 5)
+    self.order("created_at DESC").paginate(:page => page, :per_page => per_page)
+  end
+
   def advisor_candidates
     advisor_candidates = User.includes(:roles, :profile).where("refinery_roles.title" => Refinery::Role::ADVISOR)
     if advisors.size > 0

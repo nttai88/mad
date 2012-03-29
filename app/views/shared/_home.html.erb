@@ -1,0 +1,41 @@
+<img src="/assets/forside.png" width="534"/>
+<div id="left-index">
+  <div class="left-index-column1-topic"><h3>Latest projects</h3></div>
+  <div class="left-index-column2-topic"><h3>News and competitions</h3></div>
+  <div class="left-index-column1">
+    <% projects = Project.recent %>
+    <% projects.each do |project| %>
+      <div class="item">
+        <div class="date"><%= project.created_at %></div>
+        <div class="topic">
+          <a href="<%= main_app.project_path(project) %>">
+          <h3><%= project.title %></h3></a>
+        </div>
+        <div class="text"></div>
+      </div>
+    <% end %>
+    <% if projects.total_pages > 1 %>
+      <%= link_to "Older Project...", main_app.recent_projects_path %>
+    <% end %>
+  </div>
+  <div class="left-index-column2">
+    <% items = Refinery::News::Item.recent  %>
+    <% items.each do |item| %>
+      <div class="item">
+        <div class="date"><%= item.publish_date %></div>
+        <div class="topic">
+          <%= link_to raw("<h3>#{item.title }</h3>"), refinery.news_item_path(item) %>
+        </div>
+        <div class="text">
+          <%= truncate  item.body, :length => 200,
+                      :omission => " ... #{link_to t('.read_more'), refinery.news_item_path(item)}",
+                      :preserve_html_tags => true %>
+          </div>
+      </div>
+    <% end %>
+    <% if items.total_pages > 1 %>
+      <%= link_to "Older News...", refinery.news_items_path %>
+    <% end %>
+  </div>
+  <div class="quote">"How long have you had an idea but havent done anything with. Is the idea first thought -then its the first to finishline!"</div>
+</div>

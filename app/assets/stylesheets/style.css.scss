@@ -286,3 +286,64 @@ form { padding-top: 15px;}
     line-height:60px;
     color:#545454
 }
+
+/*Home page*/
+#left-index .left-index-column1-topic {
+    border-bottom: 1px solid #E0E0E0;
+    float: left;
+    margin-bottom: 10px;
+    padding-right: 20px;
+    width: 300px;
+    color: #B42723;
+}
+#left-index .left-index-column2-topic {
+    border-bottom: 1px solid #E0E0E0;
+    float: left;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    width: 300px;
+}
+#left-index .left-index-column1-topic h3, #left-index .left-index-column2-topic h3{
+  color: #B42723 !important;
+}
+#left-index .quote{
+  clear:both;
+  padding-top: 20px;
+}
+#left-index .left-index-column1 {
+    border-right: 1px solid #E0E0E0;
+    float: left;
+    margin-bottom: 10px;
+    padding-right: 20px;
+    width: 300px;
+}
+#left-index .left-index-column2 {
+    float: left;
+    margin-bottom: 10px;
+    min-height: 275px;
+    padding-left: 20px;
+    width: 300px;
+}
+#left-index .item {
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+#left-index .item .date{
+  color: #AAAAAA;
+  font-size: 12px;
+  margin-top:10px;
+}
+#left-index .item .topic{
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+#left-index .item .topic h3{
+  color: #222222;
+  font-weight:normal;
+  font-size: 18px;
+}
+
+#left-index .item .text {
+    font-size: 13px;
+    line-height: 18px;
+    padding-bottom: 10px;
+}

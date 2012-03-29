@@ -83,6 +83,8 @@ end
       <%= content_for :side_bar do %>
         <%= render :partial => "layouts/static_side_bar", :locals => {:page => "about"} %>
       <% end %>
+    <% elsif action_name == "home" %>
+      <%= render :partial => "shared/home" %>
     <% end %>
   <% end %>
 </section>
