@@ -1,6 +1,6 @@
 = content_for :header do
   Messages
-= content_for :title do
+%h3
   = @conversation.subject
 #actions
   - if @conversation.is_trashed?(current_messaging_user)
