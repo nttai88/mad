@@ -40,6 +40,14 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  # TODO: remove this hack and use I18n.t helpers or css classes in specs
+  # and not hardcoded English strings
+  config.before(:suite) do
+    Refinery::I18n.configure do |config|
+      config.default_frontend_locale = :en
+    end
+  end
+
   config.extend RequestSpecInit, :type => :request
   config.include RefineryUrlHelper, :type => :request
 end
