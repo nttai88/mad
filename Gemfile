@@ -25,6 +25,10 @@ group :development, :test do
   # gem 'ruby-debug19', :require=> 'ruby-debug'
 end
 
+group :test do
+  gem 'cucumber-rails', '~> 1.3.0'
+end
+
 group :production do
   gem "pg", '~> 0.12.2'
   gem 'therubyracer-heroku', '0.8.1.pre3'
