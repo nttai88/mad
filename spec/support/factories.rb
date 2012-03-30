@@ -11,8 +11,8 @@ FactoryGirl.define do
   end
 
   factory :project do
-    title = 'my project'
-    developed = 'Theoretical idea'
+    title 'my project'
+    developed 'Theoretical idea'
     association :user
   end
 end
