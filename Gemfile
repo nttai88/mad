@@ -45,6 +45,7 @@ gem 'thin', '~> 1.3.1'
 gem "attr_encrypted", "~> 1.2.0"
 gem 'state_machine', '~> 1.1.2'
 gem 'haml', '~> 3.1.4'
+gem 'acts_as_tree', '~> 0.1.1'
 
 gem 'refinerycms', '2.0.2'
 gem 'refinerycms-i18n', '2.0.0'
