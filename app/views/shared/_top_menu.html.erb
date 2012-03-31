@@ -1,8 +1,9 @@
 <ul class="custom-menu" id="user_credential_menu">
     <% if refinery_user_signed_in? %>
-      <li> Logged in as: <b><%= current_refinery_user.username %></b> </li>
+
+      <li> <%= t 'logged_in_as',:scope => 'refinery.sessions' %>: <b><%= current_refinery_user.username %></b> </li>
       <li> <%= link_to "My Page", "/my-page" %> </li>
-      <li> <%= link_to "Log out", refinery.destroy_refinery_user_session_url %> </li>
+      <li> <%= link_to t(:log_out, :scope => 'refinery.sessions'), refinery.destroy_refinery_user_session_url %> </li>
     <% else %>
       <li><%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), refinery.new_refinery_user_registration_path %></li>
       <li><%= link_to I18n.t(:sign_in, :scope => 'refinery.sessions.new'), refinery.new_refinery_user_session_path %></li>

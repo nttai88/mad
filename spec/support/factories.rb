@@ -9,4 +9,10 @@ FactoryGirl.define do
   factory :page, :class => Refinery::Page do
     title "Test Page"
   end
+
+  factory :project do
+    title 'my project'
+    developed 'Theoretical idea'
+    association :user
+  end
 end

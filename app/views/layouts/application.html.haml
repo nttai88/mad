@@ -27,11 +27,8 @@
         #main_menu
           = render :partial => "refinery/menu"
         / Main Menu
-      - if action_name == "home"
-        %center.banner-top
-          %img{:alt => "", :src => "/assets/madLab-banner.png"}
-        %center.banner-top
-          %img{:alt => "", :src => "/assets/logos/banner.jpg"}
+      %center.banner-top
+        %img{:alt => "", :src => "/assets/madLab-banner.png"}
       %center#flash-message
         = render :partial => '/refinery/message'
       #content-area
@@ -40,10 +37,11 @@
             / Left Content
             #left-colmmn-wrapper.fl_left
               .content-header
-                %h2.heading
-                  = yield :header
-                  %br
-                    %span.project-title= yield :title
+                - if action_name != "home"
+                  %h2.heading
+                    = yield :header
+                    %br
+                      %span.project-title= yield :title
               .inner-content-block
                 = yield
             / /left Content

@@ -84,6 +84,8 @@ nb:
     sessions:
       new:
         hello_please_sign_in: E*nter your username and password
+      log_out: L*og out
+      logged_in_as: L*ogged in as
     news_items:
       category:
         from_madlab: F*rom MadLab
@@ -119,3 +121,17 @@ nb:
       attachments: A*ttachments
       thoughts_and_wishes: T*houghts & wishes
       payment: P*ayment
+    vertical_menu:
+      overview: O*verview
+      messages:
+        label: M*essages
+        compose: C*ompose
+        inbox: I*nbox
+        sent: S*ent
+        trash: T*rash
+      projects:
+        project: P*roject
+        projects: P*rojects
+        new: N*ew project
+      personal_settings: P*ersonal settings
+      subpages: S*ubpages

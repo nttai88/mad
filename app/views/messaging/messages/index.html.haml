@@ -1,6 +1,6 @@
 = content_for :header do
   Messages
-= content_for :title do
+%h3
   - if @search
     Search results for '#{@search}'
   - if @box == 'inbox'

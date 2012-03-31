@@ -1,0 +1,10 @@
+- visiable_children = @page.children.live.where :show_in_menu => true
+- if visiable_children.present?
+  #menu_vert{:class => 'page_links'}
+    %ul
+      %li
+        =link_to t('subpages',:scope => 'navigations.vertical_menu'), "#", :class => "mnu-parent menu-header"
+        %ul{:class => 'mnu-child'}
+          -visiable_children.each do|subpage|
+            %li=link_to subpage.title, main_app.url_for(subpage.url)
+        

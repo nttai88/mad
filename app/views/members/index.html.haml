@@ -28,7 +28,7 @@
           %div{:class => 'form new-member'}
             %label Add more partners
             = collection_select("partner_id", "", @project.partner_candidates, :id, :full_name , {:prompt => true}, {:name => "partner_id"})
-            = submit_tag "Submit"
+            = submit_tag "Submit", :id => 'partner_submit'
 
     %h3 Advisors
     .acc-content
@@ -48,6 +48,6 @@
         = form_for :advisor, :url => project_members_path(@project) do |f|
           %div{:class => 'form new-member'}
             %label Add more Advisors
-            = collection_select("partner_id", "", @project.advisor_candidates, :id, :full_name , {:prompt => true}, {:name => "advisor_id"})
-            = submit_tag "Submit"
+            = collection_select("advisor_id", "", @project.advisor_candidates, :id, :full_name , {:prompt => true}, {:name => "advisor_id"})
+            = submit_tag "Submit", :id => 'advisor_submit'
     =link_to 'Back', projects_path

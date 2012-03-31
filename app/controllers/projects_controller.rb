@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  before_filter :login_required, :except => [:recent, :show]
+  before_filter :login_required, :except => [:recent]
   before_filter :can_create?, :only => [:new, :create]
   before_filter :can_edit?, :only => [:edit, :update, :destroy, :members]
   def index
@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
     elsif current_user.is_advisor?
       @projects = current_user.advisor_of_projects
     end
-    puts @projects.inspect
     @projects = (@projects.nil? ? Project : @projects).paginate :per_page => PAGINATE_ITEM_COUNT , :page => params[:page]
   end
 
@@ -62,7 +61,8 @@ class ProjectsController < ApplicationController
   end
 
   def recent
-    @projects = Project.order("created_at DESC").limit(10).paginate(:page => 1, :per_page => 10)
+    page = params[:page] || 1
+    @projects = Project.recent(page)
     render :action => :index
   end
 

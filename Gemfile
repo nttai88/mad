@@ -17,12 +17,16 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.8.1'
-  gem 'capybara-webkit', '~> 0.9.0'
-  gem 'factory_girl_rails', '~> 1.6.0'
-  gem 'launchy', '~> 2.0.5'
-  gem 'database_cleaner', '~> 0.7.1'
+  gem 'rspec-rails', '~> 2.9.0'
+  gem 'capybara-webkit', '~> 0.11.0'
+  gem 'factory_girl_rails', '~> 3.0.0'
+  gem 'launchy', '~> 2.1.0'
+  gem 'database_cleaner', '~> 0.7.2'
   # gem 'ruby-debug19', :require=> 'ruby-debug'
+end
+
+group :test do
+  gem 'cucumber-rails', '~> 1.3.0'
 end
 
 group :production do
@@ -45,6 +49,7 @@ gem 'thin', '~> 1.3.1'
 gem "attr_encrypted", "~> 1.2.0"
 gem 'state_machine', '~> 1.1.2'
 gem 'haml', '~> 3.1.4'
+gem 'acts_as_tree', '~> 0.1.1'
 
 gem 'refinerycms', '2.0.2'
 gem 'refinerycms-i18n', '2.0.0'

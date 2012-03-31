@@ -15,51 +15,51 @@ li{list-style:none}
 .clear{clear:both;}
 .hidden{display:none}
 form label {
-  cursor: pointer;
-  display: block;
-  line-height: 18px;
-  margin: 10px 0 1px;
+    cursor: pointer;
+    display: block;
+    line-height: 18px;
+    margin: 10px 0 1px;
 }
 .spinner{
-  background: url("/assets/ajax-loader.gif") no-repeat;
-  padding-left: 16px;
-  padding-right: 16px;
-  display:none;
+    background: url("/assets/ajax-loader.gif") no-repeat;
+    padding-left: 16px;
+    padding-right: 16px;
+    display:none;
 }
 body input, body select{
-  font-family: verdana,arial,helvetica,sans-serif;
-  font-size: 12px;
-  letter-spacing: 0;
-  line-height: 18px;
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 18px;
 }
 #general.acc-content textarea, #thoughts.acc-content textarea, #teaser.acc-content textarea {
-  height: 250px;
-  width: 600px;
+    height: 250px;
+    width: 600px;
 }
 /*Main Wrapper*/
 #main-wrappper{
-	width:100%;
-	}
-	#main-holder-1{
-		width:974px;
-		margin:0 auto;
-	}
+    width:100%;
+}
+#main-holder-1{
+    width:974px;
+    margin:0 auto;
+}
 
 /*Header Styles*/
 #header{
 		width:974px;
-		height:210px;      
+		height:160px;      
 		margin:0 auto;
-		background:url(/assets/innovation_1.jpg) no-repeat 100% 40px;
+		background:url(/assets/innovation_1.jpg) no-repeat 100% 20px;
 		}
 	#logo{
 		width:551px;
 		height:133px;
 		display:block;
-		margin-top:25px;
+		padding-top:10px;
 		}
 	#top_menu{
-		width:100%;
+		float:right;
 		height:30px;
 		}
 		#top_menu ul{ float:right}
@@ -67,17 +67,21 @@ body input, body select{
 		#top_menu ul li a img{margin-top:5px;}
 
 #main_menu{
-		width:972px;
-		height:30px;
-		}
+    width:972px;
+    height:30px;
+}
 #main_menu ul li{
-			height:30px;
-			float:left;
-			display:inline;
-			padding:5px 6px;
-			}
-			
-#main_menu ul li a{ font-size:14px;}
+    height:30px;
+    float:left;
+    display:inline;
+    padding:5px 6px;
+}
+
+#main_menu ul li a{
+  font-size:14px;
+  text-transform: uppercase;
+  color: #20A0E9;
+}
 
 #content-area{
 		width:100%;
@@ -92,28 +96,28 @@ body input, body select{
 			#content-wrapper h2.heading{ font:32px Arial, Helvetica, sans-serif; color:#20a0e9;}
 
 #inner-content-wrapper{
-		width:100%;
-		height:auto;
-		padding-top:20px
-	}
+    width:100%;
+    height:auto;
+    padding-top:20px
+}
 /*Left Styles*/
 
 #left-colmmn-wrapper{
-		width:673px;
-		height:auto
-		}
-	#left-colmmn-wrapper span.project-title{ font:20px Arial, Helvetica, sans-serif;}
+    width:673px;
+    height:auto
+}
+#left-colmmn-wrapper span.project-title{ font:20px Arial, Helvetica, sans-serif;}
 
 
 /* -- Quick and dirty patch from Alex -- */
 
-	#tab-menu {
-			width:686px;
-			float:left;
-			position:absolute;
-			top: 375px;
-	}
-  #tab-menu li a.active { margin-top:1px; }
+#tab-menu {
+    width:686px;
+    float:left;
+    position:absolute;
+    top: 325px;
+}
+#tab-menu li a.active { margin-top:1px; }
 
 /*** FIX FOR CHROME ***/
 /*
@@ -139,38 +143,40 @@ body input, body select{
 	
   #tab-panes{
     padding-top:20px;
-  }
+}
 #right-column-wrapper{
-		width:285px;
-		height:auto;
-		border:1px solid #cfe5f0;
-		background:#f5fbff;
-		}
-		
-		#right-column-wrapper #menu_vert{
-			width:100%;
-			border-bottom:1px solid #dce0e4;
-		}
-		#right-column-wrapper #menu_vert ul{ width:255px;margin-left:15px;}
-		#right-column-wrapper #menu_vert li{
-			width:100%;
-			line-height:38px;
-			border-bottom:dashed 1px #999999;
-			}
-		#right-column-wrapper #menu_vert li a{ display:block; color:#2da6ea; font:12px/38px "Trebuchet MS", Arial, Helvetica, sans-serif}
-    #right-column-wrapper #menu_vert ul ul{margin: 0;}
-      #right-column-wrapper #menu_vert ul ul li{
-        border-top:dashed 1px #999999;
-        border-bottom:dashed 0px #999999;
-      }
-      #right-column-wrapper #menu_vert ul ul li a {
-        padding-left:30px;
-        background-image: url("/assets/arrow.png");
-        background-position: 15px 14px;
-        background-repeat: no-repeat;
-      }
+    width:285px;
+    height:auto;
+    border:1px solid #cfe5f0;
+    background:#f5fbff;
+}
 
+#right-column-wrapper #menu_vert{
+    width:100%;
+    border-bottom:1px solid #dce0e4;
+}
+#right-column-wrapper #menu_vert ul{ width:255px;margin-left:15px;}
+#right-column-wrapper #menu_vert li{
+    width:100%;
+    line-height:38px;
+    border-bottom:dashed 1px #999999;
+}
+#right-column-wrapper #menu_vert li a{ display:block; color:#2da6ea; font:12px/38px "Trebuchet MS", Arial, Helvetica, sans-serif}
+#right-column-wrapper #menu_vert ul ul{margin: 0;}
+#right-column-wrapper #menu_vert ul ul li{
+    border-top:dashed 1px #999999;
+    border-bottom:dashed 0px #999999;
+}
+#right-column-wrapper #menu_vert ul ul li a {
+    padding-left:30px;
+    background-image: url("/assets/arrow.png");
+    background-position: 15px 14px;
+    background-repeat: no-repeat;
+}
 
+#right-column-wrapper section{
+    margin: 15px;
+}
 #contact-info{
 	width:100%;
 	height:auto;
@@ -230,11 +236,11 @@ body input, body select{
 			}
 
 div#title{
-  padding-bottom:50px
+    padding-bottom:50px
 }
 div#title input#project_title{
-  font: 20px Arial,Helvetica,sans-serif;
-  height: 30px;
-  margin-top: -7px;
-  width: 280px;
+    font: 20px Arial,Helvetica,sans-serif;
+    height: 30px;
+    margin-top: -7px;
+    width: 280px;
 }
