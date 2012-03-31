@@ -1,0 +1,24 @@
+#menu_vert
+  - if current_refinery_user
+    %ul
+      %li= link_to t('overview',:scope => 'navigations.vertical_menu'), "/my-page"
+      %li
+        = link_to t('label',:scope => 'navigations.vertical_menu.messages'), "#", :class => "mnu-parent"
+        %ul{:style => (controller_name == "messages" ? "" :"display:none"), :class => "mnu-child"}
+          %li= link_to t('compose',:scope => 'navigations.vertical_menu.messages'), messaging.new_message_path
+          %li= link_to t('inbox',:scope => 'navigations.vertical_menu.messages'), messaging.messages_path(:box => 'inbox')
+          %li= link_to t('sent',:scope => 'navigations.vertical_menu.messages'), messaging.messages_path(:box => 'sent')
+          %li= link_to t('trash',:scope => 'navigations.vertical_menu.messages'), messaging.messages_path(:box => 'trash')
+      - if current_refinery_user && current_refinery_user.can_create_project?
+        %li
+          = link_to t('projects',:scope => 'navigations.vertical_menu.projects'), "#", :class => "mnu-parent"
+          %ul{:style => (controller_name == "projects" ? "" :"display:none"), :class => "mnu-child"}
+            - number_projects = (current_refinery_user.admin? ? Project.count : current_refinery_user.projects.count)
+            %li= link_to "#{t( (number_projects > 1 ? 'projects' : 'project') ,:scope => 'navigations.vertical_menu.projects')}(#{number_projects})", main_app.projects_path
+            %li= link_to t('new',:scope => 'navigations.vertical_menu.projects'), main_app.new_project_path
+      - else
+        %li= link_to t('projects',:scope => 'navigations.vertical_menu.projects'), main_app.projects_path
+      %li= link_to t('personal_settings',:scope => 'navigations.vertical_menu'), main_app.edit_refinery_user_url(current_refinery_user.username)
+      - if current_refinery_user.admin?
+        %li= link_to "Admin", refinery.admin_root_path
+      %li{:class => "bordernone"}= link_to t(:log_out, :scope => 'refinery.sessions'), refinery.destroy_refinery_user_session_url
