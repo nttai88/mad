@@ -5,11 +5,14 @@ Feature: Entrepreneur gets Business Plan evaluated
   
   Background:
     Given users:
-    | Username | Role         | First name | Last name | Email             | Address 1     | Address 2 | City | Zip    | Country | State    | Phone        | About                |
-    | asmith   | entrepreneur | Adam       | Smith     | asmith@yahoo.com  | 1 Way Str.    |           | Oslo | 332244 | Norway  | Akershus | 298-044-1212 | Skilled entrepreneur |
-    | fdiller  | advisor      | Frank      | Diller    | fdiller@yahoo.com | High Way Str. |           | Oslo | 332244 | Norway  | Akershus | 111-023-1111 | Skilled advisor      |
+    | Role         | Username | First name | Last name | Email             | Address 1     | Address 2 | City | Zip    | Country | State    | Phone        | About                |
+    | entrepreneur | asmith   | Adam       | Smith     | asmith@yahoo.com  | 1 Way Str.    |           | Oslo | 332244 | Norway  | Akershus | 298-044-1212 | Skilled entrepreneur |
+    | advisor      | fdiller  | Frank      | Diller    | fdiller@yahoo.com | High Way Str. |           | Oslo | 332244 | Norway  | Akershus | 111-023-1111 | Skilled advisor      |
     And a business plan that contains @title section: "Hooking tool for farm"
-    And contains "About" complex section:
+    And contains "General" complex section:
+    | Name       | Email             | Address 1     | Address 2 | City | Zip    | Country | State    | Phone        | About                |
+    | Adam Smith | asmith@yahoo.com  | 1 Way Str.    |           | Oslo | 332244 | Norway  | Akershus | 298-044-1212 | Skilled entrepreneur |
+    And contains "Teaser" complex section:
     | Project name | Category        | Field of usage     | Which fields does the solve | MadLab Partners you may need contact with |
     | Hook Tool    | categories.txt  | field_of_usage.txt | fields_it_solves.txt        | madlab_partners.txt                       |
     And contains descriptioin sections:
@@ -31,32 +34,12 @@ Feature: Entrepreneur gets Business Plan evaluated
     
   @javascript
   Scenario: Entrepreneur submitted Business Plan for evaluation
-    Given the entrepreneur created a new business plan
-    When the entrepreneur submitted @title section
-    And submitted a copy of his contact data to "General" section
-    And submitted "Teaser" complex section
-    And submitted description sections:
-    | Business Idea        |
-    | Product Description  |
-    | Market Analysis      |
-    | Competitors Analysis |
-    | Strategy             |
-    | Progression Plan     |
-    | Finances             |
-    | Summary              |
-    And submitted "Attachment" upload/download section
-    And submitted "Thoughts & wishes" complex section
-    Then he can browse @title section
-    And can browse "General" complex section
-    And can browse "Teaser" complex section
-    And can browse descriptions:
-    | Business Idea        |
-    | Product Description  |
-    | Market Analysis      |
-    | Competitors Analysis |
-    | Strategy             |
-    | Progression Plan     |
-    | Finances             |
-    | Summary              |
-    And can browse "Attachment" upload/download section
-    And can browse "Thoughts & wishes" complex section
+    When the entrepreneur submitted a @business_plan for evaluation
+    Then he can browse the @business_plan
+    
+  @javascript
+  Scenario: Admin assigned advisors to Business Plan
+    Given the entrepreneur submitted a @business_plan for evaluation
+    When the admin assigned the @advisor to the @business_plan
+    Then the @advisor can see the @business_plan in his list
+    And he can browse the @business_plan

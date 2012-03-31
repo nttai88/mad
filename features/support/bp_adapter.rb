@@ -17,6 +17,7 @@ module BpAdapterHelper
     click_link('Hide All')
     case name
     when 'Business Idea', 'Product Description', 'Summary'
+      #sleep 1
       page.execute_script("nestedAccordion.pr(-1);")
       open_section('Business Plan', false)
       open_subsection(name, edit_mode)
@@ -83,6 +84,13 @@ module BpAdapterHelper
       end
     end
   end
+  
+  def bp_add_advisor_helper(project_id, advisor)
+    visit project_members_path(project_id)
+    full_name = Refinery::User.find_by_username(advisor).full_name
+    select full_name, :from => 'advisor_id_'
+    click_on 'advisor_submit'
+  end
 
 private
 
@@ -106,7 +114,7 @@ private
 
   def set_attr_value(name, value)
     case @current_section
-    when 'About'
+    when 'Teaser'
       about_attr_value(name, value)
     when 'Thoughts & wishes'
       wishes_attr_value(name, value)

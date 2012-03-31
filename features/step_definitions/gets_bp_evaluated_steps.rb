@@ -1,21 +1,18 @@
 Given /^users:$/ do |table|
   data = table.raw
   data.each do |row|
-    unless row[0] == 'Username'
-      case row[1]
+    unless row[0] == 'Role'
+      case row[0]
       when 'entrepreneur'
-        @entrepreneur = row[0]
+        @entrepreneur = row[1] # keep entrepreneur username for fast access
       when 'advisor'
-        @advisor = row[0]
+        @advisor = row[1] # keep advisor username for fast access
       end
-      login_helper row[1] # role
-      visit edit_refinery_user_path(row[1]) # as role
+      login_helper row[0] # In seeds a username is equal its role
+      open_user_editor_helper(row[0]) # username is still as role
       column_ix = 0
       row.each do |column|
-        unless column_ix == 1
-          user_attribute_helper(data[0][column_ix], column)
-          section_buff_attribute_helper('General', data[0][column_ix], column) if row[1] == 'entrepreneur'
-        end
+        user_attribute_helper(data[0][column_ix], column) unless column_ix == 0 # skip titles
         column_ix += 1
       end
       save_user_helper
@@ -122,4 +119,56 @@ Then /^can browse "([^"]*)" complex section$/ do |arg1|
         section[key].respond_to?(:each) ? section[key].join(' ').to_s : section[key]
     end
   end
+end
+
+Given /^the entrepreneur submitted a @business_plan for evaluation$/ do
+  steps %{
+    Given the entrepreneur created a new business plan
+    When the entrepreneur submitted @title section
+    And submitted a copy of his contact data to "General" section
+    And submitted "Teaser" complex section
+    And submitted description sections:
+    | Business Idea        |
+    | Product Description  |
+    | Market Analysis      |
+    | Competitors Analysis |
+    | Strategy             |
+    | Progression Plan     |
+    | Finances             |
+    | Summary              |
+    And submitted "Attachment" upload/download section
+    And submitted "Thoughts & wishes" complex section
+  }
+  @business_plan = Project.last.id
+end
+
+When /^the admin assigned the @advisor to the @business_plan$/ do
+  logout_helper
+  login_helper('admin')
+  bp_add_advisor_helper(@business_plan, @advisor)
+end
+
+Then /^the @advisor can see the @business_plan in his list$/ do
+  logout_helper
+  login_helper(@advisor)
+end
+
+Then /^he can browse the @business_plan$/ do
+  visit project_path(@business_plan)
+  steps %{
+    Then he can browse @title section
+    And can browse "General" complex section
+    And can browse "Teaser" complex section
+    And can browse descriptions:
+    | Business Idea        |
+    | Product Description  |
+    | Market Analysis      |
+    | Competitors Analysis |
+    | Strategy             |
+    | Progression Plan     |
+    | Finances             |
+    | Summary              |
+    And can browse "Attachment" upload/download section
+    And can browse "Thoughts & wishes" complex section
+  }
 end

@@ -12,6 +12,10 @@ module UserAdapterHelper
     end
   end
   
+  def open_user_editor_helper(user)
+    visit edit_refinery_user_path(user)
+  end
+  
   def save_user_helper
     click_button "Save"
   end
