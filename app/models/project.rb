@@ -13,12 +13,12 @@ class Project < ActiveRecord::Base
   
   has_one :document, :as => :documentable,  :dependent => :destroy
   
-  ajaxful_rateable :stars => 10, :dimensions => [:teaser, :business, :market, :product_description, :competitors, :strategy, :progression, :finances, :summary, :company, :attachment, :thoughts]
+  ajaxful_rateable :stars => 10, :dimensions => [:about, :business, :market, :product_description, :competitors, :strategy, :progression, :finances, :summary, :company, :attachment, :thoughts]
   
   accepts_nested_attributes_for :document
   accepts_nested_attributes_for :contact, :allow_destroy => true
   
-  PROJECT_PARTS = ['teaser', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
+  PROJECT_PARTS = ['about', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
   SERVICES = { :business_plan => "Business Plan", :kick_starter => "Kick Starter", :design_contest => "Design Contest", :partner_needed => "Partner Needed" }
 
   #encrypt data

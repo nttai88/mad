@@ -16,7 +16,8 @@ module BpAdapterHelper
   def bp_section_helper(name, edit_mode=false)
     click_link('Hide All')
     case name
-    when 'Business Idea', 'Product Description', 'Summary'
+    when 'Business Idea', 'Product Description', 'Summary', 'Market Analysis',\
+         'Competitors Analysis', 'Strategy', 'Progression Plan', 'Finances'
       #sleep 1
       page.execute_script("nestedAccordion.pr(-1);")
       open_section('Business Plan', false)
@@ -114,7 +115,7 @@ private
 
   def set_attr_value(name, value)
     case @current_section
-    when 'Teaser'
+    when 'About'
       about_attr_value(name, value)
     when 'Thoughts & wishes'
       wishes_attr_value(name, value)

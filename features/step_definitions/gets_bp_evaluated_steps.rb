@@ -126,7 +126,7 @@ Given /^the entrepreneur submitted a @business_plan for evaluation$/ do
     Given the entrepreneur created a new business plan
     When the entrepreneur submitted @title section
     And submitted a copy of his contact data to "General" section
-    And submitted "Teaser" complex section
+    And submitted "About" complex section
     And submitted description sections:
     | Business Idea        |
     | Product Description  |
@@ -158,7 +158,7 @@ Then /^he can browse the @business_plan$/ do
   steps %{
     Then he can browse @title section
     And can browse "General" complex section
-    And can browse "Teaser" complex section
+    And can browse "About" complex section
     And can browse descriptions:
     | Business Idea        |
     | Product Description  |

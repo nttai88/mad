@@ -12,7 +12,7 @@ Feature: Entrepreneur gets Business Plan evaluated
     And contains "General" complex section:
     | Name       | Email             | Address 1     | Address 2 | City | Zip    | Country | State    | Phone        | About                |
     | Adam Smith | asmith@yahoo.com  | 1 Way Str.    |           | Oslo | 332244 | Norway  | Akershus | 298-044-1212 | Skilled entrepreneur |
-    And contains "Teaser" complex section:
+    And contains "About" complex section:
     | Project name | Category        | Field of usage     | Which fields does the solve | MadLab Partners you may need contact with |
     | Hook Tool    | categories.txt  | field_of_usage.txt | fields_it_solves.txt        | madlab_partners.txt                       |
     And contains descriptioin sections:
