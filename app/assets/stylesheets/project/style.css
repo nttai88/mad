@@ -50,6 +50,7 @@ body input, body select{
 		width:974px;
 		height:160px;      
 		margin:0 auto;
+    padding-bottom: 10px;
 		background:url(/assets/innovation_1.jpg) no-repeat 100% 20px;
 		}
 	#logo{
