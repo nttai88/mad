@@ -22,7 +22,7 @@ Refinery::Core.configure do |config|
   # config.authenticity_token_on_frontend = true
 
   # Hide/show child pages in menu
-  # config.menu_hide_children = false
+  config.menu_hide_children = true
 
   # CSS class selectors for menu helper
   # config.menu_css = {:selected=>"selected", :first=>"first", :last=>"last"}
