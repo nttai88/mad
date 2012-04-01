@@ -6,5 +6,4 @@
         =link_to t('subpages',:scope => 'navigations.vertical_menu'), "#", :class => "mnu-parent menu-header"
         %ul{:class => 'mnu-child'}
           -visiable_children.each do|subpage|
-            %li=link_to subpage.title, main_app.url_for(subpage.url)
-        
+            %li=link_to subpage.title, refinery.url_for(subpage.url)
