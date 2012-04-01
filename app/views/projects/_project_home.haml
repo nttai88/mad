@@ -24,6 +24,13 @@
     .acc-section
       #thoughts.acc-content
         = render :partial => "thoughts"
+  %li.attachments
+    %h3 
+      = t('attachments',:scope => 'navigations.project')
+      = render :partial => "form_actions"
+    .acc-section
+      #attachments.acc-content
+        = render :partial => "attachments"
   %li
     %h3
       = t('business_plan',:scope => 'navigations.project')
@@ -86,13 +93,6 @@
             .acc-section
               #finances.acc-content
                 = render :partial => "wymeditor", :locals => {:field => :finances}
-  %li.attachments
-    %h3 
-      = t('attachments',:scope => 'navigations.project')
-      = render :partial => "form_actions"
-    .acc-section
-      #attachments.acc-content
-        = render :partial => "attachments"
 :javascript
   var parentAccordion=new TINY.accordion.slider("parentAccordion");
   parentAccordion.init("acc","h3",1,-1);
