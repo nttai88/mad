@@ -41,13 +41,13 @@ body input, body select{
     width:100%;
 }
 #main-holder-1{
-    width:974px;
+    width:990px;
     margin:0 auto;
 }
 
 /*Header Styles*/
 #header{
-		width:974px;
+		width:990px;
 		height:160px;      
 		margin:0 auto;
     padding-bottom: 10px;
@@ -206,7 +206,7 @@ body input, body select{
 	background:url(/assets/footer_bg.jpg) repeat-x;
 	}
 	#footer{
-			width:974px;
+			width:990px;
 			height:180px;
 			margin:0 auto;
 			}
@@ -228,7 +228,7 @@ body input, body select{
 			}
 
 		.copy-right{
-			width:974px;
+			width:990px;
 			height:60px;
 			border-top:1px solid #d9d9d9;
 			line-height:60px;
