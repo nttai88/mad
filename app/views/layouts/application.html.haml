@@ -29,8 +29,6 @@
         / Main Menu
       %center.banner-top
         %img{:alt => "", :src => "/assets/madLab-banner.png"}
-      %center#flash-message
-        = render :partial => '/refinery/message'
       #content-area
         #content-wrapper
           #inner-content-wrapper
@@ -42,6 +40,9 @@
                     = yield :header
                     %br
                       %span.project-title= yield :title
+              #flash-message
+                = render :partial => '/refinery/message'
+              .clear_fix
               .inner-content-block
                 = yield
             / /left Content
