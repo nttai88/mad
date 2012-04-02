@@ -14,10 +14,13 @@ module AuthenticatedSystem
   end
 
   def current_url_with_locale(locale_key)
-    if(request.fullpath.include?("/#{I18n::locale}"))
-      request.fullpath.gsub /#{I18n::locale}/,"#{locale_key}"
+    # .sub("//", "/") is a temp fix (see https://github.com/rails/journey/pull/24)
+    # TODO: remove when journey 1.0.4 gets released
+    path = request.fullpath.sub("//", "/")
+    if(path.include?("/#{I18n::locale}"))
+      path.gsub /#{I18n::locale}/,"#{locale_key}"
     else
-      "/#{locale_key}"+request.fullpath
+      "/#{locale_key}" << path
     end
   end
 end
