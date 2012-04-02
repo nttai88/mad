@@ -39,4 +39,9 @@ module ApplicationHelper
     string << '</strong>'
     string.html_safe
   end
+
+  def visible_children(page)
+    page = page.parent if page.parent
+    page.children.live.in_menu
+  end
 end
