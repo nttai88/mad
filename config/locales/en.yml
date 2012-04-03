@@ -5,6 +5,8 @@ en:
   general_ui:
     edit: Edit
     destroy: Destroy
+    save: Save
+    cancel: Cancel
     show_all: Show All
     hide_all: Hide All
     are_you_sure: Are you sure?

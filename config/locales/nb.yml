@@ -5,6 +5,8 @@ nb:
   general_ui:
     edit: Rediger
     destroy: Slette
+    save: Redde
+    cancel: Avbryte
     show_all: Vis alle
     hide_all: Skjule alle
     are_you_sure: Er du sikker?
@@ -133,7 +135,7 @@ nb:
       latest_projects: Siste prosjekter
       older_project: Eldre prosjekter...
       project_list: Prosjekterlist
-      project_home: Prosjek Frontier
+      project_home: Prosjekt Frontier
     news:
       news_competitions: Nyheter og konkurranser
       older_news: Eldre nyheter...
