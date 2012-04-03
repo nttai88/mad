@@ -2,7 +2,7 @@
   <div class="left-index-column1-topic"><h3>Latest projects</h3></div>
   <div class="left-index-column2-topic"><h3>News and competitions</h3></div>
   <div class="left-index-column1">
-    <% projects = Project.recent %>
+    <% projects = Project.recent.where("project_status = 'Published'") %>
     <% projects.each do |project| %>
       <div class="item">
         <div class="date"><%= project.created_at %></div>
