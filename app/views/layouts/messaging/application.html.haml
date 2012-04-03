@@ -2,7 +2,7 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml"}
   %head
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-    %title= content_for?(:title) ? yield(:title) : "Company Name"
+    %title= content_for?(:title) ? yield(:title) : Refinery::Core.site_name
     / Included CSS Files
     = stylesheet_link_tag "application"
     / Included JS Files
