@@ -123,6 +123,7 @@ nb:
       payment: Betaling
       latest_projects: Siste prosjekter
       older_project: Eldre prosjekter...
+      project_list: Prosjekterlist
     news:
       news_competitions: Nyheter og konkurranser
       older_news: Eldre nyheter...
