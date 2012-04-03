@@ -25,6 +25,7 @@ Mad2::Application.routes.draw do
       post 'register' => 'refinery/users#create', :as => :refinery_user_registration
       get 'sign_in' => 'refinery/sessions#new', :as => :new_refinery_user_session
       post 'sign_in' => 'refinery/sessions#create', :as => :refinery_user_session
+      get 'sign_out', :to => "refinery/sessions#destroy", :as => :destroy_refinery_user_session
       get 'password/new' => 'refinery/passwords#new', :as => :new_refinery_user_password
       get 'password' => 'refinery/passwords#create', :as => :refinery_user_password
       get 'confirmation' => 'refinery/confirmations#show', :as => :refinery_user_confirmation
