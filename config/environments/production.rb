@@ -61,7 +61,7 @@ Mad2::Application.configure do
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address  => "smtp.gmail.com",
-    :port  => 25,
+    :port => 587,
     :user_name  => "btsocial.pro@gmail.com",
     :password  => "btsocialbtsocial",
     :authentication  => :login
