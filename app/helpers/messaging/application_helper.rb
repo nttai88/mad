@@ -3,6 +3,6 @@ module Messaging
     include Refinery::SiteBarHelper
     include Refinery::MenuHelper
     include Refinery::MetaHelper
-    include CommanHelpers
+    include CommonHelpers
   end
 end

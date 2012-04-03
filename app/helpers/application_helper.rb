@@ -1,5 +1,6 @@
 module ApplicationHelper
-  include CommanHelpers
+  include CommonHelpers
+
   def states_by_country
     state_options = {}
     Carmen::country_codes.each do |country|
@@ -24,20 +25,6 @@ module ApplicationHelper
 
   def subpage_links_for(page)
     "ff"
-  end
-
-  def colored_title(menu_item)
-    return unless menu_item.downcase == 'playground'
-
-    colors = %w(1a58b5 000 df4016 000 53bc57 000 e9e721 df4016 1a58b5 000)
-    letters = menu_item.split('')
-
-    string = '<strong>'
-    letters.each_with_index do |letter, i|
-      string << "<font color='##{colors[i]}'>#{letter}</font>"
-    end
-    string << '</strong>'
-    string.html_safe
   end
 
   def visible_children(page)
