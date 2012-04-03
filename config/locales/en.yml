@@ -124,6 +124,11 @@ en:
       attachments: Attachments
       thoughts_and_wishes: Thoughts & wishes
       payment: Payment
+      latest_projects: Latest projects
+      older_project: Older Projects...
+    news:
+      news_competitions: News and competitions
+      older_news: Older News...
     vertical_menu:
       overview: Overview
       messages:

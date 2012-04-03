@@ -1,6 +1,6 @@
 <div id="left-index">
-  <div class="left-index-column1-topic"><h3>Latest projects</h3></div>
-  <div class="left-index-column2-topic"><h3>News and competitions</h3></div>
+  <div class="left-index-column1-topic"><h3><%= t('navigations.project.latest_projects') %></h3></div>
+  <div class="left-index-column2-topic"><h3><%= t('navigations.news.news_competitions') %></h3></div>
   <div class="left-index-column1">
     <% projects = Project.recent.where("project_status = 'published'") %>
     <% projects.each do |project| %>
@@ -14,7 +14,7 @@
       </div>
     <% end %>
     <% if projects.total_pages > 1 %>
-      <%= link_to "Older Project...", main_app.recent_projects_path %>
+      <%= link_to t('navigations.project.older_project'), main_app.recent_projects_path %>
     <% end %>
   </div>
   <div class="left-index-column2">
@@ -33,7 +33,7 @@
       </div>
     <% end %>
     <% if items.total_pages > 1 %>
-      <%= link_to "Older News...", refinery.news_items_path %>
+      <%= link_to t('navigations.news.older_news'), refinery.news_items_path %>
     <% end %>
   </div>
 </div>

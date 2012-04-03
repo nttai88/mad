@@ -121,6 +121,11 @@ nb:
       attachments: Vedlegg
       thoughts_and_wishes: Vurderinger og ønsker
       payment: Betaling
+      latest_projects: Siste prosjekter
+      older_project: Eldre prosjekter...
+    news:
+      news_competitions: Nyheter og konkurranser
+      older_news: Eldre nyheter...
     vertical_menu:
       overview: Oversikt
       messages:
