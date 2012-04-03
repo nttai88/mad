@@ -5,6 +5,8 @@ en:
   general_ui:
     edit: Edit
     destroy: Destroy
+    show_all: Show All
+    hide_all: Hide All
     are_you_sure: Are you sure?
   helpers:
     label:
@@ -134,6 +136,7 @@ en:
       latest_projects: Latest projects
       older_project: Older Projects...
       project_list: Project list
+      project_home: Project Home
     news:
       news_competitions: News and competitions
       older_news: Older News...
