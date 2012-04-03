@@ -12,10 +12,10 @@
 #body_content_left
   %table
     %tr
-      %th = t('helpers.label.project.title')
-      %th = t('helpers.label.project.project_status')
-      %th = t('helpers.label.project.owner')
-      %th = t('helpers.label.project.created')
+      %th= t('helpers.label.project.title')
+      %th= t('helpers.label.project.project_status')
+      %th= t('helpers.label.project.owner')
+      %th= t('helpers.label.project.created')
     - @projects.each do |project|
       %tr
       -unless project.title.blank?
