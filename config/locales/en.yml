@@ -126,6 +126,7 @@ en:
       payment: Payment
       latest_projects: Latest projects
       older_project: Older Projects...
+      project_list: Project list
     news:
       news_competitions: News and competitions
       older_news: Older News...
