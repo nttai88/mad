@@ -2,6 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  general_ui:
+    edit: Edit
+    destroy: Destroy
+    are_you_sure: Are you sure?
   helpers:
     label:
       user:
@@ -28,7 +32,10 @@ en:
       project:
         name: Name
         project_name: Project name
+        manage_members: Manage members
+        owner: Owner
         title: Title
+        created: Created
         network_only: Network Ony
         field_of_usage: Field of usage
         which_fields_does_the_solve: Which fields does the solve
