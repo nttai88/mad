@@ -2,6 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 nb:
+  general_ui:
+    edit: Rediger
+    destroy: Slette
+    are_you_sure: Er du sikker?
   helpers:
     label:
       user:
@@ -28,7 +32,10 @@ nb:
       project:
         name: Navn
         project_name: Prosjekt navn
+        manage_members: Administrere medlemmer
+        owner: Eier
         title: Tittel
+        created: Opprettet
         network_only: Kun nettverket
         field_of_usage: Bruksområdet
         which_fields_does_the_solve: Hvilke områder skal idèen løse
