@@ -69,6 +69,10 @@ content_for :under_side_bar do
   raw (sections[:body_content_right][:html] + sections[:subpage_links][:html])
 end
 
+content_for :under_side_bar do
+  render 'shared/google_ads_sidebar'
+end
+
 -%>
 
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
