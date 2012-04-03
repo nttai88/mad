@@ -1,7 +1,9 @@
 %span#options
-  %a{:href => "javascript:parentAccordion.pr(1)"} Show All
+  %a{:href => "javascript:parentAccordion.pr(1)"}
+    = t('general_ui.show_all')
   |
-  %a{:href => "javascript:parentAccordion.pr(-1)"} Hide All
+  %a{:href => "javascript:parentAccordion.pr(-1)"}
+    = t('general_ui.hide_all')
 %ul#acc.acc.clear
   %li.general
     %h3 
