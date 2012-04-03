@@ -11,6 +11,7 @@
     - site_bar = render(:partial => '/refinery/site_bar', :locals => {:head => true})
     = render :partial => '/refinery/ie6check' if request.env['HTTP_USER_AGENT'] =~ /MSIE/
     = yield :javascripts
+    = render '/shared/google_ads_header'
     = csrf_meta_tags
   %body
     / Main Wrapper
@@ -54,7 +55,7 @@
             / inner-content-wrapper
           / content-wrapper
         .banner-top.banner-bottom
-          %img{:src => "/assets/logos/banner.jpg"}
+          = render 'shared/google_ads_footer'
         .clear_fix
         / /Content holder
         / Footer

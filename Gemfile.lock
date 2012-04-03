@@ -353,6 +353,7 @@ DEPENDENCIES
   refinerycms-i18n (= 2.0.0)
   refinerycms-inquiries!
   refinerycms-news (= 2.0.0)
+  refinerycms-settings (= 2.0.1)
   rmagick (~> 2.13.1)
   rspec-rails (~> 2.9.0)
   sass-rails (~> 3.2.5)

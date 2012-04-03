@@ -254,8 +254,14 @@ form {
 .logo-sponsors ul{ width:200px; margin:0 auto;}
 .logo-sponsors ul li{ width:190px; margin-top:10px; margin-bottom:10px;}
 
-.banner-bottom{ margin:20px auto; width:960px;}
-.banner-bottom{ margin-bottom:40px; text-align: center;}
+.banner-bottom { 
+  div {
+    margin:20px auto;
+    margin-bottom:40px;
+    width:960px;
+    text-align: center;
+  }
+}
 
 /*footer*/
 
