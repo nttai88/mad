@@ -142,7 +142,14 @@ li{list-style:none}
 td.pagination_wrapper{
     text-align: center;
 }
-form { padding-top: 15px;}
+form {
+  padding-top: 15px;
+  .form-actions {
+    .form-actions-left {
+      padding: 6px 0;
+    }
+  }
+}
 #flash_container {width: 990px; margin: 0 auto;}
 .inner-content-block {width:95%; clear:both; margin-top:10px;}
 .inner-content-block p{ line-height:18px}
