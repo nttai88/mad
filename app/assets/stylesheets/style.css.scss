@@ -202,7 +202,12 @@ form {
       margin-top: 20px;
     }
 		
-		#right-column-wrapper #menu_vert{
+    #right-column-wrapper section{
+      padding: 15px;
+      color: #2DA6EA;
+    }
+
+    #right-column-wrapper #menu_vert{
 			width:100%;
 			border-bottom:1px solid #dce0e4;
 		}
@@ -305,62 +310,69 @@ form {
 }
 
 /*Home page*/
-#left-index .left-index-column1-topic {
+#left-index {
+  .left-index-column1-topic {
     border-bottom: 1px solid #E0E0E0;
     float: left;
     margin-bottom: 10px;
     padding-right: 20px;
     width: 300px;
     color: #20A0E9;
-}
-#left-index .left-index-column2-topic {
+    h3 {
+      color: #20A0E9 !important;
+    }
+  }
+  .left-index-column2-topic {
     border-bottom: 1px solid #E0E0E0;
     float: left;
     margin-bottom: 10px;
     padding-left: 20px;
     width: 300px;
-}
-#left-index .left-index-column1-topic h3, #left-index .left-index-column2-topic h3{
-  color: #20A0E9 !important;
-}
-#left-index .quote{
-  clear:both;
-  padding-top: 20px;
-}
-#left-index .left-index-column1 {
-    border-right: 1px solid #E0E0E0;
-    float: left;
-    margin-bottom: 10px;
-    padding-right: 20px;
-    width: 300px;
-}
-#left-index .left-index-column2 {
-    float: left;
-    margin-bottom: 10px;
-    min-height: 200px;
-    padding-left: 20px;
-    width: 300px;
-}
-#left-index .item {
-  border-bottom: 1px solid rgb(224, 224, 224);
-}
-#left-index .item .date{
-  color: #AAAAAA;
-  font-size: 12px;
-  margin-top:10px;
-}
-#left-index .item .topic{
-  margin-bottom: 10px;
-  padding-right: 20px;
-}
-#left-index .item .topic h3{
-  color: #222222;
-  font-weight:normal;
-  font-size: 18px;
-}
-
-#left-index .item .text {
-    font-size: 13px;
-    line-height: 18px;
-    padding-bottom: 10px;
+    h3 {
+      color: #20A0E9 !important;
+    }
+  }
+  .left-index-column1 {
+      border-right: 1px solid #E0E0E0;
+      float: left;
+      margin-bottom: 10px;
+      padding-right: 20px;
+      width: 300px;
+  }
+  .left-index-column2 {
+      float: left;
+      margin-bottom: 10px;
+      min-height: 200px;
+      padding-left: 20px;
+      width: 300px;
+  }
+  .quote{
+    clear:both;
+    padding-top: 20px;
+  }
+  .item {
+    border-bottom: 1px solid rgb(224, 224, 224);
+    .date{
+      color: #AAAAAA;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .topic {
+      padding-right: 20px;
+      h3 {
+        color: #222222;
+        font-weight: normal;
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+    .category {
+      margin-bottom: 10px;
+    }
+    .text {
+      font-size: 13px;
+      line-height: 18px;
+      padding-bottom: 10px;
+    }
+  }
 }
