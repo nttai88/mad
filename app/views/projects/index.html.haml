@@ -10,27 +10,20 @@
   - else
     = render :partial => "layouts/side_bar"
 #body_content_left
-  %table.bordernone
-    %tr
-      %th= t('helpers.label.project.title')
-      %th= t('helpers.label.project.project_status')
-      %th= t('helpers.label.project.owner')
-      %th= t('helpers.label.project.created')
+  #left-index
     - @projects.each do |project|
-      %tr
-      -unless project.title.blank?
-        %td= link_to project.title, project
-      -else
-        %td= link_to "no title", project
-      %td= project.project_status.titlecase
-      %td= project.user.username
-      %td= nice_time project.created_at
-      - if current_user && current_user.can_edit_project?(project)
-        %td= link_to t('general_ui.destroy'), project_path(project), :confirm => t('general_ui.are_you_sure'), :method => :delete
-        - if current_user.admin?
-          %td= link_to t('helpers.label.project.manage_members'), project_members_path(project)
-
-    %tr
-      %td.pagination_wrapper{colspan: 7}
-        =will_paginate @projects
-%br/
+      .item
+        .date
+          = project.created_at
+        .topic{:style=> "margin-bottom: 15px;"}
+          %a{:href=> main_app.project_path(project)}
+            %h3
+              = project.title
+        .text
+          - if current_user && current_user.can_edit_project?(project)
+            = link_to t('general_ui.destroy'), project_path(project), :confirm => t('general_ui.are_you_sure'), :method => :delete
+          - if current_user.admin?
+            |
+            = link_to t('helpers.label.project.manage_members'), project_members_path(project)
+    .pagination_wrapper{:style=> "text-align: center;margin-top:20px;"}
+      =will_paginate @projects
