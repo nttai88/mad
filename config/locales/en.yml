@@ -98,12 +98,13 @@ en:
       forgot_password: I forgot my password
       log_out: Log out
       logged_in_as: Logged in as
-    news_items:
-      category:
-        from_madlab: From MadLab
-        news: News
-        competitions: Competitions
-        press: Press
+    news:
+      items:
+        category:
+          from_madlab: From MadLab
+          news: News
+          competitions: Competitions
+          press: Press
   devise:
     users:
       refinery_user:
