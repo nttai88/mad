@@ -1,44 +1,45 @@
 <div id="footer">
   <div class="footer-blocks fl_left">
-    <h3><%= t('footer.om_madlab') %></h3>
+    <h3><%= link_to t('footer.om_madlab'), refinery.url_for("/about") %></h3>
   </div>
 
   <div class="footer-blocks fl_left">
-    <h3><%= t('footer.group.services') %></h3>
+    <h3><%= link_to t('footer.group.services'), refinery.url_for("/services") %></h3>
     <ul>
-      <li><a href="#"><%= t('footer.services.entrepreneur') %></a></li>
-      <li><a href="#"><%= t('footer.services.companies') %></a></li>
-      <li><a href="#"><%= t('footer.services.recommendations') %></a></li>
-      <li><a href="#"><%= t('footer.services.recommended_links') %></a></li>
+      <li><a href="#"><%= link_to t('footer.services.entrepreneur'), refinery.url_for("/entrepreneur") %></a></li>
+      <li><a href="#"><%= link_to t('footer.services.companies'), refinery.url_for("/companies") %></a></li>
+      <li><a href="#"><%= link_to t('footer.services.recommendations'), refinery.url_for("/tips_for_entrepreneur") %></a></li>
+      <li></li>
+      <li><a href="#"><%= link_to t('footer.services.recommended_links'), refinery.url_for("/recommended_links") %></a></li>
     </ul>
   </div>
 
   <div class="footer-blocks fl_left">
-    <h3><%= t('footer.group.interest_groups') %></h3>
+    <h3><%= link_to t('footer.group.interest_groups'), refinery.url_for("/interest_groups") %></h3>
     <ul>
-      <li><a href="#"><%= t('footer.interest_groups.contractor') %></a></li>
-      <li><a href="#"><%= t('footer.interest_groups.producer') %></a></li>
-      <li><a href="#"><%= t('footer.interest_groups.distributor') %></a></li>
-      <li><a href="#"><%= t('footer.interest_groups.investor') %></a></li>
+      <li><a href="#"><%= link_to t('footer.interest_groups.contractor'), refinery.url_for("/contractor") %></a></li>
+      <li><a href="#"><%= link_to t('footer.interest_groups.producer'), refinery.url_for("/producer") %></a></li>
+      <li><a href="#"><%= link_to t('footer.interest_groups.distributor'), refinery.url_for("/distributor") %></a></li>
+      <li><a href="#"><%= link_to t('footer.interest_groups.investor'), refinery.url_for("/investor") %></a></li>
     </ul>
   </div>
 
   <div class="footer-blocks fl_left">
-    <h3><%= t('footer.group.news') %></h3>
+    <h3><%= link_to t('footer.group.news'), refinery.news_items_path(:category => "news") %></h3>
     <ul>
-      <li><a href="#"><%= t('footer.news.from_madLab') %></a></li>
-      <li><a href="#"><%= t('footer.news.press') %></a></li>
+      <li><a href="#"><%= link_to t('footer.news.from_madLab'), refinery.news_items_path(:category => "from_madlab") %></a></li>
+      <li><a href="#"><%= link_to t('footer.news.press'), refinery.news_items_path(:category => "press") %></a></li>
       <li><a href="http://twitter.com/#!/MadLabNorway"><%= t('footer.news.twitter') %></a></li>
       <li><a href="http://facebook.com/"><%= t('footer.news.facebook') %></a></li>
     </ul>
   </div>
 
   <div class="footer-blocks fl_left">
-    <h3><%= t('footer.group.playground') %></h3>
+    <h3><%= link_to t('footer.group.playground'), refinery.url_for("/playground") %></h3>
     <ul>
-      <li><a href="#"><%= t('footer.playground.faq') %></a></li>
-      <li><a href="#"><%= t('footer.playground.contact_us') %></a></li>
-      <li><a href="#"><%= t('footer.playground.affiliates') %></a></li>
+      <li><a href="#"><%= link_to t('footer.playground.faq'), refinery.url_for("/tjenester/faq") %></a></li>
+      <li><a href="#"><%= link_to t('footer.playground.contact_us'), refinery.url_for("/contact") %></a></li>
+      <li><a href="#"><%= link_to t('footer.playground.affiliates'), refinery.url_for("/affiliates")  %></a></li>
     </ul>
   </div>
   <div class="clear_fix"></div>
