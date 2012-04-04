@@ -18,11 +18,14 @@ class ApplicationController < ActionController::Base
 
   def force_ssl
     if Rails.env.production?
+      # this is a temp fix (see https://github.com/rails/journey/pull/24)
+      # TODO: remove when journey 1.0.4 gets released
+      url = request.url.sub(/([^:])\/\//, '\1/')
+
       if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?
-        redirect_to :protocol => "https://"
-      end
-      if !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
-        redirect_to :protocol => "http://"
+        redirect_to url.sub(/^http:/, 'https:')
+      elsif !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
+        redirect_to url.sub(/^https:/, 'http:')
       end
     end
   end
