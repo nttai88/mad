@@ -158,3 +158,29 @@ en:
         new: New project
       personal_settings: Personal settings
       subpages: Subpages
+  footer:
+    om_madlab: Om Madlab
+    group:
+      services: Services
+      interest_groups: Interest Groups
+      news: News
+      playground: Playground
+    services:
+      entrepreneur: Entrepreneur
+      companies: Companies
+      recommendations: Recommendations for the Entrepreneur
+      recommended_links: Recommended links
+    interest_groups:
+      contractor: Contractor
+      producer: Producer
+      distributor: Distributor
+      investor: Investor / Capital
+    news:
+      from_madLab: From MadLab
+      press: Press Coverage
+      twitter: Twitter
+      facebook: Facebook
+    playground:
+      faq: FAQ
+      contact_us: Contact us
+      affiliates: Affiliates
