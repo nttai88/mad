@@ -18,6 +18,7 @@ module BpAdapterHelper
     case name
     when 'Business Idea', 'Product Description', 'Summary', 'Market Analysis',\
          'Competitors Analysis', 'Strategy', 'Progression Plan', 'Finances'
+      sleep 0.1
       page.execute_script("nestedAccordion.pr(-1);")
       sleep 0.1
       open_section('Business Plan', false)
