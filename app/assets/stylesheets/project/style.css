@@ -26,6 +26,11 @@ form label {
     padding-right: 16px;
     display:none;
 }
+
+.not-foundation-table{
+    border-style: none;
+}
+
 body input, body select{
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
