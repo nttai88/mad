@@ -95,6 +95,7 @@ nb:
     sessions:
       new:
         hello_please_sign_in: Fyll inn ditt brukernavn og passord
+      forgot_password: Jeg har glemt passordet
       log_out: Logg ut
       logged_in_as: Innlogget som
     news_items:
