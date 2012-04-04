@@ -21,9 +21,13 @@ body {
 }
 
 #right-column-wrapper{
- section{
-   margin: 15px;
- }
+  section{
+    margin: 15px;
+  }
+  center{
+    padding: 15px;
+    color: 2DA6EA;
+  }
 }
 
 #body_content.no_body_content_left #body_content_right,
@@ -31,12 +35,6 @@ body {
   width: 100%;
   padding-left: 0px;
   padding-right: 0px;
-}
-
-#news_archive_widget{
-  padding-left: 15px;
-  padding-top: 15px;
-  color: #2DA6EA;
 }
 
 .menu {
