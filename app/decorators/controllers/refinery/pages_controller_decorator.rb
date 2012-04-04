@@ -7,8 +7,8 @@ Refinery::PagesController.class_eval do
       unless current_user
         login_required
       else
-        @new_emails = Conversation.unread(current_refinery_user).count
-        @projects = current_user.projects.size
+        @new_emails = Conversation.unread(current_user).count
+        @projects = (current_user.admin? ? Project.count : current_user.projects.count)
       end
     end
   end
