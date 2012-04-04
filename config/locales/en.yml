@@ -4,7 +4,7 @@
 en:
   general_ui:
     edit: Edit
-    destroy: Destroy
+    destroy: Delete
     save: Save
     cancel: Cancel
     show_all: Show All

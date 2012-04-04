@@ -26,7 +26,6 @@
       %td= project.user.username
       %td= nice_time project.created_at
       - if current_user && current_user.can_edit_project?(project)
-        %td= link_to t('general_ui.edit'), edit_project_path(project)
         %td= link_to t('general_ui.destroy'), project_path(project), :confirm => t('general_ui.are_you_sure'), :method => :delete
         - if current_user.admin?
           %td= link_to t('helpers.label.project.manage_members'), project_members_path(project)
