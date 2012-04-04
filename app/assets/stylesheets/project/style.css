@@ -280,3 +280,9 @@ div#title input#project_title{
     font-weight: bold;
 }
 
+#flash-message #flash.flash_alert{
+  color: red;
+}
+#flash-message #flash.flash_notice{
+  color: green;
+}

@@ -1,5 +1,5 @@
 class MembersController < ProjectsController
-  before_filter :login_required
+  before_filter :authenticate_refinery_user!
   before_filter :can_edit?
 
   def index

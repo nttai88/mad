@@ -12,89 +12,90 @@
     .acc-section
       #general.acc-content
         = render :partial => "general"
-  %li.about
-    %h3
-      = t('about',:scope => 'navigations.project')
-      = render :partial => "form_actions"
-    .acc-section
-      #about.acc-content
-        = render :partial => "about"
-  %li.thoughts
-    %h3 
-      = t('thoughts_and_wishes',:scope => 'navigations.project')
-      = render :partial => "form_actions"
-    .acc-section
-      #thoughts.acc-content
-        = render :partial => "thoughts"
-  %li.attachments
-    %h3 
-      = t('attachments',:scope => 'navigations.project')
-      = render :partial => "form_actions"
-    .acc-section
-      #attachments.acc-content
-        = render :partial => "attachments"
-  %li
-    %h3
-      = t('business_plan',:scope => 'navigations.project')
-    .acc-section
-      .acc-content
-        %ul#nested.acc
-          %li.business
-            %h3 
-              = t('business_idea',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #business.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :business}
-          %li.product_description
-            %h3 
-              = t('product_description',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #product_description.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :product_description}
-          %li.summary
-            %h3 
-              = t('summary',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #summary.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :summary}
-          %li.market
-            %h3 
-              = t('market_analysis',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #market.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :market}
-          %li.competitors
-            %h3 
-              = t('competitors_analysis',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #competitors.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :competitors}
-          %li.strategy
-            %h3 
-              = t('strategy',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #strategy.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :strategy}
-          %li.progression
-            %h3 
-              = t('progression_plan',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #progression.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :progression}
-          %li.finances
-            %h3 
-              = t('finances',:scope => 'navigations.project')
-              = render :partial => "form_actions"
-            .acc-section
-              #finances.acc-content
-                = render :partial => "wymeditor", :locals => {:field => :finances}
+  - if current_user && current_user.can_view_project?(@project)
+    %li.about
+      %h3
+        = t('about',:scope => 'navigations.project')
+        = render :partial => "form_actions"
+      .acc-section
+        #about.acc-content
+          = render :partial => "about"
+    %li.thoughts
+      %h3
+        = t('thoughts_and_wishes',:scope => 'navigations.project')
+        = render :partial => "form_actions"
+      .acc-section
+        #thoughts.acc-content
+          = render :partial => "thoughts"
+    %li.attachments
+      %h3
+        = t('attachments',:scope => 'navigations.project')
+        = render :partial => "form_actions"
+      .acc-section
+        #attachments.acc-content
+          = render :partial => "attachments"
+    %li
+      %h3
+        = t('business_plan',:scope => 'navigations.project')
+      .acc-section
+        .acc-content
+          %ul#nested.acc
+            %li.business
+              %h3
+                = t('business_idea',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #business.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :business}
+            %li.product_description
+              %h3
+                = t('product_description',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #product_description.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :product_description}
+            %li.summary
+              %h3
+                = t('summary',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #summary.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :summary}
+            %li.market
+              %h3
+                = t('market_analysis',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #market.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :market}
+            %li.competitors
+              %h3
+                = t('competitors_analysis',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #competitors.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :competitors}
+            %li.strategy
+              %h3
+                = t('strategy',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #strategy.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :strategy}
+            %li.progression
+              %h3
+                = t('progression_plan',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #progression.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :progression}
+            %li.finances
+              %h3
+                = t('finances',:scope => 'navigations.project')
+                = render :partial => "form_actions"
+              .acc-section
+                #finances.acc-content
+                  = render :partial => "wymeditor", :locals => {:field => :finances}
 :javascript
   var parentAccordion=new TINY.accordion.slider("parentAccordion");
   parentAccordion.init("acc","h3",1,-1);

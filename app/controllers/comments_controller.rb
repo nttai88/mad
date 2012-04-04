@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_refinery_user!
   
   def create
     @project = Project.find(params[:project_id])

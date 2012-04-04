@@ -90,8 +90,12 @@ Refinery::User.class_eval do
   end
 
   def can_edit_project?(project)
-    return true if self.has_role?("Refinery")
+    return true if self.admin?
     return self.has_role?("Entrepreneur") && project.user_id == self.id ? true :false
+  end
+
+  def can_view_project?(project)
+    self.can_edit_project?(project) || self.partner_of?(project) || self.advisor_of?(project)
   end
 
   def partner_of?(project)
