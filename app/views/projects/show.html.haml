@@ -20,6 +20,8 @@
           = t('payment',:scope => 'navigations.project')
 #tab-panes
   %div.project-home.clear
+    #flash-message
+      = render :partial => '/refinery/message'
     = render :partial => "project_home"
   %div.project-updates
     Feature under construction.

@@ -1,4 +1,4 @@
-- if current_user && (current_user.admin? || current_user == @project.user || current_user.advisor_of?(@project))
+- if current_user && current_user.can_edit_project?(@project)
   %a.uiButton.fl_right.edit{:href => "#", :style => "display:none"}
     = t('general_ui.edit')
   %a.uiButton.fl_right.cancel{:href => "#", :style => "display:none"}
