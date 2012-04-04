@@ -349,16 +349,18 @@ form {
   font-size: 12px;
   margin-top:10px;
 }
-#left-index .item .topic{
-  margin-bottom: 10px;
+#left-index .item .topic {
   padding-right: 20px;
 }
 #left-index .item .topic h3{
   color: #222222;
   font-weight:normal;
   font-size: 18px;
+  margin: 0;
 }
-
+#left-index .item .category {
+  margin-bottom: 10px;
+}
 #left-index .item .text {
     font-size: 13px;
     line-height: 18px;

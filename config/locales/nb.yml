@@ -98,12 +98,13 @@ nb:
       forgot_password: Jeg har glemt passordet
       log_out: Logg ut
       logged_in_as: Innlogget som
-    news_items:
-      category:
-        from_madlab: Fra MadLab
-        news: Nyheter
-        competitions: Konkurranser
-        press: Presse
+    news:
+      items:
+        category:
+          from_madlab: Fra MadLab
+          news: Nyheter
+          competitions: Konkurranser
+          press: Presse
   devise:
     users:
       refinery_user:

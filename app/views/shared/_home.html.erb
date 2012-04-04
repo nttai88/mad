@@ -25,6 +25,10 @@
         <div class="topic">
           <%= link_to raw("<h3>#{item.title }</h3>"), refinery.news_item_path(item) %>
         </div>
+        <div class="category">
+          <%= link_to t("refinery.news.items.category.#{item.category}"),
+                      refinery.news_items_path(:category => item.category) %>
+        </div>
         <div class="text">
           <%= truncate  item.body, :length => 200,
                       :omission => " ... #{link_to t('.read_more'), refinery.news_item_path(item)}",
