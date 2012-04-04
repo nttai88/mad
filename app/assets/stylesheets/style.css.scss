@@ -203,7 +203,12 @@ form {
     }
 		
     #right-column-wrapper section{
-      padding: 15px;
+      padding-top: 15px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    #right-column-wrapper section h2, a{
       color: #2DA6EA;
     }
 
