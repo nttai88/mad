@@ -20,10 +20,11 @@
   %p
     %b Origin:
     = @project.origin
-  = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
+  - unless @project.new_record?
+    = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
 
 .edit{:style => "display:none"}
-  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+  = form_for @project, :url => save_project_url(:id => @project.id || "new"), :html => {:class => "nice"} do |f|
 
     = f.label :project_status
     %input{:type => "hidden", :name => "tab", :value=> "thoughts"}

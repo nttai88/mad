@@ -29,7 +29,8 @@
   - if @project.document && !@project.document["file9"].blank?
     %p
       = link_to @project.document["file9"], @project.document.file9.url unless @project.document["file9"].blank?
-  = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
+  - unless @project.new_record?
+    = ratings_for @project, :dimension => :attachment, :remote_options => {:url => rate_project_path(@project)}
 .edit{:style => "display:none"}
   - if @project.document && !@project.document["file"].blank?
     %p

@@ -36,7 +36,8 @@
               = yield
             / Right Content
             #right-column-wrapper.fl_right
-              = render "layouts/side_bar"
+              #vertical-menu
+                = render "layouts/side_bar"
               = yield :under_side_bar
             / /Right Content
             .clear_fix

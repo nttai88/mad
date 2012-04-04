@@ -1,2 +1,3 @@
 = raw eval("@project.#{field}")
-= ratings_for @project, :dimension => field, :remote_options => {:url => rate_project_path(@project)}
+- unless @project.new_record?
+  = ratings_for @project, :dimension => field, :remote_options => {:url => rate_project_path(@project)}

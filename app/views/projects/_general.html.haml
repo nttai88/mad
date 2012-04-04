@@ -24,7 +24,7 @@
     = contact.about if contact
 .edit.hidden
   - @user = @project.user
-  = form_for @project, :url => save_project_url(@project), :html => {:class => "nice"} do |f|
+  = form_for @project, :url => save_project_url(:id => @project.id || "new"), :html => {:class => "nice"} do |f|
     %input{:type => "hidden", :name => "tab", :value=> "general"}
     .field
       %span{:style => "float: left;"}

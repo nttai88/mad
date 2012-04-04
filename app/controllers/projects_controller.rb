@@ -27,8 +27,9 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @project.user = current_user
     @project.document ||= Document.new
-    @project.save
-    redirect_to project_url(@project)
+#    @project.save
+#    redirect_to project_url(@project)
+    render :action => :show, :layout => "project"
   end
 
   # GET /projects/1/edit
@@ -39,7 +40,11 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def save
-    @project = Project.find(params[:id])
+    if params[:id].to_i == 0
+      @project = Project.create(:user => current_user, :document => Document.new)
+    else
+      @project = Project.find(params[:id])
+    end    
     @project.update_attributes(params[:project])
     render :layout => false
   end

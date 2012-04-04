@@ -1,0 +1,31 @@
+= content_for :javascripts do
+  = states_by_country
+= ajaxful_rating_style
+= content_for :header do
+  = t('navigations.project.business_plan')
+= content_for :under_side_bar do
+  #contact-info
+    = render :partial => "contact"
+/ / Left content
+%div#title
+  = render :partial => "title"
+#tab-menu
+  %ul
+    %li
+      %a{:href => "#"}
+        %span= t('navigations.project.project_home')
+    %li
+      %a{:href => "#"}
+        %span
+          = t('payment',:scope => 'navigations.project')
+#tab-panes
+  %div.project-home.clear
+    #flash-message
+      = render :partial => '/refinery/message'
+    = render :partial => "project_home"
+  %div.project-updates
+    Feature under construction.
+  %div.project-partners
+    Feature under construction.
+  %div.project-payment
+    = render :partial => "payment"
