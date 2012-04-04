@@ -155,3 +155,29 @@ nb:
         new: Nytt prosjekt
       personal_settings: Personlinge innstillinger
       subpages: Undersider
+  footer:
+    om_madlab: Om Madlab
+    group:
+      services: Tjenester
+      interest_groups: Interessegrupper
+      news: Nyheter
+      playground: Playground
+    services:
+      entrepreneur: Gründer
+      companies: Bedrifter
+      recommendations: Gründertips
+      recommended_links: Anbefalte linker
+    interest_groups:
+      contractor: Leverandør
+      producer: Produsent
+      distributor: Forhandler
+      investor: Investor / Kapital
+    news:
+      from_madLab: Fra MadLab
+      press: Presseomtale
+      twitter: Twitter
+      facebook: Facebook
+    playground:
+      faq: FAQ
+      contact_us: Kontakt oss
+      affiliates: Samarbeidspartnere
