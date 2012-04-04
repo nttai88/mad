@@ -202,7 +202,12 @@ form {
       margin-top: 20px;
     }
 		
-		#right-column-wrapper #menu_vert{
+    #right-column-wrapper section{
+      padding: 15px;
+      color: #2DA6EA;
+    }
+
+    #right-column-wrapper #menu_vert{
 			width:100%;
 			border-bottom:1px solid #dce0e4;
 		}
