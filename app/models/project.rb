@@ -46,7 +46,7 @@ class Project < ActiveRecord::Base
   end
 
   def self.recent(page = 1, per_page = 5)
-    self.order("created_at DESC").paginate(:page => page, :per_page => per_page)
+    self.where("project_status = 'published'").order("created_at DESC").paginate(:page => page, :per_page => per_page)
   end
 
   def advisor_candidates
