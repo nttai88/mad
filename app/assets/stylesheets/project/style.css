@@ -27,10 +27,6 @@ form label {
     display:none;
 }
 
-.not-foundation-table{
-    border-style: none;
-}
-
 body input, body select{
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
