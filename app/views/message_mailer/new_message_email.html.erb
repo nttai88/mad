@@ -14,7 +14,7 @@
       </p>
     </blockquote>
     <p>
-      Visit <%= link_to refinery_path, refinery_path %> and go to your inbox for more info.
+      Visit <%= link_to "http://#{ActionMailer::Base.default_url_options[:host]}#{refinery_path}", "http://#{ActionMailer::Base.default_url_options[:host]}#{refinery_path}" %> and go to your inbox for more info.
     </p>
   </body>
 </html>
