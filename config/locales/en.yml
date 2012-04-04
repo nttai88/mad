@@ -95,6 +95,7 @@ en:
     sessions:
       new:
         hello_please_sign_in: Enter your username and password
+      forgot_password: I forgot my password
       log_out: Log out
       logged_in_as: Logged in as
     news_items:
