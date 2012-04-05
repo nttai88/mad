@@ -158,6 +158,8 @@ en:
         new: New project
       personal_settings: Personal settings
       subpages: Subpages
+    top_menu:
+      my_page: My Page
   footer:
     om_madlab: Om Madlab
     group:

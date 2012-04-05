@@ -155,6 +155,8 @@ nb:
         new: Nytt prosjekt
       personal_settings: Personlinge innstillinger
       subpages: Undersider
+    top_menu:
+      my_page: Min side
   footer:
     om_madlab: Om Madlab
     group:

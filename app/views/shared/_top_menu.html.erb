@@ -2,7 +2,7 @@
     <% if refinery_user_signed_in? %>
 
       <li> <%= t 'logged_in_as',:scope => 'refinery.sessions' %>: <b><%= current_refinery_user.username %></b> </li>
-      <li> <%= link_to "My Page", "/my-page" %> </li>
+      <li> <%= link_to t('navigations.top_menu.my_page'), "/my-page" %> </li>
       <li> <%= link_to t(:log_out, :scope => 'refinery.sessions'), main_app.destroy_refinery_user_session_path %> </li>
     <% else %>
       <li><%= link_to I18n.t(:sign_up, :scope => 'refinery.users.new'), main_app.new_refinery_user_registration_path %></li>
