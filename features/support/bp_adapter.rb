@@ -18,7 +18,7 @@ module BpAdapterHelper
     case name
     when 'Business Idea', 'Product Description', 'Summary', 'Market Analysis',\
          'Competitors Analysis', 'Strategy', 'Progression Plan', 'Finances'
-      sleep 0.1
+      sleep 1
       page.execute_script("nestedAccordion.pr(-1);")
       sleep 0.1
       open_section('Business Plan', false)
@@ -99,7 +99,9 @@ private
 
   def open_subsection(subsection_name, edit_mode)
     if edit_mode
+      sleep 0.1
       page.execute_script("$('#nested h3:contains(" + '"' + subsection_name + '"' + ")').mouseover();")
+      sleep 0.1
       page.find("#nested h3:contains('#{ subsection_name }') .edit").click
     else
       page.find("#nested h3:contains('#{ subsection_name }')").click
@@ -108,7 +110,9 @@ private
 
   def open_section(name, edit_mode)
     if edit_mode
+      sleep 0.1
       page.execute_script("$('#acc h3:contains(" + '"' + name + '"' + ")').mouseover();")
+      sleep 0.1
       page.find("#acc h3:contains('#{ name }') .edit").click
     else
       page.find("#acc h3:contains('#{ name }')").click
