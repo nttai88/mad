@@ -73,6 +73,7 @@ nb:
     form:
       needed_patners: Trenger du noe av det følgende
       published: Publisert
+      to_publish: T*o p*ublish
       not_published: Ikke publisert
       comercialization: Ønskelig kommersialisering
       current_stage: Hvor langt er idèen utviklet
