@@ -156,7 +156,7 @@ Then /^can browse "([^"]*)" complex section$/ do |arg1|
   end
 end
 
-Given /^the @entrepreneur submitted a @business_plan for evaluation$/ do
+Given /^the @entrepreneur submitted the @business_plan for evaluation$/ do
   steps %{
     Given the entrepreneur created a new business plan
     When the entrepreneur submitted @title section

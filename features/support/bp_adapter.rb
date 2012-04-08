@@ -88,6 +88,17 @@ module BpAdapterHelper
     end
   end
   
+  def bp_select_status_helper(name)
+    case name
+    when 'To publish'
+      choose('project_project_status_to_publish')
+    when 'Published'
+      choose('project_project_status_published')
+    else
+      choose(name)
+    end
+  end
+  
   def bp_add_advisor_helper(project_id, advisor)
     visit project_members_path(project_id)
     full_name = Refinery::User.find_by_username(advisor).full_name

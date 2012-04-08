@@ -30,10 +30,12 @@
     %input{:type => "hidden", :name => "tab", :value=> "thoughts"}
     .field
       %p
-        = f.radio_button :project_status, "published"
-        = t 'project.form.published'
         = f.radio_button :project_status, "not published"
         = t 'project.form.not_published'
+        = f.radio_button :project_status, "to publish"
+        = t 'project.form.to_publish'
+        = f.radio_button :project_status, "published", :disabled => !current_user.admin?
+        = t 'project.form.published'
     .field
       = f.label :geographical_marked
       = f.text_area :marked_geographic, :class => 'larger widest'
