@@ -89,6 +89,9 @@ nb:
       investor: Investor
       producer: Produsent
       retailer: Forhandler
+    messages:
+      project_deleted: Pr*oject wa*s de*leted.
+      project_created: New pr*oject wa*s cre*ated.
   refinery:
     users:
       new:

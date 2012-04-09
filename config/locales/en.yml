@@ -89,6 +89,9 @@ en:
       investor: Investor
       producer: Producer
       retailer: Retailer
+    messages:
+      project_deleted: Project was deleted.
+      project_created: New project was created.
   refinery:
     users:
       new:
