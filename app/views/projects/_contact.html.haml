@@ -10,28 +10,28 @@
   - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
   %ul
     %li
-      Address1 :
+      = "#{t('helpers.label.contact.address1')}:"
       = contact.address1 if contact
     %li
-      Address2 :
+      = "#{t('helpers.label.contact.address2')}:"
       = contact.address2 if contact
     %li
-      Country :
+      = "#{t('helpers.label.region.country')}:"
       = contact.region.country if contact && contact.region
     %li
-      State :
+      = "#{t('helpers.label.region.state')}:"
       = contact.region.state if contact && contact.region
     %li
-      City :
+      = "#{t('helpers.label.contact.city')}:"
       = contact.city if contact
     %li
-      Zip/ Postal Code :
+      = "#{t('helpers.label.contact.zip')}:"
       = contact.zip if contact
     %li
-      Phone :
+      = "#{t('helpers.label.contact.phone')}:"
       = contact.phone if contact
 .about_bar
-  %span About
+  %span= "#{t('navigations.project.about')}:"
   %br/
   %p
     = contact.about if contact
