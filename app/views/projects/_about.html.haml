@@ -1,15 +1,15 @@
 .show
   %p
-    %b Project name:
+    %b= "#{t('helpers.label.project.project_name')}:"
     = @project.project_name
   %p
-    %b Usage:
+    %b= "#{t('helpers.label.project.field_of_usage')}:"
     = @project.usage
   %p
-    %b Solves:
+    %b= "#{t('helpers.label.project.which_fields_does_the_solve')}:"
     = @project.solves
   %p
-    %b Idea:
+    %b= "#{t('navigations.project.business_idea')}:"
     = @project.idea
   - unless @project.embedded_video.blank?
     %p
