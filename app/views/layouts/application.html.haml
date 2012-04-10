@@ -28,20 +28,16 @@
         / Main Menu
         #main_menu
           = render :partial => "refinery/menu"
-        / Main Menu
-      %center.banner-top
-        %img{:alt => "", :src => "/assets/madLab-banner.png"}
-      #content-area
+      #content-area{ :style => "#{ 'background-position: 0 40px;' if action_name == 'home' }" }
         #content-wrapper
           #inner-content-wrapper
             / Left Content
             #left-colmmn-wrapper.fl_left
-              .content-header
+              %img{:alt => "", :src => "/assets/madLab-banner.jpg"}
+              .content-header{ :style => "#{ 'height: 30px;' if action_name == 'home' }" }
                 - if action_name != "home"
                   %h2.heading
                     = yield :header
-                    %br
-                      %span.project-title= yield :title
               #flash-message
                 = render :partial => '/refinery/message'
               .clear_fix
