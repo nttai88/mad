@@ -8,4 +8,27 @@
  *= require button
  *= require tab-style
  *= require formatting
+ *= require jquery_ui
 */
+
+/* Message */
+
+ul#conversation .head{
+  margin-bottom: 15px;
+}
+
+ul#conversation .head .from{
+  float:left;
+  color: #222222;
+  font-weight: bold;
+}
+ul#conversation .head .date{
+  float:right;
+  color: #AAAAAA;
+}
+ul#conversation .body{
+  clear:both;
+  margin-top: 30px;
+  border-bottom: 1px solid #E0E0E0;
+  padding-bottom: 15px;
+}

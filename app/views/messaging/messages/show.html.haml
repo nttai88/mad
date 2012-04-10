@@ -2,26 +2,40 @@
   = t('label',:scope => 'navigations.vertical_menu.messages')
 %h3
   = @conversation.subject
-#actions
-  - if @conversation.is_trashed?(current_messaging_user)
-    = link_to "Untrash", untrash_message_path(@conversation), class: "button radius", method: :post
-  - else
-    = link_to "Trash", trash_message_path(@conversation), class: "button radius", method: :delete
 
 %ul#conversation
   - @conversation.messages.each do |message|
     %li
       .head
-        .from= message.sender
+        .from
+          = message.sender
         .date #{message.created_at.to_s(:long)} (#{time_ago_in_words(message.created_at)} ago)
+      .clear
       .body= message.body
       - if message.attachment.url
         .attachment
           = link_to message.attachment_identifier, message.attachment.url
-#reply
+#actions
+  - if @conversation.is_trashed?(current_messaging_user)
+    = link_to "Untrash", untrash_message_path(@conversation), class: "button radius", method: :post
+  - else
+    = link_to "Trash", trash_message_path(@conversation), class: "button radius", method: :delete
+  = link_to "Reply", "#", :class => "reply"
+#reply{:style => "display:none;"}
   = simple_form_for @message do |f|
     = f.input :conversation_id, as: :hidden
     = f.label :body, label: 'Reply', required: false
     = f.input_field :body, as: :text, label: 'Reply'
     = f.input :attachment, as: :file
+    %br
     = f.button :submit, 'Reply to conversation', :class => "radius"
+    = link_to "Cancel", "#", :class => "cancel"
+:javascript
+  $("#actions .reply").click(function(){
+    $("#reply").show();
+    return false;
+  });
+  $("#reply .cancel").click(function(){
+    $("#reply").hide();
+    return false;
+  });
