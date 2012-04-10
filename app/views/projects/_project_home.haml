@@ -5,21 +5,22 @@
   %a{:href => "javascript:parentAccordion.pr(-1)"}
     = t('general_ui.hide_all')
 %ul#acc.acc.clear
-  %li.general
-    %h3 
-      = t('general',:scope => 'navigations.project')
-      = render :partial => "form_actions"
-    .acc-section
-      #general.acc-content
-        = render :partial => "general"
-  - if current_user && current_user.can_view_project?(@project)
-    %li.about
+  - if current_user && current_user.can_edit_project?(@project)
+    %li.general
       %h3
-        = t('about',:scope => 'navigations.project')
+        = t('general',:scope => 'navigations.project')
         = render :partial => "form_actions"
       .acc-section
-        #about.acc-content
-          = render :partial => "about"
+        #general.acc-content
+          = render :partial => "general"
+  %li.about
+    %h3
+      = t('about',:scope => 'navigations.project')
+      = render :partial => "form_actions"
+    .acc-section
+      #about.acc-content
+        = render :partial => "about"
+  - if current_user && current_user.can_view_project?(@project)
     %li.thoughts
       %h3
         = t('thoughts_and_wishes',:scope => 'navigations.project')

@@ -4,7 +4,7 @@ Messaging::Message.class_eval do
     @recipient_list = []
     string.split(',').each do |s|
       unless s.blank?
-        recipient = Refinery::User.find_by_email(s.strip)
+        recipient = Refinery::User.find_by_username(s.strip)
         @recipient_list << recipient if recipient
       end
     end

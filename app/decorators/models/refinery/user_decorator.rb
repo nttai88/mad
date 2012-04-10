@@ -55,7 +55,7 @@ Refinery::User.class_eval do
   end
 
   def to_s
-    email
+    username
   end
 
   def admin?

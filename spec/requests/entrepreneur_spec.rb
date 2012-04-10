@@ -102,7 +102,7 @@ describe "Entrepreneur" do
       fill_in "Address 1", :with => "123 ABC str"
       page.find("#acc .general h3 .save").click
       page.should have_content("Name: test project")
-      page.should have_content("Address1: 123 ABC str")
+      page.should have_content("Address 1: 123 ABC str")
     end
     
     it "should show the warning message", :js => true do

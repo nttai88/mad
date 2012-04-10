@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery_ui
 //= require refinery/core
+//= require menu
 // require foundation
 // require_tree .
 
@@ -48,12 +49,3 @@ $('a').click('ajax:complete', function(xhr, status) {
   $(".ajaxful-rating-wrapper").replaceWith(status.responseText)
 });
 
-var Menu = {
-  init: function(){
-    $(".mnu-parent").click(function(){
-      $(this).blur();
-      $(this).parents("li").find(".mnu-child").toggle();
-      return false;
-    });
-  }
-}

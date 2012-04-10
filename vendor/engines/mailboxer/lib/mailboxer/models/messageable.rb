@@ -62,7 +62,7 @@ module Mailboxer
           response = Message.new({:sender => self, :conversation => conversation, :body => reply_body, :subject => subject, :attachment => attachment})
           response.recipients = recipients.is_a?(Array) ? recipients : [recipients]
           response.recipients = response.recipients.uniq
-          response.recipients.delete(self)
+          response.recipients.delete(self) if(response.recipients.size > 1)
           return response.deliver true, sanitize_text
         end
 

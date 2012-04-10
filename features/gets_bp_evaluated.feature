@@ -11,6 +11,7 @@ Feature: Entrepreneur gets Business Plan evaluated
   Scenario: Entrepreneur submitted Business Plan for evaluation
     When the @entrepreneur submitted the @business_plan for evaluation
     Then he can browse the @business_plan
+    And can browse "General" complex section
     
   @javascript
   Scenario: Admin assigned advisors to Business Plan
