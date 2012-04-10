@@ -1,5 +1,6 @@
 Mad2::Application.routes.draw do
   scope "/:locale" do
+    mount Messaging::Engine => '/messaging'
     resources :projects do
       resources :comments
       resources :members do
@@ -38,6 +39,5 @@ Mad2::Application.routes.draw do
     end
   end
 
-  mount Messaging::Engine => '/messaging'
   mount Refinery::Core::Engine => '/'
 end
