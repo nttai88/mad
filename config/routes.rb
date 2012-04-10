@@ -1,23 +1,26 @@
 Mad2::Application.routes.draw do
-  resources :projects do
-    resources :comments
-    resources :members do
+  scope "/:locale" do
+    resources :projects do
+      resources :comments
+      resources :members do
+        member do
+          delete :remove
+        end
+      end
+
       member do
-        delete :remove
+        post 'rate'
+        post 'save'
+        put 'save'
+        delete 'remove_attach'
+      end
+
+      collection do
+        get :recent
       end
     end
-
-    member do
-      post 'rate'
-      post 'save'
-      put 'save'
-      delete 'remove_attach'
-    end
-
-    collection do
-      get :recent
-    end
   end
+
 
   devise_scope :refinery_user do
     scope :path => 'users' do
