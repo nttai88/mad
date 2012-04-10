@@ -48,11 +48,10 @@
           #inner-content-wrapper
             / Left Content
             #left-colmmn-wrapper.fl_left
+              %img{:alt => "", :src => "/assets/madLab-banner.jpg"}
               .content-header
                 %h2.heading
                   = yield :header
-                  %br
-                    %span.project-title= yield :title
               #flash-message
                 = render :partial => '/refinery/message'
               .clear_fix
