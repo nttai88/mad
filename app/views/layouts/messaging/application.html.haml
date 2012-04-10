@@ -43,9 +43,6 @@
         / Main Menu
         #main_menu
           = render :partial => "refinery/menu"
-        / Main Menu
-      %center#flash-message
-        = render :partial => '/refinery/message'
       #content-area
         #content-wrapper
           #inner-content-wrapper
@@ -56,6 +53,9 @@
                   = yield :header
                   %br
                     %span.project-title= yield :title
+              #flash-message
+                = render :partial => '/refinery/message'
+              .clear_fix
               .inner-content-block
                 = yield
             / /left Content
