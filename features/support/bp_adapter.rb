@@ -100,7 +100,7 @@ module BpAdapterHelper
   end
   
   def bp_add_advisor_helper(project_id, advisor)
-    visit project_members_path(project_id)
+    visit project_members_path(project_id, :locale => 'en')
     full_name = Refinery::User.find_by_username(advisor).full_name
     select full_name, :from => 'advisor_id_'
     click_on 'advisor_submit'

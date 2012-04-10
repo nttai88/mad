@@ -89,7 +89,7 @@ end
 
 Given /^the entrepreneur created a new business plan$/ do
   login_helper @entrepreneur
-  visit new_project_path
+  visit new_project_path(:locale => "en")
 end
 
 When /^the entrepreneur submitted @title section$/ do
@@ -189,10 +189,9 @@ Then /^the @advisor can see the @business_plan in his list$/ do
 end
 
 Then /^he can browse the @business_plan$/ do
-  visit project_path(@business_plan)
+  visit project_path(@business_plan, :locale => 'en')
   steps %{
     Then he can browse @title section
-    And can browse "General" complex section
     And can browse "About" complex section
     And can browse descriptions:
     | Business Idea        |
