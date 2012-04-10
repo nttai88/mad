@@ -19,7 +19,7 @@ describe "Create new project" do
 
   describe "'Use your profiles existing contact-info' checkbox" do
     it "allows to copy/remove user info in form", :js => true do
-      visit new_project_path
+      visit new_project_path(:locale => "en")
 
       page.execute_script("$('#acc .general h3').mouseover();")
       page.find("#acc .general h3 .edit").click

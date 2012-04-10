@@ -28,4 +28,4 @@
         %td= link_to m.count_messages, message_path(m)
         %td= link_to truncate(m.last_message.body), message_path(m)
   - unless @box == 'trash'
-    = submit_tag "Delete checked messages", id: 'delete_multiple_button'
+    = submit_tag "Delete checked messages", id: 'delete_multiple_button', :class => "submit nice radius blue button"
