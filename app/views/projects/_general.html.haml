@@ -1,26 +1,26 @@
 .show
   %p
-    %b Name:
+    %b= "#{t('helpers.label.project.name')}:"
     = @project.name
   %p
-    %b Avatar/Logo:
+    %b= "#{t('helpers.label.document.avatar')}:"
     %br
     = image_tag @project.avatar, :style => "height: 50px;"
   - contact = Contact.find(:first, :conditions => { :contactable_type => "Project", :contactable_id=>"#{@project.id}"})
   %p
-    %b Address1:
+    %b= "#{t('helpers.label.contact.address1')}:"
     = contact.address1 if contact
   %p
-    %b Address2:
+    %b= "#{t('helpers.label.contact.address2')}:"
     = contact.address2 if contact
   %p
-    %b City:
+    %b= "#{t('helpers.label.contact.city')}:"
     = contact.city if contact
   %p
-    %b Zip
+    %b= "#{t('helpers.label.contact.zip')}:"
     = contact.zip if contact
   %p
-    %b About
+    %b= "#{t('helpers.label.contact.about')}:"
     = contact.about if contact
 .edit.hidden
   - @user = @project.user

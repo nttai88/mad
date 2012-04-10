@@ -66,6 +66,7 @@ en:
         possible_distrubitors: Possible distrubitors
         idea_or_patternprotection_needed: Idea or patternprotection needed
         patenting: Patenting
+        origin: Origin
         possible_competitors_developing_similar_technology: Possible competitors developing similar technology
       document:
         avatar: Avatar/Logo
@@ -73,6 +74,7 @@ en:
     form:
       needed_patners: MadLab Partners you may need contact with
       published: Published
+      to_publish: To publish
       not_published: Not published
       comercialization : Comercialization
       current_stage: How far is the idea developed
@@ -88,6 +90,9 @@ en:
       investor: Investor
       producer: Producer
       retailer: Retailer
+    messages:
+      project_deleted: Project was deleted.
+      project_created: New project was created.
   refinery:
     users:
       new:

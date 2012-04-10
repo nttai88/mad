@@ -42,6 +42,7 @@ class ProjectsController < ApplicationController
   def save
     if params[:id].to_i == 0
       @project = Project.create(:user => current_user, :document => Document.new)
+      flash[:notice] = t('project.messages.project_created')
     else
       @project = Project.find(params[:id])
     end    
@@ -55,7 +56,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to(projects_url, :notice => t('project.messages.project_deleted')) }
       format.json { head :ok }
     end
   end

@@ -1,24 +1,24 @@
 .show
   %p
-    %b Marked geographic:
+    %b= "#{t('helpers.label.project.geographical_marked')}:"
     = @project.marked_geographic
   %p
-    %b Marked size:
+    %b= "#{t('helpers.label.project.size_of_marked')}:"
     = @project.marked_size
   %p
-    %b Partners:
+    %b= "#{t('helpers.label.project.possible_production_or_industrial_partners')}:"
     = @project.industrial_partners
   %p
-    %b Suppliers:
+    %b= "#{t('helpers.label.project.possible_suppliers')}:"
     = @project.suppliers
   %p
-    %b Distributers:
+    %b= "#{t('helpers.label.project.possible_distrubitors')}:"
     = @project.distributers
   %p
-    %b Patenting:
+    %b= "#{t('helpers.label.project.patenting')}:"
     = @project.patenting
   %p
-    %b Origin:
+    %b= "#{t('helpers.label.project.origin')}:"
     = @project.origin
   - unless @project.new_record?
     = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
@@ -30,10 +30,12 @@
     %input{:type => "hidden", :name => "tab", :value=> "thoughts"}
     .field
       %p
-        = f.radio_button :project_status, "published"
-        = t 'project.form.published'
         = f.radio_button :project_status, "not published"
         = t 'project.form.not_published'
+        = f.radio_button :project_status, "to publish"
+        = t 'project.form.to_publish'
+        = f.radio_button :project_status, "published", :disabled => !current_user.admin?
+        = t 'project.form.published'
     .field
       = f.label :geographical_marked
       = f.text_area :marked_geographic, :class => 'larger widest'
