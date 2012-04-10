@@ -7,6 +7,7 @@
 //= require jquery.tools.min
 //= require jquery.alerts
 //= require slider
+//= require menu
 
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
