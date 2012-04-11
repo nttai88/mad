@@ -18,7 +18,6 @@ class Project < ActiveRecord::Base
   
   accepts_nested_attributes_for :document
   accepts_nested_attributes_for :contact, :allow_destroy => true
-  
   PROJECT_PARTS = ['about', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
   SERVICES = { :business_plan => "Business Plan", :kick_starter => "Kick Starter", :design_contest => "Design Contest", :partner_needed => "Partner Needed" }
 
@@ -31,6 +30,17 @@ class Project < ActiveRecord::Base
       self.contact = Contact.new(attrs)
     else
       self.contact.update_attributes(attrs)
+    end
+  end
+
+  def sections=(sections)
+    section_type_id = sections.keys.first
+    section = self.sections.where(:section_type_id => section_type_id).first
+    if section
+      section.data = sections[section_type_id]
+      section.save
+    else
+      self.sections.new(:data => sections[section_type_id], :section_type_id => section_type_id)
     end
   end
 

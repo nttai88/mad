@@ -22,7 +22,7 @@ class CreateSection < ActiveRecord::Migration
     create_table :sections do |t|
       t.integer :project_id
       t.integer :section_type_id
-      t.string :data
+      t.text :data
       t.timestamps
     end
   end

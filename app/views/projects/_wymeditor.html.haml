@@ -1,7 +1,7 @@
 .show
-  = render :partial => "wymeditor_show", :locals => {:field => field}
+  = render :partial => "wymeditor_show", :locals => {:section_type => section_type}
 .edit{:style => "display:none"}
   = form_for @project, :url => save_project_url(:id => @project.id || "new"), :html => {:class => "nice"} do |f|
-    %input{:type => "hidden", :name => "tab", :value=> field}
+    %input{:type => "hidden", :name => "tab", :value=> "HtmlSection"}
     .field
-      = f.text_area field, :class => 'wymeditor wymupdate'
+      = text_area_tag :section, section_type.data_of(@project), :class => 'wymeditor wymupdate', :name => "project[sections][#{section_type.id}]"
