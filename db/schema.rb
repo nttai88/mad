@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326171619) do
+ActiveRecord::Schema.define(:version => 20120411040131) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -112,13 +112,6 @@ ActiveRecord::Schema.define(:version => 20120326171619) do
     t.text     "usage"
     t.text     "solves"
     t.text     "idea"
-    t.text     "encrypted_business"
-    t.text     "encrypted_market"
-    t.text     "encrypted_competitors"
-    t.text     "encrypted_strategy"
-    t.text     "encrypted_progression"
-    t.text     "encrypted_finances"
-    t.text     "encrypted_summary"
     t.text     "marked_geographic"
     t.text     "marked_size"
     t.string   "developed"
@@ -131,10 +124,9 @@ ActiveRecord::Schema.define(:version => 20120326171619) do
     t.text     "patenting"
     t.text     "competitors2"
     t.text     "origin"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "user_id"
-    t.text     "encrypted_product_description"
     t.boolean  "licensing"
     t.string   "title"
     t.boolean  "network_only"
@@ -380,6 +372,32 @@ ActiveRecord::Schema.define(:version => 20120326171619) do
     t.string   "state"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "section_type_translations", :force => true do |t|
+    t.integer  "section_type_id"
+    t.string   "locale"
+    t.string   "title"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "section_type_translations", ["locale"], :name => "index_section_type_translations_on_locale"
+  add_index "section_type_translations", ["section_type_id"], :name => "index_01ae344b170e46f6ab98225ca0b3a528aee06def"
+
+  create_table "section_types", :force => true do |t|
+    t.string   "name"
+    t.integer  "position",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "sections", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "section_type_id"
+    t.string   "data"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "seo_meta", :force => true do |t|
