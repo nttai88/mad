@@ -386,8 +386,9 @@ ActiveRecord::Schema.define(:version => 20120411040131) do
   add_index "section_type_translations", ["section_type_id"], :name => "index_01ae344b170e46f6ab98225ca0b3a528aee06def"
 
   create_table "section_types", :force => true do |t|
-    t.string   "name"
+    t.string   "type"
     t.integer  "position",   :default => 0
+    t.integer  "parent_id",  :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
