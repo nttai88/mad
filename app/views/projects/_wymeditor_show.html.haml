@@ -1,4 +1,4 @@
 = raw section_type.data_of(@project)
-- unless @project.new_record?
 - @section = section_type.section_of(@project)
+- if !@project.new_record? && @section
   = ratings_for @section, :dimension => :data, :remote_options => {:url => rate_project_section_path(@project, @section)}
