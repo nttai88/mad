@@ -16,7 +16,7 @@ When /^the @admin set "([^"]*)" status of the @business_plan$/ do |arg1|
   logout_helper
   login_helper('admin')
   visit project_path(@business_plan, :locale => 'en')
-  bp_section_helper("Thoughts & wishes")
+  bp_section_helper("Thoughts & wishes", true)
   bp_select_status_helper(arg1)
 end
 
