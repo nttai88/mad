@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
   
   has_one :document, :as => :documentable,  :dependent => :destroy
   
-  ajaxful_rateable :stars => 10, :dimensions => [:about, :business, :market, :product_description, :competitors, :strategy, :progression, :finances, :summary, :company, :attachment, :thoughts]
+  ajaxful_rateable :stars => 10, :dimensions => [:about, :attachment, :thoughts]
   
   accepts_nested_attributes_for :document
   accepts_nested_attributes_for :contact, :allow_destroy => true
