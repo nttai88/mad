@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  SECURE_CONTROLLERS = ["sessions", "users", "confirmations", "passwords", "projects", "members", "sections", "comments"]
+  SECURE_CONTROLLERS = ["sessions", "users", "confirmations", "passwords", "projects", "members", "sections"]
   before_filter :force_ssl
 
   protect_from_forgery
