@@ -1,3 +1,4 @@
-= raw eval("@project.#{field}")
+= raw section_type.data_of(@project)
 - unless @project.new_record?
-  = ratings_for @project, :dimension => field, :remote_options => {:url => rate_project_path(@project)}
+- @section = section_type.section_of(@project)
+  = ratings_for @section, :dimension => :data, :remote_options => {:url => rate_project_section_path(@project, @section)}

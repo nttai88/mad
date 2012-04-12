@@ -8,7 +8,11 @@ Mad2::Application.routes.draw do
           delete :remove
         end
       end
-
+      resources :sections do
+        member do
+          post :rate
+        end
+      end
       member do
         post 'rate'
         post 'save'

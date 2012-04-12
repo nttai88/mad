@@ -1,0 +1,3 @@
+class HtmlSection < Section
+
+end

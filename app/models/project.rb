@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :regions, :through => :region_selections, :dependent => :delete_all
   has_and_belongs_to_many :partners, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::PARTNER}
   has_and_belongs_to_many :advisors, :class_name => "Refinery::User", :conditions => {"projects_users.user_type" => ProjectsUser::ADVISOR}
+  has_many :sections
   has_many :category_selections, :as => :parent
   has_many :categories, :through => :category_selections, :dependent => :delete_all
 
@@ -13,35 +14,32 @@ class Project < ActiveRecord::Base
   
   has_one :document, :as => :documentable,  :dependent => :destroy
   
-  ajaxful_rateable :stars => 10, :dimensions => [:about, :business, :market, :product_description, :competitors, :strategy, :progression, :finances, :summary, :company, :attachment, :thoughts]
+  ajaxful_rateable :stars => 10, :dimensions => [:about, :attachment, :thoughts]
   
   accepts_nested_attributes_for :document
   accepts_nested_attributes_for :contact, :allow_destroy => true
-  
   PROJECT_PARTS = ['about', 'business', 'market', 'competitor', 'strategy', 'progression', 'finance', 'summary', 'company', 'attachment', 'thoughts']
   SERVICES = { :business_plan => "Business Plan", :kick_starter => "Kick Starter", :design_contest => "Design Contest", :partner_needed => "Partner Needed" }
 
-  #encrypt data
-  attr_encrypted :business, :key => :encryption_key
-  attr_encrypted :product_description, :key => :encryption_key
-  attr_encrypted :market, :key => :encryption_key
-  attr_encrypted :competitors, :key => :encryption_key
-  attr_encrypted :strategy, :key => :encryption_key
-  attr_encrypted :progression, :key => :encryption_key
-  attr_encrypted :finances, :key => :encryption_key
-  attr_encrypted :summary, :key => :encryption_key
 
   after_initialize :init
   
-  def encryption_key
-    Mad2::Application.config.secret_token
-  end
 
   def contact_attributes=(attrs)
     unless self.contact
       self.contact = Contact.new(attrs)
     else
       self.contact.update_attributes(attrs)
+    end
+  end
+
+  def html_section=(obj)
+    section = self.sections.where(:section_type_id => obj["id"]).first
+    if section
+      section.data = obj["data"]
+      section.save
+    else
+      self.sections.new(:data => obj["data"], :section_type_id => obj["id"])
     end
   end
 

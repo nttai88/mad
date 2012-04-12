@@ -15,7 +15,11 @@
     %tr
       - unless @box == 'trash'
         %th
-      %th Sender
+      %th 
+        -if @box == 'sent'
+          Receiver
+        - else
+          Sender
       %th Subject
       %th Messages
       %th
@@ -23,7 +27,11 @@
       %tr{ class: "#{ 'unread' if m.is_unread?(current_messaging_user) }" }
         - unless @box == 'trash'
           %td= check_box_tag '', m.id, false, class: 'delete_multiple_checkbox', name: "conversations[]"
-        %td= link_to m.last_sender, message_path(m)
+        %td
+          -if @box == 'sent'
+            = link_to receivers(m), message_path(m)
+          - else
+            = link_to m.last_sender, message_path(m)
         %td= link_to m.subject, message_path(m)
         %td= link_to m.count_messages, message_path(m)
         %td= link_to truncate(m.last_message.body), message_path(m)

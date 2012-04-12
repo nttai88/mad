@@ -11,7 +11,8 @@
 <% elsif params[:tab] == "title" %>
   //Do nothing
 <% else %>
-  $("#<%= params[:tab] %> .show").html("<%= escape_javascript(render :partial => "wymeditor_show", :locals => {:field => params[:tab]}) %>");
+  <% section_type = SectionType.find(params[:project]["html_section"]["id"]) %>
+  $("#section<%= section_type.id %> .show").html("<%= escape_javascript(render :partial => "wymeditor_show", :locals => {:section_type => section_type}) %>");
 <% end %>
 
 <% if params[:id].to_i == 0 %>

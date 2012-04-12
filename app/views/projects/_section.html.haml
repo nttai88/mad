@@ -1,0 +1,13 @@
+%li
+  %h3
+    = section_type.title
+    - if section_type.children.size == 0
+      = render :partial => "form_actions"
+  .acc-section
+    .acc-content{:id => "section#{section_type.id}"}
+      - if section_type.children.size > 0
+        %ul#nested.acc
+          - section_type.children.each do |sub_section_type|
+            = render :partial => "sub_sections", :locals => {:sub_section_type => sub_section_type}
+      - else
+        = render :partial => "section_content", :locals => {:section_type => section_type}

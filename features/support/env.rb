@@ -58,5 +58,5 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-Cucumber::Rails::Database.javascript_strategy = :truncation, {:except => %w[refinery_roles refinery_pages categories regions]}
+Cucumber::Rails::Database.javascript_strategy = :truncation, {:except => %w[refinery_roles refinery_pages refinery_page_translations categories regions section_types section_type_translations]}
 
