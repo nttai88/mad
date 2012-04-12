@@ -36,20 +36,8 @@
         #attachments.acc-content
           = render :partial => "attachments"
     - SectionType.where(:parent_id => 0).each do |section_type|
-      %li
-        %h3
-          = section_type.title
-        .acc-section
-          .acc-content
-            %ul#nested.acc
-              - section_type.children.each do |sub_section_type|
-                %li.section
-                  %h3
-                    = sub_section_type.title
-                    = render :partial => "form_actions"
-                  .acc-section
-                    .acc-content{:id => "HtmlSection#{sub_section_type.id}"}
-                      = render :partial => "wymeditor", :locals => {:section_type => sub_section_type}
+      = render :partial => "section", :locals => {:section_type => section_type}
+
 :javascript
   var parentAccordion=new TINY.accordion.slider("parentAccordion");
   parentAccordion.init("acc","h3",1,-1);

@@ -33,14 +33,13 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def sections=(sections)
-    section_type_id = sections.keys.first
-    section = self.sections.where(:section_type_id => section_type_id).first
+  def html_section=(obj)
+    section = self.sections.where(:section_type_id => obj["id"]).first
     if section
-      section.data = sections[section_type_id]
+      section.data = obj["data"]
       section.save
     else
-      self.sections.new(:data => sections[section_type_id], :section_type_id => section_type_id)
+      self.sections.new(:data => obj["data"], :section_type_id => obj["id"])
     end
   end
 

@@ -134,9 +134,12 @@ Project = {
     tags.each(function(){
       $(this).val($(this).data("initial_value"));
       if($(this).hasClass("wymeditor")){
-        try{
-        wym.html($(this).val());
-        }catch(ex){}
+        for(var i = 0; i < WYMeditor.INSTANCES.length; i ++){
+          var wym = WYMeditor.INSTANCES[i];
+          if($(this).attr("sid") == wym._element.attr("sid")){
+            wym.html($(this).val());
+          }
+        }
       }
     });
     container.find(".field input[type=radio]").each(function(){
@@ -148,10 +151,10 @@ Project = {
       $(this).attr("checked", Project.checkboxValues[$(this).attr("name")]);
     })
   },
-  updateHtmlEditor: function(){
-    try{
-      wym.update();
-    }catch(ex){}
+  updateHtmlEditor: function(index){
+    for(var i = 0; i < WYMeditor.INSTANCES.length; i ++){
+      WYMeditor.INSTANCES[i].update();
+    }
   },
   useUploadedAvatar: function(){
     $("#project_use_user_avatar").unbind().click(function(){

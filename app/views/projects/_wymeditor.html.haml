@@ -3,5 +3,6 @@
 .edit{:style => "display:none"}
   = form_for @project, :url => save_project_url(:id => @project.id || "new"), :html => {:class => "nice"} do |f|
     %input{:type => "hidden", :name => "tab", :value=> "HtmlSection"}
+    %input{:type => "hidden", :name => "project[html_section][id]", :value=> section_type.id}
     .field
-      = text_area_tag :section, section_type.data_of(@project), :class => 'wymeditor wymupdate', :name => "project[sections][#{section_type.id}]"
+      = text_area_tag :section, section_type.data_of(@project), :class => 'wymeditor wymupdate', :name => "project[html_section][data]", "sid" => section_type.id

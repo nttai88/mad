@@ -1,0 +1,8 @@
+%li.section
+  %h3
+    = sub_section_type.title
+    = render :partial => "form_actions"
+  .acc-section
+    .acc-content{:id => "section#{sub_section_type.id}"}
+      - if sub_section_type.kind_of?(HtmlSectionType)
+        = render :partial => "wymeditor", :locals => {:section_type => sub_section_type}
