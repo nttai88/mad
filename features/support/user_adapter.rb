@@ -13,7 +13,7 @@ module UserAdapterHelper
   end
   
   def open_user_editor_helper(user)
-    visit edit_refinery_user_path(user)
+    visit edit_refinery_user_path(user, :locale => 'en')
   end
   
   def save_user_helper
@@ -21,7 +21,7 @@ module UserAdapterHelper
   end
   
   def login_helper(username)
-    visit new_refinery_user_session_path
+    visit new_refinery_user_session_path(:locale => 'en')
 
     fill_in "Login", :with => username
     fill_in "Password", :with => "123456"
