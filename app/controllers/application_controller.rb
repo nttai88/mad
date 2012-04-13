@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
       if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?
         redirect_to url.sub(/^http:/, 'https:')
       elsif !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
+        puts params[:locale], url, url.sub(/^https:/, 'http:').inspect, "====================="
         redirect_to url.sub(/^https:/, 'http:')
       end
     end
