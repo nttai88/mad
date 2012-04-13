@@ -120,9 +120,10 @@ nb:
   activerecord:
     attributes:
       refinery:
-        news_item:
-          category: Kategori
-          read_more: R*ead mor*e...
+        news:
+          items:
+            category: Kategori
+            read_more: R*ead mor*e...
   message:
     available: "%{what} er tilgjengelig!"
   navigations:

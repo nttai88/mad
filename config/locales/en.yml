@@ -123,9 +123,10 @@ en:
   activerecord:
     attributes:
       refinery:
-        news_item:
-          category: Category
-          read_more: Read more...
+        news:
+          items:
+            category: Category
+            read_more: Read more...
   message:
     available: "%{what} is available!"
   navigations:
