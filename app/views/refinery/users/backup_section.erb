@@ -73,7 +73,7 @@ end
 -%>
 
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
-  <% if params[:path] == "my-page" %>
+  <% if ["my-page", "min-side"].index(params[:path]) %>
     <%= raw sections[1][:html].gsub("$new_emails", @new_emails.to_s).gsub("$projects", @projects.to_s) -%>
   <% else %>
     <%= raw sections[1][:html] -%>

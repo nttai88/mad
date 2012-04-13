@@ -1,7 +1,7 @@
 #menu_vert
   - if current_refinery_user
     %ul
-      %li= link_to t('overview',:scope => 'navigations.vertical_menu'), "/my-page"
+      %li= link_to t('overview',:scope => 'navigations.vertical_menu'), Refinery::Page.my_page_url
       %li
         = link_to t('label',:scope => 'navigations.vertical_menu.messages'), "#", :class => "mnu-parent"
         %ul{:style => (controller_name == "messages" ? "" :"display:none"), :class => "mnu-child"}
