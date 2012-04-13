@@ -122,8 +122,9 @@ en:
         subject: 'MadLab confirmation instructions'
   activerecord:
     attributes:
-      refinery/news_item:
-        category: Category
+      refinery:
+        news_item:
+          category: Category
   message:
     available: "%{what} is available!"
   navigations:
