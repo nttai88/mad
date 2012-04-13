@@ -1,6 +1,5 @@
 Mad2::Application.routes.draw do
   scope "/:locale" do
-    mount Messaging::Engine => '/messaging'
     resources :projects do
       resources :comments
       resources :members do
@@ -40,6 +39,8 @@ Mad2::Application.routes.draw do
         post ':id/update' => 'refinery/users#update', :as => :update_refinery_user
         post 'check_username_availability' => 'refinery/users#check_username_availability', :as => :check_username_availability
       end
+      
+      mount Messaging::Engine => '/messaging'
     end
 
   end
