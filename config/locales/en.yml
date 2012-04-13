@@ -125,6 +125,7 @@ en:
       refinery:
         news_item:
           category: Category
+          read_more: Read more...
   message:
     available: "%{what} is available!"
   navigations:
