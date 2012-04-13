@@ -3,7 +3,7 @@ Refinery::PagesController.class_eval do
   
   protected
   def login_required_for_my_page
-    if params[:path] == "my-page"
+    if ["my-page", "min-side"].index(params[:path])
       unless current_user
         login_required
       else
