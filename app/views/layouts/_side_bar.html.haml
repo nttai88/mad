@@ -1,7 +1,7 @@
 #menu_vert
   - if current_refinery_user
     %ul
-      %li= link_to t('overview',:scope => 'navigations.vertical_menu'), Refinery::Page.my_page_url
+      %li= link_to t('overview',:scope => 'navigations.vertical_menu'), refinery.url_for(Refinery::Page.my_page_url)
       %li
         = link_to t('label',:scope => 'navigations.vertical_menu.messages'), "#", :class => "mnu-parent"
         %ul{:style => (controller_name == "messages" ? "" :"display:none"), :class => "mnu-child"}
@@ -18,7 +18,7 @@
             %li= link_to t('new',:scope => 'navigations.vertical_menu.projects'), main_app.new_project_path
       - else
         %li= link_to t('projects',:scope => 'navigations.vertical_menu.projects'), main_app.projects_path
-      %li= link_to t('personal_settings',:scope => 'navigations.vertical_menu'), main_app.edit_refinery_user_url(current_refinery_user.username)
+      %li= link_to t('personal_settings',:scope => 'navigations.vertical_menu'), main_app.edit_refinery_user_url(current_refinery_user.username, :locale => I18n.locale)
       - if current_refinery_user.admin?
         %li= link_to "Admin", refinery.admin_root_path
       %li{:class => "bordernone"}= link_to t(:log_out, :scope => 'refinery.sessions'), refinery.destroy_refinery_user_session_url
