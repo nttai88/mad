@@ -105,6 +105,7 @@ en:
       logged_in_as: Logged in as
     news:
       items:
+        read_more: Read more
         category:
           from_madlab: From MadLab
           news: News
@@ -123,8 +124,10 @@ en:
         subject: 'MadLab confirmation instructions'
   activerecord:
     attributes:
-      refinery/news_item:
-        category: Category
+      refinery:
+        news:
+          items:
+            category: Category
   message:
     available: "%{what} is available!"
   navigations:

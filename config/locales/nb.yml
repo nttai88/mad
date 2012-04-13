@@ -105,6 +105,7 @@ nb:
       logged_in_as: Innlogget som
     news:
       items:
+        read_more: Re*ad m*ore
         category:
           from_madlab: Fra MadLab
           news: Nyheter
@@ -116,12 +117,14 @@ nb:
         confirmed: Takk for registeringen. En verifiserings-epost er blitt sent.
         updated: 'Y*ou u*pdated y*our a*ccount s*uccessfully.'
     sessions:
-      signed_in: Du er nå logget ut.
-      signed_out: Du er nå logget inn.
+      signed_in: Du er nå logget inn.
+      signed_out: Du er nå logget ut.
   activerecord:
     attributes:
-      refinery/news_item:
-        category: Kategori
+      refinery:
+        news:
+          items:
+            category: Kategori
   message:
     available: "%{what} er tilgjengelig!"
   navigations:
