@@ -115,12 +115,13 @@ nb:
       refinery_user:
         confirmed: Takk for registeringen. En verifiserings-epost er blitt sent.
     sessions:
-      signed_in: Du er nå logget ut.
-      signed_out: Du er nå logget inn.
+      signed_in: Du er nå logget inn.
+      signed_out: Du er nå logget ut.
   activerecord:
     attributes:
-      refinery/news_item:
-        category: Kategori
+      refinery:
+        news_item:
+          category: Kategori
   message:
     available: "%{what} er tilgjengelig!"
   navigations:
