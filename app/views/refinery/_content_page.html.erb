@@ -76,7 +76,7 @@ end
 -%>
 
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
-  <% if params[:path] == "my-page" %>
+  <% if ["my-page", "min-side"].index(params[:path]) %>
     <%= raw sections[:body_content_left][:html].gsub("$new_emails", link_to(@new_emails.to_s, messaging.messages_path(:box => 'inbox'))).gsub("$projects", link_to(@projects.to_s, main_app.projects_path)) -%>
     <%= content_for :side_bar do %>
       <%= render :partial => "layouts/side_bar" %>
