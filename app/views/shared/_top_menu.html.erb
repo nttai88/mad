@@ -1,6 +1,5 @@
 <ul class="custom-menu" id="user_credential_menu">
     <% if refinery_user_signed_in? %>
-      <% puts refinery.url_for(Refinery::Page.my_page_url), "================" %>
       <li> <%= t 'logged_in_as',:scope => 'refinery.sessions' %>: <b><%= current_refinery_user.username %></b> </li>
       <li> <%= link_to t('navigations.top_menu.my_page'), refinery.url_for(Refinery::Page.my_page_url) %> </li>
       <li> <%= link_to t(:log_out, :scope => 'refinery.sessions'), main_app.destroy_refinery_user_session_path %> </li>

@@ -20,13 +20,10 @@ class ApplicationController < ActionController::Base
     if Rails.env.production?
       # this is a temp fix (see https://github.com/rails/journey/pull/24)
       # TODO: remove when journey 1.0.4 gets released
-      url = request.url.sub(/([^:])\/\//, '\1/')
-
       if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?
-        redirect_to url.sub(/^http:/, 'https:')
+        redirect_to refinery.url_for(request.params.merge(:protocol => "https"))
       elsif !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
-        puts params[:locale], url, url.sub(/^https:/, 'http:').inspect, "====================="
-        redirect_to url.sub(/^https:/, 'http:')
+        redirect_to refinery.url_for(request.params.merge(:protocol => "https"))
       end
     end
   end
