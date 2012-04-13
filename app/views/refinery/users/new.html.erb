@@ -3,7 +3,7 @@
   <%= javascript_include_tag('categories', 'regions') %>
   <%= states_by_country %>
 <% end %>
-<%= form_for :user, :url => refinery.refinery_user_registration_path do |f| -%>
+<%= form_for :user, :url => main_app.refinery_user_registration_path do |f| -%>
 
   <%= render :partial => "/refinery/admin/error_messages", :locals => {:object => @user, :include_object_name => true} %>
 

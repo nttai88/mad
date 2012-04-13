@@ -114,6 +114,7 @@ en:
     users:
       refinery_user:
         confirmed: Thank you for registering. A verification email is sent to your email account
+        updated: 'You updated your account successfully.'
     sessions:
       signed_in: You have been logged in successfully.
       signed_out: You have been logged out successfully.

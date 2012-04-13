@@ -27,7 +27,7 @@ Register = {
       if(input.val().length == 0)
         return;
       var container = input.parents(".field");
-      $.ajax({ url: "/users/check_username_availability",
+      $.ajax({ url: input.attr("url"),
         type: "POST", data: {username: input.val()},
         success: function(data){
           container.find("span.error, span.notice").hide();

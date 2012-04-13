@@ -114,6 +114,7 @@ nb:
     users:
       refinery_user:
         confirmed: Takk for registeringen. En verifiserings-epost er blitt sent.
+        updated: 'Y*ou u*pdated y*our a*ccount s*uccessfully.'
     sessions:
       signed_in: Du er nå logget ut.
       signed_out: Du er nå logget inn.
