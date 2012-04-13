@@ -104,9 +104,11 @@ nb:
       log_out: Logg ut
       logged_in_as: Innlogget som
     news:
+      name: Nyheter
       items:
         read_more: Re*ad m*ore
         category:
+          name: Kategori
           from_madlab: Fra MadLab
           news: Nyheter
           competitions: Konkurranser

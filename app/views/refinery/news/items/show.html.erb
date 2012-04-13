@@ -2,8 +2,8 @@
   <article class="news_item">
     <h1><%= @item.title %></h1>
     <h2>
-      <%= link_to t("refinery.news.items.category.#{@item.category}"),
-                  refinery.news_items_path(:category => @item.category) %>
+      <%= link_to "#{t("refinery.news.items.category.name")}: #{t("refinery.news.items.category.#{@item.category}")}",
+                      refinery.news_items_path(:category => @item.category) %>
     </h2>
     <p>
       <small><%= t('.published') %> <%= l(@item.publish_date, :format => :long) %></small>
@@ -21,4 +21,4 @@
 <% end %>
 <% content_for :body_content_right, render(:partial => 'recent_posts') %>
 
-<%= render :partial => "/refinery/content_page" %>
+<%= render :partial => "/refinery/content_page", :locals => {:page_title => t("refinery.news.name")} %>

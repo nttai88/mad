@@ -6,7 +6,7 @@
       <article class="news_item_truncated">
         <h2><%= link_to item.title, refinery.news_item_path(item) %></h2>
         <h3>
-          <%= link_to t("refinery.news.items.category.#{item.category}"),
+          <%= link_to "#{t("refinery.news.items.category.name")}: #{t("refinery.news.items.category.#{item.category}")}",
                       refinery.news_items_path(:category => item.category) %>
         </h3>
         <p>
@@ -29,4 +29,4 @@
 <% end if ::Refinery::Pages.default_parts.many? -%>
 <%= render :partial => '/refinery/news/shared/body_content_right' %>
 
-<%= render :partial => "/refinery/content_page" %>
+<%= render :partial => "/refinery/content_page", :locals => {:page_title => t("refinery.news.name")} %>

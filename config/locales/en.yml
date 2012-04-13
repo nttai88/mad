@@ -104,9 +104,11 @@ en:
       log_out: Log out
       logged_in_as: Logged in as
     news:
+      name: News
       items:
         read_more: Read more
         category:
+          name: Category
           from_madlab: From MadLab
           news: News
           competitions: Competitions

@@ -32,3 +32,10 @@ ul#conversation .body{
   border-bottom: 1px solid #E0E0E0;
   padding-bottom: 15px;
 }
+article.news_item_truncated h3{
+  font-size: 14px;
+}
+article.news_item_truncated small, .news_item small{
+  font-size: 12px;
+  color: #AAAAAA;
+}
