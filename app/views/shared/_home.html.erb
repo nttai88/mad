@@ -31,7 +31,7 @@
         </div>
         <div class="text">
           <%= truncate  item.body, :length => 200,
-                      :omission => " ... #{link_to t('.read_more'), refinery.news_item_path(item)}",
+                      :omission => " ... #{link_to t('refinery.news.items.read_more'), refinery.news_item_path(item)}",
                       :preserve_html_tags => true %>
           </div>
       </div>
