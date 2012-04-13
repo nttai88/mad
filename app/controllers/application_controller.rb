@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
       # this is a temp fix (see https://github.com/rails/journey/pull/24)
       # TODO: remove when journey 1.0.4 gets released
       if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?
-        redirect_to refinery.url_for(request.params.merge(:protocol => "https"))
+        redirect_to main_app.url_for(request.params.merge(:protocol => "https", :locale => I18n.locale))
       elsif !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
-        redirect_to refinery.url_for(request.params.merge(:protocol => "http"))
+        redirect_to main_app.url_for(request.params.merge(:protocol => "http", :locale => I18n.locale))
       end
     end
   end
