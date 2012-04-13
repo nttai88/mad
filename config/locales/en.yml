@@ -105,6 +105,7 @@ en:
       logged_in_as: Logged in as
     news:
       items:
+        read_more: Read more
         category:
           from_madlab: From MadLab
           news: News
@@ -126,7 +127,6 @@ en:
         news:
           items:
             category: Category
-            read_more: Read more...
   message:
     available: "%{what} is available!"
   navigations:

@@ -105,6 +105,7 @@ nb:
       logged_in_as: Innlogget som
     news:
       items:
+        read_more: Re*ad m*ore
         category:
           from_madlab: Fra MadLab
           news: Nyheter
@@ -123,7 +124,6 @@ nb:
         news:
           items:
             category: Kategori
-            read_more: R*ead mor*e...
   message:
     available: "%{what} er tilgjengelig!"
   navigations:
