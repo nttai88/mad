@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       if SECURE_CONTROLLERS.include?(controller_name) && !request.ssl?
         redirect_to refinery.url_for(request.params.merge(:protocol => "https"))
       elsif !SECURE_CONTROLLERS.include?(controller_name) && request.ssl?
-        redirect_to refinery.url_for(request.params.merge(:protocol => "https"))
+        redirect_to refinery.url_for(request.params.merge(:protocol => "http"))
       end
     end
   end
