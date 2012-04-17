@@ -5,7 +5,7 @@ nb:
   general_ui:
     edit: Rediger
     destroy: Slette
-    save: Redde
+    save: S*ave
     cancel: Avbryte
     show_all: Vis alle
     hide_all: Skjule alle
