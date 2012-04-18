@@ -17,9 +17,6 @@
   %p
     %b= "#{t('helpers.label.project.patenting')}:"
     = @project.patenting
-  %p
-    %b= "#{t('helpers.label.project.origin')}:"
-    = @project.origin
   - unless @project.new_record?
     = ratings_for @project, :dimension => :thoughts, :remote_options => {:url => rate_project_path(@project)}
 
