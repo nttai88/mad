@@ -52,7 +52,7 @@ end
       :id => submit_button_id,
       :name => nil,
       :class => "wymupdate button blue radius nice",
-      :disable_with => 'Please wait...',
+      :disable_with => t('general_ui.please_wait'),
       :tooltip => submit_button_title unless hide_submit %>
 
     <%= render :partial => "/refinery/admin/continue_editing", :locals => {:f => f} if continue_editing -%>
