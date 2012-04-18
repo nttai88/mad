@@ -5,11 +5,12 @@ nb:
   general_ui:
     edit: Rediger
     destroy: Slette
-    save: S*ave
+    save: Lagre
     cancel: Avbryte
     show_all: Vis alle
     hide_all: Skjule alle
     are_you_sure: Er du sikker?
+    please_wait: Vennligst vent...
   helpers:
     label:
       user:
