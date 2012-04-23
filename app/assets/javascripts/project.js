@@ -8,7 +8,8 @@
 //= require jquery.alerts
 //= require slider
 //= require menu
-
+//= require i18n
+//= require i18n/translations
 iframed = function() {
   return (parent && parent.document && parent.document.location.href != document.location.href && $.isFunction(parent.$));
 };
@@ -22,8 +23,7 @@ $(document).ready(function(){
 Project = {
   checkDirty: false,
   tabs: null,
-  projectStatus: null,
-  showPublishWarning: false,
+  status: null,
   tags: ".field input[type=text], input[type=file], .field textarea.larger.widest, .field textarea.wymeditor, .field select",
   radioValues: {},
   checkboxValues:{},
@@ -119,15 +119,22 @@ Project = {
     });
   },
   initPublishWarning: function(){
-    $("input[value='to publish']").click(function(){
-      if(Project.showPublishWarning && $(this).is(":checked")){
-        $.alerts.okButton ='OK';
-        $.alerts.cancelButton = 'Cancel';
-        $.alerts.confirm('The project is not set to "To publish" by the project owner. Do you want to publish it anyway?', "Warning", function(result){
+    var inputs = "input[value='not published'], input[value='to publish'], input[value='published']";
+    $(inputs).click(function(){
+      var input = $(this);
+      if(Project.status == "not published" && (input.val() == "to publish" || input.val() == "published")){
+        $.alerts.okButton = '&nbsp;' + I18n.t("general_ui.ok")+ '&nbsp;';
+        $.alerts.cancelButton = '&nbsp;' + I18n.t("general_ui.cancel")+ '&nbsp;';
+        $.alerts.confirm(I18n.t("general_ui.messages.to_publish_warning_message"), I18n.t("general_ui.messages.to_publish_warning_title"), function(result){
           if (!result) {
-            $("input[value='"+ Project.projectStatus+"']").click()
+            $("input[value='not published']").click()
+            Project.status = "not published";
+          }else{
+            Project.status = input.val();
           }
         });
+      }else{
+        Project.status = input.val();
       }
     })
   },
@@ -243,12 +250,13 @@ Project = {
     return false;
   },
   showDirtyWarning: function(container){
-    $.alerts.okButton ='Save';
-    $.alerts.cancelButton = 'Discard Changes';
-    $.alerts.confirm("Please save or discard your changes to continue", "You have unsaved changes", function(result){
-      if (result) {
+    $.alerts.saveButton = '&nbsp;' + I18n.t("general_ui.save")+ '&nbsp;';
+    $.alerts.cancelButton = '&nbsp;' + I18n.t("general_ui.cancel")+ '&nbsp;';
+    $.alerts.discardButton = '&nbsp;' + I18n.t("general_ui.discard_changes")+ '&nbsp;';
+    $.alerts.confirm2(I18n.t("general_ui.messages.unsaved_message"), I18n.t("general_ui.messages.unsaved_title"), function(result){
+      if (result == true) {
         Project.saveChanges(container);
-      }else {
+      }else if(result == "discard"){
         Project.rejectChanges(container);
         Project.cancelChanges(container);
       }

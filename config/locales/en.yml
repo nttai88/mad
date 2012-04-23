@@ -11,6 +11,13 @@ en:
     hide_all: Hide All
     are_you_sure: Are you sure?
     please_wait: Please wait...
+    ok: OK
+    discard_changes: Discard Changes
+    messages:
+      unsaved_title: You have unsaved changes
+      unsaved_message: Please save or discard your changes to continue
+      to_publish_warning_title: Warning
+      to_publish_warning_message: The project is not set to "To publish" by the project owner. Do you want to publish it anyway?
   helpers:
     label:
       user:

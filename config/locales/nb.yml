@@ -11,6 +11,14 @@ nb:
     hide_all: Skjule alle
     are_you_sure: Er du sikker?
     please_wait: Vennligst vent...
+    ok: O*K
+    discard_changes: D*iscard C*hanges
+    messages:
+      unsaved_title: Y*ou h*ave u*nsaved c*hanges
+      unsaved_message: P*lease s*ave or d*iscard y*our c*hanges to c*ontinue
+      to_publish_warning_title: W*arning
+      to_publish_warning_message: T*he p*roject is not set to "To publish" by the p*roject o*wner. Do you w*ant to p*ublish it a*nyway?
+
   helpers:
     label:
       user:

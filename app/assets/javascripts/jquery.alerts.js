@@ -38,6 +38,8 @@
 		draggable: true,                    // make the dialogs draggable (requires UI Draggables plugin)
 		okButton: '&nbsp;OK&nbsp;',         // text for the OK button
 		cancelButton: '&nbsp;Cancel&nbsp;', // text for the Cancel button
+    discardButton: 'Discard Changes',
+    saveButton: '&nbsp;Save&nbsp;',
 		dialogClass: null,                  // if specified, this class will be applied to all dialogs
 		
 		// Public methods
@@ -52,6 +54,13 @@
 		confirm: function(message, title, callback) {
 			if( title == null ) title = 'Confirm';
 			$.alerts._show(title, message, null, 'confirm', function(result) {
+				if( callback ) callback(result);
+			});
+		},
+
+		confirm2: function(message, title, callback) {
+			if( title == null ) title = 'Confirm';
+			$.alerts._show(title, message, null, 'confirm2', function(result) {
 				if( callback ) callback(result);
 			});
 		},
@@ -123,6 +132,26 @@
 					$("#popup_cancel").click( function() {
 						$.alerts._hide();
 						if( callback ) callback(false);
+					});
+					$("#popup_ok").focus();
+					$("#popup_ok, #popup_cancel").keypress( function(e) {
+						if( e.keyCode == 13 ) $("#popup_ok").trigger('click');
+						if( e.keyCode == 27 ) $("#popup_cancel").trigger('click');
+					});
+				break;
+				case 'confirm2':
+					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.saveButton + '" id="popup_ok" /> ' + '<input type="button" value="' + $.alerts.discardButton + '" id="popup_discard" />' + '<input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+					$("#popup_ok").click( function() {
+						$.alerts._hide();
+						if( callback ) callback(true);
+					});
+					$("#popup_cancel").click( function() {
+						$.alerts._hide();
+						if( callback ) callback(false);
+					});
+					$("#popup_discard").click( function() {
+						$.alerts._hide();
+						if( callback ) callback("discard");
 					});
 					$("#popup_ok").focus();
 					$("#popup_ok, #popup_cancel").keypress( function(e) {
