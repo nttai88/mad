@@ -31,8 +31,9 @@
     = render :partial => "payment"
 
 
+
 :javascript
   $(document).ready(function(){
-    Project.status = "#{@project.project_status}";
+    Project.initPublishWarning("#{@project.project_status}");
   });
   I18n.locale = "#{I18n.locale}";

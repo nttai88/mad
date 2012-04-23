@@ -34,7 +34,6 @@ Project = {
     this.initButtons();
     this.initTabs();
     this.initEditTitle();
-    this.initPublishWarning();
   },
   initDataValue: function(){
     $(Project.tags).each(function(){
@@ -118,7 +117,8 @@ Project = {
       return false;
     });
   },
-  initPublishWarning: function(){
+  initPublishWarning: function(status){
+    this.status = status;
     var inputs = "input[value='not published'], input[value='to publish'], input[value='published']";
     $(inputs).click(function(){
       var input = $(this);
@@ -128,13 +128,8 @@ Project = {
         $.alerts.confirm(I18n.t("general_ui.messages.to_publish_warning_message"), I18n.t("general_ui.messages.to_publish_warning_title"), function(result){
           if (!result) {
             $("input[value='not published']").click()
-            Project.status = "not published";
-          }else{
-            Project.status = input.val();
           }
         });
-      }else{
-        Project.status = input.val();
       }
     })
   },
