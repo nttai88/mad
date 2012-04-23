@@ -29,3 +29,10 @@
     Feature under construction.
   %div.project-payment
     = render :partial => "payment"
+
+- if @project.user != current_user && current_user.admin? && @project.project_status != "to publish"
+  :javascript
+    $(document).ready(function(){
+      Project.showPublishWarning = true;
+      Project.projectStatus = "#{@project.project_status}";
+    });

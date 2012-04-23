@@ -8,6 +8,7 @@
   Attachment.init();
 <% elsif ["about", "thoughts"].include?(params[:tab]) %>
   $("#<%= params[:tab] %>").html("<%= escape_javascript(render :partial => params[:tab]) %>");
+  Project.initPublishWarning();
 <% elsif params[:tab] == "title" %>
   //Do nothing
 <% else %>

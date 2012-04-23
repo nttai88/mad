@@ -22,6 +22,8 @@ $(document).ready(function(){
 Project = {
   checkDirty: false,
   tabs: null,
+  projectStatus: null,
+  showPublishWarning: false,
   tags: ".field input[type=text], input[type=file], .field textarea.larger.widest, .field textarea.wymeditor, .field select",
   radioValues: {},
   checkboxValues:{},
@@ -32,6 +34,7 @@ Project = {
     this.initButtons();
     this.initTabs();
     this.initEditTitle();
+    this.initPublishWarning();
   },
   initDataValue: function(){
     $(Project.tags).each(function(){
@@ -114,6 +117,19 @@ Project = {
       container.find("div.edit").hide();
       return false;
     });
+  },
+  initPublishWarning: function(){
+    $("input[value='to publish']").click(function(){
+      if(Project.showPublishWarning && $(this).is(":checked")){
+        $.alerts.okButton ='OK';
+        $.alerts.cancelButton = 'Cancel';
+        $.alerts.confirm('The project is not set to "To publish" by the project owner. Do you want to publish it anyway?', "Warning", function(result){
+          if (!result) {
+            $("input[value='"+ Project.projectStatus+"']").click()
+          }
+        });
+      }
+    })
   },
   cancelChanges: function(container){
     container.find(".acc-content .show").show();
