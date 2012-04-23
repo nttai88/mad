@@ -51,9 +51,9 @@ gem 'state_machine', '~> 1.1.2'
 gem 'haml', '~> 3.1.4'
 gem 'acts_as_tree', '~> 0.1.1'
 
+gem "i18n-js", "~> 2.1.2"
 gem 'refinerycms', '2.0.3'
 gem 'refinerycms-i18n', '2.0.0'
 gem 'refinerycms-settings', '2.0.1'
 gem 'refinerycms-inquiries', :git => 'git://github.com/resolve/refinerycms-inquiries.git', :ref => '573627d73c531c3eb22e1b658c5bb98fd3bc0b8c'
 gem 'refinerycms-news', '2.0.0'
-gem "i18n-js", "~> 2.1.2"
