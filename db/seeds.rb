@@ -24,3 +24,5 @@ Carmen::country_codes.each do |country|
     Region.find_or_create_by_country_and_state(country, state[1])
   end
 end
+# Added by Refinery CMS Blog engine
+Refinery::Blog::Engine.load_seed
